@@ -1,27 +1,47 @@
-+++++++++++++++++++++++basi
-plan for iv
-farewell
-software dev - web app ,face rec
-opensource- lab obse
-graph theory =
-software dev for ds x2 
-cloud - 22q
-ibm cloud cert
-5)pan card
-15)bank account
-3)vote id
-6)driving liscence
-8)passport
-14)metro trip
-15)change ur linked in 
-Getting a Typical Work Visa
-Skilled Regional (Provisional) Visa
-Dependent relatives pr
-or General Skilled Migration. pr
-or ur brother way 
-see are you root
-for hoidays
-new plan
+tasks
+
+short:
+
+    plan for iv
+    farewell
+    software dev - web app ,face rec
+    opensource- lab obse
+    graph theory =
+    software dev for ds x2 
+    cloud - 22q
+    ibm cloud cert
+    5)pan card
+    15)bank account
+    3)vote id
+    6)driving liscence
+    8)passport
+    14)metro trip
+    15)change ur linked in 
+    Getting a Typical Work Visa
+    Skilled Regional (Provisional) Visa
+    Dependent relatives pr
+    or General Skilled Migration. pr
+    for hoidays
+    do a youtube project or watch and un subscrib3e one
+    do a bug bounty as much as u can do a freelance job or apply inturn or job check money.. If u did bug bounty or free lancing and got mony do hack game and play itif u got some money (bug bounty or any other form)download a game and hack it manually with out tools then play it
+    https://areyouroot.github.io/loop/tuts.html
+    add all feels in social apphelp some one in depresion
+    mvtv
+    attend a event
+    money honey
+    contribute to opensource
+    https://areyouroot.github.io/loop/tuts.html
+    update ur website
+
+long tasks:
+    
+    book reading x3
+    https://areyouroot.github.io/loop/outb.html
+    learn languages
+    block chain app
+    docker app
+    iot app
+
 non working days
 
 6 -8-9	- workout eyes extra skills synusdrain
