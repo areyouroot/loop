@@ -3,13 +3,10 @@ tasks
 short:
 
     plan for iv
+    mvp
+    m4
     farewell
     software dev - web app ,face rec
-    opensource- lab obse
-    graph theory =
-    software dev for ds x2 
-    cloud - 22q
-    ibm cloud cert
     5)pan card
     15)bank account
     3)vote id
