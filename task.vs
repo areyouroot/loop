@@ -4,6 +4,7 @@ short:
 
     plan for iv
     mvp
+    pay exam fees
     m4
     farewell
     software dev - web app ,face rec
