@@ -3,11 +3,6 @@ tasks
 short:
 
     plan for iv
-    mvp
-    pay exam fees
-    m4
-    farewell
-    software dev - web app ,face rec
     5)pan card
     15)bank account
     3)vote id
