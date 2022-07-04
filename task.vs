@@ -13,12 +13,13 @@ short:
     Getting a Typical Work Visa
     Skilled Regional (Provisional) Visa
     Dependent relatives pr
-    or General Skilled Migration. pr
+    or General Skilled Migration. pr73
     for hoidays
     do a youtube project or watch and un subscrib3e one
+    do add ur projects in youtube
     do a bug bounty as much as u can do a freelance job or apply inturn or job check money.. If u did bug bounty or free lancing and got mony do hack game and play itif u got some money (bug bounty or any other form)download a game and hack it manually with out tools then play it
     https://areyouroot.github.io/loop/tuts.html
-    add all feels in social apphelp some one in depresion
+    add all feels in social app help some one in depresion
     mvtv
     attend a event
     money honey
@@ -59,7 +60,7 @@ working days
 8-9 - offcial work  - dev app
 9-6 -	sleep
 
-sunday -infog / call all family mem / enjoy
+sunday -infog / call all family mem / enjoy and stay away from phone
 
 old
 
