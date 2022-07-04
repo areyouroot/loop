@@ -35,6 +35,7 @@ long tasks:
     block chain app
     docker app
     iot app
+    avoda
 
 non working days
 
