@@ -57,8 +57,8 @@ working days
 8-5 - clg work/break/social/strech
 5-6 - quran
 6-7 -	language  mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese 
-7-8 - eat break/family
-8-9 - offcial work  - dev app
+7-8 - offcial work  - dev app
+8-9 - eat break/family
 9-6 -	sleep
 
 sunday -infog / call all family mem / enjoy and stay away from phone
