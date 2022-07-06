@@ -1,3 +1,24 @@
+time table
+11- soft test
+12- soft test   
+13- cloud           software testing
+14- cloud
+15- inturnshiup     cloud
+16- distributed
+17- distributed
+18- distributed
+19- iot             distributed
+20- iot
+21- mac             iot
+22- mac
+23- inturnshiup     mac
+24- social entro
+25- social entro
+26- inturnshiup     social entro
+27-e-com
+28-e-com            inturnshiup
+
+
 tasks
 
 short:
@@ -6,7 +27,6 @@ short:
     5)pan card
     15)bank account
     3)vote id
-    6)driving liscence
     8)passport
     14)metro trip
     15)change ur linked in 
@@ -39,7 +59,7 @@ long tasks:
 
 non working days
 
-6 -8-9	- workout eyes extra skills synusdrain
+6 -8-9	- workout eyes extra skills synusdrain saturday- martial arts sunday - parkour
 8-9  -10-11	- chill               
 10-11 -1	- unofficail work book read
 1-3		- eat break
