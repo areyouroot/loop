@@ -1,11 +1,5 @@
-time table
-11- soft test
-12- soft test   
-13- cloud           software testing
-14- cloud
-15- inturnshiup     cloud
 16- distributed
-17- distributed
+17- distributed 900 exam
 18- distributed
 19- iot             distributed
 20- iot
@@ -49,7 +43,7 @@ short:
 
 long tasks:
     
-    book reading x3
+    book reading x2
     https://areyouroot.github.io/loop/outb.html
     learn languages mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese
     block chain app
