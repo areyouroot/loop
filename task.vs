@@ -1,11 +1,6 @@
-16- distributed
-17- distributed 900 exam
-18- distributed
-19- iot             distributed
-20- iot
-21- mac             iot
-22- mac
-23- inturnshiup     mac
+31 jul coding test ibm
+15TH AUGUST tcs exam
+
 24- social entro
 25- social entro
 26- inturnshiup     social entro
