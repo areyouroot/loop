@@ -47,27 +47,51 @@ long tasks:
 
 non working days
 
-5-8	- workout eyes extra skills synusdrain saturday- martial arts sunday - parkour
-8-11	- chill               
-11-1	- unofficail work
+6 -8-9	- workout eyes extra skills synusdrain saturday- martial arts sunday - parkour
+8-9  -10-11	- chill               
+10-11 -1	- unofficail work book read
 1-3		- eat break
-3-5		- officail work clg
+3-5		- officail work clg and others - dev app
 5-6		- quran
 6-7		- language mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese 
-7-8		- unofficail
-8-6		- eat and sleep prepare for next day
+7-8		- eat and break
+8-9		- story write
+9-6		- eat and sleep prepare for next day
 
 working days
 
-5-7 - workout eyes extra skills
+6-7 - workout eyes extra skills
 7-8 - ready clg
 8-5 - clg work/break/social/strech
 5-6 - quran
-6-7 - language  mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese 
-7-8 - offcial work / unofficail - dev app
-8-6 - eat break/family/sleep
+6-7 -	language  mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese 
+7-8 - offcial work  - dev app
+8-9 - eat break/family
+9-6 -	sleep
 
 sunday -infog / call all family mem / enjoy and stay away from phone
+
+old
+
+
+6-9- namaz ,workout-also monday break
+9-1- do a course               
+1-2- break if poss
+3-5- do a course
+5-6- break strech eyes
+6-7- quran
+7-8- mon - course tues - course wed- language thurs - language fri - chess sat - story write
+8-9- eat prepare for next day
+9-6- eat and sleep
+
+life goal -> finish lion -> get money -> do loop ->clear health ->built franchise
+for working days
+
+6-9 - workout bath clg ready
+9-5 - clg mon - course tues - course wed- language thurs - language fri - chess sat - story write	
+5-6 - break strech eyes
+6-8 - gtpro		do a course
+8-9 - eat and sleep prepare for next day
 
 pending tasks
 
