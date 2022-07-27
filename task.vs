@@ -1,11 +1,10 @@
 31 jul coding test ibm
 15TH AUGUST tcs exam
 
-24- social entro
-25- social entro
-26- inturnshiup     social entro
-27-e-com
-28-e-com            inturnshiup
+30- e-com
+31-e-com
+1-e-com            inturnshiup
+
 
 
 tasks
@@ -93,3 +92,26 @@ for working days
 5-6 - break strech eyes
 6-8 - gtpro		do a course
 8-9 - eat and sleep prepare for next day
+
+pending tasks
+
+8
+9
+10
+13
+14
+12
+19
+22
+23
+24
+25
+28
+29
+30
+34
+36
+37
+38
+39
+40
