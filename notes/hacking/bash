@@ -1,0 +1,64 @@
+changing permission of files using chmod
+
+user defined variable while defining dont need $ but using it needs $ prefixed
+
+# printenv 
+this command is used to print all bash details and systerm variables
+
+$PWD is a sys varible holding current location
+
+$1 is a varible used inside the code to get the arguments
+
+read a + echo "hi" = read -p "hi" a
+
+use for loop like this 
+for condi;do
+done
+
+while loop in bash
+
+    there is anothor loop called until loop
+
+    while [ condition ]
+    do
+       command1
+       command2
+       command3
+    done
+
+    conditions
+
+        lesser than is "lt" or '<'
+        greater than is 'gt' or '>'
+        lesser than or equal to is '-le' or '<='
+        || greater                  -ge ||
+        equal to is 'eq' or '=='
+
+function in bash
+
+    function function_name {
+    commands
+    } 
+
+if in bash
+
+    if condition ; then
+
+        statement
+    
+    else 
+
+        statement
+
+    fi 
+
+case in bash
+
+    case $opt in
+    1)
+    echo 'hello';;
+    2)
+    echo 'asd';;
+    esac
+
+debugging bash is so easy use 'bash -x "ur program name"'

