@@ -1,0 +1,94 @@
+first download and install the git hub as give in git website
+
+then download and install vscode
+
+create a ssh key so that u can acess the git hub
+
+then clone the ssh 
+
+link your account to the github shell using this commands
+
+     git config --global user.email "<you@example.com>"
+     git config --global user.name "<Your Name>"
+
+
+and start editing
+
+if u have created new files and git is not able to track it or new changes is made then follow this 
+//the both commands work only in offline no changes are made in github
+
+    1)git add . //this command add all files and changes to the git and new files are tracked all
+    2)git add <new file that is created or need to be tracked> //this will only track that particular file
+
+after adding the changes to the track then use this command to commit
+// commands work only in offline no changes are made in github
+
+    1)git commit -m "<changes tittle this is important>" -m "<changes descrption >"
+    // u can add and comit at same time just by commit command
+
+after commit you need to push it to the github so that it is saved online
+//this command needs internet and the changes is directly to the git main
+
+    !)git push origin main or master
+    2)git push origin <sub branch you want>
+
+if u dont have a repo created then do this first create the repo and add files then 
+
+    !)git init
+    2)git add .
+    3)git commit -m "<any thing>" -m "<any thing>"
+    4)git remote add origin <the ssh git link> //this will only work if u create a repo in github
+    5)git push -origin main or master
+
+to get the status of the changes and the new files created or deleted use this 
+
+    1)git status
+
+to check which repo u are connected to use
+
+    1)git remote -v
+
+you can define the directory once wher to push by this
+
+    1)git push -u origin <ur branch name>
+    //next time use u no need to mention the full command just use
+    2)git push
+
+to look the current working branch use or see the branches available
+    
+    1)git branch
+
+to create a new branch use
+
+    1)git checkout -b <branch name>
+
+to switch between the branches use 
+
+    1)git checkout <branch name>
+
+to checkout the difference between the main and  the branch use 
+
+    1)git diff <branch name>
+
+merging two branches in github
+
+    1)git push -u origin <branch name>//first push and commit the changes
+    2)git checkout <breanch where we need to add the code>
+    3)git merge <the branch which has the change>
+
+how to undo the commit
+
+    1)git reset <file name> //works on the add command
+    2)git reset //works on the add command for all files
+    3)git reset HEAD~1 //works after commiting it does goes one step back
+    
+    //to go back to a specific commit or undo multiple commit
+    
+    4)git log //to see all the logs of the git commit and copy the hash to go back to a particular point
+    5)git reset <hash of the commit u need> //u will go back to that commit but not all changes will be removed
+
+    //to undo mutiple commits and delete it
+
+    6)git reset --hard <hash>
+
+forking is done in web // this is a process of cloning the code from different repo

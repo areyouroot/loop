@@ -1,0 +1,28 @@
+first download and install the git hub as give in git website
+
+then download and install vscode
+
+create a ssh key so that u can acess the git hub
+
+then clone the ssh 
+
+link your account to the github shell using this commands
+
+     git config --global user.email "<you@example.com>"
+     git config --global user.name "<Your Name>"
+
+go to the github settings and  enable the git hub pages
+
+and if you want then add the theme from settings
+
+the url will be generated then put it as ur heading or the description so u can open it and see at the instant
+
+you can create the hyperlink in markdown language in git by this
+
+    1)[link name](markdown fie)
+
+see this website for markdown tutorial
+
+    1)https://guides.github.com/features/mastering-markdown/
+
+you can create a sub dir or a new repo for sub page
