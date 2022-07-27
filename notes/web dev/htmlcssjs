@@ -1,0 +1,319 @@
+HTML_______________
+
+any text editor can be used for us we use vscode
+others are same and u know 
+
+    <hr> - used to draw a _________________________________________________________________________ line
+
+    <!-- this is used for comment -->
+
+    <div>this is used to divide a page section</div>
+
+to get the input u can use 
+
+    <input type="<enter the type of the input u want text,password,date,email,range,file,checkbox,radiobutton,submit etc ...>" value="<enter the default value here>"
+to define a rafio button
+
+    <input name="<enter the same name to have a single choice>" type="radio">
+
+to get huge paragraph inputs use text area tag
+
+    <textarea rows="<number of words>" cols="<number of lines>"> "<put your default text here>" </textarea>
+
+to check all. types of input see this page
+
+    https://www.w3schools.com/html/html_form_input_types.asp
+
+forms in html
+
+    https://www.w3schools.com/html/html_forms.asp
+
+if you want to display a website inside another website then use iframe
+
+    <iframe src="<enter the url>" height="<enter the height in numbers and collen>" width="<enter as given in height>">"<enter here the message to be displayed when the website is not displayed>"</iframe>
+
+
+you can add the image usint this tag
+
+    <img src=”(your image URL here or the file name)”>
+
+other image manuplation see this //DONT FORGET TO SEETHE " AND ”
+
+    https://www.tutorialspoint.com/html/html_images.htm#:~:text=You%20can%20insert%20any%20image,syntax%20to%20use%20this%20tag.&text=The%20tag%20is%20an,it%20has%20no%20closing%20tag.
+
+
+
+
+CSS________________
+
+before appling the css just finish the HTML code
+
+this is a styling language used to style
+
+first u have to create a link from html to trhe css file by link tag
+
+    <link rel="stylesheet" type="text/css" herf="<enter the location of the file>">
+    //this should be in the title tag
+    //dont forget to add ./"for current directory" and ../ previous directory
+
+then test ur connection by just changing the back ground color
+
+    in the css
+
+        body{
+             background: red;
+            }
+
+few gradient example
+
+    https://www.w3schools.com/css/css3_gradients.asp
+
+    https://cssgradient.io/     //gradent generator
+
+three types of selection 
+
+    1)using the elementy tag 
+
+        eg in  html file
+
+            <p>hello there</p>
+        
+        eg in css file 
+
+            p{
+                color:red;
+            }
+
+    2)using class selector
+
+        eg in html file
+
+            <p class="<class name>">hello there</p>
+           
+            eg
+
+                <p class="class1">hello theer</p>
+
+        eg in css file
+
+            .class1{
+                color:blue:
+            }
+
+    3)using the inside
+
+        eg in html file
+
+            <p id="sometext">hellow there</p>
+
+        eg in css file
+
+            #sometext{
+                color:blue;
+            }
+
+to scale the image and videos accordingly use this 
+
+    https://www.codegrepper.com/code-examples/css/how+to+make+an+image+scale+with+window+size+css
+
+the power of different selector class is given in this order
+
+    element tag < class tag < id tag < in line change
+
+psudo selector example
+
+    <selector tag>:<action>{
+        chnages to be made 
+    }
+
+    eg
+        h1:hover{
+            color:red;
+        }
+
+        //this is used when we hover the mouse over that line
+
+        li:first-child <or> last-child <or> nth-child(<put the nuber of the child which u want to change>) <or> only-child{
+            color:blue;
+        }
+
+        //the only-child only works on the lsit having only one child
+
+        a:link{
+            color:red; // tis will work on hyper link before visting
+        }
+
+        a:visited{
+            color:blue; // tis will work on hyper link after visting
+        }
+ 
+you can comment the css by /*comment*/
+
+special tags eg
+
+    h2 + a{
+        //changes to be made and here the changes will be implemented in the "a" tag which is after h2 tag parent tag independent
+    }
+
+    textarea ~ button{
+        //changes to be made and here the changes will be implemented in the "button" tag which is after textarea tag works under the same parent tag
+    }
+    
+    ul > li {
+        //changes will be made to the li tags inside the ul if any other tagis there the effect will not be applied
+        //this is only applicable when ul is child of li not nested list
+    }
+
+    ul li{
+         //changes will be made to the li tags inside the ul if any other tagis there the effect will not be applied
+        //this is applicable when ul is child of li even nested list
+    }
+
+attribute selectors
+
+    h2[class="class value"]{
+        //the changes is applied only in the h2 tags where the class value is mention above
+    }
+
+    img[src="image location"]{
+        //put the style u wana applie
+    }
+
+    img[src^="half location"]{
+        //the ^ is used to select the mutiple source which is containg the part of the location 
+        //eg /img/ and u want to select all img under the /img/ then use it
+    }
+
+    img[src$="half location"]{
+        //the $ is used to select the mutiple source which ends the part of the location 
+        //eg /img/ and u want to select all img ends with /img/ then use it
+    }
+
+    img[src*="half location"]{
+        //the * is used to select the all source which is containg the part of the location 
+        //eg /img/ and u want to select all img under the /img/ then use it
+    }
+
+you can change the font color by just adding the property color in the css
+
+    body{
+        color: blue;
+        //this is used for font color
+    }
+
+you can set background image by urls or local files also use url
+
+    background: url("provide the local or the url to the img");
+    //works in css
+    //but the images will get repeted
+
+    //ucan over come the repeting problem by this
+    background-repeat: no-repeat;
+    //note: this will not repeat but size will be the original size
+
+    //you can avoid it by this command
+    background-size:cover;
+
+you can control the font size like this
+
+    fontsize:1cm;
+    fontsize:1m;
+
+u can control the text decoration 
+
+    text-decoration:none;
+    //remove all decoration
+    text-decoration:underline;
+    //underline
+    text-decoration:line-through;
+    //strick the words
+    text-decoration:overline;
+    //overline
+
+yopu can control the case of the fonts with this
+
+    text-transform:upercase;
+                  :lowercase;
+                  :capitalize;
+
+you can change the text anlinement
+
+    text-align:left;
+              :right;
+              :center;
+              :justify;
+
+you can change the font tickness by changing
+
+    font-weight: 400;
+
+you can change the font style
+
+    font-style:italic;
+              :oblique;
+              :bold;
+
+if u want to change the font family or style see this
+
+    https://www.w3schools.com/css/css_font.asp
+
+if u want to check the view of the website in the different devices using
+inspect in ur browser and eresponsive can change the real size
+
+you can add the borderd to your content 
+
+    https://www.w3schools.com/css/css_border.asp
+
+padding is inside the border and the margin is outside the border
+
+you can just like that add and create the pading and the marjin
+
+    margin:20px;
+    padding:20px;
+
+you can add the padding based ont the directions also like
+
+    padding-left:20px;
+    padding-right:20px;
+    padding-bottom:20px;
+    padding-top:20px;
+
+    (or)
+
+    padding: top right bottom left ;
+    padding: 20px 40px 30px 0;
+
+    //same for margin
+
+float is used to set how a element shhould posses in  a page\
+eg a image should be moved to right but text should take its place then use 
+float
+
+    float:position;
+    float:right;
+    float:left;
+    up 
+    bottom etc 
+
+you can hide things for temprovary time using display 
+and u can use javascript to do some crazy stuff
+
+display 
+
+    display:none;
+    //hides that element
+
+    display:inline; //puts in same line 
+    display:inline-block; //put in the bottom line
+
+css-flex box _________________________________________________________________________
+
+    https://www.w3schools.com/cssref/css3_pr_flex.asp
+
+css-grid _____________________________________________________________________________
+
+    https://www.w3schools.com/css/css_grid.asp
+
+if scrolling is not enabled by default put this
+
+    overflow:auto;
