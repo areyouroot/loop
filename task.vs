@@ -1,11 +1,13 @@
 31 jul coding test ibm
+28jul,5aug,7,9,12 https://glider.ai/sites/cybersecurity-hackathon/pwc/
+5th aug 4pm anazon 8pm amazon greeks for geeks
 15TH AUGUST tcs exam
 
 30- e-com
 31-e-com
 1-e-com            inturnshiup
 
-
+complete - https://www.udemy.com/course/solana-developer/learn/lecture/30965366#overview
 
 tasks
 
