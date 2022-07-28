@@ -54,8 +54,8 @@ non working days
 11-1	- unofficail work
 1-3		- eat break
 3-5		- officail work clg
-5-6		- english mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese
-6-7		- quran 
+5-6	    - quran 
+6-7 	- english mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese
 7-8		- unofficail
 8-6		- eat and sleep prepare for next day
 
@@ -64,8 +64,8 @@ working days
 5-7 - workout eyes extra skills
 7-8 - ready clg
 8-5 - clg work/break/social/strech
-5-6	- english mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese
-6-7	- quran 
+5-6	- quran 
+6-7	- english mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese
 7-8 - offcial work / unofficail - dev app
 8-6 - eat break/family/sleep
 
