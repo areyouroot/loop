@@ -1,11 +1,7 @@
-31 jul coding test ibm
 28jul,5aug,7,9,12 https://glider.ai/sites/cybersecurity-hackathon/pwc/
 5th aug 4pm anazon 8pm amazon greeks for geeks
 15TH AUGUST tcs exam
-
-30- e-com
-31-e-com
-1-e-com            inturnshiup
+sep 1 10pm https://www.hackerearth.com/challenges/hackathon/tibco-now-hackathon-camp-oss-hack/?utm_source=email
 
 complete - https://www.udemy.com/course/solana-developer/learn/lecture/30965366#overview
 
@@ -70,6 +66,19 @@ working days
 8-6 - eat break/family/sleep
 
 sunday -infog / call all family mem / enjoy and stay away from phone
+
+skills
+
+social engineering
+node js
+django
+vmware
+virtual box
+kali linux
+arch linux
+fedora linux
+debian linux
+ubuntu linux
 
 pending tasks
 
