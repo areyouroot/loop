@@ -7,6 +7,8 @@ complete - https://www.udemy.com/course/solana-developer/learn/lecture/30965366#
 
 tasks
 
+devops 22min wtl
+
 short:
 
     plan for iv
