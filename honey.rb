@@ -4,6 +4,7 @@ conditions to be satis fied
 1)poor
 2)dreamless 
 3)young ()
+4)other state()
 
 and the social engineering works in
 
@@ -12,6 +13,10 @@ responsible
 give and take love
 emotionally Dependent
 does she really want it
+virgin
+cooking
+why arrange marraige
+affirs
 
 conditions to get in
 

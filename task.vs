@@ -1,6 +1,5 @@
-28jul,5aug 5th August 2022 at 7:30 PM - 8:30 PM - Reg,7,9,12 https://glider.ai/sites/cybersecurity-hackathon/pwc/
 6th aug 630
-5th aug 4pm anazon 8pm amazon greeks for geeks
+7,9,12 https://glider.ai/sites/cybersecurity-hackathon/pwc/
 15TH AUGUST tcs exam
 sep 1 10pm https://www.hackerearth.com/challenges/hackathon/tibco-now-hackathon-camp-oss-hack/?utm_source=email
 
