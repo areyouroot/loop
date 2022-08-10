@@ -1,3 +1,5 @@
+pentest pg - 
+
 6th aug 630
 7,9,12 https://glider.ai/sites/cybersecurity-hackathon/pwc/
 15TH AUGUST tcs exam
