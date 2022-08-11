@@ -1,7 +1,8 @@
-pentest pg - 
+pentest pg - 48
 
 6th aug 630
 7,9,12 https://glider.ai/sites/cybersecurity-hackathon/pwc/
+13 congnizant 3349325	Abdul Faheem A	B.Tech	Information Technology	Eligible-Technical Assessment
 15TH AUGUST tcs exam
 sep 1 10pm https://www.hackerearth.com/challenges/hackathon/tibco-now-hackathon-camp-oss-hack/?utm_source=email
 
