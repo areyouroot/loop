@@ -4,6 +4,9 @@ pentest pg - 48
 7,9,12 https://glider.ai/sites/cybersecurity-hackathon/pwc/
 13 congnizant 3349325	Abdul Faheem A	B.Tech	Information Technology	Eligible-Technical Assessment
 15TH AUGUST tcs exam
+Stage 1 Assessment – 20th August 2022 https://www.virtusa.com/lp/neuralhack-season-6?utm_source=neocoder_instapost&utm_medium=insta_ad&utm_campaign=boost_website
+Stage 2 Assessment – 3rd September 2022  ||
+Grand Finale (In Person) – 20th to 23rd September 2022  ||
 sep 1 10pm https://www.hackerearth.com/challenges/hackathon/tibco-now-hackathon-camp-oss-hack/?utm_source=email
 
 complete - https://www.udemy.com/course/solana-developer/learn/lecture/30965366#overview
