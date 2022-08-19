@@ -1,1 +1,22 @@
 first download jdk then download the maven
+
+then istall the maven by watching this video - 
+
+step 1)https://www.youtube.com/watch?v=O2mE0dWZ43M&t=0s
+
+//before maven please install java and create path first then add variable for both
+
+//note : also manually create java home variable also like maven in caps
+
+step 2)https://www.youtube.com/watch?v=km3tLti4TCM
+
+
+check the jdk path if its correct then
+add a new user path for maven
+
+u can  use cmd #:mvn archetype:generate //this generates the new pomp file and architecture for our project
+
+// not confirmed
+then this will ask  group id : com."url"  //eg
+                    artifactid : any-name //eg
+                    version : 0  //eg

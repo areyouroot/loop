@@ -1,0 +1,22 @@
+install node js lts
+
+simple commands are 
+
+    console.log("hello world"); //this prints
+
+every thing is as same as the javascript like
+
+    const sum = (num1,num2) => num1 + num2; // function declaration
+    //this is need to export to run eg
+
+    //sum.js file
+    const sumfun = (num1,num2) => num1 + num2;
+    module.export.sumfun = sumfun; // this exports the function
+    // to export multiple objects use this
+    module.export = {sum : sum, obj2 : obj2, obj3 : obj3}
+
+    //app.js file
+    const sum = require('./sum'); //this imports the local files
+    console.log(sum); // lists all of the avalible fuctions and exported variables
+    console.log(sum.sumfun(1,1)); //exicutes the function 
+    // even multiple objects can be ecported  
