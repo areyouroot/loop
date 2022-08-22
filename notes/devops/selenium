@@ -1,0 +1,9 @@
+install cromium drive by just downloading it
+
+then download the selenium server
+
+goto eclips
+
+select the project file then right click 
+build path -> cofigure built path 
+add external jar files add selinum then apply then write code
