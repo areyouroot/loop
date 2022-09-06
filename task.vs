@@ -1,11 +1,5 @@
 pentest pg - 48
 
-Stage 2 Assessment – 3rd September 2022  ||
-Grand Finale (In Person) – 20th to 23rd September 2022  ||
-sep 1 10pm https://www.hackerearth.com/challenges/hackathon/tibco-now-hackathon-camp-oss-hack/?utm_source=email
-1 nov  https://eventdata.uk/Forms/Form.aspx?FormRef=SCEA2Visitor 10 AM
-Tuesday 15 November 2022 https://eventdata.uk/Forms/Form.aspx?FormRef=CyPB1Visitor 10 AM
-
 complete - https://www.udemy.com/course/solana-developer/learn/lecture/30965366#overview
 
 tasks
@@ -15,10 +9,6 @@ devops 22min wtl
 short:
 
     plan for iv
-    5)pan card
-    15)bank account
-    3)vote id
-    8)passport
     14)metro trip
     15)change ur linked in 
     Getting a Typical Work Visa

@@ -1,3 +1,13 @@
-download the jenkins and install it
+download the jenkins war file and run this command to run the server
 
-open jenkins then add jdk and git and other tools like maven doker etc in manage jenkins tab
+java -jar "file location"
+
+and copy the intial key it will be like this 5064296e46ac4ab0acda63e9d8da2c0f
+
+else see the password in  C:\Users\abdul\.jenkins\secrets\initialAdminPassword folder
+
+go to localhost:8080
+
+and put the password
+
+select install suggested plugins
