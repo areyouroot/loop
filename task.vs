@@ -1,3 +1,12 @@
+friday green economy
+infosec - seminar
+blockchain seminar
+https://www.youtube.com/c/WhiteboardCrypto/videos - block chain
+devops ansible to be completed in personal pc
+https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i
+https://www.youtube.com/playlist?list=PLTjRvDozrdlz3_FPXwb6lX_HoGXa09Yef
+
+
 pentest pg - 48
 
 complete - https://www.udemy.com/course/solana-developer/learn/lecture/30965366#overview
