@@ -1,4 +1,5 @@
 complete all asignments
+take pic in every department
 meet international dudes
 infosec - seminar
 blockchain seminar
