@@ -78,7 +78,7 @@ long tasks:
     
     book reading x2
     https://areyouroot.github.io/loop/outb.html
-    learn languages mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese
+    learn languages mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese,spanish holiday -korean
     block chain app
     docker app
     iot app
@@ -92,7 +92,7 @@ non working days
 1-3	- eat break
 3-5	- officail work clg	devops
 5-6	- quran 
-6-7 	- language			mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese
+6-7 	- language			mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese,spanish ,holiday -korean
 7-8	- unofficail		pentesting										
 8-6	- eat and sleep prepare for next day
 
@@ -102,7 +102,7 @@ working days
 7-8	- ready clg
 8-5	- clg work/break/social/strech
 5-6	- quran 
-6-7	- language			mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese
+6-7	- language			mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese,spanish ,holiday -korean
 7-8	- un/officail work	mon,tues-block chain wed,thurs-devops fri,saturday-pentesting
 8-6	- eat break/family/sleep
 
