@@ -84,28 +84,19 @@ long tasks:
     iot app
     avoda
 
-non working days
+	sunday		holiday		clg/working
 
-5-8	- workout eyes extra skills synusdrain saturday- martial arts sunday - parkour
-8-11	- chill               
-11-1	- unofficail work 	blockchain
-1-3	- eat break
-3-5	- officail work clg	devops
-5-6	- quran 
-6-7 	- language			mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese,spanish ,holiday -korean
-7-8	- unofficail		pentesting										
-8-6	- eat and sleep prepare for next day
-
-working days
-
-5-7	- workout eyes extra skills
-7-8	- ready clg
-8-5	- clg work/break/social/strech
-5-6	- quran 
-6-7	- language			mon-russian tues-arabic wed-german thurs-french fri-japnese sat-chinese,spanish ,holiday -korean
-7-8	- un/officail work	mon,tues-block chain wed,thurs-devops fri,saturday-pentesting
-8-6	- eat break/family/sleep
-
+5-6	fazar/quran		fazar/quran		fazar/quran
+6-7	workout		workout		workout
+7-1	family		family		clg
+1-2	pray/eat		pray/eat		pray/eat
+3-4	family		run			clg
+4-5	family		run			clg
+5-6	prayer		prayer/language	prayer/language
+6-7	prayer		prayer/run		prayer/run
+7-8	family		run			run
+8-9	eat/family		eat/family		eat/family
+9-10	sleep			sleep			sleep
 sunday -infog / call all family mem / enjoy and stay away from phone
 
 skills
