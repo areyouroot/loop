@@ -84,19 +84,20 @@ long tasks:
     iot app
     avoda
 
-	sunday		holiday		clg/working
+	sunday			holiday				clg/working
 
-5-6	fazar/quran		fazar/quran		fazar/quran
-6-7	workout		workout		workout
-7-1	family		family		clg
-1-2	pray/eat		pray/eat		pray/eat
-3-4	family		run			clg
-4-5	family		run			clg
-5-6	prayer		prayer/language	prayer/language
-6-7	prayer		prayer/run		prayer/run
-7-8	family		run			run
-8-9	eat/family		eat/family		eat/family
-9-10	sleep			sleep			sleep
+5-6	fazar/quran			fazar/quran				fazar/quran
+6-7	workout			workout				workout
+7-1	family/powernap		family				clg
+1-2	pray/eat			pray/eat				pray/eat
+3-4	family			run					clg
+4-5	family			run					clg
+5-6	prayer			prayer/language			prayer/language
+6-7	prayer			prayer/run				prayer/run
+7-8	family			run					run
+8-9	eat/family			eat/family/powernap		eat/family/powernap
+9-10	sleep				sleep					sleep
+
 sunday -infog / call all family mem / enjoy and stay away from phone
 
 skills
