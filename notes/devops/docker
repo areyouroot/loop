@@ -1,4 +1,4 @@
-last seen 50 - https://www.youtube.com/watch?v=fqMOX6JJhGo
+last seen 1.24 - https://www.youtube.com/watch?v=fqMOX6JJhGo
 
 download and install docker 
 
@@ -192,9 +192,28 @@ you can also mount the host files by this cmd
 types are :
     1)bind
 
+you can create a yml file to turn on multiple images at once eg you have to turn on ubuntu mongodb alpine ansible at same time multiple times u can create a yml file called docker-compose.yml
 
+    docker-compose.yml
 
+        web:
+            image: "ubuntu"
+        database:
+            image:"mongodb"
+        messaging:
+            image:"alpine"
+        oechestration:
+            image:"ansile"
 
+and to run and enable the docker composre use thsi cmd
+file name up
+    
+    #docker_compose up
 
+you can use costume name fror each container by 
 
+    docker run -d --name=[name to be kept] [container]
 
+you can link the container to eah other by their name and a argument called link
+
+    docker run -d --name vote -p 5000:80 --link redis:redis voting-app
