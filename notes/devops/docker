@@ -112,7 +112,44 @@ Docker history [container]
 
 #if any steps get failed while building the docker then it will automatically resume from cache once its corrected
 
+#you can append the docker file like this for eg i have ran some bash command after running the ubuntu
 
+    docker run ubuntu sleep 5 
+
+#here the i have appended a sleep command after exicuting it the container just exits
+
+#here is an eg of custom docker image which runs sleep
+
+    FROM Ubuntu
+    CMD sleep 5 (or) CMD ["sleep","5"]
+
+#if u are using the json format remember to seperate the command from the argument like CMD ["command","param"] u shouldnt use like CMD ["command param"] eg CMD ["sleep 5"]
+
+ENTRYPOINT INSTRUCTION
+
+this is used to get the arguments as input from cmd eg docker run ubuntu-sleeper 10 
+
+the contents of ubuntu sleeper is 
+
+    FROM Ubuntu
+    ENTRYPOINT ["sleep"]
+
+when we bulid and run it like #docker run ubuntu-sleeper 10 
+the sleep command will run for 10 sec
+
+the values in CMD will be over written if any argument is specified 
+
+if u want a default value that should be ran if no argument is provided then use cmd
+
+    FROM Ubuntu
+    ENTRYPOINT ["sleep"]
+    CMD ['5']
+
+if user doesnt specify any argument as value then cmd will be appended here
+
+you can overwrite entrypoint command or add entry point direcly in docker cmd like this
+
+#docker run --entrypoint sleep2.0 ubuntu-sleeper 10
 
 
 
