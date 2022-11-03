@@ -151,6 +151,50 @@ you can overwrite entrypoint command or add entry point direcly in docker cmd li
 
 #docker run --entrypoint sleep2.0 ubuntu-sleeper 10
 
+NETWORKS IN DOCKER 
+
+there are 3 types of network in the docker 
+    1)bridge(default)
+    2)none
+    3)host
+
+    tochange into the none network use this cmd 
+    #docker run Ubuntu --network=none
+
+    to change in to host network use 
+    #docker run Ubuntu --network=host
+
+docker has default private network besides that u can create different networks using this commands
+
+    docker network create --driver bridge --subnet 182.18.0.0/16 custom-isolated-network
+
+u can list all the bridged networks by
+
+    docker network ls
+
+you can see the containers network by inspecting it
+
+all docker container name can be acceced as dns names within the container 
+    eg a webserver ip is 1.1.1.1 if we want to connet it the user mysql.connect(1.1.1.1)else use mysql.connect("webserver container name")
+
+VOLUMES
+
+u can store the data of the container to the host in /var/lib/docker by default from this cmd
+
+    docker run -v [volume name]:[container volume name] [container
+
+you can also save it in the custome location by let knowing the docker full path
+
+you can also mount the host files by this cmd
+
+    docker run --mount type=[type],source=[location of the host],target=[loctain of the containers file to be stored] [container]
+
+types are :
+    1)bind
+
+
+
+
 
 
 
