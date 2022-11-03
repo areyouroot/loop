@@ -1,3 +1,119 @@
+last seen 50 - https://www.youtube.com/watch?v=fqMOX6JJhGo
+
 download and install docker 
 
 install and enable virtualization and wsl and follow docker installlation documents
+
+both virtual box and hyper v cannot exist in the same machine
+
+for docker the kernels are connected so kernl level infection can spread
+
+docker run #this command runs the program or the continer
+
+docker ps # prinst of all running docker images
+
+docker ps -a # prints all running recently closed containers
+
+docker stop name {or} docker stop [container id] #this will stop the container 
+
+docker rm [id or name] #delets the stoped docker container
+
+docker images #prints all of the avalible images
+
+docker rmi [id or name] # this will remove the image perminetly and see no continer is using the image else it will also be crooupted
+
+docker pull [name of the image] #this will download and keep the image if u dont have image still want to run it just use the run command it will automatically pull and run
+
+# the continer automatically exits and stops when the tast is completed or crashed so dont excpecto run a os instance
+
+docker run [container] #this runs the container in attaced format so the out put is visible not input is taken
+
+docker run -d [container] #this runs the container in dettaced format so the out put is not visible not input is taken
+
+#after running it as detaced u can attach the output by copying the id generated after the detach command like this 
+
+docker attach [id]  #some times few charactes of id is enought to recoganise the process
+
+#To run old version of any software use command 
+
+Docker run [container]:[version]
+
+#u can run the container in interactive mode by this command
+
+Docker run -i [contain]
+
+#this will both get imput and output
+
+#u can run the container in interactive mode by this command and attach terminal 
+
+Docker run -it [contain]
+
+#this will both get imput and output the terminal will show the out put of terminal also else it will look like netcat output
+
+# You can portforward the docker containers ip to ur host machine by this syntax
+
+Docker run -p 80:5000 [container]
+
+#here the 80 is host port and 5000 is dockers port
+
+#remember u cannot port forward 2 application to the same port
+
+#once you have stopped the continer your container data also gets destroyed so if u wana persistent the data or save in host os files then use -v tag to save
+
+Docker run -v /opt/datadir:/var/lib/mysql [container]
+
+#here /opt/datadir is in the host os and /var/lib/mysql is the containers location or file to be saved
+
+#to inspect all details of the docker containers use thsi All data will be reprented in json formatcommand
+
+Docker inspect [container]
+
+#to see the logs of the container use logs command
+
+Docker logs (container)
+
+#u can define and use the system variables using this command ,u can pass the values of these variables so that the input is like argument
+
+#normal sys cmd $export app_color=blue
+
+see pic flaskcode1
+
+#To pack and send the env variable in the docker use this cmd 
+
+Docker run -e APP_COLOR=blue simple-webapp-color
+
+#where -e is used to pass the env variable and app color is the variable
+
+#u can run multiple containers with different value and same image
+
+#u can see the env variable using the inspect argument
+
+#Simple example for docker file for custom Ubuntu instructions
+
+see pic flaskcode2
+
+Docker build [dockerfile] -t [container name and loc]
+
+#here the docker is built from a custom file give as own image
+
+#to push this image to docker use push command
+
+Docker push [container]
+
+#The above pic contains custom code which only docker can understand
+
+Working and architecture see wa1 wa2 wa3
+
+#you can see the resources consumption and the history of a container by
+
+Docker history [container]
+
+#also steps can be seen
+
+#if any steps get failed while building the docker then it will automatically resume from cache once its corrected
+
+
+
+
+
+
