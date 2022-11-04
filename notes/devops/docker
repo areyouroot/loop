@@ -90,7 +90,7 @@ Docker run -e APP_COLOR=blue simple-webapp-color
 
 see pic flaskcode2
 
-Docker build [dockerfile] -t [container name and loc]
+Docker build [dockerfile #it must be a dir] -t [container name and loc]
 
 #here the docker is built from a custom file give as own image
 
@@ -258,3 +258,16 @@ you can limit the cpu and ram to the docker containers by 2 arguments
 you can deploy multiple instace of the same image by this command
 
     docker service create --replicas=[number of instance] nodejs
+
+
+how to see a base os
+
+
+
+In the docker world you'll encounter OSes like Alpine more or less frequently. Hence its mostly advisable to get contents of the /etc/os-release file which will in most scenarios be present.
+
+# Tomcat 9 running on Alpine OS
+docker run -it tomcat:9-alpine cat /etc/os-release
+
+# Tomcat 9 running Debian (buster)
+docker run -it tomcat:9 cat /etc/os-release
