@@ -1,4 +1,4 @@
-last seen 1.24 - https://www.youtube.com/watch?v=fqMOX6JJhGo
+last seen 1.36 - https://www.youtube.com/watch?v=fqMOX6JJhGo
 
 download and install docker 
 
@@ -217,3 +217,46 @@ you can use costume name fror each container by
 you can link the container to eah other by their name and a argument called link
 
     docker run -d --name vote -p 5000:80 --link redis:redis voting-app
+
+you can create multiple images
+
+docker compose file with yml
+
+    docker-compose-build.yml
+
+        redis:
+            image:redis
+        db:
+            image:postgres:9.4
+        vote:
+            image:voting-app
+            ports: 
+                - 5000:80
+            links:
+                -redis
+        result:
+            image:result
+            ports:
+                -5001:80
+            links:
+                -db
+
+you can also build the compose file with oanther file byu usig key build:./file
+
+you should mention the version of the yml file if its 2 or lateer version for version 2 the docker automatically creates a private network         
+
+you can start certain service after launch of anther service by using "depends_on:[image name]"
+
+you can have have a custom server hosted in private registry by using the registry image 
+
+a remote docker image can be accessed by this command
+
+    docker -H=[remote docker engine address or ip add]:[port] [commands]
+
+you can limit the cpu and ram to the docker containers by 2 arguments
+
+    docker run ubuntu --cpus=[1-0.0 where 1 is 100% and 0.5 is 50%] --memory=[(value)m this will set values in mb]
+
+you can deploy multiple instace of the same image by this command
+
+    docker service create --replicas=[number of instance] nodejs
