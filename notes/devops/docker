@@ -82,6 +82,8 @@ Docker run -e APP_COLOR=blue simple-webapp-color
 
 #where -e is used to pass the env variable and app color is the variable
 
+#each variable should have -e each time
+
 #u can run multiple containers with different value and same image
 
 #u can see the env variable using the inspect argument
@@ -166,6 +168,14 @@ docker has default private network besides that u can create different networks 
 
     docker network create --driver bridge --subnet 182.18.0.0/16 custom-isolated-network
 
+you can also set gateway
+
+    docker network create --driver bridge --subnet 182.18.0.0/24 --gateway=182.18.0.1 wp-mysql-network
+
+remove a network by
+
+    $ docker network remove wp-mysql-network                                                            
+
 u can list all the bridged networks by
 
     docker network ls
@@ -179,7 +189,7 @@ VOLUMES
 
 u can store the data of the container to the host in /var/lib/docker by default from this cmd
 
-    docker run -v [volume name]:[container volume name] [container
+    docker run -v [volume name]:[container volume name] [container]
 
 you can also save it in the custome location by let knowing the docker full path
 
@@ -271,3 +281,10 @@ docker run -it tomcat:9-alpine cat /etc/os-release
 
 # Tomcat 9 running Debian (buster)
 docker run -it tomcat:9 cat /etc/os-release
+
+you can inspect the networks in docker by
+
+    docker network inspect bridge
+
+#bridge is network name
+
