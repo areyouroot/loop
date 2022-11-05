@@ -288,3 +288,21 @@ you can inspect the networks in docker by
 
 #bridge is network name
 
+Running an existing container
+
+you can run any command in a running container just knowing its ID (or name):
+
+docker exec -it <container_id_or_name> echo "I'm inside the container!"
+
+new containers list out commands
+
+PS C:\Users\abdul> docker container ls
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS C:\Users\abdul> docker ps -a
+CONTAINER ID   IMAGE     COMMAND        CREATED         STATUS                     PORTS     NAMES
+ec47e41fc5d6   fedora    "echo hello"   6 minutes ago   Exited (0) 2 minutes ago             devlin
+PS C:\Users\abdul> docker container ls -la
+CONTAINER ID   IMAGE     COMMAND        CREATED         STATUS                     PORTS     NAMES
+ec47e41fc5d6   fedora    "echo hello"   7 minutes ago   Exited (0) 3 minutes ago             devlin
+PS C:\Users\abdul>
+
