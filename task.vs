@@ -42,6 +42,7 @@ https://www.udemy.com/course/web-security-bug-bounty-basics/q
 https://www.bugcrowd.com/hackers/bugcrowd-university/
 https://tryhackme.com/hacktivities
 https://pentester.land/list-of-bug-bounty-writeups.html#bug-bounty-writeups-published-in-2021
+https://www.freecodecamp.org/learn/information-security/
 
 
 pentest pg - 48
