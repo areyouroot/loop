@@ -1,7 +1,23 @@
+vid remouse - 6:30 https://www.youtube.com/watch?v=8h4FoWK7tIA
+
+to use tkubernetes u need to have hyper v and docker
+
 kubernetes are like same as docker abut the master node controls all the slave docker nodes and most of the commands are similar like docker
 
 yaml file is used here to control the config of the kuberneties
 
 here the stucture is like mainserver(kubernetes master)->slave servers (pods)->docker containers
+
+to enable kubernetes in windows go to docker desktop then select settings and select kubernetes tab and press enable 
+
+then go to google and download kubectl and install it
+
+https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/ 
+
+here u will get a curl link download it and the go to add a env variable to the exe location the if any shell is running close it and restart the shell
+
+type kubectl to verify wheter it is there or not
+
+
 
 see this from starting https://www.youtube.com/watch?v=7bA0gTroJjw&list=PLnIuGyeSptxhEptmQ5wke5QGmVZigJoJU&index=2
