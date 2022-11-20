@@ -18,6 +18,12 @@ here u will get a curl link download it and the go to add a env variable to the 
 
 type kubectl to verify wheter it is there or not
 
+to see the config file type # kubectl config current-context
+
+to get all the nodes connected type # kubectl get nodes
+
+same for pods  # kubectl get pods
+
 
 
 see this from starting https://www.youtube.com/watch?v=7bA0gTroJjw&list=PLnIuGyeSptxhEptmQ5wke5QGmVZigJoJU&index=2
