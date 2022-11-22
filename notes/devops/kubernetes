@@ -24,6 +24,14 @@ to get all the nodes connected type # kubectl get nodes
 
 same for pods  # kubectl get pods
 
+kubernetes uses the master slave concept but the worker nodes are called as worker not slave
+
+the structure is given in png file 2 
+
+the command to verify and check the version of kube ctl is #kubectl version --client 
+
+to install and run kubernetes as a su node of a single pc or to just learn u can use minikube the link is https://minikube.sigs.k8s.io/docs/start/
+
 
 
 see this from starting https://www.youtube.com/watch?v=7bA0gTroJjw&list=PLnIuGyeSptxhEptmQ5wke5QGmVZigJoJU&index=2
