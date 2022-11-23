@@ -1,4 +1,4 @@
-vid remouse - 43.30 https://www.youtube.com/watch?v=d6WC5n9G_sM
+vid remouse - 1.00.00 https://www.youtube.com/watch?v=d6WC5n9G_sM
 
 to use tkubernetes u need to have hyper v and docker
 
@@ -88,8 +88,30 @@ eg :#kubectl get pods --namespace=kube-system
 pods are created in every node 
 
 as docker u can create containers in side a pod with same cmd as docker 
-eg :#kubectl run nginx --image=ngnix
+eg :#kubectl run nginx --image=nginx
 #kubectl run [pod name] --image=[docker image to be used]
+
+if error like ErrImagePull is an error happening when the image specified for a container can’t be retrieved or pulled.
+
+ImagePullBackOff is the waiting grace period while the image pull is fixed.
+
+you can cross verify the errors by manually checking with docker
+
+you can delete that pod by
+#kubectl delete pod [pod name]
+or 
+#kubectl delete pods [pods name]
+or
+#kubectl delete -f pod [pod name] //force
+or
+#kubectl delete -f pods [pods name]
+eg :#kubectl delete pods nginxcnt
+
+to rollout the detailed status after running wheteher it is deployed or not use this 
+#kubectl rollout status [deploymentname] [pod name]=[image]
+eg :#kubectl rollout status deployment/nginx-deployment ngix=ngnix:1.16.1
+
+
 
 check the status if the pod is runningh then only its running else its in process
 
@@ -107,5 +129,16 @@ So if u are going to create multiple deployment then u can use a file deployment
 To create a deployment file 
 #kubectl create deployment [deployment name] --image=[image name]
 Eg :#kubectl create deployment ngnix-dep --image=ngnix
+
+you can get al deployments by get command
+#kubectl get deployments
+
+you can details of deployment by 
+#kubectl descripbe deployment [deployment name]
+eg :#kubectl descripbe deployment ngnix-deployment
+
+
+
+
 
 see this from starting https://www.youtube.com/watch?v=7bA0gTroJjw&list=PLnIuGyeSptxhEptmQ5wke5QGmVZigJoJU&index=2
