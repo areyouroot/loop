@@ -1,4 +1,4 @@
-vid remouse - 6:30 https://www.youtube.com/watch?v=8h4FoWK7tIA
+vid remouse - 43.30 https://www.youtube.com/watch?v=d6WC5n9G_sM
 
 to use tkubernetes u need to have hyper v and docker
 
@@ -32,6 +32,80 @@ the command to verify and check the version of kube ctl is #kubectl version --cl
 
 to install and run kubernetes as a su node of a single pc or to just learn u can use minikube the link is https://minikube.sigs.k8s.io/docs/start/
 
+to print minikube version and verifiy the installation type #minikube version
 
+then the minikube need to be started any of the virtual machine manager that the minikube suports put it in the cmd and run it 
+
+run this command as a admin if hyper v avoid docker because it has some limitations
+#minikube start --driver=hyperv
+
+to delete the existing drivers use 
+#minikube delete
+
+run it after the start command
+#minikube status
+
+this should print 
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+
+to get minikube ip use 
+#minikube ip
+192.168.49.2
+
+you can ssh the docker running in the virtual minikube cluster by #ssh docker@ip
+
+if u are using docker as the driver then use this cmd the above cmd will not work in case of docker
+#minikube ssh
+
+the ssh will ask for the fingure print type yes and the default password and uname is 
+uname : docker
+password : tcuser
+
+u can see all the docker containers running in with this cmd 
+#docker ps 
+
+you can see the minikube cluster connetion info by 
+#kubectl cluster-info 
+
+you can get list of all connecteed node in kubeclt by this cmd
+#kubectl get nodes
+
+you can get list of all connecteed pods in kubeclt by this cmd
+#kubectl get pods
+
+you can print all of the name spaces that is like url inside the kubectl to call different objects use 
+#kubectl get namespaces
+
+you can call all of the pods related to a name space for eg there is a website that has many pods running like sql,apace etc .. you can print all pods in that name space 
+#kubectl get pods --namespace=[name space that is needed]
+eg :#kubectl get pods --namespace=kube-system
+
+pods are created in every node 
+
+as docker u can create containers in side a pod with same cmd as docker 
+eg :#kubectl run nginx --image=ngnix
+#kubectl run [pod name] --image=[docker image to be used]
+
+check the status if the pod is runningh then only its running else its in process
+
+you can print all the details of a pod using cmd 
+#kubectl describe pod ngnix
+
+The ip address u will get here is internal ip address running in kube proxy so u cant connect directly
+
+You can delete a specific pods by mentioning in the pod command
+Eg :#kubectl delete pod ngnix
+#kubectl delete pod [pod name]
+
+So if u are going to create multiple deployment then u can use a file deployment with precofig file so that same specifications like port etc will be same and images etc
+
+To create a deployment file 
+#kubectl create deployment [deployment name] --image=[image name]
+Eg :#kubectl create deployment ngnix-dep --image=ngnix
 
 see this from starting https://www.youtube.com/watch?v=7bA0gTroJjw&list=PLnIuGyeSptxhEptmQ5wke5QGmVZigJoJU&index=2
