@@ -138,7 +138,9 @@ you can details of deployment by
 eg :#kubectl descripbe deployment ngnix-deployment
 
 
-
+You can replicate or upscale the container (done in the same server) by
+#kubectl scale deployment [name of thr deployment] --replicas=5
+#kubectl scale deployment ngnix-depl scaled
 
 
 see this from starting https://www.youtube.com/watch?v=7bA0gTroJjw&list=PLnIuGyeSptxhEptmQ5wke5QGmVZigJoJU&index=2
