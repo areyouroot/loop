@@ -1,0 +1,29 @@
+firt install the remix plugin in vscode
+
+by clicking the remix logo you can compile the contract
+
+there are many icons one of them is compiler where by pressing it it will ask for the contract that is needed to compile
+
+you can change the compiler version by clicking on the set compiler version
+
+you need a local block chain to run and test it u can use ganach for local block chain then press the button run and deploy 
+
+then if u have installed ganache run the cli using 
+
+# npm i -g ganache-cli  //to install ganache
+
+# ganach-cli //runs ganach-cli
+
+it will be running in local host somewhere as the cli mentions else see the ganach tutorial as mentioned to run it properly
+
+then after running it 
+
+once the ganach is running click on run and deploy then press activate you will see the remix plugin asking for the netweok to deploy copy and paste the port hit connect once the remix is connected
+
+select the account then select the contract and press compile to deploy the contract then  select htew contracts that needed
+
+_______________debugger_____________________________
+
+remix has own debugger just click on the debugger and press activate
+
+this type of debugger can be deployed only after running the application so first run and deploy then copy the hash of the transction to debug it 

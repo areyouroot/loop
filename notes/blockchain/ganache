@@ -1,0 +1,76 @@
+download the ganache setup then execute it
+
+run it 
+
+use quick start to run the local block chain
+
+for advance block chain select the new workspace option
+
+this block chain is local and test only
+
+the eth provided by the ganach is test only eth so u cannot use the eth out side the testing network or the local network
+
+never use the private key provided by the ganache out side the local network 
+
+mostly the network id and the rpc server is only used for developement
+
+we can save switch the work spaces
+
+we need to modify the truffel.config file to connect to the network if you are using remix just use the ip:port where the application is running
+
+--------------------------truffel-config.js-----------------------------
+
+// uncomment out the developement option
+
+        developement:{
+            host:"127.0.0.1",
+            port:8545,              //mention what is given in ganache
+            network_id:1234,        //mention what is given in ganache
+            //if network id is * this means it can be any network id 
+
+        },
+
+//you can go to ganach setting -> server to change all the credentials
+
+-------------------------------------------------------------------------
+
+in the migrations folder where all files are present you can create a file and eploy a smart contract
+
+## note ##
+
+the above method is only for truffel users
+
+--------------------------ganache usping npm--------------------------------------
+
+go to nodejs.org
+
+download and install  
+
+# note : during the installation you sometimes u need chocolatey package manager so please install it before
+# if additional tools setup fails then u can run it from startmenu under nodejs
+
+after installing open cmd then type
+
+# node -v
+
+then now to check the npm version type 
+
+# npm -v //version
+
+then download ganache and then install
+
+then go to the file where the contract will be programed then type 
+
+# npm install -y
+
+if it prints any ERR message ignore
+
+then install truffel by 
+
+# npm install -g truffle
+
+then intializ the tru
+
+
+
+
