@@ -12,7 +12,7 @@ then if u have installed ganache run the cli using
 
 # npm i -g ganache-cli  //to install ganache
 
-# ganach-cli //runs ganach-cli
+# ganache-cli //runs ganache-cli
 
 it will be running in local host somewhere as the cli mentions else see the ganach tutorial as mentioned to run it properly
 
@@ -27,3 +27,8 @@ _______________debugger_____________________________
 remix has own debugger just click on the debugger and press activate
 
 this type of debugger can be deployed only after running the application so first run and deploy then copy the hash of the transction to debug it 
+
+----------------------------gui ganache-----------------------------------
+
+to use the gui version of ganache same procedure just change the credentials as mentioned in gui for remix
+
