@@ -1,2 +1,183 @@
 we need to download and work in visual studio
 and in visual stdio select the community edition and the package is .NET desktop developement
+
+after installing open a directory and open that dir with visual studio and select new project and start the type of application that u are going to develope select the options and frame work version 
+
+and now a template is generated for you to work make sure you dont have any old apps in that folder if that exist its fine still it can some times overlap
+
+for me i have choose "new -> new project -> console app (.net framework)
+
+the new generated program will be like having a file called program.cs and the content will be 
+
+note : the text behind // are meessages this will not reflect in original code they are only for reference
+
+----------------------------------------code----------------------------------------------
+
+using System;                           //these are header files
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace testcsharpnet
+{
+    internal class Program              //classes
+    {
+        static void Main(string[] args) //functions or aka method
+        {
+            //here is where the actual code is typed and first executed
+        }
+    }
+}
+
+------------------------------------------------------------------------------------------
+
+
+
+-------------------------first program to print hello world-------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace testcsharpnet
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("hello world");
+        }
+    }
+}
+
+------------------------------------------------------------------------------------------
+
+select 2nd play button "run without debugging"
+
+to execute the program fully use first start button but the program will be terminated after execution u can stuck it by demanding a input
+
+to get input use 
+
+    Console.ReadLine();
+
+full program
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace testcsharpnet
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("hello world");
+
+            Console.ReadLine();
+        }
+    }
+}
+
+to print the line without the next line use 
+
+            Console.Write("hello world");
+
+this prints in same line
+
+_______________________variables__________________________________________________________
+
+variables are use to store data in a program for more pls google it
+
+C# Variables
+Variables are containers for storing data values.
+
+In C#, there are different types of variables (defined with different keywords), for example:
+
+int - stores integers (whole numbers), without decimals, such as 123 or -123
+double - stores floating point numbers, with decimals, such as 19.99 or -19.99
+char - stores single characters, such as 'a' or 'B'. Char values are surrounded by single quotes
+string - stores text, such as "Hello World". String values are surrounded by double quotes
+bool - stores values with two states: true or false
+
+Declaring (Creating) Variables
+To create a variable, you must specify the type and assign it a value:
+
+Syntax
+type variableName = value;
+Where type is a C# type (such as int or string), and variableName is the name of the variable (such as x or name). The equal sign is used to assign values to the variable.
+
+To create a variable that should store text, look at the following example:
+
+Example
+Create a variable called name of type string and assign it the value "John":
+
+string name = "John";
+Console.WriteLine(name);
+
+Other Types
+A demonstration of how to declare variables of other types:
+
+Example
+int myNum = 5;
+double myDoubleNum = 5.99D;
+char myLetter = 'D';
+bool myBool = true;
+string myText = "Hello";
+
+the variables can be concardinated in write line with + sign eg program with output
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace testcsharpnet
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("hello world");
+
+            int myNum = 5;
+            double myDoubleNum = 5.99D;
+            char myLetter = 'D';
+            bool myBool = true;
+            string myText = "Hello";
+
+            Console.WriteLine("int " + myNum );
+            Console.WriteLine("double " + myDoubleNum + " number");
+            Console.WriteLine("char " + myLetter );
+            Console.WriteLine("bool " + myBool + " haha");
+            Console.WriteLine("string " + myText );
+
+
+            Console.ReadLine();
+        }
+    }
+}
+
+
+output:
+
+hello world
+int 5
+double 5.99 number
+char D
+bool True haha
+string Hello
+
+to find the lenght of a string use ".Length"
+
+eg:            Console.WriteLine( variable.length );
+
+
+
+last seen https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i - 40:00

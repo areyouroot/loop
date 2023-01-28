@@ -23,3 +23,4 @@ tues 	-	german	/	french
 thurs -	japnese	/	spanish
 fri 	-	chinese	/	korean
 sat 	-	tamil		/	english
+sunday-	hindi
