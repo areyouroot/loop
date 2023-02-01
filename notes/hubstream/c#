@@ -178,6 +178,36 @@ to find the lenght of a string use ".Length"
 
 eg:            Console.WriteLine( variable.length );
 
+like length u can use ToUpper() to convert string from lower to Upper and ToLower() for wiseversa
+
+            Console.WriteLine(myText.Contains("Hell"));
+
+the above function is to check whether the given word is there in the string returns true or false
+
+u can print character by character by their index position 
+eg:myText[0]
+
+note : index starts from 0
+
+u can print index of a character by IndexOf function
+
+u can print a range of index using Substring function
+eg: myText.Substring(2,5);
+
+u can execute the arithmetic operations directly in writeline function
+
+increment and decrement exist
+
+there are many math functions see https://www.w3schools.com/cs/cs_math.php
+
+---------------------------------------input operations----------------------------------
+            
+            Console.WriteLine("enter the name:");
+            myText=Console.ReadLine();
+            Console.WriteLine("hello" + myText
+
+-----------------------------------------------------------------------------------------
 
 
-last seen https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i - 40:00
+
+last seen https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i - 1:07:00

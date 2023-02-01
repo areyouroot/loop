@@ -1,0 +1,44 @@
+important skills
+
+1.smart contracts with ui and backed etc
+2. 
+
+why to choose solidity ?
+
+know more about solidity simplilearn.com/tutorials/blockchain-tutorial/what-is-solidity-programming#:~:text=Solidity%20is%20currently%20the%20core,on%20Burrow%20and%20uses%20Solidity.
+
+EVM-compatible blockchains
+
+There is a long list of projects that have launched an EVM-compatible layer one blockchain, but here are some of the top 15.
+
+Ethereum
+Ethereum Classic
+Binance Smart Chain
+Fantom
+Polygon
+Avalanche
+Cardano
+Tron
+solana (not directly executes solidity)
+Polkadot
+Binance Smart Chain
+Tron
+Uniswap
+Zhcash
+Hedera Hashgraph
+
+can solidity code can be run in solana ?
+
+AI: Yes, you can use the ERC-721 or ERC-1155 Solidity code from openzeppelin to deploy an NFT contract on Solana. Solana supports the use of Solidity for writing smart contracts, and it has its own ERC-like token standards that are similar to those used on Ethereum.
+
+besides the solidity u need a secondary language like javascript
+
+javascript can be used for automation and frount end and back end ui etc...............
+
+some frameworks that can get handy are
+
+1.hardhat
+2.react (frount end)
+3.ethers js library
+
+last seen day 2

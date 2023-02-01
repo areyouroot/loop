@@ -1,0 +1,158 @@
+The contractor oriented language was basically means that the smart contracts are the main way that you organize code and like stored data in my audio programming life And the high level language for able to be smart contracts looks a lot like javascript and you know python and C++ And you see right here And it's used to run on your theory and virtual machine It was basically you know a thing that runs the codeso something is a statly type as opposed to type language And it supports it like inheritance libraries and what other stuff So enough I'm talking about solidity Let's actually jump in and start riding some solidity code This is a website that allows you to write solidity smart contracts in your browser
+
+https://remix.ethereum.org/
+
+install 2 plugins in vscode if uare usingvs code 
+
+1)solidity by juan blanco (optional)
+2)remix
+
+you can also install remix in existing code editor such as vscode as a extension
+
+first smart contract:
+
+u will have some basic folders and files do use web ide for now folders are contractscripts test read me the text a JSM file etc etc
+
+----------------------------code----------------------------------------------------------
+
+pragma solidity ^0.4.24;
+contract testcon{
+    
+    //declar global variables and function
+    string value;
+    
+    //constructor declaration
+    constructor() public{
+        value="hello"; 
+    }
+    
+    //function declaration
+    function get() public view returns(string){ 
+        return value;
+
+    }
+    
+    function set(string _value)public{
+        value = _value;
+        //function local variable
+    }
+}
+
+------------------------------------------------------------------------------------------
+
+pragma solidity ^0.4.24; -- this is the version of the solidity used here ^ represents higher than 0.4.24
+
+note: the smart contract which you are going to type is going to be fully online so anyone can read it anyone can use it and etc
+
+contract testcon{
+    string value;
+}
+
+contract is similar to class but here is called as contract and it is an object on its own
+
+    string value;
+
+datatype and variables solidity is a statically typed language so evey variable u create is stored in blockchain
+
+the variables are not local it will be stored in blockchain and will repesent as the contract variable
+
+to declar a function u can use the keyword function
+
+eg:
+
+    function get() public returns(string){ 
+        return value;
+
+    }
+    function set(string _value)public{
+        value = _value;
+        //function local variable and the local variable is _value
+    }
+
+where get() and set() are function same as other languages function
+
+public represents acceseblity public means anyone can access form any contract
+
+returns(datatype) this represents what data type will it return
+
+constructors:
+
+they are automatically ran when the contract is called or the contract gets the scope constructor are called with constructor keyword
+
+in web ide after typing the code select the compiler and compile it by selecting a sutable vm deploy after deploying u will see a new test node running click on it to access the fuctionality
+
+to run in remix vscode extention dee the remic tutorial and ganache tutorial
+
+for the solidity above the version 0.5.1 code :
+
+------------------------------------------------------------------------------------------
+
+pragma solidity 0.5.1;
+contract testcon{
+    
+    //declar global variables and function
+    string value;
+    
+    //constructor declaration
+    constructor() public{
+        value="hello"; 
+    }
+    
+    //function declaration
+    function get() public view returns(string memory){ 
+        return value;
+
+    }
+    
+    function set(string memory _value)public{
+        value = _value;
+        //function local variable
+    }
+}
+
+------------------------------------------------------------------------------------------
+
+note this may not work in new versions due to changes
+
+if u declare your variables to be public then u can see the values directly
+
+eg: this code can be replaced
+
+    string value;
+    
+    //constructor declaration
+    constructor() public{
+        value="hello"; 
+    }
+    
+    //function declaration
+    function get() public view returns(string memory){ 
+        return value;
+
+    }
+
+    with this
+
+    string public value = "hello"
+
+    this will create a new button by which u can access the value of value (variable)
+
+    
+declaration of different datatypes
+_________________________________________________________________________________________
+
+pragma solidity 0.5.1;
+
+contract Mycont{
+    string public stringv="string";
+    bool public boolv=false;
+    // int normal integer values can be stored
+    // int8 only 8 bytes of integer can be stored
+    // uint unsigned integer no + or - can be represented
+    // uint122 etc only 122 bytes of unsigned integer can be stored
+    int112 public intv=123;
+}
+
+_________________________________________________________________________________________
+
+last seen - youtube.com/watch?v=ipwxYa-F1uY  18:00
