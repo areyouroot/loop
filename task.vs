@@ -20,7 +20,8 @@ sunday -infog / call all family mem / enjoy and stay away from phone
 		even		/	odd
 monday -	russian	/	arabic
 tues 	-	german	/	french
+wednes-	hindi		/	Portuguese
 thurs -	japnese	/	spanish
 fri 	-	chinese	/	korean
 sat 	-	tamil		/	english
-sunday-	hindi
+sunday-	write books

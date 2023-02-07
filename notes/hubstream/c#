@@ -203,11 +203,17 @@ there are many math functions see https://www.w3schools.com/cs/cs_math.php
 ---------------------------------------input operations----------------------------------
             
             Console.WriteLine("enter the name:");
-            myText=Console.ReadLine();
+            myText=Console.ReadLine(); //this read line only works for string
             Console.WriteLine("hello" + myText
 
 -----------------------------------------------------------------------------------------
+to convert the datatype of the variables u can use 
 
+eg: int num = Convert.ToInt32("45");
+
+like this u have different datatypes that u can convert note the datatype should be compatible
+
+---------------------------------------basic addtion program-----------------------------
 
 
 last seen https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i - 1:07:00

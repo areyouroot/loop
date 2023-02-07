@@ -155,4 +155,96 @@ contract Mycont{
 
 _________________________________________________________________________________________
 
-last seen - youtube.com/watch?v=ipwxYa-F1uY  18:00
+-----------------------------------enum program------------------------------------------
+pragma solidity 0.5.1;
+
+contract mycon{
+    enum state{wait,ready,active}
+    state public status;
+    constructor()public{
+        status=state.wait;//option 0 is assign
+    }
+    function activate() public{
+        status=state.active;//assigning the 2nd option
+    }
+    function isactive()public view returns(bool){
+        return status == state.active;
+    }
+}
+-----------------------------------------------------------------------------------------
+in this program u can see a key word called enum which is used for coustom user object and its states
+
+here u can see 3 states wait ready active and run this to see the working
+
+----------------------------------user data allocation using struct-----------------------
+
+this struct is as same as in the c programing language used to declare the objects
+
+simple usage is 
+
+___________________________________________________________________________________________
+pragma solidity 0.5.1;
+
+contract mycontract{
+
+    person[] public people; // declaration of object the length of the object is not assigned
+
+    uint256 public peoplecount; //keeping track of number of items
+
+    struct person{  //object structure declaration
+
+        string firstname;
+        string lastname;
+
+    }
+
+    function addperson(string memory firstname,string memory lastname)public{
+
+        people.push(person(firstname,lastname)); // push is a method to add data in a array and that object is an array
+        peoplecount ++;
+        
+    }
+
+}
+
+_______________________________________________________________________________________________
+
+the above program can be also be returend as dynamic mapping using pointers :
+
+__________________________________________________________________________________________
+pragma solidity 0.5.1;
+
+contract mycontract{
+
+    uint256 public peoplecount;
+    mapping(uint => person)public people; //creating a mapping functrion
+
+    struct person{
+
+        uint id;
+        string firstname;
+        string lastname;
+
+    }
+
+    function addperson(string memory firstname,string memory lastname)public{
+        
+        peoplecount ++;
+        people[peoplecount]=(person(peoplecount,firstname,lastname));
+        
+    }
+
+}
+__________________________________________________________________________________________
+note: the mapping code will not show any error it will show the default values with is nothing or zero
+-----------------------------------------------------------------------------------------
+
+
+ 
+
+
+last seen 26:00 https://www.youtube.com/watch?v=ipwxYa-F1uY
+
+
+
+
