@@ -268,9 +268,46 @@ require() ------ this is like if in solidity but ot if it throws an error if the
 syntax:
 require(msg.sender == owner);
 
+msg is a built in variable which has the details of the user who is using the contract
+
+for more msg details and how to get different details look this https://medium.com/upstate-interactive/what-you-need-to-know-about-msg-global-variables-in-solidity-566f1e83cc69
+
+----------------------------------------code-----------------------------------------------
+
+//sample snippet (part of code )
+
+address owner;
+
+modifier onlyOwner(){
+    require(msg.sender == owner);
+    -; // this is where the called function will join itself and "-;" represents that
+}
+
+constructor() public{
+    owner=msg.sender;//this will store the first user's address and the onlyowner method will compare it
+}
+
+function addperson(string memory firstname,string memory lastname) public onlyOwner {
+    peoplecount++;
+}
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+the above program takes the first person address who runs this program first time and each time compares it with the next transactions  
+
+------------------------------------------------time in solidity----------------------------------
+
+so the solidity uses the time stamp so only unix epoch time is stable and only we can represent time in seconds for clock or convertor use this epochconverter.com/clock
+
+there is another global variable like msg called block where u can get the current block details for more information docs.soliditylang.org/en/v0.8.17/units-and-global-variables.html
+
+to get the current block time stamp use 
+
+#block.timestamp // this returns time stamp
 
 
-last seen 38:00 https://www.youtube.com/watch?v=ipwxYa-F1uY
+
+last seen 46:00 https://www.youtube.com/watch?v=ipwxYa-F1uY
 
 
 
