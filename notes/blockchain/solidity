@@ -239,8 +239,13 @@ ________________________________________________________________________________
 note: the mapping code will not show any error it will show the default values with is nothing or zero
 -----------------------------------------------------------------------------------------
 
-
+now we are going to lok about the acess modifiers
  
+types of acess 
+
+1) public - this will show the functunalities in the webpage when we run it
+2) internal - these are the private functions which can be only acess by the contrat internal functions
+
 
 
 last seen 26:00 https://www.youtube.com/watch?v=ipwxYa-F1uY

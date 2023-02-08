@@ -187,14 +187,14 @@ the above function is to check whether the given word is there in the string ret
 u can print character by character by their index position 
 eg:myText[0]
 
-note : index starts from 0
+note: index starts from 0
 
-u can print index of a character by IndexOf function
+u can print the index of a character by the IndexOf function
 
-u can print a range of index using Substring function
+u can print a range of indexes using the Substring function
 eg: myText.Substring(2,5);
 
-u can execute the arithmetic operations directly in writeline function
+u can execute the arithmetic operations directly in write line function
 
 increment and decrement exist
 
@@ -204,16 +204,17 @@ there are many math functions see https://www.w3schools.com/cs/cs_math.php
             
             Console.WriteLine("enter the name:");
             myText=Console.ReadLine(); //this read line only works for string
-            Console.WriteLine("hello" + myText
+            Console.WriteLine("hello" + myText);
 
 -----------------------------------------------------------------------------------------
 to convert the datatype of the variables u can use 
 
 eg: int num = Convert.ToInt32("45");
 
-like this u have different datatypes that u can convert note the datatype should be compatible
+like this, u have different datatypes that u can convert note the datatype should be compatible
 
----------------------------------------basic addtion program-----------------------------
+-------------------------------------arrays in c#-----------------------------------------
 
+how to declare an array
 
-last seen https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i - 1:07:00
+last seen https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i - 1:17:00
