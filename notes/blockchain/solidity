@@ -256,10 +256,17 @@ _________________________________________modifiers______________________________
 
 Function modifier can be executed before or after the function executes its code. The modifiers can be used when there is a need to verify the condition automatically before executing a particular function. If the given condition is not satisfied, then the function will not get executed.
 
+more on modifiers: https://medium.com/coinmonks/solidity-tutorial-all-about-modifiers-a86cf81c14cb
+
 syntax:
 modifier method_name() {
 action block;
 }
+
+require() ------ this is like if in solidity but ot if it throws an error if the given condition is not matching
+
+syntax:
+require(msg.sender == owner);
 
 
 
