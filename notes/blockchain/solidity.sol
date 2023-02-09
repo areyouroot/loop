@@ -1,3 +1,6 @@
+pragma solidity ^0.4.24;
+
+
 The contractor oriented language was basically means that the smart contracts are the main way that you organize code and like stored data in my audio programming life And the high level language for able to be smart contracts looks a lot like javascript and you know python and C++ And you see right here And it's used to run on your theory and virtual machine It was basically you know a thing that runs the codeso something is a statly type as opposed to type language And it supports it like inheritance libraries and what other stuff So enough I'm talking about solidity Let's actually jump in and start riding some solidity code This is a website that allows you to write solidity smart contracts in your browser
 
 https://remix.ethereum.org/
@@ -47,6 +50,8 @@ note: the smart contract which you are going to type is going to be fully online
 contract testcon{
     string value;
 }
+
+in deploy section you can send the arguments for the constructor
 
 contract is similar to class but here is called as contract and it is an object on its own
 
@@ -243,8 +248,13 @@ now we are going to lok about the acess modifiers
  
 types of acess 
 
-1) public - this will show the functunalities in the webpage when we run it
-2) internal - these are the private functions which can be only acess by the contrat internal functions
+1) external − External functions are meant to be called by other contracts. They cannot be used for internal call. To call external function within contract this.function_name() call is required. State variables cannot be marked as external.
+
+2) public − Public functions/ Variables can be used both externally and internally. For public state variable, Solidity automatically creates a getter function.
+
+3) internal − Internal functions/ Variables can only be used internally or by derived contracts.
+
+4) private − Private functions/ Variables can only be used internally and not even by derived contracts.
 
 there is a datatype called address where all address is stored
 
@@ -305,9 +315,51 @@ to get the current block time stamp use
 
 #block.timestamp // this returns time stamp
 
+payable - this is a keyword represented to a variable or function which can transfer funds from one wallet to another
+
+syntax as eg:
+
+address payable wallet;
+
+(or)
+
+function buytoken() public payable{
+
+}
+
+---------------------------------------making a contract for transaction--------------------------------
+
+____________________________________program_______________________________________________
+
+//this program here we will get the wallet address and increment a value in return we will dudect the amount from his wallet as much as the msg execution value 
+//we will call msg.value for message prossing value deduction
+
+pragma solidity 0.5.1;
+
+contract mycontract {
+    mapping(address => uint) public balance;
+    address payable wallet;
+
+    constructor(address payable _wallet)public{
+        wallet=_wallet;
+    }
+
+    function buytoken()public payable{
+        // buy a token eg not actuall token we are just incrementing a pointing value
+        balance[msg.sender]+=1;
+        // send ether to the wallet 
+        //before deploying we need to assign the value in eather that is need to be transfered
+        wallet.transfer(msg.value);
+        //msg.value is got from value column from the ide
+    }
+}
+
+//transfer is a built in function used to transfer coins from the current user
+_________________________________________________________________________________________________
 
 
-last seen 46:00 https://www.youtube.com/watch?v=ipwxYa-F1uY
+
+last seen 57:00 https://www.youtube.com/watch?v=ipwxYa-F1uY
 
 
 
