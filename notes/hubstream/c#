@@ -242,15 +242,102 @@ string[] friends=new string[5]
 how to declare functions or aka methods
 
     static void Main(string[] args){
-        functionName();
+        functionName(variable or value to be passed);
     }
 
-    static void functionName(){
+    static void functionName(datatype variableName){
         action block;
     }
 
-eg
+eg:
+-------------------------------------------------------------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace testcsharpnet
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            hi("hellow world");
+
+            Console.ReadLine();
+        }
+
+        static void hi(string s)
+        {
+            Console.WriteLine(s);
+        }
+    }
+}
+
+-----------------------------------------------------------------------------------------
 
 other rules are as same as other languages
 
-last seen https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i - 1:17:00
+-------------------------------------if statements------------------------------------------
+
+if is as same as c and java
+
+syntax + eg:
+
+if(condition == condition){
+    action block;
+}
+else if{
+    action block false;    
+}
+else{
+    action block else;
+}
+
+useful things in if:
+
+1) == equalto
+2) && and
+3) || or
+4) != not equal
+
+------------------------------------------------switch --------------------------------
+
+syntax + eg:
+
+switch(variable)
+{
+    case condition:
+        actionblock case1;
+        break;
+    
+    other cases..................
+    .
+    .
+    .
+    .
+    .
+    .
+    .
+    .
+    .
+    default:
+    action block default;
+    break;
+}
+
+---------------------------------------------while--------------------------------------
+
+syntax + eg:
+
+while(condition){
+    actionblock;
+}
+
+the switch is as same as c and be careful if u didnt mention break it will continue to execute inside the switch break is used to jum out of switch case
+
+
+
+last seen -- 2:34:00 - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
