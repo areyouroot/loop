@@ -217,4 +217,40 @@ like this, u have different datatypes that u can convert note the datatype shoul
 
 how to declare an array
 
+syntax:
+
+datatype[index limit] variableName = {value,values}; //here index limit can be empty
+Console.WriteLine( variableName[index] );
+
+eg:
+
+int[] number = {1,2,3,4,5,6};
+Console.WriteLine(number[0]);
+
+to define a static array
+
+syntax:
+
+datatype variableName = new samedatatype[index limit];
+
+eg:
+
+string[] friends=new string[5]
+
+----------------------------------------c# functions _____________________________________________
+
+how to declare functions or aka methods
+
+    static void Main(string[] args){
+        functionName();
+    }
+
+    static void functionName(){
+        action block;
+    }
+
+eg
+
+other rules are as same as other languages
+
 last seen https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i - 1:17:00
