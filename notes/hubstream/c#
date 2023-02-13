@@ -338,6 +338,54 @@ while(condition){
 
 the switch is as same as c and be careful if u didnt mention break it will continue to execute inside the switch break is used to jum out of switch case
 
+do while is also same as c
+
+syntax :
+
+do{
+    actionblock;
+}while (condition);
+
+//dont forget ;
+
+--------------------------------------for-------------------------------------------------
+
+for is as same as C
+
+syntax:
+
+for(intialization;condition;itration){
+    action block;
+}
+
+-------------------------------------comments------------------------------------------------------
+//single line 
+
+/*multiline comment*/
+
+----------------------------exception handelling aka error handeling-------------------------
+
+they are as samme as C
+
+use try for code and catch for error handeling
+
+try{
+    action block;
+}
+catch(type_of_exception object_for_reference /*optional*/){
+    action on error;
+    object_for_reference.command;
+}
+finally{
+    should be executed action block;
+}
+
+to know more on detail and types read :https://www.tutorialspoint.com/csharp/csharp_exception_handling.htm
+
+execute no matter what happens should be added in finally method
+
+-------------------------------------classes and objects----------------------------------
 
 
-last seen -- 2:34:00 - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
+
+last seen -- 3:24:00 - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
