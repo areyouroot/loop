@@ -357,9 +357,115 @@ contract mycontract {
 //transfer is a built in function used to transfer coins from the current user
 _________________________________________________________________________________________________
 
+-----------------------------------event__________________________________________________
+
+event is like a fuction that is used to produce temporovary variables that can be called and used only once and they cannot be modified or reused 
+
+eg:cooment section in the youtube the data is only accessed once but u can create a new comment like that event is also 
+
+syntax:
+
+event <eventName>(parameters) ;    
+//emit
+emit <eventName>(parameters);
+
+eg:
+
+// Solidity program to demonstrate
+// creating an event
+pragma solidity ^0.4.21;
+
+// Creating a contract
+contract eventExample {
+
+	// Declaring state variables
+	uint256 public value = 0;
+
+	// Declaring an event
+	event Increment(address owner);
+
+	// Defining a function for logging event
+	function getValue(uint _a, uint _b) public {
+		emit Increment(msg.sender);
+		value = _a + _b;
+	}
+}
+
+------------------------------------------------------------------------------------------
+
+event logs :
+
+logs [
+	{
+		"from": "0xd9145CCE52D386f254917e481eB44e9943F39138",
+		"topic": "0xfc3a67c9f0b5967ae4041ed898b05ec1fa49d2a3c22336247201d71be6f97120",
+		"event": "Increment",
+		"args": {
+			"0": "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+			"owner": "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4"
+		}
+	}
+]
+
+------------------------------------------------------------------------------------------
+
+we can also index event based on name sno etc so that we can sort it when need or filter a specific event when required ,We can add atmost 3 indexes in one event. 
+
+eg code with index in events:
+
+// SPDX-License-Identifier: GPL-3.0
+
+pragma solidity >=0.7.0 <0.9.0;
 
 
-last seen 57:00 https://www.youtube.com/watch?v=ipwxYa-F1uY
+contract IndexEvents {
+
+	event NewTrade(
+		uint256 indexed date,
+		address from,
+		address indexed to,
+		uint256 indexed amount
+	);
+
+	function trade(address to, uint256 amount) external {
+		emit NewTrade(block.timestamp, msg.sender, to,amount);
+	}
+}
+
+-----------------------------------------------------------------------------------------
+
+event logs on running :
+
+logs [
+	{
+		"from": "0xcD6a42782d230D7c13A74ddec5dD140e55499Df9",
+		"topic": "0xa6b5ddd331f9dc412a8c258207b1c66f53c1740c72628d9913aafcb6b28d8f73",
+		"event": "NewTrade",
+		"args": {
+			"0": "1655406115",
+			"1": "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+			"2": "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+			"3": "1234",
+			"date": "1655406115",
+			"from": "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+			"to": "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+			"amount": "1234"
+		}
+	}
+]
+
+//for more about about events : 
+
+1)geeksforgeeks.org/what-are-events-in-solidity/
+2)https://www.youtube.com/watch?v=nopo9KwwRg4
+3)tutorialspoint.com/solidity/solidity_events.htm
+
+//in order to use a event u need emit function and the usage can be seen in the above programs
+_________________________________________________________________________________________
+
+
+
+last seen 1:00:00 https://www.youtube.com/watch?v=ipwxYa-F1uY
 
 
 
