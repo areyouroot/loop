@@ -386,6 +386,66 @@ execute no matter what happens should be added in finally method
 
 -------------------------------------classes and objects----------------------------------
 
+when u creat a class u can use a class file by accessing the view->solution explorer->(right click)new file->c# class
+
+this will create a new class
+
+when u define thwe classes make sure that u define the access controle such as public private protected internal etc.....
+
+when ever u create and define a class make sure that u also declare and create a object_for_reference
+
+eg class code (external class file called class1.cs):
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace testcsharpnet
+{
+    class book
+    {
+        public string name;
+        public string author;
+        public int pages;
+
+    }
+}
+
+eg program code (main.cs):
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace testcsharpnet
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            book book1= new book();
+            book1.name = "hari putter";
+            book1.author = "jkd";
+            book1.pages = 96;
+
+            Console.WriteLine(book1.name);
+            Console.WriteLine(book1.author);
+            Console.WriteLine(book1.pages);
+
+            Console.ReadLine();
+        }
+    }
+}
+_____________________________________________constructor----------------------------------
+
+the constructure should have the class name there can be many constructure and the access type should be defined
 
 
-last seen -- 3:24:00 - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
+
+
+
+last seen -- 3:37:00 - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
