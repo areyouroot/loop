@@ -440,12 +440,205 @@ namespace testcsharpnet
         }
     }
 }
+
+you can call functions also like this eg: name is a function then
+
+book1.read(arguments);
 _____________________________________________constructor----------------------------------
 
 the constructure should have the class name there can be many constructure and the access type should be defined
 
+the constructure should have as same name as class
+
+eg program for the constructure:
+
+main.cs:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace testcsharpnet
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            book book1= new book("baba");
+            book1.name = "hari putter";
+            book1.author = "jkd";
+            book1.pages = 96;
+
+            Console.WriteLine(book1.name);
+            Console.WriteLine(book1.author);
+            Console.WriteLine(book1.pages);
+
+            Console.ReadLine();
+        }
+    }
+}
 
 
+class.cs:
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-last seen -- 3:37:00 - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
+namespace testcsharpnet
+{
+    class book
+    {
+        public string name;
+        public string author;
+        public int pages;
+
+        public book(string title) { 
+            Console.WriteLine(title);
+        }
+
+    }
+}
+
+when a object (class) is under a scope the constructor gets executed 
+
+-------------------------------getters and setters-----------------------------------------
+
+getters and setter are used to access the data which is private to return a specific value or to set a specific value 
+
+sample code how to use getter and setter 
+
+private private_variable;//declared in class
+
+public datatype variable //this will represent the private variable
+{
+    get {return private_variable;}
+    set{condition;}
+}
+
+the variable should be called by the public variable name 
+-----------------------------static class attributes & methods--------------------------------------
+
+static means that the method belongs to the Program class and not an object of the Program class. You will learn more about objects and how to access methods through objects later in this tutorial. void means that this method does not have a return value. You will learn more about return values later in this
+
+u can only call use add the values or modify only using the class not out side the class eg object.variable will not work here u can only use in class and its function
+
+syntax and eg:
+
+public static int count=0;
+
+--methods--
+
+to access the class functions without the object declaration eg:math.sqrt(3,3) like this u can use the key word static
+
+eg and syntax:
+
+class.cs:
+
+class class_name{
+    public static void function_name(){
+        action block;
+    }
+}
+
+main.cs:
+
+class_name.function_name();
+
+no need of object declaration like object class_name= new objectname() then objectname.function_name(); // no need of this 
+
+--------------------------------------inheritance-------------------------------------------
+
+we use : for inheretance
+
+we should have 2 class for in heretance
+
+eg :
+class1:
+
+class vegchef{
+    public void cook(){
+        Console.WriteLine("cooks veg")
+        //super class
+    }
+}
+
+class nonvegchef : vegchef {
+    public void noncook(){
+        Console.WriteLine("cooks non veg")
+        //subclass if veg chef is gone every thing in veg is gone 
+    }
+}
+
+mainclass:
+
+class main{
+    static void main(string[] args){
+        //u can call any chef to cook veg but only non veg chef cooks nonveg eg
+
+        vegchef chef1 = new vegchef;
+        veg.cook();
+
+        //nonveg chef
+
+        nonvegchef chef2 = new nonvegchef;
+        chef2.cook();
+        chef2.noncook(); 
+        //cooks both
+
+    }
+}
+
+------------------------------------overriding--------------------------------------------
+
+if super class and sub class same named functions when u execute it u wnat that class function to run u can use override method
+
+eg :
+
+eg :
+class1:
+
+class vegchef{
+    public void cook(){
+        Console.WriteLine("cooks veg");
+        //super class
+    }
+    public virtual noncook(){
+        Console.WriteLine("cooks milk");
+    }
+}
+
+class nonvegchef : vegchef {
+    public override void noncook(){
+        Console.WriteLine("cooks non veg");
+        //subclass if veg chef is gone every thing in veg is gone 
+    }
+}
+
+mainclass:
+
+class main{
+    static void main(string[] args){
+        //u can call any chef to cook veg but only non veg chef cooks nonveg eg
+
+        vegchef chef1 = new vegchef;
+        veg.cook();
+        veg.noncook();
+
+        //nonveg chef
+
+        nonvegchef chef2 = new nonvegchef;
+        chef2.cook();
+        chef2.noncook(); 
+        //cooks both
+
+    }
+}
+
+here u see the out put will be like the veg chef cooks milk but non veg chef cooks nonveg
+
+last seen -- 3:53:00 - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
