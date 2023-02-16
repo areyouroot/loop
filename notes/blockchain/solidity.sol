@@ -463,9 +463,242 @@ logs [
 //in order to use a event u need emit function and the usage can be seen in the above programs
 _________________________________________________________________________________________
 
+---------------------------------working with multiple smart contracts--------------------
+to connect two or more smart contracts we will use the adress of those contracts 
+
+eg linking of 2 contracts:
+
+contract Counter {
+
+    uint public number;
+
+   
+
+    function increment() external {
+
+        number += 1;
+
+    }
+
+}
+
+contract CounterCaller {
 
 
-last seen 1:00:00 https://www.youtube.com/watch?v=ipwxYa-F1uY
+
+
+
+    constructor(address counterAddress) {
+
+        //note while deploying the contract make sure that u provide the another contract address of deployment here
+
+        Counter myCounter = Counter(address(counterAddress));
+        
+    }
+
+
+
+
+    function counterIncrement() external {
+
+        myCounter.increment();
+        //u can also directly call the function without declaring it by 
+        //Counter(address(counterAddress)).increment();
+
+    }
+
+}
+
+//insted of msg.sender u can use tx.origin to find who intiated the smart contract
+//tx. origin is a global variable in Solidity which returns the address of the account that sent the transaction. Using the variable for authorization could make a contract vulnerable if an authorized account calls into a malicious contract.
+
+----------------------------------inheretance of smart contracts---------------------------
+
+https://www.geeksforgeeks.org/solidity-inheritance/
+
+eg :
+
+// Solidity program to
+// demonstrate
+// Single Inheritance
+pragma solidity >=0.4.22 <0.6.0;
+
+// Defining contract
+contract parent{
+
+	// Declaring internal
+	// state variable
+	uint internal sum;
+	
+	// Defining external function
+	// to set value of internal
+	// state variable sum
+	function setValue() external {
+		uint a = 10;
+		uint b = 20;
+		sum = a + b;
+	}
+}
+
+// Defining child contract
+contract child is parent{
+	
+	// Defining external function
+	// to return value of
+	// internal state variable sum
+	function getValue() external view returns(uint) {
+		return sum;
+	}
+}
+
+// Defining calling contract
+contract caller {
+
+	// Creating child contract object
+	child cc = new child();
+	
+	// Defining function to call
+	// setValue and getValue functions
+	function testInheritance() public returns (uint) {
+		cc.setValue();
+		return cc.getValue();
+	}
+}
+
+you can also inherete multiple contracts eg:
+
+// Solidity program to
+// demonstrate Multi-Level
+// Inheritance
+pragma solidity >=0.4.22 <0.6.0;
+
+// Defining parent contract A
+contract A {
+
+	// Declaring state variables
+	string internal x;
+	string a = "Geeks" ;
+	string b = "For";
+
+	// Defining external function
+	// to return concatenated string
+	function getA() external{
+		x = string(abi.encodePacked(a, b));
+	}
+}
+
+// Defining child contract B
+// inheriting parent contract A
+contract B is A {
+
+	// Declaring state variables
+	// of child contract B
+	string public y;
+	string c = "Geeks";
+
+	// Defining external function to
+	// return concatenated string
+	function getB() external payable returns(
+	string memory){
+		y = string(abi.encodePacked(x, c));
+	}
+}
+
+// Defining child contract C
+// inheriting parent contract A
+contract C is B {
+	
+	// Defining external function
+	// returning concatenated string
+	// generated in child contract B
+	function getC() external view returns(
+	string memory){
+		return y;
+	}
+}
+
+// Defining calling contract
+contract caller {
+
+	// Creating object of child C
+	C cc = new C();
+
+	// Defining public function to
+	// return final concatenated string
+	function testInheritance(
+	) public returns (
+	string memory) {
+		cc.getA();
+		cc.getB();
+		return cc.getC();
+	}
+}
+
+other types of inheretance checkout https://www.geeksforgeeks.org/solidity-inheritance/
+
+u can call the super class functions using the keyword super.function();
+
+----------------------libraries and math functions-----------------------------------------
+
+for more knowlege:https://coinsbench.com/solidity-101-introduction-to-libraries-in-solidity-b4555f2e0066#:~:text=A%20library%20in%20Solidity%20is,deploying%20a%20contract%20consumes%20gas.
+
+mathutils.sol:
+
+pragma solidity ^0.8.0;
+library MathUtils {
+    function add(uint a, uint b) public pure returns(uint) {
+        return a + b;
+    }
+}
+
+main.sol:
+
+pragma solidity ^0.8.0;
+import "./MathUtils.sol";
+contract Calculator  {
+    function getSum(uint firstNumber, uint secondNumber) public pure returns(uint) {
+        // Invoke and return the library function here ...
+    }
+}
+
+u can also use require to satisfy a particular type of condition if required returns false the library will kick out
+
+if the library is in same file then remove ./
+
+eg for divide non zero can be avoided by :
+
+require(b>0);
+uint c = a/ b;
+
+for same maths operations use this git library:
+
+https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeMath.sol
+
+----------------using---------------
+
+using is used for including a library within a contract in solidity. Check this following example:
+
+pragma solidity ^0.4.15;
+library SomeLibrary  {
+ function add(uint self, uint b) returns (uint) {
+   return self+b;
+ }
+}
+contract SomeContract {
+    
+    using SomeLibrary for uint;
+    
+    function add3(uint number) returns (uint) {
+        return number.add(3);    
+        //here number will be taken as 1st aregument and 3 will be 2nd argument
+    }
+}
+
+// u can directly call library for the particular datatype using keyword "using"
+
+
+
+last seen finish https://www.youtube.com/watch?v=ipwxYa-F1uY
 
 
 
