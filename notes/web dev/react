@@ -1,0 +1,13 @@
+install node
+
+and install windows tools in npm
+
+use #npx create-react-app app-name(location)
+
+eg: npx create-react-app . // to create in current dir
+
+    npx create-react-app reactapp
+
+
+note if u are running windows pls use the powershell as native avoid vscode terminal
+
