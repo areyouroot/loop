@@ -1,3 +1,5 @@
+pls follow this tutorial only if u know the basics of web developement
+
 install node
 
 and install windows tools in npm
@@ -70,7 +72,9 @@ export default function Todolist() {
 
 then import the file in app.js eg :import Todolist from "./Todolist";
 
-for more go refer https://www.youtube.com/watch?v=hQAHSlTtcmY
 
 
+for more go refer https://www.youtube.com/watch?v=hQAHSlTtcmY and https://radixweb.com/blog/steps-to-build-react-project-with-create-react-app
+
+last seen - 13:00 - https://www.youtube.com/watch?v=hQAHSlTtcmY
 

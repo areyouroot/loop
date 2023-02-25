@@ -1,0 +1,6 @@
+install nodejs
+
+using npm install truffel
+
+#npm init
+#npm i truffle

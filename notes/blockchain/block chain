@@ -9,3 +9,10 @@ and the minner doesnt need to solve any problems they need gpu to do the task
 
 u can built applications over the eth chain or any block chain and each block chain has
 its own purpose
+
+download and install node js
+
+install ganache
+
+ganache is a private network so no eth is actually worth in real world and dont use this block chain for deployment useit only for developement
+

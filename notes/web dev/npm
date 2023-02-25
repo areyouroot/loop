@@ -1,0 +1,164 @@
+npm is a packet manager so instaling node may result in npm instalation
+
+the reusable code is called as modules
+
+to run the npm for a application u have to intiate this will create a package.json
+
+#npm init  //to start npm config
+
+you can create package.jso by
+
+#npm init 
+
+if u want default options for the package.json
+
+#npm init -y
+
+to force it use -f or --force it can be used for anything
+
+install nodejs
+
+to get the npm version type 
+
+
+npm -v
+
+to get npm help use 
+
+#npm help (or) #npm -h (or) #npm argument -h 
+
+eg:
+
+    npm install -h
+
+to get the help documentation of npm use 
+
+#npm help argument
+
+eg:
+
+    #npm help update
+
+this will open a website with help related documentation
+
+u can set up the default values of the init like given in eg
+
+#npm config set init-author-name "faheem"
+
+(or)
+
+#npm set init-license "GNU"
+
+u can also check your defaults like this 
+
+#npm config get init-author-name
+
+(or)
+
+#npm get init-license
+
+you can also delete the defaults
+
+#npm config delete init-license
+
+the command to install the package locally 
+
+#npm install "package-name"
+
+eg:#npm install truffle
+
+to save the dependency in the package.json
+
+#npm install dependency(or)package --save
+
+eg:#npm install truffle --save
+
+to install a dependency only of developement use --save-dev flag
+
+to uninstall a package
+
+#npm uninstall package --save(optional)
+
+to remove a dev dependency 
+
+#npm uninstall package --save-dev
+
+to install a package globally 
+
+npm install package -get
+
+to uninstall same and use -g flag
+
+uninstall can also be represented as un or remove or remove
+
+and install as i
+
+to see all package installed see #npm list
+
+and using --depth flag u can reduce the depth
+
+use --global flag to list all --global package
+
+the global dependeces are there in appdata->romming->npm -> modules
+
+to install the package of a specific version use @
+
+eg:#npm install truffle@5.0.5
+
+remove all number and put * it will install the latest version
+
+^ can be used to represent a higher version besides the major version
+
+~ can change only the patch version, the major and minor remains same 
+
+leave noting to install the specific version
+
+the numbering represents as majorversion.minorversion.patchversion
+
+eg:4.14.10 where major is 4 and minor is 14 and patch is 10
+
+to install all the represented config from package.json use 
+
+npm install
+
+you can also modify the json file also
+
+to update the package 
+
+#npm update package --save
+
+same for dev with -dev flag
+
+to update all package use 
+
+#npm update
+
+add -g for global package
+
+to update the npm open the shell in admin or root then
+
+#npm install npm@latest -get
+
+to remove unwanted npm package use 
+
+#npm prune
+
+all command can be reduced please see help
+
+like
+
+install i
+
+--save-dev -D
+
+--save -S
+
+--global -g
+
+--version -values
+
+for more shortcuts freecodecamp.org/news/npm-cheat-sheet-most-common-commands-and-nvm/
+
+you can script in package.json
+
+for tutorial and video demo see - youtube.com/playlist?list=PLC3y8-rFHvwhgWwm5J3KqzX47n7dwWNrq
