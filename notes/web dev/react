@@ -11,3 +11,66 @@ eg: npx create-react-app . // to create in current dir
 
 note if u are running windows pls use the powershell as native avoid vscode terminal
 
+go to src folder remove all un nessary code and files leaving index.js and app.js and the content should be like 
+
+index.js:
+
+import React from "react";
+
+function App() {
+  return null
+}
+
+export default App;
+
+app.js:
+
+import React from "react";
+
+function App() {
+  return (
+    <todolist />
+  )
+}
+
+export default App;
+
+install es7 react/redux/graph...... in vs code extentions
+
+to create new functions u can have a react closed html tag 
+
+eg in app.js:
+
+import React from "react";
+
+function App() {
+  return (
+    <todolist />
+  )
+}
+
+export default App;
+
+
+then create a new folder called todolist.js
+
+then type rfc in the Todolist.js this lanch a template for function like this :
+
+//note the template name and file name should start with caps else it will not recoginse
+
+import React from 'react'
+
+export default function Todolist() {
+  return (
+    <div>
+      
+    </div>
+  )
+}
+
+then import the file in app.js eg :import Todolist from "./Todolist";
+
+for more go refer https://www.youtube.com/watch?v=hQAHSlTtcmY
+
+
+
