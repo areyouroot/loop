@@ -3,4 +3,53 @@ install nodejs
 using npm install truffel
 
 #npm init
-#npm i truffle
+#npm i truffle -g //to install globally
+
+once the truffle is properly installed check its version so that it is properly installed
+
+#truffle version //do it in other shell out side the vscode
+
+to create the configurations type
+
+#truffle init
+
+update the solidity using npm
+
+create any simple smart contract in the contracts folder like this 
+
+contract.sol:
+
+pragma solidity *;
+
+contract test{
+    
+    //declar global variables and function
+    string value;
+    
+    //constructor declaration
+    constructor() public{
+        value="hello"; 
+    }
+    
+    //function declaration
+    function get() public view returns(string){ 
+        return value;
+
+    }
+    
+    function set(string _value)public{
+        value = _value;
+        //function local variable
+    }
+
+}
+
+the we need to change some config in the truffle so open the truffle-config file 
+
+u can change the compiler version if you want
+
+to compile all of the smartcontracts in the contracts folder use 
+
+#truffle compile 
+
+last seen - 6:30 - https://youtu.be/62f757RVEvU
