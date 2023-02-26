@@ -16,3 +16,12 @@ install ganache
 
 ganache is a private network so no eth is actually worth in real world and dont use this block chain for deployment useit only for developement
 
+install node
+
+install truffle using npm
+
+do 
+
+#truffle init
+
+copy the configurations from https://github.com/dappuniversity/starter_kit   not all few nessary configs

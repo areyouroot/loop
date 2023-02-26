@@ -52,4 +52,45 @@ to compile all of the smartcontracts in the contracts folder use
 
 #truffle compile 
 
+u can also remove the compiled code by just deleting the build folder
+
+rm -rf ./build/
+
+to write the test script u have to use the js as language and it should be under the test folder
+
+after writing a test script u can use the command 
+
+#truffle test 
+
+to start the test ,here i will say use remix its better because it shows the visual aspects but here no visual aspects are showen
+
+here the test will automaticall lanch the ganache for execution
+
+deployment of blockchain
+-------------------------
+
+to deply the contract first we have to create a migration and name it 
+
+copy the content of intial migrations then change the word migration and replace it with your contract name
+
+eg:
+
+before-
+
+
+
+again i will say remix is better 
+
+then to deploy the contract 
+
+#truffle migrationcontractname
+
+it will give a ip and 10 wallets an accounts
+
+then use in the truffle shell
+
+>migrate --reset
+
+
+
 last seen - 6:30 - https://youtu.be/62f757RVEvU
