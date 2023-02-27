@@ -73,12 +73,6 @@ to deply the contract first we have to create a migration and name it
 
 copy the content of intial migrations then change the word migration and replace it with your contract name
 
-eg:
-
-before-
-
-
-
 again i will say remix is better 
 
 then to deploy the contract 

@@ -1,0 +1,199 @@
+download and install node js
+
+install ganache
+
+npm install truffle
+
+install chromium based browser with metamask extention
+
+install npm truffle globally
+
+#npm i truffle -g //to install globally
+
+now use init cmd 
+
+#truffle init
+
+if u want to init with migrations use this (recomended)
+
+#truffle init --with-migrations
+
+inside the contracts file create a sol file that will be ur main contract 
+
+check the solidiy version u are using 
+
+u can also use the cmd to automate
+
+#truffle create contract "contract name"
+
+eg:#truffle create contract demo
+
+sample code:
+
+pragma solidity 0.8.6;
+
+contract demo{
+    uint number;
+    function set(uint _number) public{
+        number=_number;
+    }
+    function get() public view returns(uint){
+        return number;
+    }
+}
+
+then change ur truffle-config.js
+
+before changing:
+
+  compilers: {
+    solc: {
+      version: "0.8.18",      // Fetch exact version from solc-bin (default: truffle's version)
+      // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
+      // settings: {          // See the solidity docs for advice about optimization and evmVersion
+      //  optimizer: {
+      //    enabled: false,
+      //    runs: 200
+      //  },
+      //  evmVersion: "byzantium"
+      // }
+    }
+  },
+
+after changing:
+
+  compilers: {
+    solc: {
+      version: "0.8.6",      // Fetch exact version from solc-bin (default: truffle's version)
+      // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
+      // settings: {          // See the solidity docs for advice about optimization and evmVersion
+      //  optimizer: {
+      //    enabled: false,
+      //    runs: 200
+      //  },
+      //  evmVersion: "byzantium"
+      // }
+    }
+  },
+
+give the version as given in ur contract
+
+then u can compile the code with cmd
+
+#truffle compile 
+
+by running this command a build file will be created
+
+after this u need to create a migration file in older versions the initial migrations does exit but in new version it doesnt so 
+
+create a migration file in migrations folder and name it as same as the contract name which u created 
+
+u can also use #truffle create migration "contract name"
+
+this will only create the structure
+
+code:
+
+var the-contract-name = artifacts.require("the-contract-name");
+
+module.exports = function (deployer) {
+    deployer.deploy(the-contract-name);
+};
+
+eg code://here the contract name is demo
+
+var demo = artifacts.require("demo");
+
+module.exports = function (deployer) {
+    deployer.deploy(demo);
+};
+
+after this before deploying it uncomment the developement in network part in truffle-config.js
+
+networks: {
+
+    development: {
+     host: "127.0.0.1",     // Localhost (default: none)
+     port: 8545,            // Standard Ethereum port (default: none)
+     network_id: "*",       // Any network (default: none)
+    },
+}
+
+and lanch the ganache gui and according to that change the above Credentials
+
+try to use ganache gui because the gui is easy to track than the cli version
+
+now u can migrate by cmd
+
+#truffle migrate
+
+if u are going to migrate then compilation is optional because it compile on its own
+
+note :dont forget to add ur license in the contract file on the top of the code using comment 
+
+//SPDX-License-Identifier: UNLICENSED - like this 
+
+the migration eg message
+
+$ truffle migrate
+
+Compiling your contracts...
+===========================
+> Compiling .\contracts\demo.sol
+> Compiling .\contracts\demo.sol
+> Artifacts written to C:\Users\abdul\Desktop\git works\clg project\block-play\DFS\build\contracts
+> Compiled successfully using:
+   - solc: 0.8.6+commit.11564f7e.Emscripten.clang
+
+
+Starting migrations...
+======================
+> Network name:    'development'
+> Network id:      5777
+> Block gas limit: 6721975 (0x6691b7)
+
+
+1677493515_demo.js
+==================
+
+   Deploying 'demo'
+   ----------------
+   > transaction hash:    0xd480c41ca45b68fa56dd340cbedb5db60a347cd827f066d153d776f406024d0f
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x8BC5c25EEB0465B9899d58446d2aa54543C40CB6
+   > block number:        1
+   > block timestamp:     1677493999
+   > account:             0x3D402e0e172F67adfF677A47795675680AD763b7
+   > balance:             99.99748646
+   > gas used:            125677 (0x1eaed)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00251354 ETH
+
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.00251354 ETH
+
+Summary
+=======
+> Total deployments:   1
+> Final cost:          0.00251354 ETH
+
+------------------------------------------------------------------------------------------
+even u can see the change in ganache in currency and logs
+
+
+
+
+
+
+last seen - 5:00 - https://www.youtube.com/watch?v=5H5OqRrKCcc&list=PLgPmWS2dQHW9F8fRXzrFBtcrwE-uS8Qa5&index=7
+
+https://www.youtube.com/watch?v=62f757RVEvU - 3
+last seen - 13 - https://www.youtube.com/watch?v=pTZVoqBUjvI
+
+react
+______
+
+https://radixweb.com/blog/steps-to-build-react-project-with-create-react-app
+https://www.youtube.com/watch?v=hQAHSlTtcmY
