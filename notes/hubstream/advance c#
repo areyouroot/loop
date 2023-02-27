@@ -1,0 +1,17 @@
+see ./accessc#.png for access control in c#
+
+types of constructor are 
+
+1)default
+
+the default constructor doesnt has a parameter
+
+when a class has no constructor ,default constructor is served by the compiler to that class
+
+2)parameterized
+
+3)static
+
+4)private
+
+last seen - 22:00 - youtube.com/watch?v=hxIb99-Z8_I&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i&index=4
