@@ -1,3 +1,5 @@
+const { config, config, config, config } = require("npm")
+
 download and install node js
 
 install ganache
@@ -137,6 +139,8 @@ the migration eg message
 
 $ truffle migrate
 
+//make sure that ganache is on
+
 Compiling your contracts...
 ===========================
 > Compiling .\contracts\demo.sol
@@ -182,12 +186,73 @@ Summary
 ------------------------------------------------------------------------------------------
 even u can see the change in ganache in currency and logs
 
+once u have migrated then any changes u make in the contract file will not be detected until you reset the migrate
+
+#truffle migrate --reset
+
+this will re compile the whole contrat and migrate it again
+
+u need to wait in mainnet of Ethereum it is not as fast as ganache 
+
+----------------------------------------infura--------------------------------------------
+
+we will see about infura this acts like a layer making it easy to host our smart contract and deploy it 
+
+first create a account then login
+
+//do read the terms and conditions
+
+select the network that needs to be deployed 
+
+1)web3 for blockchain like eth
+
+2)ipfs - storage decentralized its a protocol
+
+3)file coin - web 3 based ipfs service network
+
+after creating the project in the infura copy the required values in the truffle-config.js
+
+u can google different networks is that a developement network or main net 
+
+eg code :
+
+    // goerli: {
+    //   provider: () => new HDWalletProvider(MNEMONIC, `https://goerli.infura.io/v3/${PROJECT_ID}`),
+    //   network_id: 5,       // Goerli's id
+    //   confirmations: 2,    // # of confirmations to wait between deployments. (default: 0)
+    //   timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
+    //   skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+    // },
+
+go to the ropsten fauset - do google for fauset at the time while i was developing it was under maintance so i was not able to acess it 
+
+copy the wallet address of metamask befor that do connet ure wallet to that network and the config the truffle-config.js
+
+in truffle-config.js the code will be commented like this and google how to connect it using config u will get a code copy and paste it in the truffle-config.js file 
+
+to connet the wallet uncomment this line in truffle-config.js
+
+// const HDWalletProvider = require('@truffle/hdwallet-provider');
+
+to know more about the configuration read this document  https://trufflesuite.com/docs/truffle/reference/configuration
+
+u need to provide the mnemonic its like the secret key for humans becareful with the mnemonic because this can help the bad guys to get ur wallet and this might cause the loss of ether - real ether
+
+create a variable called mnemonic like this 
+
+best way to hide it is to create a secret file in some secret loctaion if u are using github the be more carful do not push the secret file 
+
+const mnemonic = read a file do google search js script to read a file and read the file (or) u can directly paste the mnemonic phrase
 
 
 
 
 
-last seen - 5:00 - https://www.youtube.com/watch?v=5H5OqRrKCcc&list=PLgPmWS2dQHW9F8fRXzrFBtcrwE-uS8Qa5&index=7
+
+
+
+
+last seen - 0 - https://www.youtube.com/watch?v=vEyxWt-pmjo&list=PLgPmWS2dQHW9F8fRXzrFBtcrwE-uS8Qa5&index=11
 
 https://www.youtube.com/watch?v=62f757RVEvU - 3
 last seen - 13 - https://www.youtube.com/watch?v=pTZVoqBUjvI
