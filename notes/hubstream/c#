@@ -639,6 +639,44 @@ class main{
     }
 }
 
+advance--------------------------------------------------------------------------------------
+
+see ./accessc#.png for access control in c#
+
+types of constructor are 
+
+1)default
+
+the default constructor doesnt has a parameter
+
+when a class has no constructor ,default constructor is served by the compiler to that class
+
+2)parameterized
+
+the constructor has one or more parameters
+
+3)static
+
+restricted class but cannot be changed 
+
+this constructor is called before the object is created
+
+4)private
+
+restricted class can be changed
+
+there is also public constructor so that they can be accessed by anywhere
+
+5)destructor
+
+this gets scope when object is destroid this is represent by ~ symbol same name as class and there is only one desctroctor
+
+to know more see this https://youtu.be/hxIb99-Z8_I
+
+
+last seen - 22:00 - youtube.com/watch?v=hxIb99-Z8_I&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i&index=4
+
+
 here u see the out put will be like the veg chef cooks milk but non veg chef cooks nonveg
 
 last seen -- full - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
