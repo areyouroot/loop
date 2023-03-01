@@ -10,8 +10,25 @@ when a class has no constructor ,default constructor is served by the compiler t
 
 2)parameterized
 
+the constructor has one or more parameters
+
 3)static
 
+restricted class but cannot be changed 
+
+this constructor is called before the object is created
+
 4)private
+
+restricted class can be changed
+
+there is also public constructor so that they can be accessed by anywhere
+
+5)destructor
+
+this gets scope when object is destroid this is represent by ~ symbol same name as class and there is only one desctroctor
+
+to know more see this https://youtu.be/hxIb99-Z8_I
+
 
 last seen - 22:00 - youtube.com/watch?v=hxIb99-Z8_I&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i&index=4

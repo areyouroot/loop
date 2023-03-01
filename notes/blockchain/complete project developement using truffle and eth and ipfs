@@ -1,4 +1,4 @@
-const { config, config, config, config } = require("npm")
+const { config, config, config, config, config } = require("npm")
 
 download and install node js
 
@@ -244,9 +244,27 @@ best way to hide it is to create a secret file in some secret loctaion if u are 
 
 const mnemonic = read a file do google search js script to read a file and read the file (or) u can directly paste the mnemonic phrase
 
+------------------------------------------others------------------------------------------
+all of the tutorial and intergration with new technologies are avalable Headers
 
+trufflesuite.com/boxes/
 
+------------------------------------------react-------------------------------------------
+now its time to react
 
+for frontend u can create a seperate folder 
+
+go in to that folder then run this command 
+
+#truffle unbox react
+
+note u need to init truffle first 
+
+go to the folder where u installed react  
+
+u will find a truffle-config.js this is how the program will be deployed dont confuse it with original truffle config file
+
+but dont for get to change the network details like port etc in both config
 
 
 
