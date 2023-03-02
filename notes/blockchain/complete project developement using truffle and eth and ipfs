@@ -266,11 +266,37 @@ u will find a truffle-config.js this is how the program will be deployed dont co
 
 but dont for get to change the network details like port etc in both config
 
+then find the contracts in the react app which u installed then migrate it if u want start developement then migrate
+
+now start the client by changind directory to client then using npm run the start script
+
+#npm start
+
+add the ganache network in the metamask by seeing youtube
+
+network name - anyname i prefer ganache
+
+rpc url - HTTP://127.0.0.1:7546     //do check ur rpc server in ganache
+
+chain id - 1337
+
+currency symbol is - eth
+
+then import any one accout by looking ganache's account private key
+
+then connect it just clicking on metamask -> unconnected -> (select account) connect
+
+then play with the existing smart contract to get to know more
+
+hey if the deplyment shows error pls check the network credentials
 
 
 
 
-last seen - 0 - https://www.youtube.com/watch?v=vEyxWt-pmjo&list=PLgPmWS2dQHW9F8fRXzrFBtcrwE-uS8Qa5&index=11
+
+
+
+last seen - 17:00 - https://www.youtube.com/watch?v=vEyxWt-pmjo&list=PLgPmWS2dQHW9F8fRXzrFBtcrwE-uS8Qa5&index=11
 
 https://www.youtube.com/watch?v=62f757RVEvU - 3
 last seen - 13 - https://www.youtube.com/watch?v=pTZVoqBUjvI
