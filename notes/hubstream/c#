@@ -32,6 +32,26 @@ namespace testcsharpnet
 
 ------------------------------------------------------------------------------------------
 
+-------------------------------hello world program----------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HelloWorld
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello, World");
+            
+        }
+    }
+}
+---------------------------------------------------------------------------------------------
 
 
 -------------------------first program to print hello world-------------------------------
@@ -104,6 +124,7 @@ double - stores floating point numbers, with decimals, such as 19.99 or -19.99
 char - stores single characters, such as 'a' or 'B'. Char values are surrounded by single quotes
 string - stores text, such as "Hello World". String values are surrounded by double quotes
 bool - stores values with two states: true or false
+var - can store anything for float mention f at last of the number d - decimals or value in actual float like 2.9 or string etc ..........
 
 Declaring (Creating) Variables
 To create a variable, you must specify the type and assign it a value:
@@ -174,6 +195,89 @@ char D
 bool True haha
 string Hello
 
+-------------------------------------sample program2 for variables-------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Variables
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int x = 2;
+            Console.WriteLine("Number x is " + x);
+            x = 5;
+            Console.WriteLine("Number x is " + x);
+
+            double double_num = 0.0d;
+            float float_num = 0.0f;
+            decimal decimal_num = 0.0m;
+
+            double_num = 9.8;
+            float_num = 5.5f;
+            decimal_num = 100.250m;
+
+            Console.WriteLine("Double is " + double_num + " float is " + float_num + " decimal is "+decimal_num);
+
+            string firstName, lastName, House;
+            firstName = "Jon";
+            lastName = " Snow";
+            House = "Stark";
+
+
+            Console.Write("Hello, " + firstName +  lastName + " of House Stark");
+
+            bool IsWorking;
+
+            IsWorking = true;
+
+            Console.WriteLine(IsWorking);
+
+            int sum;
+            sum = 0;
+
+            int number1, number2;
+
+            number1 = 5;
+            number2 = 100;
+            sum = number2;
+            Console.WriteLine(sum);
+        }
+    }
+}
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
+__________________________________________sample program for var---------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace var
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int x = 5;
+            string name = "faheem";
+
+            var test = name;
+            Console.WriteLine(test);
+        }
+    }
+}
+
+----------------------------------------------------------------------------------------------
+
 to find the lenght of a string use ".Length"
 
 eg:            Console.WriteLine( variable.length );
@@ -211,7 +315,46 @@ to convert the datatype of the variables u can use
 
 eg: int num = Convert.ToInt32("45");
 
+or
+
+eg: num = num.ToInt32();
+
+also you can use 
+
+eg: variable1 = (int)variable2;
+
 like this, u have different datatypes that u can convert note the datatype should be compatible
+
+-----------------------------------------sample data conversion-------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TypeConversion
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int serialNo = 150;
+            string accountNo = "";
+            float anyNo = 3.1f;
+
+            accountNo = serialNo.ToString();
+
+            Console.WriteLine(accountNo);
+
+            //serialNo = Convert.ToInt32(anyNo);
+            serialNo = (int)anyNo;
+
+            Console.WriteLine(serialNo);
+        }
+    }
+}
+
 
 -------------------------------------arrays in c#-----------------------------------------
 
@@ -362,6 +505,10 @@ for(intialization;condition;itration){
 //single line 
 
 /*multiline comment*/
+
+sample code for comments:
+
+
 
 ----------------------------exception handelling aka error handeling-------------------------
 
@@ -680,7 +827,7 @@ here u see the out put will be like the veg chef cooks milk but non veg chef coo
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-ls -9
+ls -90
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 

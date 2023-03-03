@@ -1,3 +1,5 @@
+prerequest - html,css,basic webdev,js,react,solidity,truffle,blockchain and etherium,oops,metamask,basic shell commands,powershell etc ......
+
 const { config, config, config, config, config } = require("npm")
 
 download and install node js
@@ -289,6 +291,10 @@ then connect it just clicking on metamask -> unconnected -> (select account) con
 then play with the existing smart contract to get to know more
 
 hey if the deplyment shows error pls check the network credentials
+
+note: - before u change and migration of the contract do turn off ur development server
+
+to terminate or to stop the server press ctrl + c
 
 
 
