@@ -126,6 +126,47 @@ string - stores text, such as "Hello World". String values are surrounded by dou
 bool - stores values with two states: true or false
 var - can store anything for float mention f at last of the number d - decimals or value in actual float like 2.9 or string etc ..........
 
+sample for float double and decimal:
+
+code :
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FloatingPointNumbers
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            float f_no = 0.0f;
+            double d_no = 0.0d;
+            decimal m_no = 0.0m;
+
+            f_no = 1 / 3f;
+            d_no = 1 / 3d;
+            m_no = 1 / 3m;
+
+            //place holder
+            Console.WriteLine("Float no. is {0}", f_no);
+            Console.WriteLine("Double no. is {0}", d_no);
+            Console.WriteLine("Decimal no. is {0}", m_no);
+        }
+    }
+}
+
+
+output:
+
+    Float no. is 0.3333333
+    Double no. is 0.333333333333333
+    Decimal no. is 0.3333333333333333333333333333
+    Press any key to continue . . .
+
+
 Declaring (Creating) Variables
 To create a variable, you must specify the type and assign it a value:
 
@@ -330,6 +371,74 @@ Remainder is the amount left over after division
  The closest you can get without going over is 3 x 5 = 15, which is 4 less than 19
  So 4 is the remainder
  
+code:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ArithmeticOperators
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int x = 7;
+            int y = 2;
+            int result = 0;
+            result = x % y;
+            Console.WriteLine("Rem: " + result);
+        }
+    }
+}
+
+---------------------------------------------------------------------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ArithmeticOperatorsExercise
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int x, y;
+            int add, sub, mult,rem;
+            float div;
+
+            Console.WriteLine("Enter no. 1");
+            x = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter no. 2");
+            y = int.Parse(Console.ReadLine());
+
+            add = x + y;
+            Console.WriteLine(x + " + " + y + " = " + add);
+
+            sub = x - y;
+            Console.WriteLine(x + " - " + y + " = " + sub);
+
+            mult = x * y;
+            Console.WriteLine(x + " * " + y + " = " + mult);
+
+            div = (float)x / (float)y;
+            Console.WriteLine(x + " / " + y + " = " + div);
+
+            rem = x % y;
+            Console.WriteLine(x + " % " + y + " = " + rem);
+        }
+    }
+}
+
+
+---------------------------------------------------------------------------------------------
+
 
 Precedence of operators
 
@@ -354,11 +463,58 @@ increment and decrement exist
 
 there are many math functions see https://www.w3schools.com/cs/cs_math.php
 
+trial code use BODMAS:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PrecedenceOfoperators
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int x = 0;
+            x = (2 + 3) * 2 - 4 + 2;
+            Console.WriteLine(x);
+        }
+    }
+}
+
+
+
 ---------------------------------------input operations----------------------------------
             
             Console.WriteLine("enter the name:");
             myText=Console.ReadLine(); //this read line only works for string
             Console.WriteLine("hello" + myText);
+
+eg code:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ReadLine
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("What is your name?");
+
+            string name =  Console.ReadLine();
+
+            Console.WriteLine("Welcome " + name + ", welcome back!");
+        }
+    }
+}
+
 
 -----------------------------------------------------------------------------------------
 to convert the datatype of the variables u can use 
@@ -505,6 +661,77 @@ Comparison operators
 >= greater than or equal to
  <= less than or equal to
 
+code:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConditionalStatmentsIF
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int x = 5;
+            int y = 7;
+
+            x = int.Parse(Console.ReadLine());
+            y = int.Parse(Console.ReadLine());
+
+            if (x > y)
+            {
+                Console.WriteLine("Number one is greater than number two");
+            }
+            else if (x < y)
+            {
+                Console.WriteLine("Number one is less than number two");
+            }
+            else 
+            {
+                Console.WriteLine("They matches!!");
+            }
+         }
+    }
+}
+
+-------------------------------------------------------------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ComparisonOperators
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int x = 0;
+            int y = 0;
+
+            x = 9; y = 9;
+
+            if (x == y)
+                Console.WriteLine("X is equal to y");
+            else if (x != y)
+            {
+                //nested if
+                if (x > y)
+                    Console.WriteLine("X is greater than y");
+                else if (x < y)
+                    Console.WriteLine("X is less than y");
+            }
+               
+
+        }
+    }
+}
+
 ---------------------------------logical operators-----------------------------------------
 
 Logical operators
@@ -525,6 +752,86 @@ true- true true
 true- false true
 false- true true
 false- false false
+
+code:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MoreLogicalOperators
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            bool username = false;
+            bool email = false;
+            bool password = true;
+
+            if ((username || email) && password)
+                Console.WriteLine("User is valid.");
+            else
+                Console.WriteLine("Something went wrong");
+        }
+    }
+}
+
+----------------------------------------------------------------------------------------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LogicalOperators
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // and operator
+            //bool HasLicence = true;
+            //bool KnowHowToDrive = false;
+
+            //if (HasLicence == true && KnowHowToDrive == true)
+            //{
+            //    Console.WriteLine("You are good to go!");
+            //}
+            //else if (HasLicence == true && KnowHowToDrive == false)
+            //{
+            //    Console.WriteLine("Cheateeer!!!");
+            //}
+            //else if (HasLicence == false && KnowHowToDrive == true)
+            //{
+            //    Console.WriteLine("You need to get a licence");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("That is not gonna happen pal!");
+            //}
+
+            // or operator
+            bool WentForSwim = true;
+            bool TookAShower = true;
+
+            if (!WentForSwim || !TookAShower)
+            {
+                Console.WriteLine("Pal you are so wet");
+            }
+            else
+            {
+                Console.WriteLine("You are not wet");
+            }
+
+            // Not !
+        }
+    }
+}
+
+-----------------------------------------------------------------------------------------------
 
 ------------------------------------------------switch --------------------------------
 
@@ -550,6 +857,34 @@ switch(variable)
     action block default;
     break;
 }
+
+code:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SwitchStatment
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Are you enjoying C#? (Yes or No)");
+            string input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "Yes": Console.WriteLine("This is very good"); break;
+                case "No": Console.WriteLine("So sorry that you are not enjoying");break;
+                default: Console.WriteLine("This is not a correct answer");break;
+            }
+        }
+    }
+}
+
 
 ---------------------------------------------while--------------------------------------
 
@@ -587,10 +922,14 @@ for(intialization;condition;itration){
 /*multiline comment*/
 
 sample code for comments:
+----------------------------basic errors and debugging-----------------------------------
+syntax errors - they are like spelling mistakes in codeing like usage of ; () and function name can be misused or missed or any data is mismatched type of data is incorrect
 
+run time errors - error which is caused during run time
 
+logical error - they are error in the logic like divided by zero 
 
-----------------------------exception handelling aka error handeling-------------------------
+----------------------------advance exception handelling aka error handeling-------------------------
 
 they are as samme as C
 
@@ -960,6 +1299,28 @@ namespace date
     }
 }
 
+--------------------------------------------------------------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DateTimeLecture
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DateTime myDate = DateTime.Now;
+            string formattedDate = string.Format("Date is {0:yyyy MMMM dddd HH mm ss tt}",myDate);
+            Console.WriteLine(formattedDate);
+        }
+    }
+}
+
+
 --------------------------------------------------------------------------------------------------------
 
 -------------------------------------print day----------------------------------------------
@@ -994,12 +1355,61 @@ namespace day
 
 ----------------------------------------------------------------------------------------------------------
 
+Date Class in C#---------------------------------------------------------------------------------
+
+To set dates in C#, use DateTime class. The DateTime value is between 12:00:00 midnight, January 1, 0001 to 11:59:59 P.M., December 31, 9999 A.D.
+
+Let’s create a DateTime object.
+
+Example
+
+using System;
+class Test {
+   static void Main() {
+      DateTime dt = new DateTime(2018, 7, 24);
+      Console.WriteLine (dt.ToString());
+   }
+}
+
+Output
+7/24/2018 12:00:00 AM
+Let us now get the current date and time.
+
+Example
+
+using System;
+class Test {
+   static void Main() {
+      Console.WriteLine (DateTime.Now.ToString());
+   }
+}
+
+Output
+9/17/2018 5:49:21 AM
+Now using the method Add(), we will add days in a date with the DateTime structure.
+
+Example
+ 
+using System;
+class Test {
+   static void Main() {
+      DateTime dt1 = new DateTime(2018, 7, 23, 08, 20, 10);
+      Console.WriteLine ("Old Date: "+dt1.ToString());
+      DateTime dt2 = dt1.AddDays(7);
+      Console.WriteLine ("New Date: "+dt2.ToString());
+   }
+}
+
+Output
+Old Date: 7/23/2018 8:20:10 AM
+New Date: 7/30/2018 8:20:10 AM
+
 
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-ls -90
+ls -3 0 
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
