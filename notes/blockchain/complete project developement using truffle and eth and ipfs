@@ -298,6 +298,13 @@ to terminate or to stop the server press ctrl + c
 
 await is used to execute the external statement and wait until it complete then do other tasks
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                again from scratch
+__________________________________________________________________________________________
+
+after installing all npm and node and truffle and react intall ipfs uploader
+
+#npm install react-ipfs-uploader
 
 
 
