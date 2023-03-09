@@ -72,6 +72,10 @@ export default function Todolist() {
 
 then import the file in app.js eg :import Todolist from "./Todolist";
 
+state
+------
+
+the react state gives the state of the program it can be used to append the data that was provided previously like u can call the elements from the database and give it Headers
 
 
 for more go refer https://www.youtube.com/watch?v=hQAHSlTtcmY and https://radixweb.com/blog/steps-to-build-react-project-with-create-react-app
