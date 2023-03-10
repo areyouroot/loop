@@ -306,6 +306,20 @@ after installing all npm and node and truffle and react intall ipfs uploader
 
 #npm install react-ipfs-uploader
 
+#npm install web3
+
+#npm i create-react-app
+#npm install react-bootstrap
+#npm install fs-extra
+#npm install ipfs-api
+#npm install web3
+
+install metamask and ganache
+
+#npx create react-create-app ./
+
+delete all un nessary stuff
+
 
 
 
