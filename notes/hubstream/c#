@@ -1404,12 +1404,259 @@ Output
 Old Date: 7/23/2018 8:20:10 AM
 New Date: 7/30/2018 8:20:10 AM
 
+------------------------------------------------------------------------------------------------------
 
 
 
-________________________________________________________________________________________________________________________________________________________________________________________
+random month gerenrator Program using if - else
 
-ls -3 0 
+code:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssignmentNo5
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Random rand = new Random();
+            int x = rand.Next(1,13);
+            string monthName = "";
+                        
+            if (x == 1)
+                monthName = "January - 31 days";
+            else if (x == 2 )
+                monthName = "February - 28/29 days";
+            else if (x == 3)
+                monthName = "March - 31 days";
+            else if (x == 4)
+                monthName = "April - 30 days";
+            else if (x == 5)
+                monthName = "May - 31 days";
+            else if (x == 6)
+                monthName = "June - 30 days";
+            else if (x == 7)
+                monthName = "July - 31 days";
+            else if (x == 8)
+                monthName = "August - 31 days";
+            else if (x == 9)
+                monthName = "September - 30 days";
+            else if (x == 10)
+                monthName = "October - 31 days";
+            else if (x == 11)
+                monthName = "November - 30 days";
+            else 
+                monthName = "December - 31 days";
+
+            Console.WriteLine(monthName);
+        }
+    }
+}
+
+----------------------------------------random data is generated in every datatype--------
+
+// Instantiate random number generator using system-supplied value as seed.
+var rand = new Random();
+
+// Generate and display 5 random byte (integer) values.
+var bytes = new byte[5];
+rand.NextBytes(bytes);
+Console.WriteLine("Five random byte values:");
+foreach (byte byteValue in bytes)
+    Console.Write("{0, 5}", byteValue);
+Console.WriteLine();
+
+// Generate and display 5 random integers.
+Console.WriteLine("Five random integer values:");
+for (int ctr = 0; ctr <= 4; ctr++)
+    Console.Write("{0,15:N0}", rand.Next());
+Console.WriteLine();
+
+// Generate and display 5 random integers between 0 and 100.
+Console.WriteLine("Five random integers between 0 and 100:");
+for (int ctr = 0; ctr <= 4; ctr++)
+    Console.Write("{0,8:N0}", rand.Next(101));
+Console.WriteLine();
+
+// Generate and display 5 random integers from 50 to 100.
+Console.WriteLine("Five random integers between 50 and 100:");
+for (int ctr = 0; ctr <= 4; ctr++)
+    Console.Write("{0,8:N0}", rand.Next(50, 101));
+Console.WriteLine();
+
+// Generate and display 5 random floating point values from 0 to 1.
+Console.WriteLine("Five Doubles.");
+for (int ctr = 0; ctr <= 4; ctr++)
+    Console.Write("{0,8:N3}", rand.NextDouble());
+Console.WriteLine();
+
+// Generate and display 5 random floating point values from 0 to 5.
+Console.WriteLine("Five Doubles between 0 and 5.");
+for (int ctr = 0; ctr <= 4; ctr++)
+    Console.Write("{0,8:N3}", rand.NextDouble() * 5);
+
+// The example displays output like the following:
+//    Five random byte values:
+//      194  185  239   54  116
+//    Five random integer values:
+//        507,353,531  1,509,532,693  2,125,074,958  1,409,512,757    652,767,128
+//    Five random integers between 0 and 100:
+//          16      78      94      79      52
+//    Five random integers between 50 and 100:
+//          56      66      96      60      65
+//    Five Doubles.
+//       0.943   0.108   0.744   0.563   0.415
+//    Five Doubles between 0 and 5.
+//       2.934   3.130   0.292   1.432   4.369
+
+================================================================================================
+
+random team generator
+
+Random rnd = new Random();
+string[] malePetNames = { "Rufus", "Bear", "Dakota", "Fido",
+                          "Vanya", "Samuel", "Koani", "Volodya",
+                          "Prince", "Yiska" };
+string[] femalePetNames = { "Maggie", "Penny", "Saya", "Princess",
+                            "Abby", "Laila", "Sadie", "Olivia",
+                            "Starlight", "Talla" };
+
+// Generate random indexes for pet names.
+int mIndex = rnd.Next(malePetNames.Length);
+int fIndex = rnd.Next(femalePetNames.Length);
+
+// Display the result.
+Console.WriteLine("Suggested pet name of the day: ");
+Console.WriteLine("   For a male:     {0}", malePetNames[mIndex]);
+Console.WriteLine("   For a female:   {0}", femalePetNames[fIndex]);
+
+// The example displays output similar to the following:
+//       Suggested pet name of the day:
+//          For a male:     Koani
+//          For a female:   Maggie
+
+--------------------------------random dice generator-----------------------------------------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssignmentNo6
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string input = "";
+            Random rand = new Random();
+            int x = 0;
+            do
+            {
+                Console.WriteLine("Roll dice? (yes, no)");
+                input = Console.ReadLine();
+                if (input.ToLower() == "yes")
+                {
+                    x = rand.Next(1, 7);
+                    Console.WriteLine("New dice no is " + x);
+                }
+            }
+            while (input.ToLower() != "no");
+        }
+    }
+}
+
+note:indentation is c# is not nessary
+
+------------------------------------triange generator using for --------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssignmentNo4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            for (int j = 15; j >= 0; j--)
+            {
+                for (int t = 0; t <= j; t++)
+                {
+                    Console.Write("0 ");
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
+--------------------------------------------------------------------------------------------
+                                    Parse and TryParse
+_______________________________________________________________________________________________________________________________________________________________________________________
+
+Convert a string representation of number to an integer,using the int.TryParse and intParse method in C#.
+
+If the string cannot be converted, then the int.TryParse method returns false i.e. a Boolean value, whereas int.Parse returns an exception.
+
+Let us see an example of int.Parse method −
+
+eg Parse:
+
+using System.IO;
+using System;
+class Program {
+   static void Main() {
+      int res;
+      string myStr = "120";
+      res = int.Parse(myStr);
+      Console.WriteLine("String is a numeric representation: "+res);
+   }
+}
+
+eg TryParse:
+
+using System.IO;
+using System;
+class Program {
+   static void Main() {
+      bool res;
+      int a;
+      string myStr = "120";
+      res = int.TryParse(myStr, out a);
+      Console.WriteLine("String is a numeric representation: "+res);
+   }
+}
+
+here in str u can also provide a text or word it will return 0 but parse cannot handel it it can only convert
+
+---------------------------------------constants------------------------------------------
+
+the value of pi or gravity doent changes so these types of values are called constants
+
+u should use the keyword const followed by the datatype
+
+eg:
+
+const var asd=1;
+const double pi=3.14;
+
+u cannot change it later in run time
+
+-------------------------------------string manuplation-------------------------------------
+
+the string is used to represent words and s
+_______________________________________________________________________________________________________________________________________________________________________________________
+
+ls -3 5
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
