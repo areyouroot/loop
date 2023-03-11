@@ -586,6 +586,38 @@ eg:
 
 string[] friends=new string[5]
 
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Arrays
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] numbers = new int[5] { 1, 10, 100, 1000, 10000 };
+            //string[] weekDays = new string[7] { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+            string[] weekdays = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                Console.WriteLine(numbers[i]);
+            }
+
+            foreach (var item in weekdays)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }
+}
+
+
 ----------------------------------------c# functions _____________________________________________
 
 how to declare functions or aka methods
@@ -731,6 +763,35 @@ namespace ComparisonOperators
         }
     }
 }
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NestedLoops
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            for (int i = 1; i <= 30; i++)
+            {
+                //Console.WriteLine("First loop i = " + i);
+                for (int j = 1; j <= 30; j++)
+                {
+                    Console.Write("0 ");
+                    //Console.WriteLine("Second loop j = " + j);
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
+
 
 ---------------------------------logical operators-----------------------------------------
 
@@ -905,6 +966,45 @@ do{
 }while (condition);
 
 //dont forget ;
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WhileLoop
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("While Loop");
+            int x = 8;
+
+            while (x >= 1)
+            {
+                if (x == 3)
+                    break;
+                Console.WriteLine("Game of thrones season 0" + x);
+                x--;
+            }
+            Console.WriteLine("------");
+            Console.WriteLine("Do While Loop");
+
+            int i = 1;
+
+            do
+            {
+                Console.WriteLine("This is line no." + i);
+                i++;
+            } while (i <= 10);
+        }
+    }
+}
+
 
 --------------------------------------for-------------------------------------------------
 
@@ -1638,6 +1738,34 @@ class Program {
 
 here in str u can also provide a text or word it will return 0 but parse cannot handel it it can only convert
 
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TryParse
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int.TryParse(Console.ReadLine(),out int x);
+            if (x == 0)
+            {
+                Console.WriteLine("This is not a valid input");
+            }
+            else
+            {
+                Console.WriteLine("You have entered no. " + x);
+            }
+        }
+    }
+}
+
+
 ---------------------------------------constants------------------------------------------
 
 the value of pi or gravity doent changes so these types of values are called constants
@@ -1651,12 +1779,514 @@ const double pi=3.14;
 
 u cannot change it later in run time
 
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Constants
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            const double gravityForce = 9.8;
+            double PI = 3.14159265359;
+            
+
+            Console.WriteLine("Gravity force is " + gravityForce + " and PI is " + PI);
+        }
+    }
+}
+
+
 -------------------------------------string manuplation-------------------------------------
 
-the string is used to represent words and s
+the string is used to represent words and sentences
+
+indexes-
+_________
+
+index is the position of the particular character eg - there is a word called apple the index of a is 0 and p is 1,2 and l is 3 and e is 4
+
+u can acces the position by [] brackets
+
+like this eg :
+
+console.WriteLine(wordvariable[postition]);
+
+trim-
+_________
+
+this used to remove the extra or un nessary white spaces frount and back
+
+eg : apple mango        banana 
+
+after using trim 
+
+eg== apple mango banana
+
+syntax:
+
+variable.Trim();
+
+toupper,tolower-
+_________
+
+this used to convert to upper case all letters and lower
+
+syntax:
+
+variable.ToUpper();
+
+variable.ToLower();
+
+length-
+________
+
+this will print length of the word
+
+variable.Length();
+
+replace-
+__________
+
+this is used to replace one or more letters in a word
+
+syntax:
+
+variable.replace('word to be replaced','word to be replaced with');
+
+index of-
+___________
+this is used to find the position of a particular letters
+
+syntax:
+
+variable.IndexOf('letter');
+
+last index of-
+__________________
+same as the IndexOf but calculates from last
+
+syntax:
+
+variable.LastIndexOf('letter');
+
+Substring-
+___________
+this prints from the position which is mentioned
+
+eg games - postion is given as 2 then i will print from mes this can also give a range like this 2,2 this will print me
+
+syntax:
+
+variable.Substring(position);
+(or)
+variable.Substring(position,range);
+
+remove-
+__________
+remove does the reverse of the substring 
+
+syntax:
+
+variable.remove(position);
+(or)
+variable.remove(position,range);
+
+insert-
+__________
+
+this used to insert the words or the letter at mentioned position
+
+syntax:
+
+variable.insert(position,"word");
+variable.insert(0,"the");
+
+escape sequence-
+__________________
+
+these are the characters that cannot be represented in original form eg u cant print next line or " direcetly so u can represent it by \ back slash
+
+like \" and \\ to represent " and \ and for new line use \n
+
+\t-tab spaces
+
+\n-new line
+
+\" - "
+\\ - \
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EscapeSequences
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine(" And Jon said \"Bend \t \t \n \a the knee \" ");
+            Console.WriteLine("D:\\Movies");
+        }
+    }
+}
+
+
+string interpolation-
+_____________________________________________
+
+a print statements can be easily manuplated like this porms
+
+eg:
+Console.WriteLine("hello"+name+name2);
+(or)
+Console.WriteLine("hello{0}{1}",name,name2);
+(or)
+Console.WriteLine("hello {name} {name2}");
+
+they all are same
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StringManipulationPart2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string tvShow = "Game of Thrones";
+
+            // Index of
+            Console.WriteLine(tvShow.IndexOf('o'));
+            // Last index of
+            Console.WriteLine(tvShow.LastIndexOf('o'));
+            // Substring
+            Console.WriteLine(tvShow.Substring(4));
+            // Remove
+            Console.WriteLine(tvShow.Remove(4));
+            // Insert
+            Console.WriteLine(tvShow.Insert(0,"The "));
+
+        }
+    }
+}
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StringManipulationPart1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string movieName = "    lord of the RINGS    ";
+            // Indexes
+            Console.WriteLine(movieName[17]);
+
+            // Trim 
+            Console.WriteLine(movieName.Trim());
+
+            // Upper Case
+            Console.WriteLine(movieName.ToUpper().Trim());
+
+            // Lower Case
+            Console.WriteLine(movieName.Trim().ToLower());
+
+            // Length
+            Console.WriteLine(movieName.Length);
+            Console.WriteLine(movieName.Trim().Length);
+
+
+            // Reaplce
+            Console.WriteLine(movieName.Replace('l','L').Trim());
+        }
+    }
+}
+
+
+wg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StringInterpolation
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string name = "";
+            Console.WriteLine("What is your name?");
+            name = Console.ReadLine();
+
+            //Console.WriteLine("Welcome back " + name);
+            //Console.WriteLine("Welcome Back {0}", name);
+
+            Console.WriteLine($"Welcome back again {name}");
+        }
+    }
+}
+
+
+
+----------------------------------------maths function_______________________________________________________________
+
+ceiling-
+
+if a decimal value is provided to it will round off the next high whole number 
+
+eg :
+2.2 - 3
+
+3.5 - 4
+
+4.9 - 5
+
+syntax:
+
+Math.ceiling(variable);
+
+floor-
+
+opposite to ceiling
+
+syntax:
+
+Math.floor(variable);
+
+round-
+
+it will round off the decimal
+
+syntax:
+
+Math.round(variable);
+
+for round u can also mention the number of decimal values to be there
+
+syntax:
+
+Math.round(variable,number_of_decimal_places);
+
+eg
+
+Math.round(variable,2); -> 4.22
+
+truncate-
+
+this just removes te decimal points
+
+syntax:
+
+Math.truncate(variable);
+
+max-
+
+finds the maximum number
+
+Math.Max(variable1,variable2);
+
+min-
+
+finds the minimum number
+
+maths.min(var1,var2);
+
+sqrt-
+
+finds the square root
+
+Math.sqrt(variable);
+
+pow-
+
+used to give power
+
+math.pow(variable,power);
+
+pi-
+
+generates the pi value
+
+pi-math.pi
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MathPart2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int x = 9;
+            int y = 4;
+            // Max
+            Console.WriteLine("Max : " + Math.Max(x,y));
+            // Min
+            Console.WriteLine("Min : " + Math.Min(x, y));
+            // sqrt
+            Console.WriteLine("SQRT : " + Math.Sqrt(y));
+            // pow
+            Console.WriteLine("POW : " + Math.Pow(3,2));
+            // PI
+            
+        }
+    }
+}
+
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MathPart1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double x = 5.227;
+            // ceiling
+            Console.WriteLine("Ceiling : " + Math.Ceiling(x));
+            // floor
+            Console.WriteLine("Floor : " + Math.Floor(x));
+            // round
+            Console.WriteLine("Round : " + Math.Round(x,2));
+            //truncate
+            Console.WriteLine("Truncate : " + Math.Truncate(x));
+        }
+    }
+}
+
+
+------------------------------------egs--------------------------------------------------------------------------------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace RandomNumbers
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Random rand = new Random();
+            int x = 0;
+            x = rand.Next(1,13);
+            Console.WriteLine("Month : " + x);
+
+            double y = 0;
+            y = rand.NextDouble() * 10;
+            Console.WriteLine("Random double no is " + Math.Round(y,2));
+        }
+    }
+}
+
+eg :
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LoopsExercise
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Even Numbers
+            //for (int x = 0; x < 501; x++)
+            //{
+            //    if(x%2==0)
+            //        Console.Write(x + ", ");
+            //}
+
+            for (int i = 1; i <= 20; i++)
+            {
+                for (int j = 1; j <= i; j++)
+                {
+                    Console.Write("0");
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
+
+
+eg:
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ForLoop
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            for (int i = 10; i >= 1; i--)
+            {
+                if (i == 2)
+                    break;
+                Console.WriteLine("The value of variable i is : " + i);
+            }
+        }
+    }
+}
+
+
+
+
+
 _______________________________________________________________________________________________________________________________________________________________________________________
 
-ls -3 5
+ls -4 0
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 

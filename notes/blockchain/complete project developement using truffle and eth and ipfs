@@ -302,6 +302,8 @@ await is used to execute the external statement and wait until it complete then 
                                 again from scratch
 __________________________________________________________________________________________
 
+note : the above commands are only for windows
+
 after installing all npm and node and truffle and react intall ipfs uploader
 
 #npm install react-ipfs-uploader
@@ -319,6 +321,34 @@ install metamask and ganache
 #npx create react-create-app ./
 
 delete all un nessary stuff
+
+install go in ur os
+
+note # == $ == > but some places u need root acess
+
+$ npm i ipfs-http-client
+$ npm install --save ipfs-http-client
+
+>wget https://dist.ipfs.tech/kubo/v0.18.1/kubo_v0.18.1_windows-amd64.zip -Outfile kubo_v0.18.1.zip
+
+>Expand-Archive -Path kubo_v0.18.1.zip -DestinationPath ~\Apps\kubo_v0.18.1
+
+>cd ~\Apps\kubo_v0.18.1\kubo
+
+>c:\Users\{ur username}\Apps\kubo_v0.18.1\kubo\ipfs.exe    
+
+{ur username} - fill it with the current user of windows
+
+>alias ipfs="/c/Users/abdul/Apps/kubo_v0.18.1/kubo/ipfs.exe" 
+
+$ ipfs init
+
+=========================================================================
+
+#npm i ipfs-http-client
+
+$ npm install ipfs
+
 
 
 
