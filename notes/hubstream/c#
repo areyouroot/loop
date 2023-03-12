@@ -1110,6 +1110,84 @@ namespace testcsharpnet
 you can call functions also like this eg: name is a function then
 
 book1.read(arguments);
+
+you can declar the non static method out side the class in another class
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Classes
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Person perOne = new Person();
+            
+            perOne.FirstName = "Ahmad";
+            perOne.LastName = "Mohey";
+            perOne.Country = "Egypt";
+
+            Person perTwo = new Person();
+            perTwo.FirstName = "Tim";
+            perTwo.LastName = "David";
+            perTwo.Country = "Australia";
+
+            Person perThree = new Person();
+            perThree.FirstName = "Daniel";
+            Console.WriteLine(perOne.FirstName);
+            Console.WriteLine(perTwo.FirstName);
+            Console.WriteLine(perThree.FirstName);
+        }
+    }
+
+    class Person
+    {
+        string firstName;
+        string lastName;
+        DateTime birthDate;
+        string country;
+
+        public string FirstName
+        {
+            get { return firstName; }
+            set { firstName = value; }
+        }
+
+        public string LastName
+        {
+            get { return lastName; }
+            set { lastName = value; }
+        }
+
+        public DateTime BirthDate { get; set; }
+
+        public string Country { get; set; }
+
+        public Person()
+        {
+            firstName = "Unknown";
+        }
+    }
+}
+
+
+
+variable scope - 
+_____________________________________________
+
+class classname{
+    global variable can be accessed from any where any function
+
+    method(){
+        local variable only accessable within the method
+    }
+}
 _____________________________________________constructor----------------------------------
 
 the constructure should have the class name there can be many constructure and the access type should be defined
@@ -1217,6 +1295,128 @@ class_name.function_name();
 
 no need of object declaration like object class_name= new objectname() then objectname.function_name(); // no need of this 
 
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MethodsPart3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //string firstEmployee, secondEmployee;
+
+            //firstEmployee = "David Smith";
+            //secondEmployee = "Sophia Watson";
+
+            //Console.WriteLine($"Inside Main Method\n----------\n{firstEmployee} \n{secondEmployee}\n\n");
+
+            ChangeNames(out string firstEmployee, out string secondEmployee);
+
+            Console.WriteLine($"Inside Main Method\n----------\n{firstEmployee} \n{secondEmployee}\n\n");
+        }
+
+        static void ChangeNames(out string firstEmp,out string secEmp)
+        {
+            
+            firstEmp = "Olivia Aaron";
+            secEmp = "Alvaro Salazar";
+            Console.WriteLine($"Outside Main Method\n----------\n{firstEmp} \n{secEmp}\n\n");
+        }
+    }
+}
+
+
+
+
+
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MethodsPart4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string guestName = "";
+
+            Console.WriteLine("Hello, Dear Guest, what is your name?");
+
+            guestName = Console.ReadLine();
+
+            if (guestName == string.Empty)
+                WelcomeGuest();
+
+        }
+
+        static void WelcomeGuest()
+        {
+            Console.WriteLine("Okay, we hope you enjoy staying at our hotel");
+        }
+    }
+}
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MethodsPart4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string guestName = "";
+
+            Console.WriteLine("Hello, Dear Guest, what is your name?");
+
+            guestName = Console.ReadLine();
+
+            if (guestName == string.Empty)
+                WelcomeGuest();
+            else
+                WelcomeGuest(guestName);
+
+        }
+
+        static void WelcomeGuest()
+        {
+            Console.WriteLine("Okay, we hope you enjoy staying at our hotel");
+        }
+
+        static void WelcomeGuest(string name)
+        {
+            Console.WriteLine($"Thank you {name}, we hope you enjoy staying at our hotel");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
 --------------------------------------inheritance-------------------------------------------
 
 we use : for inheretance
@@ -1258,6 +1458,53 @@ class main{
 
     }
 }
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Inheritance
+{
+    class Animals
+    {
+        private string privateVariable; public string publicVariable;
+        protected string protectedVaraible; internal string internalVariable;
+
+        private void TrainAnimalPrivate()
+        {}
+        public void TrainAnimalPublic()
+        {}
+        protected void TrainAnimalProtected()
+        {}
+        internal void TrainAnimalInternal()
+        {}
+    }
+
+    class Dogs : Animals 
+    {
+        Dogs dog = new Dogs();
+
+        void FeedDog()
+        {
+            
+        }
+    }
+
+    class Cats
+    {
+        Animals animal = new Animals();
+
+        void FeedCat()
+        {
+            
+        }
+    }
+}
+
 
 ------------------------------------overriding--------------------------------------------
 
@@ -1953,7 +2200,7 @@ Console.WriteLine("hello"+name+name2);
 (or)
 Console.WriteLine("hello{0}{1}",name,name2);
 (or)
-Console.WriteLine("hello {name} {name2}");
+Console.WriteLine($"hello {name} {name2}");
 
 they all are same
 
@@ -2280,13 +2527,244 @@ namespace ForLoop
     }
 }
 
+--------------------------------oops------------------------------------------------------
+
+oops - object orented programing structure
+
+What is object-oriented programming?
+Object-Oriented Programming (OOP) refers to a type software design
+programmers define data type of a data structure, but also the types of
+operations (functions) that can be applied to the data structure.
+In this way the data structure becomes an object that includes both data and
+functions. 
+
+Class : A category of objects. The class defines all the common properties of the
+different objects that belong to it.
+Object : Refers to a particular instance of a class where the object can be a
+combination of variables, functions, and data structures.
+Method : A combination of instructions grouped together to achieve some result. It
+may take arguments and return result.
+Property : A member that provides a flexible mechanism to read, write, or compute
+the value of a private field
+
+eg of oops:
+
+Vehicle
+
+Wheeled vehicles Non-wheeled vehicles
+
+Four wheeled vehicle Two wheeled vehicle Sea vehicle Air vehicles
+
+Color, Manufacturer, Max Speed, Carriage Capacity, Gasoline or Electricity
+
+Class
+Sub class Sub class
+Sub class Sub class Sub class Sub class
+Start(), Stop(), Drive(), Refuel(), RunAtMaxSpeed(), TransportPeople()
+
+Properties
+Methods
+Object
+BMW X4
+Ferrari Enzo
+Kawasaki KX450F
+Boeing 787
 
 
+The Four Pillars of OOP
+Inheritance : The process of creating the new class by extending the existing class or the process of
+inheriting the features of base class is called as inheritance.
+Polymorphism : Poly means many and Morph means forms. Polymorphism is the process in which an
+object or function take different forms.
+Abstraction : Abstraction is the process of showing only essential features of an object to the outside
+world and hide the other irrelevant information.
+
+
+Methods part 1 (The basics)
+
+DRY
+
+A method is a code block that contains a series of statements. A program
+causes the statements to be executed by calling the method and specifying
+any required method arguments.
+
+
+Method Signature
+
+Method name and its parameters types (but not the parameter names) are
+part of the signature.
+
+Methods part 2 (parameters and return types)
+
+Methods part 3 (value vs reference)
+
+Passing by value (using a copy)
+Passing by reference (using the variable itself)
+ref keyword
+out keyword
+
+Methods part 4 (overloaded methods)
+
+Classes
+template or blueprint of the methods, variables and properties in a
+particular kind of object
+
+Inheritance
+Inheritance enables new objects to inherit the properties of existing objects.
+A class that is used as the basis for inheritance is called a superclass or base
+class. A class that inherits from a superclass is called a subclass or derived
+class
+
+
+
+Encapsulation
+Encapsulation is a concept that binds together the data and methods that
+manipulate the data, and that keeps both safe from outside interference
+and misused.
+
+Public: Access is not restricted.
+Protected: Access is limited to the containing class or types derived from the
+containing class.
+Private: Access is limited to the containing type.
+Internal: Access is limited to the current assembly.
+Protected internal: Access is limited to the current assembly or types derived
+from the containing class.
+
+
+Polymorphism
+Polymorphism means having many forms. usually expressed as 'one
+interface, multiple functions’.
+Static type or compile time
+Overloading
+Dynamic type or runtime
+Overriding allows you to change the functionality of a method in a child
+class.
+virtual
+override
+new
+
+
+Abstraction is a concept or an idea not associated with any specific instance.
+
+---------------------------hard code----------------------------------------------------------
+
+ref method-
+
+how to work on the variable inside the method aka function without declaring the global variable or using the same variable the ref key word is used for this purpoe
+
+eg:
+
+//outside function
+
+a=10;
+b=11;
+Console.WriteLine($"the output is {a} and {b}"); //before going inside the function
+function(a,b);                                   //in function
+Console.WriteLine($"the output is {a} and {b}"); //out the function   
+
+static void function(int x,int y){
+//inside the function
+x=20;
+y=30;
+Console.WriteLine($"the output is {x} and {y}");
+}
+
+//output
+
+the output is 10 and 11 //before
+the output is 20 and 30 //in function
+the output is 10 and 11 //out
+
+to have same values changed in the real variable use the ref method eg
+
+eg:
+
+//outside function
+
+a=10;
+b=11;
+Console.WriteLine($"the output is {a} and {b}"); //before going inside the function
+function(ref a,ref b);                                   //in function
+Console.WriteLine($"the output is {a} and {b}"); //out the function   
+
+static void function(ref int x,ref int y){
+//inside the function
+x=20;
+y=30;
+Console.WriteLine($"the output is {x} and {y}");
+}
+
+//output
+
+the output is 10 and 11 //before
+the output is 20 and 30 //in function
+the output is 20 and 30 //out
+
+before uing this reference method u should intialize and declare the variable
+
+if u want to intialize but not declare then use "out" key word the use is same and the purpose is also the same
+
+
+
+method overloading-
+_____________________________________________
+
+the same method name can be used for 2 methods with a difference of number of arguments or their datatype
+
+
+
+abstraction-
+__________________
+
+if u want to directly inheret a function aka method from a class without defining it u can do it by abstract key word after inhereting from the parrent using ":"
+
+use the key word before the class and the function that u are going to use like this 
+
+class main{
+
+    main(){
+        xyz
+    }
+}
+
+class parent{ 
+    override method a(){
+        xyz
+    }
+}
+
+abstract class child{
+    abstract method a();
+}
+
+if we call the method a from the clid it will run the parrents a method 
+
+
+
+#region hack in visual stdio-
+_____________________________________________
+
+u can hid a region easily in vs by comment lines specifing a reagion this will enable the code hiding when nessay and easy ur Tasks
+
+syntax:
+
+#region region-name
+code;
+#endregion
+
+a + or ▽ or - will appear click on it to hide this leaves no change in code or its working
+
+
+
+
+
+
+ 
 
 
 _______________________________________________________________________________________________________________________________________________________________________________________
 
-ls -4 0
+ls -5 0
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
