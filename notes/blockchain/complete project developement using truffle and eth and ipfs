@@ -349,6 +349,78 @@ $ ipfs init
 
 $ npm install ipfs
 
+pls download the go-ipfs exe and use powershell it is best in windows if i mention git bash anywhere ignore it
+
+first download the exe version if u are uing windows 
+
+the ipfs is aka interplanitary file system this is a decentralized method to store data
+
+there are 2 node in a network its a ipfs client and server
+
+copy the ipfs to the c:/user/user/apps/kubo/ipfs
+
+the create an alias or create a env variable
+
+the cmd whe ipfs is typed the exe should run
+
+go to the project location 
+
+type 
+
+#ipfs init
+
+this will intiate local ipfs
+
+then after this cmd it will generate a key copy and paste it to verify the installation is it sucessful?
+
+eg:
+
+PS C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.0 - test\dfs> ipfs init
+generating ED25519 keypair...done
+peer identity: 12D3KooWQcoMDHczPZw5DqR43XrGE1qddgJ
+initializing IPFS node at C:\Users\abdul\.ipfs
+to get started, enter:
+
+        ipfs cat /ipfs/QmQPeNsJPyVWPFDVHbz4bG2X8D2GhfbSXc/readme
+
+copy what ever is after ipfs cat and paste it in this command
+
+#ipfs cat <content>
+
+eg:
+
+ipfs cat /ipfs/QmQPeNsJPyVWPFDVHbz4bG2X8D2GhfbSXc/readme
+
+
+
+to disable the init go where the config file is located and delete it
+
+or delete this folder C:\Users\abdul\.ipfs
+
+copy the contents of that command 
+
+try to upload any file by this command 
+
+#ipfs add file-location
+
+to access that file back do remember the hash it had generated when the file was uploaded
+
+eg
+
+$ ipfs add ./DFS-v1.0\ -\ test/dfs/hell.txt
+
+added QmTtkGE5tKP8yWjHUi3LCTf3wJaVvvE7 hell.txt
+
+350 B / 350 B [================================================================================================================================] 100.00% 
+
+you can upload a folder using -r argument which means recursive
+
+eg:
+
+ipfs add -r ./babanaidu
+
+------------------ipfs done ------------------------
+
 
 
 
