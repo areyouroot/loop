@@ -2754,10 +2754,130 @@ code;
 
 a + or ▽ or - will appear click on it to hide this leaves no change in code or its working
 
+sealed classes-
+__________________
+
+any class that should not be inhereted by any classes are knowen as sealed class
+
+you can seal a class by the keyword called sealed
+
+syntax:
+
+sealed class sealedclassname{
+    action block;
+}
+
+static class-
+__________________
+
+this can only have staict variables and method
+
+and u cannot inheret non static class from static class viceversa
+
+nested classes-
+_____________________________________________
+
+class having a class is known as nested class
+
+to use the nested class u need to create an object for both classed 
+
+syntax:
+
+class main{
+    a classa=new a();
+    a.b classb=new a.b();
+}
+
+class a{
+    class b{
+        actionblock;
+    }
+}
+
+partial classes-
+___________________________
+
+u can create 2 classes in two different classes usingh keyword partial before the class 
+
+
+
+namespaces -
+___________________________
+
+name spaces is like the mega container for the classes u can call the name spaces directly in the porgram at top begning
+
+like eg:
+
+using System;
+
+this name space contains functions like console.WriteLine()
+
+u can also create a own namespaces like 
+
+namespace namespace-name{
+    class class-name{
+
+    }
+}
+
+to call the namespaces from the classes u can use "." operator eg:
+
+namespace.class.function();
+
+like class the namespace can also created inside the namespace
+
+
+
+structs--------
+___________________________
+
+as asame as c programing language used to define a collection of datatypes as an object
+
+syntax:
+
+struct Employee{
+    public string employeename;
+    public string job;
+    private int Salary;
+
+    public decimal Salary{
+        get{return salary;}
+        set {salary = value;}
+    }
+}
+
+you should call it like class 
+
+eg:
+
+class main{
+    static void main(){
+        Employee newemp = new Employee(); //object declaration
+        newemp.employeename="value";
+        }
+}
+
+u can even code in the struct it will run the object gets in the scope
 
 
 
 
+
+
+
+class vs structs - 
+___________________________
+
+
+
+
+
+
+
+
+
+enumerations-
+__________________
 
  
 

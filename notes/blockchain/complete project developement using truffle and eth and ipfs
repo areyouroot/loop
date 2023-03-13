@@ -421,6 +421,78 @@ ipfs add -r ./babanaidu
 
 ------------------ipfs done ------------------------
 
+to expose and connect to the rest of the ipfs network use deamon
+
+run:
+
+#ipfs daemon
+
+it will print some thing like this 
+
+Initializing daemon...
+go-ipfs version: 0.10.0
+Repo version: 11
+System version: 386/windows
+Golang version: go1.16.8
+Swarm listening on /ip4/127.0.0.1/tcp/8542
+Swarm listening on /ip4/127.0.0.1/udp/8542/quic
+Swarm listening on /ip4/169.254.171.166/tcp/8542
+Swarm listening on /ip4/169.254.171.166/udp/8542/quic
+Swarm listening on /ip4/169.254.177.100/tcp/8542
+Swarm listening on /ip4/169.254.177.100/udp/8542/quic
+Swarm listening on /ip4/169.254.221.250/tcp/8542
+Swarm listening on /ip4/169.254.221.250/udp/8542/quic     
+Swarm listening on /ip4/169.254.39.73/tcp/8542
+Swarm listening on /ip4/169.254.39.73/udp/8542/quic       
+Swarm listening on /ip4/172.20.106.223/tcp/8542
+Swarm listening on /ip4/172.20.106.223/udp/8542/quic      
+Swarm listening on /ip4/192.168.0.102/tcp/8542
+Swarm listening on /ip4/192.168.0.102/udp/8542/quic       
+Swarm listening on /ip4/192.168.240.1/tcp/8542
+Swarm listening on /ip4/192.168.240.1/udp/8542/quic       
+Swarm listening on /ip6/::1/tcp/8542
+Swarm listening on /ip6/::1/udp/8542/quic
+Swarm listening on /p2p-circuit
+Swarm announcing /ip4/127.0.0.1/tcp/8542
+Swarm announcing /ip4/127.0.0.1/udp/8542/quic
+Swarm announcing /ip4/192.168.0.102/tcp/8542
+Swarm announcing /ip4/192.168.0.102/udp/8542/quic
+Swarm announcing /ip4/49.205.80.252/udp/19597/quic        
+Swarm announcing /ip6/::1/tcp/8542
+Swarm announcing /ip6/::1/udp/8542/quic
+API server listening on /ip4/127.0.0.1/tcp/5001
+WebUI: http://127.0.0.1:5001/webui
+Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8080
+Daemon is ready
+
+the port number may differ
+
+to see the files raw data use the url - 
+
+https://gateway.ipfs.io/ipfs/<hash>
+
+eg:
+
+https://gateway.ipfs.io/ipfs/QmYp611n9hwPtVXCtsB7i4LpNbDL9NMtRAifWQWkxEC8vU
+
+else copy the hash and using ipfs u can access the file like this 
+
+makesure that ur prowser has ipfs extention installed -
+
+ipfs://<hash>
+
+eg:
+
+ipfs://bafybeie7p2vbiybnujqxsq44f3kncyhdmc4/
+
+
+
+if u modify and and reupload it will regenrate new hash 
+
+
+
+
+
 
 
 
