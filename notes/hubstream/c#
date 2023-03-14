@@ -1031,6 +1031,53 @@ logical error - they are error in the logic like divided by zero
 
 ----------------------------advance exception handelling aka error handeling-------------------------
 
+Exception Handling
+
+An exception is a runtime error that happens during the execution
+of a program.
+Exceptions provide a way to transfer control from one part of a
+program to another.
+
+Exception handling is built upon these keywords: try, catch and finally
+Try: try block contains a block of code, exceptions is expected to happen if we
+run it.
+Catch: program catches an exception with an exception handler at the place in
+a program where you want to handle the problem.
+Finally: finally block is used to execute a block of code, whether an exception is
+thrown or not thrown.
+
+types
+
+1)
+
+try
+{
+}
+catch (SomeSpecificException ex)
+{
+}
+
+2)
+
+try
+{
+}
+finally
+{
+} 
+
+3)
+
+try
+{
+}
+catch (SomeSpecificException ex)
+{
+}
+finally
+{
+}
+
 they are as samme as C
 
 use try for code and catch for error handeling
@@ -1049,6 +1096,88 @@ finally{
 to know more on detail and types read :https://www.tutorialspoint.com/csharp/csharp_exception_handling.htm
 
 execute no matter what happens should be added in finally method
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ExceptionExercise
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int firstNumber = 0;
+            int secondNumber = 0;
+            double divResult = 0;
+            startAgain:
+            try
+            {
+                Console.WriteLine("Enter the first number");
+                firstNumber = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Enter the second number");
+                secondNumber = int.Parse(Console.ReadLine());
+
+                divResult = (double)firstNumber / (double)secondNumber;
+                Console.WriteLine("Result = " + divResult);
+            }
+            catch(DivideByZeroException e)
+            {
+                Console.WriteLine("Cannot divide by zero");
+                goto startAgain;
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Invalid Input");
+                goto startAgain;
+            }
+        }
+    }
+}
+
+
+eg:
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ExceptionHandling
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int x = 0;
+            int y = 9;
+            double div = 0;
+
+            try
+            {
+                div = y / x;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error is :" + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Result is : " + div);
+            }
+        }
+    }
+}
+
+
 
 -------------------------------------classes and objects----------------------------------
 
@@ -2767,12 +2896,84 @@ sealed class sealedclassname{
     action block;
 }
 
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SealedClasses
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Dogs dog = new Dogs();
+            
+        }
+    }
+
+    sealed class Animal
+    {
+        public string name;
+    }
+
+    class Dogs : Animal // you will need to remove the sealed keyword in order for inheritance to work
+    {
+        public string dogBreed;
+
+    }
+}
+
+
+
+
+
+
 static class-
 __________________
 
 this can only have staict variables and method
 
 and u cannot inheret non static class from static class viceversa
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StaticClasses
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Animal.GetAge();
+        }
+    }
+
+    static class Animal
+    {
+        static public string name;
+
+        static public void GetAge()
+        {
+            Console.WriteLine(DateTime.Now.Year - DateTime.Now.AddYears(-4).Year);
+        }
+    }
+    
+}
+
+
+
+
+
 
 nested classes-
 _____________________________________________
@@ -2794,10 +2995,127 @@ class a{
     }
 }
 
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NestedClasses
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Animals animal = new Animals();
+            Animals.Dogs dog = new Animals.Dogs();
+            Animals.Cats cat = new Animals.Cats();
+            
+        }
+    }
+
+    class Animals
+    {
+        public string animalName;
+        public string animalCountry;
+
+        public class Dogs
+        {
+            public string dogBreed;
+            public string dogNickname;
+        }
+
+        public class Cats
+        {
+            public string catName;
+        }
+
+    }
+}
+
+
+
+
+
+
+
 partial classes-
 ___________________________
 
 u can create 2 classes in two different classes usingh keyword partial before the class 
+
+eg:
+
+program.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PartialClasses
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Animals animal = new Animals();
+            animal.GetName();
+        }
+    }
+}
+
+class2.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PartialClasses
+{
+    partial class Animals
+    {
+        public DateTime birthDate;
+        public string animalBreed;
+
+        public void SayHi()
+        {
+
+        }
+    }
+}
+
+
+class1.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PartialClasses
+{
+    partial class Animals
+    {
+        public string animalColor;
+        public string animalName;
+
+        public void GetName()
+        {
+            Console.WriteLine("My name is max, I am a dog");
+        }
+    }
+}
+
+
+
+
 
 
 
@@ -2825,6 +3143,63 @@ to call the namespaces from the classes u can use "." operator eg:
 namespace.class.function();
 
 like class the namespace can also created inside the namespace
+
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MyOwnNamespace.GameOfThrones;
+
+namespace Namespaces
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            System.Console.WriteLine();
+            MyOwnNamespace.Animal animal = new MyOwnNamespace.Animal();
+            animal.SayHi();
+            //MyOwnNamespace.GameOfThrones.HouseStark.sayQuote();
+            HouseStark.sayQuote();
+        }
+    }
+}
+
+namespace MyOwnNamespace
+{
+    class Animal
+    {
+        public string animalColor;
+
+        public void SayHi()
+        {
+            Console.WriteLine("Hi from the custom namespace");
+        }
+    }
+
+    class Trainers
+    {
+    }
+
+    namespace GameOfThrones
+    {
+        class HouseStark
+        {
+            public static void sayQuote()
+            {
+                Console.WriteLine("The north remembers");
+            }
+        }
+    }
+}
+
+
+
+
 
 
 
@@ -2859,6 +3234,47 @@ class main{
 
 u can even code in the struct it will run the object gets in the scope
 
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Structs
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Employee newEmployee = new Employee();
+            newEmployee.employeeName = "James";
+            newEmployee.employeeJob = "Programmer";
+            newEmployee.Salary = 5000;
+            Console.WriteLine($"Employee name is {newEmployee.employeeName} and his job is {newEmployee.employeeJob} and starting salary is {newEmployee.Salary}");
+            newEmployee.SayHi();
+        }
+    }
+
+    struct Employee
+    {
+        public string employeeName;
+        public string employeeJob;
+        private decimal salary;
+
+        public decimal Salary
+        {
+            get { return salary; }
+            set { salary = value; }
+        }
+
+        public void SayHi()
+        {
+            Console.WriteLine("Hi from the method in struct");
+        }
+    }
+}
 
 
 
@@ -2868,9 +3284,26 @@ u can even code in the struct it will run the object gets in the scope
 class vs structs - 
 ___________________________
 
+Class
 
+✓ Declared with class keyword
+✓ Supports inheritance
+✓ User-defined constructors can be implemented
+✓ Data members can be initialized in the class
+definition
+✓ Reference type (Heap)
 
+Struct
 
+✓ Declared with struct keyword
+✓ Doesn’t Support inheritance
+✓ User-defined constructors can’t be implemented
+✓ Data members can’t be initialized in the struct
+definition
+✓ Value type (Stack)
+
+The majority of types in a framework should be classes, but if instances of the type are small and
+commonly short-lived or are commonly embedded in other objects define a struct
 
 
 
@@ -2879,12 +3312,1071 @@ ___________________________
 enumerations-
 __________________
 
- 
+enum are only visible inside a class it can be declared anywhere in namespace also in this case its only visble inside the namespace
+
+syntax:
+
+enum name{
+    values,
+    values
+}
+
+eg:
+
+enum weekdays{
+    mon,
+    tues,
+    Wed,
+    fri
+}
+
+it can be used by "." operator
+
+weekDays.mon.ToString();
+
+u can have a custom variable also 
+
+like 
+
+day='monday',
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Enumerations
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string weekDayName = WeekDay.Monday.ToString();
+            WeekDay day = WeekDay.Sunday;
+
+            Console.WriteLine((int)day);
+        }
+
+    }
+
+    enum WeekDay
+    {
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday = 40,
+        Saturday = 50,
+        Sunday = 60
+    }
+}
+
+
+
+
+
+
+
+
+
+this keyword-
+__________________
+
+this is a keyword used to access the internal value like u are sending an argument from out side the class that might change the actual value the use this to see the last value
+
+eg:
+
+ab(){
+    a=asd
+    b=asd
+    ca ca=new ca()
+    ca.bc()
+}
+
+class ca{
+
+    a=a
+    b=b
+
+    bc(){
+        Console.WriteLine(a+b)
+        Console.WriteLine(this.a+this.b)
+
+    }
+
+}
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ThisKeyword
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Person person = new Person();
+            person.DisplayName("James","Morrison");
+        }
+    }
+
+    class Person
+    {
+        string firstName;
+        string lastName;
+
+        public void DisplayName()
+        {
+            Console.WriteLine(firstName + " " + lastName);
+        }
+
+        public void DisplayName(string firstName, string lastName)
+        {
+            Console.WriteLine(firstName + " " + lastName);
+            Console.WriteLine(this.firstName + " " + this.lastName);
+        }
+
+        public Person()
+        {
+            firstName = "David";
+            lastName = "Smith";
+        }
+    }
+}
+
+
+
+
+output will be -
+_____________________________________________
+
+asdasd
+ab
+
+syntax to use this -
+
+this.variablename
+
+Interfaces-
+__________________
+
+Interfaces
+An interface contains definitions for a group of related
+functionalities that a class or a struct can implement.
+Think of it as contract that all the classes inheriting the interface
+should follow. The interface defines the 'what' part of the contract
+and the deriving classes define the 'how' part of the contract.
+
+interface is only used to declar and commands 
+
+An interface is a completely "abstract class", which can only contain abstract methods and properties (with empty bodies):
+
+syntax:
+
+public interface Iname{
+    //do add i in the name cause it will help us to defrentiate
+    declaration of methods
+}
+
+eg:
+
+// Interface
+interface IAnimal 
+{
+  void animalSound(); // interface method (does not have a body)
+}
+
+// Pig "implements" the IAnimal interface
+class Pig : IAnimal 
+{
+  public void animalSound() 
+  {
+    // The body of animalSound() is provided here
+    Console.WriteLine("The pig says: wee wee");
+  }
+}
+
+class Program 
+{
+  static void Main(string[] args) 
+  {
+    Pig myPig = new Pig();  // Create a Pig object
+    myPig.animalSound();
+  }
+}
+
+
+
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Interfaces
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Dogs dog = new Dogs();
+            dog.Attack();
+            dog.SayHi();
+            dog.Run();
+            
+        }
+    }
+
+    public interface IAnimals
+    {
+        void Run();
+    }
+
+    public interface IDogCommands : IAnimals
+    {
+        void Stay();
+        void Sit();
+        void Attack();
+
+        string DogName
+        {
+            set;
+            get;
+        }
+    }
+
+    interface Trainer
+    {
+
+    }
+
+    class Animals
+    {
+        string AnimalName;
+
+        public void SayHi()
+        {
+            Console.WriteLine("Hi from the animals class");
+        }
+    }
+
+    class Dogs : Animals, IDogCommands, Trainer
+    {
+        private string DogBreed;
+
+        public void Stay()
+        {
+            Console.WriteLine("Dog is staying");
+        }
+
+        public void Sit()
+        {
+            Console.WriteLine("Dog is sitting");
+        }
+
+        public void Attack()
+        {
+            Console.WriteLine("Dog is attacking");
+        }
+
+        public void Run()
+        {
+            Console.WriteLine("Animal is running");
+        }
+
+        public string DogName { get; set; }
+    }
+}
+
+
+
+
+
+
+
+interfaces vs abstract class - 
+_____________________________________________
+
+Similarities
+
+‣ Can't be instantiated directly
+‣ Must implement all its members
+‣ Can contain events, methods, and properties.
+
+Differences
+
+Interface
+
+‣ Can’t have method implementations
+‣ Allow multiple inheritance
+‣ Can’t have access modifiers, everything is public
+‣ Can’t contain variables
+
+Abstract Class
+
+‣ Can have method implementations
+‣ Doesn’t allow multiple inheritance
+‣ Can contain access modifiers
+‣ Can contain variables 
+
+
+
+---------------------------------------------------------------------------------------------------
+sample program of list
+
+animal.cs-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssignmentNo8
+{
+    class Animal
+    {
+        private string name;
+        private DateTime birthDate;
+        private Origions origin;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public DateTime BirthDate
+        {
+            get { return birthDate; }
+            set { birthDate = value; }
+        }
+
+        public Origions Origin
+        {
+            get { return origin; }
+            set { origin = value; }
+        }
+    }
+
+    interface Dog
+    {
+        void Eat();
+        void Drink();
+        void Sit();
+        void Sleep();
+        void SayHi();
+
+    }
+
+    class GermanShepard : Animal, Dog
+    {
+        private Gender gender;
+        private double weight;
+        private bool securityGuard;
+        private TrainingAbility training;
+        private Sizes size;
+
+
+        public Gender Gender
+        {
+            get { return gender; }
+            set { gender = value; }
+        }
+
+        public double Weight
+        {
+            get { return weight; }
+            set { weight = value; }
+        }
+
+        public bool SecurityGuard
+        {
+            get { return securityGuard; }
+            set { securityGuard = value; }
+        }
+
+        public TrainingAbility Training
+        {
+            get { return training; }
+            set { training = value; }
+        }
+
+        public Sizes Size
+        {
+            get { return size; }
+            set { size = value; }
+        }
+
+        public void Eat()
+        {
+            Console.WriteLine("Dog is eating");
+        }
+        public void Eat(string dogName)
+        {
+            Console.WriteLine($"{dogName} is eating");
+        }
+        public void Drink()
+        {
+            Console.WriteLine("Dog is drinking");
+        }
+        public void Drink(string dogName)
+        {
+            Console.WriteLine($"{dogName} is drinking");
+        }
+        public void Sit()
+        {
+            Console.WriteLine("Dog is sitting");
+        }
+        public void Sit(string dogName)
+        {
+            Console.WriteLine($"{dogName} is sitting");
+        }
+        public void Sleep()
+        {
+            Console.WriteLine("Dog is sleeping");
+        }
+        public void Sleep(string dogName)
+        {
+            Console.WriteLine($"{dogName} is sleeping");
+        }
+
+        public void SayHi()
+        {
+            Console.WriteLine("Hiii \"in dogs language :D\"");
+        }
+
+        public void DisplayDogInformation()
+        {
+            Console.WriteLine($"The dog name is {Name} from {Origin}, " +
+                $"was born on {BirthDate.ToShortDateString()} " +
+                $"{Name} is a {Gender} and weights {Weight} kilos and its size is {Size} ");
+        }
+    }
+
+    enum Gender
+    {
+        Male,
+        Female
+    }
+
+    enum Sizes
+    {
+        Small,
+        Medium,
+        Large
+    }
+    enum TrainingAbility
+    {
+        Easy,
+        Medium,
+        Hard
+    }
+    enum Origions
+    {
+        Afghanistan,
+        Albania,
+        Algeria,
+        Angola,
+        Argentina,
+        Australia,
+        Austria,
+        Bahamas,
+        Bahrain,
+        Bangladesh,
+        Belarus,
+        Belgium,
+        Bolivia,
+        Botswana,
+        Brazil,
+        Brunei,
+        Bulgaria,
+        BurkinaFaso,
+        Burundi,
+        Cambodia,
+        Cameroon,
+        Canada,
+        Chad,
+        Chile,
+        China,
+        Colombia,
+        Comoros,
+        CostaRica,
+        Croatia,
+        Cuba,
+        Cyprus,
+        CzechRepublic,
+        Denmark,
+        Ecuador,
+        Egypt,
+        ElSalvador,
+        Estonia,
+        Ethiopia,
+        Finland,
+        France,
+        Gabon,
+        Gambia,
+        Georgia,
+        Germany,
+        Ghana,
+        Greece,
+        Greenland,
+        Guatemala,
+        Haiti,
+        Honduras,
+        HongKong,
+        Hungary,
+        Iceland,
+        India,
+        Indonesia,
+        Iran,
+        Iraq,
+        Ireland,
+        Israel,
+        Italy,
+        Jamaica,
+        Japan,
+        Jordan,
+        Kazakhstan,
+        Kenya,
+        Kosovo,
+        Kuwait,
+        Latvia,
+        Lebanon,
+        Liberia,
+        Libya,
+        Liechtenstein,
+        Lithuania,
+        Luxembourg,
+        Macedonia,
+        Madagascar,
+        Malawi,
+        Malaysia,
+        Maldives,
+        Mali,
+        Malta,
+        Mauritius,
+        Mexico,
+        Moldova,
+        Monaco,
+        Mongolia,
+        Montenegro,
+        Morocco,
+        Mozambique,
+        Namibia,
+        Nepal,
+        Netherlands,
+        NewZealand,
+        Nicaragua,
+        Niger,
+        Nigeria,
+        NorthKorea,
+        Norway,
+        Oman,
+        Pakistan,
+        Palestine,
+        Panama,
+        Paraguay,
+        Peru,
+        Philippines,
+        Poland,
+        Portugal,
+        PuertoRico,
+        Qatar,
+        Romania,
+        Russia,
+        Rwanda,
+        SaudiArabia,
+        Senegal,
+        Serbia,
+        Seychelles,
+        SierraLeone,
+        Singapore,
+        Slovakia,
+        Slovenia,
+        Somalia,
+        SouthAfrica,
+        SouthKorea,
+        SouthSudan,
+        Spain,
+        SriLanka,
+        Sudan,
+        Swaziland,
+        Sweden,
+        Switzerland,
+        Syria,
+        Taiwan,
+        Tanzania,
+        Thailand,
+        Togo,
+        Tonga,
+        Tunisia,
+        Turkey,
+        Uganda,
+        Ukraine,
+        UnitedArabEmirates,
+        UnitedKingdom,
+        UnitedStatesofAmerica,
+        Uruguay,
+        Uzbekistan,
+        VaticanCity,
+        Venezuela,
+        Vietnam,
+        Yemen,
+        Zambia,
+        Zimbabwe
+    }
+}
+
+
+program.cs-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssignmentNo8
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            GermanShepard max = new GermanShepard();
+            max.Origin = Origions.Germany;
+            max.Name = "Max";
+            max.BirthDate = new DateTime(2017, 10, 10);
+            max.Gender = Gender.Male;
+            max.Weight = 32.54;
+            max.SecurityGuard = false;
+            max.Size = Sizes.Large;
+            max.Training = TrainingAbility.Easy;
+            max.DisplayDogInformation();
+            max.Sit(max.Name);
+            max.Eat();
+            max.SayHi();
+        }
+
+
+    }
+}
+
+--------------------------------------------------------------------------------------------------------
+
+movie program
+
+program.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MovieNamespace;
+
+namespace AssignmentNo7
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            MovieNamespace.Movie InceptionInstance = new MovieNamespace.Movie();
+            MovieNamespace.Movie WildTalesInstance = new MovieNamespace.Movie();
+
+            InceptionInstance.MovieName = "Inception";
+            InceptionInstance.Rate = 8.8;
+            InceptionInstance.ReleaseDate = new DateTime(2010, 7, 16);
+
+            InceptionInstance.Languages = new Language[3];
+            InceptionInstance.Languages[0] = Language.English;
+            InceptionInstance.Languages[1] = Language.French;
+            InceptionInstance.Languages[2] = Language.Japanese;
+
+            InceptionInstance.Countries = new Country[2];
+            InceptionInstance.Countries[0] = Country.UnitedStatesofAmerica;
+            InceptionInstance.Countries[1] = Country.UnitedKingdom;
+
+            InceptionInstance.Genres = new Genres[3];
+            InceptionInstance.Genres[0] = Genres.Action;
+            InceptionInstance.Genres[1] = Genres.Adventure;
+            InceptionInstance.Genres[2] = Genres.SciFi;
+            
+            
+            WildTalesInstance.MovieName = "Wild Tales";
+            WildTalesInstance.Rate = 8.1;
+            WildTalesInstance.ReleaseDate = new DateTime(2014, 8, 21);
+
+            WildTalesInstance.Languages = new Language[1];
+            WildTalesInstance.Languages[0] = Language.Spanish;
+
+            WildTalesInstance.Countries = new Country[2];
+            WildTalesInstance.Countries[0] = Country.Argentina;
+            WildTalesInstance.Countries[1] = Country.Spain;
+
+            WildTalesInstance.Genres = new Genres[3];
+            WildTalesInstance.Genres[0] = Genres.Comedy;
+            WildTalesInstance.Genres[1] = Genres.Drama;
+            WildTalesInstance.Genres[2] = Genres.Thriller;
+
+            InceptionInstance.DisplayMovieInformation();
+            WildTalesInstance.DisplayMovieInformation();
+        }
+    }
+}
+
+movie.cs-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MovieNamespace
+{
+    struct Movie
+    {
+        private string movieName;
+        private double rate;
+        private DateTime releaseDate;
+        private Genres[] genres;
+        private Language[] languages;
+        private Country[] countries;
+
+        public string MovieName
+        {
+            get { return movieName; }
+            set { movieName = value; }
+        }
+
+        public double Rate
+        {
+            get { return rate; }
+            set { rate = value; }
+        }
+
+        public DateTime ReleaseDate
+        {
+            get { return releaseDate; }
+            set { releaseDate = value; }
+        }
+
+        public Language[] Languages
+        {
+            get { return languages; }
+            set { languages = value; }
+        }
+
+        public Country[] Countries
+        {
+            get { return countries; }
+            set { countries = value; }
+        }
+
+        public Genres[] Genres
+        {
+            get { return genres; }
+            set { genres = value; }
+        }
+
+        public void DisplayMovieInformation()
+        {
+            Console.Write($"Movies : {MovieName}" +
+                $"\nRate : {Rate} out of 10" +
+                $"\nReleased on: {ReleaseDate.ToShortDateString()}" +
+                $"\nLanguages: ");
+
+            for (int i = 0; i < Languages.Length; i++)
+            {
+                Console.Write(Languages[i]);
+                if (i < Languages.Length - 1)
+                    Console.Write(", ");
+                else
+                    Console.WriteLine();
+            }
+            Console.Write("Countries : ");
+            for (int i = 0; i <Countries.Length; i++)
+            {
+                Console.Write(Countries[i]);
+                if (i < Countries.Length - 1)
+                    Console.Write(", ");
+            }
+            Console.Write("\nGenres : ");
+            for (int i = 0; i < Genres.Length; i++)
+            {
+                Console.Write(Genres[i]);
+                if (i < Genres.Length - 1)
+                    Console.Write(", ");
+                else
+                    Console.WriteLine();
+            }
+            Console.WriteLine("---------------------------------------");
+        }
+    }
+
+
+    #region Lists
+
+    #region Languages List
+    enum Language
+    {
+        Arabic,
+        Azerbaijani,
+        Bengali,
+        Czech,
+        Dutch,
+        English,
+        French,
+        German,
+        Greek,
+        Hindi,
+        Hungarian,
+        Italian,
+        Japanese,
+        Javanese,
+        Korean,
+        Kurdish,
+        Malay,
+        Mandarin,
+        Persian,
+        Polish,
+        Portuguese,
+        Romanian,
+        Russian,
+        Spanish,
+        Swedish,
+        Thai,
+        Turkish,
+        Ukrainian,
+        Urdu,
+        Vietnamese,
+        Zulu
+    }
+    #endregion
+
+    #region Countries List
+    enum Country
+    {
+        Afghanistan,
+        Albania,
+        Algeria,
+        Angola,
+        Argentina,
+        Australia,
+        Austria,
+        Bahamas,
+        Bahrain,
+        Bangladesh,
+        Belarus,
+        Belgium,
+        Bolivia,
+        Botswana,
+        Brazil,
+        Brunei,
+        Bulgaria,
+        BurkinaFaso,
+        Burundi,
+        Cambodia,
+        Cameroon,
+        Canada,
+        Chad,
+        Chile,
+        China,
+        Colombia,
+        Comoros,
+        CostaRica,
+        Croatia,
+        Cuba,
+        Cyprus,
+        CzechRepublic,
+        Denmark,
+        Ecuador,
+        Egypt,
+        ElSalvador,
+        Estonia,
+        Ethiopia,
+        Finland,
+        France,
+        Gabon,
+        Gambia,
+        Georgia,
+        Germany,
+        Ghana,
+        Greece,
+        Greenland,
+        Guatemala,
+        Haiti,
+        Honduras,
+        HongKong,
+        Hungary,
+        Iceland,
+        India,
+        Indonesia,
+        Iran,
+        Iraq,
+        Ireland,
+        Israel,
+        Italy,
+        Jamaica,
+        Japan,
+        Jordan,
+        Kazakhstan,
+        Kenya,
+        Kosovo,
+        Kuwait,
+        Latvia,
+        Lebanon,
+        Liberia,
+        Libya,
+        Liechtenstein,
+        Lithuania,
+        Luxembourg,
+        Macedonia,
+        Madagascar,
+        Malawi,
+        Malaysia,
+        Maldives,
+        Mali,
+        Malta,
+        Mauritius,
+        Mexico,
+        Moldova,
+        Monaco,
+        Mongolia,
+        Montenegro,
+        Morocco,
+        Mozambique,
+        Namibia,
+        Nepal,
+        Netherlands,
+        NewZealand,
+        Nicaragua,
+        Niger,
+        Nigeria,
+        NorthKorea,
+        Norway,
+        Oman,
+        Pakistan,
+        Palestine,
+        Panama,
+        Paraguay,
+        Peru,
+        Philippines,
+        Poland,
+        Portugal,
+        PuertoRico,
+        Qatar,
+        Romania,
+        Russia,
+        Rwanda,
+        SaudiArabia,
+        Senegal,
+        Serbia,
+        Seychelles,
+        SierraLeone,
+        Singapore,
+        Slovakia,
+        Slovenia,
+        Somalia,
+        SouthAfrica,
+        SouthKorea,
+        SouthSudan,
+        Spain,
+        SriLanka,
+        Sudan,
+        Swaziland,
+        Sweden,
+        Switzerland,
+        Syria,
+        Taiwan,
+        Tanzania,
+        Thailand,
+        Togo,
+        Tonga,
+        Tunisia,
+        Turkey,
+        Uganda,
+        Ukraine,
+        UnitedArabEmirates,
+        UnitedKingdom,
+        UnitedStatesofAmerica,
+        Uruguay,
+        Uzbekistan,
+        VaticanCity,
+        Venezuela,
+        Vietnam,
+        Yemen,
+        Zambia,
+        Zimbabwe
+    }
+    #endregion
+
+    #region Genres
+    enum Genres
+    {
+        Action,
+        Adventure,
+        Animation,
+        Biography,
+        Comedy,
+        Crime,
+        Documentary,
+        Drama,
+        Family,
+        Fantasy,
+        History,
+        Horror,
+        Musical,
+        Mystery,
+        Romance,
+        SciFi,
+        Sport,
+        Thriller,
+        War,
+        Western
+    }
+    #endregion
+    #endregion
+}
+
+------------------------------------------------------------------------------------------------------------
+
+Association
+ • It is a relationship between objects.
+ • Usually defined as “is-a” or “using” relationship.
+ • Both objects have independent life-cycle.
+ • Each object owns their actions and will not affect other object.
+Aggregation
+ • Specialized form of Association.
+ • Usually defined as “has-a” relationship.
+ • Each object has an independent life-cycle.
+ • Ownership between objects.
+Composition
+ • Specialized form of Aggregation.
+ • Usually defined as “part-of” relationship.
+ • Child Object has dependent life-cycle.
+ • Ownership between objects. 
+
+
+
+
 
 
 _______________________________________________________________________________________________________________________________________________________________________________________
 
-ls -5 0
+ls -6 0
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
