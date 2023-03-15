@@ -68,3 +68,109 @@ eg:
 
 ipfs add -r ./babanaidu
 
+to expose and connect to the rest of the ipfs network use deamon
+
+run:
+
+#ipfs daemon
+
+it will print some thing like this 
+
+Initializing daemon...
+go-ipfs version: 0.10.0
+Repo version: 11
+System version: 386/windows
+Golang version: go1.16.8
+Swarm listening on /ip4/127.0.0.1/tcp/8542
+Swarm listening on /ip4/127.0.0.1/udp/8542/quic
+Swarm listening on /ip4/169.254.171.166/tcp/8542
+Swarm listening on /ip4/169.254.171.166/udp/8542/quic
+Swarm listening on /ip4/169.254.177.100/tcp/8542
+Swarm listening on /ip4/169.254.177.100/udp/8542/quic
+Swarm listening on /ip4/169.254.221.250/tcp/8542
+Swarm listening on /ip4/169.254.221.250/udp/8542/quic     
+Swarm listening on /ip4/169.254.39.73/tcp/8542
+Swarm listening on /ip4/169.254.39.73/udp/8542/quic       
+Swarm listening on /ip4/172.20.106.223/tcp/8542
+Swarm listening on /ip4/172.20.106.223/udp/8542/quic      
+Swarm listening on /ip4/192.168.0.102/tcp/8542
+Swarm listening on /ip4/192.168.0.102/udp/8542/quic       
+Swarm listening on /ip4/192.168.240.1/tcp/8542
+Swarm listening on /ip4/192.168.240.1/udp/8542/quic       
+Swarm listening on /ip6/::1/tcp/8542
+Swarm listening on /ip6/::1/udp/8542/quic
+Swarm listening on /p2p-circuit
+Swarm announcing /ip4/127.0.0.1/tcp/8542
+Swarm announcing /ip4/127.0.0.1/udp/8542/quic
+Swarm announcing /ip4/192.168.0.102/tcp/8542
+Swarm announcing /ip4/192.168.0.102/udp/8542/quic
+Swarm announcing /ip4/49.205.80.252/udp/19597/quic        
+Swarm announcing /ip6/::1/tcp/8542
+Swarm announcing /ip6/::1/udp/8542/quic
+API server listening on /ip4/127.0.0.1/tcp/5001
+WebUI: http://127.0.0.1:5001/webui
+Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8080
+Daemon is ready
+
+the port number may differ
+
+to see the files raw data use the url - 
+
+https://gateway.ipfs.io/ipfs/<hash>
+
+eg:
+
+https://gateway.ipfs.io/ipfs/QmYp611n9hwPtVXCtsB7i4LpNbDL9NMtRAifWQWkxEC8vU
+
+else copy the hash and using ipfs u can access the file like this 
+
+makesure that ur prowser has ipfs extention installed -
+
+ipfs://<hash>
+
+eg:
+
+ipfs://bafybeie7p2vbiybnujqxsq44f3kncyhdmc4/
+
+
+
+if u modify and and reupload it will regenrate new hash 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+to see all the ipfs configuration use command 
+
+ipfs config show
+
+if u wana get the ipfs uploaded file name using hash the use this command 
+
+#ipfs cat <hash>
+
+hosting a website in ipfs is so easy create a html flder have a index.html folder and all the files should be linked to it css bootstrap etc
+
+add the folder
+
+publish it to ipns
+
+give that hash
+
+see this video for dns resolution - https://www.youtube.com/watch?v=ZRAStnf4AMA&list=PLNblnG6W6-KImttnlK9zRdJ_iqyUMvHz7&index=3
+
+--how to setup the ipfs gateway--
+_________________________________
+
+do init 
+
+see this vid - https://www.youtube.com/watch?v=C6WfDTqXGR8&list=PLNblnG6W6-KImttnlK9zRdJ_iqyUMvHz7&index=4
+
+
+
+
+to shutdown the daemon-
+__________________________
+
+
+#ipfs shutdown
+
+completely shutdowns everything
+

@@ -419,7 +419,6 @@ eg:
 
 ipfs add -r ./babanaidu
 
-------------------ipfs done ------------------------
 
 to expose and connect to the rest of the ipfs network use deamon
 
@@ -488,6 +487,49 @@ ipfs://bafybeie7p2vbiybnujqxsq44f3kncyhdmc4/
 
 
 if u modify and and reupload it will regenrate new hash 
+
+to see all the ipfs configuration use command 
+
+ipfs config show
+
+if u wana get the ipfs uploaded file name using hash the use this command 
+
+#ipfs cat <hash>
+
+hosting a website in ipfs is so easy create a html flder have a index.html folder and all the files should be linked to it css bootstrap etc
+
+add the folder
+
+publish it to ipns
+
+give that hash
+
+see this video for dns resolution - https://www.youtube.com/watch?v=ZRAStnf4AMA&list=PLNblnG6W6-KImttnlK9zRdJ_iqyUMvHz7&index=3
+
+--how to setup the ipfs gateway--
+_________________________________
+
+do init 
+
+see this vid - https://www.youtube.com/watch?v=C6WfDTqXGR8&list=PLNblnG6W6-KImttnlK9zRdJ_iqyUMvHz7&index=4
+
+
+
+
+to shutdown the daemon-
+__________________________
+
+
+#ipfs shutdown
+
+completely shutdowns everything
+
+if the npm i ipfs-http-client is installed and it trows some module missing or export error use this command 
+
+#npm i ipfs-http-client@50.1.2 @babel/core --save
+
+makesure the deamon is on
+
 
 
 
