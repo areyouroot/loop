@@ -4404,6 +4404,37 @@ Debug.x=10;
 
 
 
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+namespace DebugWriteLine
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int x = 5;
+            int y = 10;
+            Debug.WriteLine("Hello from the debug writeline");
+            Debug.WriteLineIf(x == 50,"X = " + x);
+            Debug.WriteLine("Y = " + y);
+            x = 50;
+            y = 100;
+            Debug.WriteLineIf(x == 50, "X = " + x);
+            Debug.WriteLine("Y = " + y);
+            Debug.WriteLine("Program has been terminated");
+        }
+    }
+}
+
+
+
 
 
 
@@ -4424,6 +4455,68 @@ Debug.x=10;
  u can also give parameter description as given above
 
  more params are given here https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/
+ and - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/recommended-tags
+
+ eg:
+
+ using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MethodDescription
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Dogs max = new Dogs();
+            max.Sit();
+            
+        }
+    }
+    
+    /// <summary>
+    /// DogCommands will be the interface for the methods to be applied
+    /// </summary>
+    interface DogCommands
+    {
+        void Sit();
+        void Sit(string dogName, string trainerName);
+    }
+
+    /// <summary>
+    /// Class Animal will be a base class for the child classes like Dogs 
+    /// </summary>
+    class Animal
+    {
+
+    }
+
+
+    class Dogs : Animal, DogCommands
+    {
+        /// <summary>
+        /// Sit method will make the dog sit
+        /// </summary>
+        public void Sit()
+        {
+
+        }
+        
+        /// <summary>
+        ///  Overloaded method will take two parameters of type string
+        /// </summary>
+        /// <param name="dogName">string used to hold the dog name</param>
+        /// <param name="trainerName">string used to hold the trainer name</param>
+        public void Sit(string dogName, string trainerName)
+        {
+
+        }
+    }
+}
+
 
 
  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4488,6 +4581,35 @@ syntax:
 Directory.CreateDirectory(@"location");
 
 
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace FilesWrite
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            //Directory.CreateDirectory(@"C:\files\males");
+            string file = @"C:\files\males\Names.txt";
+            StreamWriter sw = new StreamWriter(file,true);
+            sw.WriteLine("John");
+            sw.WriteLine("Ahmad");
+
+            sw.Close();
+        }
+    }
+}
+
+
+
 
 
 
@@ -4499,6 +4621,770 @@ SteamReader sr = new SteamReader(filelocation); // the file location can be give
 Console.WriteLine(sr.ReadToEnd()); //toread full file
 sr.Close();
 
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FilesRead
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string file = @"c:\files\names.txt";
+            System.IO.StreamReader sr = new System.IO.StreamReader(file);
+            Console.WriteLine(sr.ReadToEnd());
+            Console.WriteLine("File ended");
+            sr.Close();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+you can change the color of the console which u print in c#
+
+use this code 
+
+Console.ForegroundColor = ConsoleColor.colorname;
+
+eg:
+
+Console.ForegroundColor = ConsoleColor.blue;
+
+
+
+for back gound color 
+
+Console.BackgroundColor = ConsoleColor.white;
+
+
+
+
+default-
+
+u can give empty values by defining it as default
+
+syntax:
+
+datatype variablename = default;
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DefaultKeyword
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            long longVar = default;
+            string stringVar = default;
+            DateTime dateVar = default;
+            int intVar = default;
+
+            Console.WriteLine(dateVar);
+        }
+    }
+}
+
+
+
+
+
+
+C# program for cicer ciper
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssignmentNo10
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+        }
+
+         // Auto generated method to perform caesar cipher encryption
+        public static char[] Encrypt(string plainText, int shift)
+        {
+            char[] plainArray = plainText.ToLower().ToCharArray();
+            char[] cipherArray = new char[plainArray.Length];
+
+            for (int i = 0; i < plainArray.Length; i++)
+            {
+                char letter = plainArray[i];
+                if (letter != ' ')
+                {
+                    letter = (char)(letter + shift);
+                    if (letter > 'z')
+                    {
+                        letter = (char)(letter - 26);
+                    }
+                    else if (letter < 'a')
+                    {
+                        letter = (char)(letter + 26);
+                    }
+                    cipherArray[i] = letter;
+                }
+            }
+            return cipherArray;
+        }
+    }
+}
+
+ascii table - http://www.jimprice.com/ascii-0-127.gif
+
+
+
+c# program to play with console colors
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace AssignmentNo9
+{
+    class Program
+    {
+        #region Main Method
+        static void Main(string[] args)
+        {
+            string userChoose = string.Empty;
+            string filePath = string.Empty;
+            string fileName = string.Empty;
+            string plainText = string.Empty;
+            string cipherText = string.Empty;
+            int shift = 0;
+            StreamWriter sw = default;
+            StreamReader sr = default;
+
+            do
+            {
+                userChoose = WeclcomeMessage();
+
+                if (userChoose.ToLower() == "e")
+                {
+                    PerformEncryptOperation(out plainText, out cipherText, out shift);
+                }
+                else if (userChoose.ToLower() == "d")
+                {
+                    PerformDecryptOperation(out filePath, out fileName, ref cipherText, out shift, ref sr);
+                }
+                else if (!(userChoose.ToLower() == "x"))
+                {
+                    ErrorMessage("Invalid input, please try again");
+                }
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("----------------------------------------------------");
+                Console.WriteLine("\n");
+            }
+            while (userChoose.ToLower() != "x");
+            Console.WriteLine("Thank you for using caesar cipher app.\n\n");
+        }
+        #endregion
+
+        #region Error Message
+        private static void ErrorMessage(string message)
+        {
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+        }
+        #endregion
+
+        #region App Message
+        private static void AppMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(message);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        #endregion
+
+        #region Welcome Message
+        private static string WeclcomeMessage()
+        {
+            string userChoose;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Welcome to caesar cipher app, choose \n(E) to encrypt \n(D) to decrypt \n(X) to exit\n");
+            Console.ForegroundColor = ConsoleColor.White;
+            userChoose = Console.ReadLine();
+            return userChoose;
+        }
+        #endregion
+
+        #region Perform Encrypt Operation
+        private static void PerformEncryptOperation(out string plainText, out string cipherText, out int shift)
+        {
+            AppMessage("Welcome to encryption mode \nEnter message to encrypt");
+            plainText = Console.ReadLine();
+            shift = 0;cipherText = string.Empty;
+            if (plainText != "")
+            {
+                try
+                {
+                    AppMessage("Enter the shift");
+                    shift = int.Parse(Console.ReadLine());
+
+                    if (shift <= 26 && shift > 0)
+                    {
+                        AppMessage("Cipher is");
+
+                        cipherText = new string(CaesarCipher.Encrypt(plainText, shift));
+                        Console.WriteLine(cipherText);
+                    }
+                    else
+                    {
+                        ErrorMessage("Enter a number between 1 to 26");
+                    }
+                }
+                catch (Exception e)
+                {
+                    ErrorMessage(e.Message);
+                }
+            }
+            else
+            {
+                ErrorMessage("Invalid input");
+            }
+        }
+        #endregion
+
+        #region Perform Decrypt Operation
+        private static void PerformDecryptOperation(out string filePath, out string fileName, ref string cipherText, out int shift, ref StreamReader sr)
+        {
+            shift = 0; fileName = string.Empty;
+            AppMessage("Welcome to decryption mode \nEnter the path of file to decrypt");
+            filePath = Console.ReadLine();
+
+            if (filePath != "")
+            {
+                AppMessage("Enter file name");
+                fileName = Console.ReadLine();
+                if (fileName != "")
+                {
+                    filePath = filePath + "\\" + fileName;
+
+                    AppMessage("Enter the shift");
+
+                    try
+                    {
+                        shift = int.Parse(Console.ReadLine());
+                        if (shift <= 26 && shift > 0)
+                        {
+                            sr = new System.IO.StreamReader(filePath);
+                            cipherText = sr.ReadToEnd();
+
+                            cipherText = new string(CaesarCipher.Decrypt(cipherText, shift));
+                            AppMessage("Cipher is");
+                            Console.WriteLine(cipherText);
+
+                            sr.Close();
+                        }
+                        else
+                        {
+                            ErrorMessage("Enter a number between 1 to 26");
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        ErrorMessage(e.Message);
+                    }
+                }
+                else
+                {
+                    ErrorMessage("File name cannot be empty");
+                }
+            }
+            else
+            {
+                ErrorMessage("Path is invalid");
+            }
+        }
+        #endregion
+    }
+
+    class CaesarCipher
+    {
+        #region Caesar Cipher Encryption
+        public static char[] Encrypt(string plainText, int shift)
+        {
+            char[] plainArray = plainText.ToLower().ToCharArray();
+            char[] cipherArray = new char[plainArray.Length];
+
+            for (int i = 0; i < plainArray.Length; i++)
+            {
+                char letter = plainArray[i];
+                if (letter != ' ')
+                {
+                    letter = (char)(letter + shift);
+                    if (letter > 'z')
+                    {
+                        letter = (char)(letter - 26);
+                    }
+                    else if (letter < 'a')
+                    {
+                        letter = (char)(letter + 26);
+                    }
+                    cipherArray[i] = letter;
+                }
+            }
+            return cipherArray;
+        }
+        #endregion
+
+        #region Caesar Cipher Decryption
+        public static char[] Decrypt(string cipherText, int shift)
+        {
+            char[] cipherArray = cipherText.ToLower().ToCharArray();
+            char[] plainArray = new char[cipherText.Length];
+
+            for (int i = 0; i < cipherArray.Length; i++)
+            {
+                char letter = cipherArray[i];
+                if (letter != ' ')
+                {
+                    letter = (char)(letter - shift);
+                    if (letter > 'z')
+                    {
+                        letter = (char)(letter - 26);
+                    }
+                    else if (letter < 'a')
+                    {
+                        letter = (char)(letter + 26);
+                    }
+                    plainArray[i] = letter;
+                }
+            }
+            return plainArray;
+        }
+        #endregion
+    }
+}
+
+
+
+
+What is .Net framework?
+It is a component of Windows that includes a virtual execution system
+called the (CLR) Common Language Runtime and a unified set of class
+libraries. 
+
+
+Framework Class Libraries
+https://msdn.microsoft.com/en-us/library/mt472912.aspx
+
+
+System
+System.Activities
+System.Collections
+System.Data
+System.Diagnostics
+System.DirectoryServices
+System.Drawing
+System.Globalization
+System.IO
+System.Linq
+System.Management
+System.Messaging
+System.Net
+System.Printing
+System.Resources
+System.Security
+System.Speech
+System.Text
+System.Threading
+System.Timers
+System.Web
+System.Windows
+
+
+
+
+bulding code once ur program is done next step is to build so u will build it in the debug folder and u can see the build button at top 
+
+difference
+
+Build
+Build the files that
+have been modified
+since the last
+successful compile
+(Incremental)
+
+Re-Build
+Clean then build the
+solution from scratch,
+ignoring any previous
+complies made before
+
+Clean
+Delete all compiled
+files (i.e., EXEs and
+DLLs) from the bin/obj
+directory.
+
+
+
+
+data types real call
+
+bool System.Boolean
+byte System.Byte
+sbyte System.SByte
+char System.Char
+decimal System.Decimal
+double System.Double
+float System.Single
+int System.Int32
+uint System.UInt32
+long System.Int64
+ulong System.UInt64
+object System.Object
+short System.Int16
+ushort System.UInt16
+string System.String
+
+
+
+
+Cryptography
+Cryptography is a way of storing and transmitting data in a particular form unlike its
+normal form
+Encryption:
+The process of converting information using cryptography. Information that has been converted this way is
+called encrypted.
+Decryption:
+The process of unlocking the encrypted information using cryptographic techniques.
+Key:
+A secret like a password used to encrypt and decrypt information.
+
+
+
+
+Cryptography
+
+
+Types of encryption
+
+
+Symmetrical Encryption:
+
+Encryption and decryption use the same key
+
+data
+|
+|
+▽
+Plain text Encryption
+|
+|
+▽
+Secret key
+|
+|
+▽
+Cipher text Decryption
+|
+|
+▽
+Secret key
+|
+|
+▽
+Plain text
+
+
+
+
+Asymmetrical Encryption:
+
+Encryption and decryption use different key, a public key and a private key
+
+data
+|
+|
+▽
+Plain text Encryption
+|
+|
+▽
+Public key
+|
+|
+▽
+Cipher text Decryption
+|
+|
+▽
+Private key
+|
+|
+▽
+Plain text
+
+
+
+
+
+Caesar Cipher
+It is a type of substitution cipher in which each letter in the plaintext is 'shifted' a certain number of places down
+the alphabet
+ Plain: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+Cipher: X Y Z A B C D E F G H I J K L M N O P Q R S T U V W
+Cipher: zlqwhu lv frplqj
+Plain: winter is coming
+
+
+
+
+Popular Encryption Algorithms
+DES
+Triple DES
+RSA
+BlowFish
+
+
+
+DES eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Security.Cryptography;
+using System.IO;
+
+namespace CryptographyApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DESCryptoServiceProvider key = new DESCryptoServiceProvider();
+            Console.WriteLine("Enter your message: ");
+            string plainText = Console.ReadLine();
+
+            string cipherText = Encrypt(plainText, key);
+
+            Console.WriteLine("\nCipher Text: " + Encrypt(plainText,key));
+            Console.WriteLine("Plain Text: " + Decrypt(cipherText, key));
+        }
+
+        public static string Encrypt(string plainText, SymmetricAlgorithm key)
+        {
+            MemoryStream ms = new MemoryStream();
+            CryptoStream cs = new CryptoStream(ms, key.CreateEncryptor(), CryptoStreamMode.Write);
+            StreamWriter sw = new StreamWriter(cs);
+            sw.Write(plainText);
+            sw.Flush();
+            cs.FlushFinalBlock();
+            return (Convert.ToBase64String(ms.GetBuffer(),0,(int)ms.Length));
+        }
+
+        public static string Decrypt(string cipherText, SymmetricAlgorithm key)
+        {
+            MemoryStream ms = new MemoryStream(Convert.FromBase64String(cipherText));
+            CryptoStream cs = new CryptoStream(ms, key.CreateDecryptor(), CryptoStreamMode.Read);
+            StreamReader sr = new StreamReader(cs);
+            return sr.ReadToEnd();
+        }
+
+    }
+}
+
+
+eg for console colors:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleForegroundColor
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string greenMessage = "This is the GREEN message";
+            string blueMessage = "This is the BLUE message";
+            string redMessage = "This is the RED message";
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(greenMessage);
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(blueMessage);
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(redMessage);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+    }
+}
+
+
+
+
+
+
+for numbering most  people use , insted of that u can use _ eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DigitSeparator
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var distanceToSunFromEarth = 149_600_000;
+            Console.WriteLine(distanceToSunFromEarth);
+        }
+    }
+}
+
+
+
+
+C# program for file creation of diff rent languages using enum:
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ExerciseFilesCreator
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            StreamWriter sw;
+            string language = string.Empty;
+            int count = Enum.GetNames(typeof(Languages)).Length;
+            for (int i = 0; i < count; i++)
+            {
+                language =  Enum.GetValues(typeof(Languages)).GetValue(i).ToString();
+                Console.WriteLine(language);
+                Directory.CreateDirectory(@"C:\Languages");
+                Directory.CreateDirectory("C:\\Languages\\" + language);
+                sw = new StreamWriter("C:\\Languages\\" + language + "\\log.txt");
+                sw.WriteLine("File no " + i + " created on " + DateTime.Now);
+                sw.Close();
+            }
+        }
+    }
+
+
+    enum Languages
+    {
+        Arabic,
+        Azerbaijani,
+        Bengali,
+        Czech,
+        Dutch,
+        English,
+        French,
+        German,
+        Greek,
+        Hindi,
+        Hungarian,
+        Italian,
+        Japanese,
+        Javanese,
+        Korean,
+        Kurdish,
+        Malay,
+        Mandarin,
+        Persian,
+        Polish,
+        Portuguese,
+        Romanian,
+        Russian,
+        Spanish,
+        Swedish,
+        Thai,
+        Turkish,
+        Ukrainian,
+        Urdu,
+        Vietnamese,
+        Zulu
+    }
+}
+
+
+eg program for variable state:
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Debugging
+{
+    class Program
+    {
+        static int x = 0;
+        static int y = 0;
+        static void Main(string[] args)
+        {
+            x = 2;
+            y = 2;
+            Console.WriteLine("Inside main");
+            ChangeValues();
+            x = 10;
+            y = 20;
+            Console.WriteLine("Inside main again");
+        }
+
+        public static void ChangeValues()
+        {
+            x = 4;
+            y = 5;
+            Console.WriteLine("Inside change values");
+        }
+
+    }
+}
 
 
 
@@ -4508,14 +5394,7 @@ sr.Close();
 
 
 
-
-
-
-
-
-
-
-ls -6 0
+ls -7 0
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
