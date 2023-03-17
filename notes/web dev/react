@@ -72,10 +72,43 @@ export default function Todolist() {
 
 then import the file in app.js eg :import Todolist from "./Todolist";
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 state
 ------
 
 the react state gives the state of the program it can be used to append the data that was provided previously like u can call the elements from the database and give it Headers
+
+useState-
+____________
+
+use state is a react componet used to update the variable value that reflect real time in the webpage which is not possible by the traditional methods
+
+first u need to import hte react library
+
+syntax:
+
+import {useState} from react
+
+cont [variable,setvariable] = useState(say the default state);
+
+eg:
+
+import {useState} from react
+
+cont [variable,setvariable] = useState(""); //make sure the one is variable and another one is a "set" followed by the variable name to set the value of the variable
+//or
+cont [variable,setvariable] = useState({});
+//or
+cont [variable,setvariable] = useState("fruit");
+
+//to change the value use setvariable
+
+setvariable("some value")
+
+
+
+
 
 
 for more go refer https://www.youtube.com/watch?v=hQAHSlTtcmY and https://radixweb.com/blog/steps-to-build-react-project-with-create-react-app

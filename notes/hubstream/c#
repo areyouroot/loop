@@ -4376,6 +4376,145 @@ Composition
 
 _______________________________________________________________________________________________________________________________________________________________________________________
 
+debugging-
+___________________________
+
+near the numbers in vs code press the red dot to stop before execution of that line 
+
+step over executes line by line 
+
+step into goes to the subfunctions and exectutes line by line
+
+u can right click on the variable to watch
+
+you can laso use debug function using dot operator to keep a view
+
+eg:
+
+Debug.x=10;
+
+
+ write line if ---------------------
+
+ this will print if the given condition is true
+
+ eg:
+
+ console.WriteLineif(condition,Output);
+
+
+
+
+
+
+
+
+
+ Documentation-
+
+ if u keep the cursur on the key words like writeline it will show its function like that u can give description for classes and functions using summary tag
+
+ eg:
+
+ //<summary>
+ //type ur description here
+ //</summary>
+ //<param name="prametername">parameter usage</param>
+
+ u can also give parameter description as given above
+
+ more params are given here https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/
+
+
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+file manuplation and file operation-
+_____________________________________________
+
+u need to use a new header file and all header files are said anmespace here so we will also say name space
+
+u need System.IO namespace
+
+
+syntax an implementation:
+
+/////////////////////////OVER WRITING/////////////////////////////////////////////////////////////
+
+using System.IO;
+
+names fileoperations{
+    class Main{
+        static void Main(string[] args){
+            string file = @"c:\files\name.txt";  //file location is given and stored in a string
+            StreamWriter sw = new StreamWriter(file);  //opening that file in overwrite mode
+            sw.WriteLine("file is written");
+            //other file operations
+            sw.Close();//closeing the file
+        }
+    }
+}
+
+// if u didnt create any file this will automatically create the file for you
+
+///////////////////////////////APPPENDING MODE/////////////////////////////////////////////
+using System.IO;
+
+names fileoperations{
+    class Main{
+        static void Main(string[] args){
+            string file = @"c:\files\name.txt";  //file location is given and stored in a string
+            StreamWriter sw = new StreamWriter(file,true);  //opening that file in appending mode
+            sw.WriteLine("file is written");
+            //other file operations
+            sw.Close();//closeing the file
+        }
+    }
+}
+
+
+over write will destroy the existing content and re write all new
+
+append will just add the extra data
+
+
+
+
+creation of directory
+
+syntax:
+
+Directory.CreateDirectory(@"location");
+
+
+
+
+
+reading files-
+
+syntax:
+
+SteamReader sr = new SteamReader(filelocation); // the file location can be given as variable string any thing
+Console.WriteLine(sr.ReadToEnd()); //toread full file
+sr.Close();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ls -6 0
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
