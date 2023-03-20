@@ -1,3 +1,6 @@
+
+pls follow this tutorial only if u know the basics of web developement
+
 HTML_______________
 
 any text editor can be used for us we use vscode
@@ -317,3 +320,300 @@ css-grid _______________________________________________________________________
 if scrolling is not enabled by default put this
 
     overflow:auto;
+
+
+
+    
+
+
+js + node + react ------------------------------------------------------------------------
+vid : 
+
+install node js lts
+
+simple commands are 
+
+    console.log("hello world"); //this prints
+
+every thing is as same as the javascript like
+
+    const sum = (num1,num2) => num1 + num2; // function declaration
+    //this is need to export to run eg
+
+    //sum.js file
+    const sumfun = (num1,num2) => num1 + num2;
+    module.export.sumfun = sumfun; // this exports the function
+    // to export multiple objects use this
+    module.export = {sum : sum, obj2 : obj2, obj3 : obj3}
+
+    //app.js file
+    const sum = require('./sum'); //this imports the local files
+    console.log(sum); // lists all of the avalible fuctions and exported variables
+    console.log(sum.sumfun(1,1)); //exicutes the function 
+    // even multiple objects can be ecported  
+
+
+//pro 1 Create Object with Constructor Function
+
+// constructor function
+function Person () {
+  this.name = 'John',
+  this.age = 23
+}
+
+// create an object
+const person = new Person();
+
+//pro 2 Create Multiple Objects with Constructor Function
+
+// constructor function
+function Person () {
+  this.name = 'John',
+  this.age = 23,
+
+   this.greet = function () {
+      console.log('hello');
+  }
+}
+
+// create objects
+const person1 = new Person();
+const person2 = new Person();
+
+// access properties
+console.log(person1.name);  // John
+console.log(person2.name);  // John
+
+//pro 3 JavaScript this Keyword
+
+// constructor function
+function Person () {
+  this.name = 'John',
+}
+
+// create object
+const person1 = new Person();
+
+// access properties
+console.log(person1.name);  // John
+
+//pro 4 JavaScript Constructor Function Parameters
+
+// constructor function
+function Person (person_name, person_age, person_gender) {
+
+  // assigning  parameter values to the calling object
+   this.name = person_name,
+   this.age = person_age,
+   this.gender = person_gender,
+
+   this.greet = function () {
+       return ('Hi' + ' ' + this.name);
+   }
+}
+
+
+// creating objects
+const person1 = new Person('John', 23, 'male');
+const person2 = new Person('Sam', 25, 'female');
+
+// accessing properties
+console.log(person1.name); // "John"
+console.log(person2.name); // "Sam"
+
+//pro5 JavaScript Built-in Constructors
+
+let a = new Object();    // A new Object object
+let b = new String();    // A new String object
+let c = new Number();    // A new Number object
+let d = new Boolean();   // A new Boolean object
+
+const name = new String ('John');
+console.log(name); // "John"
+
+const number = new Number (57);
+console.log(number); // 57
+
+const count = new Boolean(true);
+console.log(count); // true
+
+
+install node
+
+and install windows tools in npm
+
+use #npx create-react-app app-name(location)
+
+eg: npx create-react-app . // to create in current dir
+
+    npx create-react-app reactapp
+
+
+note if u are running windows pls use the powershell as native avoid vscode terminal
+
+go to src folder remove all un nessary code and files leaving index.js and app.js and the content should be like 
+
+index.js:
+
+import React from "react";
+
+function App() {
+  return null
+}
+
+export default App;
+
+app.js:
+
+import React from "react";
+
+function App() {
+  return (
+    <todolist />
+  )
+}
+
+export default App;
+
+install es7 react/redux/graph...... in vs code extentions
+
+to create new functions u can have a react closed html tag 
+
+eg in app.js:
+
+import React from "react";
+
+function App() {
+  return (
+    <todolist />
+  )
+}
+
+export default App;
+
+
+then create a new folder called todolist.js
+
+then type rfc in the Todolist.js this lanch a template for function like this :
+
+//note the template name and file name should start with caps else it will not recoginse
+
+import React from 'react'
+
+export default function Todolist() {
+  return (
+    <div>
+      
+    </div>
+  )
+}
+
+then import the file in app.js eg :import Todolist from "./Todolist";
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+state
+------
+
+the react state gives the state of the program it can be used to append the data that was provided previously like u can call the elements from the database and give it Headers
+
+useState-
+____________
+
+use state is a react componet used to update the variable value that reflect real time in the webpage which is not possible by the traditional methods
+
+first u need to import hte react library
+
+syntax:
+
+import {useState} from react
+
+cont [variable,setvariable] = useState(say the default state);
+
+eg:
+
+import {useState} from react
+
+cont [variable,setvariable] = useState(""); //make sure the one is variable and another one is a "set" followed by the variable name to set the value of the variable
+//or
+cont [variable,setvariable] = useState({});
+//or
+cont [variable,setvariable] = useState("fruit");
+
+//to change the value use setvariable
+
+setvariable("some value")
+
+
+
+
+What Does "(e)" Mean in JavaScript? - Event Handler Object Explained-
+
+e is the object that contains the information about anm event that has recently occured
+
+events like 
+
+file upload 
+click 
+etc...
+
+for all events and its properties check out - https://developer.mozilla.org/en-US/docs/Web/API/Event
+
+
+
+
+
+Event.preventDefault()
+The preventDefault() method of the Event interface tells the user agent that if the event does not get explicitly handled, its default action should not be taken as it normally would be.
+
+The event continues to propagate as usual, unless one of its event listeners calls stopPropagation() or stopImmediatePropagation(), either of which terminates propagation at once.
+
+As noted below, calling preventDefault() for a non-cancelable event, such as one dispatched via EventTarget.dispatchEvent(), without specifying cancelable: true has no effect.
+
+Syntax
+event.preventDefault()
+Copy to Clipboard
+Examples
+Blocking default click handling
+Toggling a checkbox is the default action of clicking on a checkbox. This example demonstrates how to prevent that from happening:
+
+JavaScript
+const checkbox = document.querySelector("#id-checkbox");
+
+checkbox.addEventListener("click", checkboxClick, false);
+
+function checkboxClick(event) {
+  let warn = "preventDefault() won't let you check this!<br>";
+  document.getElementById("output-box").innerHTML += warn;
+  event.preventDefault();
+}
+Copy to Clipboard
+HTML
+<p>Please click on the checkbox control.</p>
+
+<form>
+  <label for="id-checkbox">Checkbox:</label>
+  <input type="checkbox" id="id-checkbox" />
+</form>
+
+<div id="output-box"></div>
+
+Result:
+
+Please click on the checkbox control.
+
+Checkbox: ▢
+preventDefault() won't let you check this!
+preventDefault() won't let you check this!
+preventDefault() won't let you check this!
+
+
+
+
+
+
+
+for more go refer https://www.youtube.com/watch?v=hQAHSlTtcmY and https://radixweb.com/blog/steps-to-build-react-project-with-create-react-app
+
+last seen - 13:00 - https://www.youtube.com/watch?v=hQAHSlTtcmY
+
