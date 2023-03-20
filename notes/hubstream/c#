@@ -5390,11 +5390,111 @@ namespace Debugging
 
 
 
+coloction -
+++++++++++++
+
+1)nongeneric-
+=============
+
+this a dynaic way to store the data, the data can be stored irrespective to datatype
+
+syntax and eg:
+
+class Main{
+    static void main(){
+        //creating
+
+        ArrayList array = new ArrayList();
+        
+        //adding
+
+        array.Add("data1");
+        array.Add("data2");
+        array.Add("data3");
+        array.Add(4);
+        array.Add(5.0d);//d represents decimal
+        
+        //how to insert inbetween syntax:
+        //array.Insert(position,"data7");//to insert data in between
+        //remeber it will only insert and append not replace the existing data and postion starts with 0 not 1
+        array.Insert(4,"data4");
+
+        foreach (var item in array){
+            Console.WriteLine(item); // prints all data one by one
+        }
+        
+        //index
+        //u can just call the data by its position like this where 0 is position in array[0] the array is a variable word it can be replaced by anything
+        Console.WriteLine(array[0].ToString());
+
+        //capacity
+        //you can get the total number of elements present in this array and element is nothing but data
+        Console.WriteLine("count is" + array.Count); 
+
+        //sorting
+        //to sort there should be array of same datatype else it will not work
+        //new array with same data type 
+        ArrayList list1 = new ArrayList();
+        list1.add(1);
+        list1.add(4);
+        list1.add(2);
+        list1.add(3);
+        list1.add(0);
+
+        list1.sort();
+
+        //reverse
+        //this will only reverse the existing list not sort it like the down element will come up and up will go down
+        list1.Reverse();
+
+        //remove
+        //this is used to remove a element
+        array.Remove("data2");
+        //to remove by position
+        array.RemoveAt(2);
+        //this will remove the element at postsition 2
+
+        //remove all
+        //this will remove all
+        array.Clear();
+        //u can also remove a range of data
+        array.RemoveRange(1,3);
+        //this will remove the data from  1-3
+
+        //contains
+        //to get to know does it has a specific value
+        list1.Contains(1);
+        //this will return true if it exist else false
+
+        //getrange
+        //this is used to get a range of values like to intailize particular range for other list
+        array = list1.getrange(0,3); //0 is starting position and 3 is end
 
 
 
 
-ls -77 0
+
+
+
+
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ls -7 0
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
