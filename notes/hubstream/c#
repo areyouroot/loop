@@ -5398,6 +5398,10 @@ coloction -
 
 this a dynaic way to store the data, the data can be stored irrespective to datatype
 
+there are many types
+
+A)ArrayList
+
 syntax and eg:
 
 class Main{
@@ -5470,15 +5474,163 @@ class Main{
         //this is used to get a range of values like to intailize particular range for other list
         array = list1.getrange(0,3); //0 is starting position and 3 is end
 
-
-
-
-
-
-
-
-
     }
+}
+
+
+
+
+B)hash table-
+__________________
+
+this is a key value pair organised based on the hash code
+
+value can be any data type
+
+static void main{
+
+    //creating
+    Hashtable hash = new Hashtable();
+
+    //adding
+    hash.Add("key","value");
+    hash.Add("sony","japan");
+    hash.Add("kia","korea");
+    hash.Add("benz","german");
+    hash.Add("bmw","uk");
+
+    //displaying
+    foreach(DictionaryEntry item in hash){
+        Console.WriteLine(item.Key+": "+item.Value);
+    }
+
+    //capacity
+    Console.WriteLine("count is "+ hash.Count);
+
+    //remove
+    hash.Remove("kia");
+    //the key is used here to remove
+
+    //contains
+    if(hash.Contains("sony")){
+        //action block
+    }
+    //this checks all keys
+
+    
+    //copy to arraylist
+    ArrayList array = new ArrayList(hash.Keys);
+    foreach (var item in array){
+        Console.WriteLine(item);
+    }
+
+
+}
+
+C)sorted list-
+___________________________
+
+this also represents a key value pair that are represented in key order
+
+void main(){
+    //creation
+    SortedList sortedlist = new SortedList();
+
+    //adding
+    sortedlist.Add(1,"jan");
+    sortedlist.Add(2,"feb");
+    sortedlist.Add(3,"mar";
+    sortedlist.Add(4,"apr");
+    sortedlist.Add(5,"may");
+    sortedlist.Add(6,"jun");
+
+    //displaying
+    foreach(DictionaryEntry item in sortedlist)
+    {
+        Console.WriteLine(item.key+"; "+item.Value);
+    }
+
+    //or
+
+    for (int i=0;i<sortedlist.Count;i++){
+        Console.WriteLine(sortedlist.Getkey(i)+"; "+ sortedlist.GetByIndex(i));
+    }
+
+    //Index
+    Console.WriteLine(sortedlist[5].ToString());
+
+    //capacity
+    Console.WriteLine(sortedlist.Count);
+
+    //remove
+    sortedlist.Remove(1);
+    //key is used to remove
+    
+    //contains
+    Console.WriteLine(SortedList.ContainsValue('apr'));
+
+    //copy to Arraylist
+    Console.WriteLine("now we are inside the array");
+    ArrayList array = new ArrayList(SortedList.Values);
+    foreach (var item in array){
+        Console.WriteLine(item);
+    }
+
+}
+
+stacks-
+___________
+
+void main(){
+    //creating
+    Stack stack = new Stack();
+
+    //adding
+    stack.Push("david");
+    stack.Push("basha");
+    stack.Push("emmy");
+    stack.Push("varisu");
+
+    //removing
+    stack.pop()
+    //due to it follows the lifo last in first out the recently addded data will be removed in this case varisu will be removed
+
+}
+
+queues - ________
+___________________________
+
+enque means in
+
+deque means out
+
+and this works on the model first in first out so the value which is entered first is called out first 
+
+eg : people waiting in a queues
+
+syntax:
+
+void main(){
+     //creating
+    Queue queue = new Queue();
+
+    //adding
+
+    queue.Enqueue("calvin");
+    queue.Enqueue("tom");
+    queue.Enqueue("baba")
+
+    //printing
+
+    foreach (var item in queue){
+        Console.WriteLine(item);
+    }
+    
+    //removing
+
+    queue.Dequeue();
+
+
 }
 
 
@@ -5490,11 +5642,7 @@ class Main{
 
 
 
-
-
-
-
-ls -7 0
+ls -7 7
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
