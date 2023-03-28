@@ -5634,6 +5634,140 @@ void main(){
 }
 
 
+bit array-
+__________________
+
+this type of array is usually created when the vlues are ment to be stored in binary
+
+void main(){
+    
+    //creating 
+
+    //normal array diclaration
+
+    bool[] boolArray = new bool[4];
+    boolArray[0] = false;
+    boolArray[1] = false;
+    boolArray[2] = false;
+    boolArray[3] = true;
+
+
+    BitArray firstarray = new BitArray(4); //here 4 is maximum index value of the array aka size of the array
+    BitArray secondarray = new BitArray(boolArray);//no need to redifine the vlues of the array
+    BitArray thirdarray = new BitArray();
+    BitArray forearray = new BitArray();
+    BitArray fivearray = new BitArray();
+
+
+    //setting value
+
+    firstarray.set(0,false);
+    firstarray.set(1,false);
+    firstarray.set(2,false);
+    firstarray.set(3,true);
+
+    foreach (var item in firstarray){
+        Console.WriteLine(item);
+    }
+
+    //AND - OR - NOT
+
+    //here both firstarray and secondarray is equal
+
+    firstarray.set(2,true);
+
+    BitArray result= new BitArray(4);
+    
+    result = firstarray.And(secondarray);
+    Console.WriteLine("\n----------------------------------------------------\nAND operation\n")
+    foreach (var item in result){
+        Console.WriteLine(item);
+    }
+
+    result = firstarray.Or(secondarray);
+    Console.WriteLine("\n----------------------------------------------------\nOR operation\n")
+    foreach (var item in result){
+        Console.WriteLine(item);
+    }
+
+    result = firstarray.Not();
+    Console.WriteLine("\n----------------------------------------------------\nNOT operation\n")
+    foreach (var item in result){
+        Console.WriteLine(item);
+    }
+    //not takes only one array as the input
+
+}
+
+
+
+
+
+List<T>/IList<T>-
+___________________________
+
+these are special type of list generic list so any datatype at intial cannot be changed later
+
+it grows and strinks as the allocation
+
+multiple and null elements can be stored and duplicate also
+
+can be access using the index by for or foreach
+
+large number of data can be easily stored
+
+void main(){
+    List<string> firstlist = new List<string>();
+    //(or)
+    IList<string> secondlist = new List<string>();
+
+    //adding
+
+    firstlist.Add("england");
+    firstlist.Add("hungary");
+    firstlist.Add("india");
+    firstlist.Add("chile");
+    firstlist.Add("china");
+
+    //displaying
+    foreach (var item in firstlist){
+        Console.writeLine(item);
+    }
+
+    //index
+
+    firstlist[2] = "hindustan"; //this how the index is used
+
+    //capacity
+    Console.WriteLine("count is "+ firstlist.count);
+
+    //sorting
+
+    firstlist.Sort();
+
+    //reversing
+    firstlist.Reverse();
+
+    //removing
+
+    firstlist.Remove("china");
+    firstlist.RemoveAt(0);
+    firstlist.RemoveRange(0,3);
+
+    //remove all
+
+    firstlist.Clear();
+
+    //does it contains
+
+    firstlist.Contains("hindustan");
+
+    //getrange
+
+    secondlist = firstlist.GetRange(0,2);
+
+
+}
 
 
 
@@ -5642,7 +5776,7 @@ void main(){
 
 
 
-ls -7 7
+ls -7 8
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
