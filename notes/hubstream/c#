@@ -5701,6 +5701,9 @@ void main(){
 
 
 
+Generic data collections:
+___________________________
+
 
 
 List<T>/IList<T>-
@@ -5773,10 +5776,140 @@ void main(){
 
 
 
+dictonary-
+__________________
+
+void main(){
+    
+    //creation
+
+    Dictionary<int,string> names = new Dictionary<int,string>();
+    //these are nothing but the datatype where key and vlaue is represented here the key is used to call the value
+    //here the key is represented as int and value is in string
+
+    //add
+    name.Add(1,"moscow");
+    name.Add(2,"rome");
+    name.Add(3,"london");
+    name.Add(4,"mardrid");
+    name.Add(5,"berlin");
+    name.Add(6,"rome");
+    name.Add(7,"paris");
+
+
+    //or
+
+    Dictionary<int,string> names2 = new Dictionary<int,string>(){
+        {1,"james"},
+        {2,"amy"},
+        {3,"shopie"}
+    };
+
+
+    //no two keys should be same 
+
+    //display 
+
+    for (int i=1;i < name.Count,i++){
+        Console.WriteLine(name[name.Keys.ElementAt(i)]);//this can be helpful when the key is other datatype
+        //(or)
+        Console.WriteLine(name[i]);
+    }
+
+    //or
+
+    foreach (var item in name){
+        Console.WriteLine(item.key);
+    }
+
+    //or
+
+    name.TryGetValue("4",out string result); // here the result is a varible which assigns the value 
+    Console.WriteLine(result);
+
+    //index
+
+    //here the index is represneted by the key value so 
+    Console.WriteLine(name[2]);
+
+    //remove
+
+    name.Remove(4);
+
+    //remove all
+
+    name.Clear();
+
+    //contains
+
+    Console.WriteLine(name.ContainsKey(5));
+    console.writeLine(name.ContainsValue("halva"))
 
 
 
-ls -7 8
+
+}
+
+
+
+
+Generic sorted list-
+___________________________
+
+
+void main(){
+    
+    //creating
+
+    SortedList list = new SortedList(); //or
+    SortedList<string,string> phonebook = new SortedList<string,string>();  //this is similar to dictonary
+
+    //adding
+
+    phonebook.Add("jack","123");
+    phonebook.Add("jill","456");
+    phonebook.Add("baba","789");
+    phonebook.Add("naidu","741");
+    phonebook.Add("majama","852");
+    phonebook.Add("beedu","963");
+
+    //displaying
+
+    foreach (var item in phonebook){
+        Console.WriteLine(item.key + item.Value);
+    }
+
+    //index
+
+    Console.WriteLine(phonebook[jack]);
+
+    //trygetvalue
+
+    phonebook.TryGetValue("jack",out string number);
+    Console.WriteLine(number);
+
+    //remove
+
+    phonebook.Remove('jill');
+    phonebook.RemoveAt(1)
+
+    //remove all
+
+    phonebook.Clear();
+
+    //contains
+
+    Console.WriteLine(phonebook.ContainsKey("beedu"));
+    Console.WriteLine(phonebook.ContainsValue("6969"))
+
+}
+
+
+
+
+
+
+ls -7 13
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
