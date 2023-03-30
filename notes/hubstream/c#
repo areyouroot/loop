@@ -5907,9 +5907,168 @@ void main(){
 
 
 
+Generic sorted Dicttionary - 
+_____________________________________________
+
+fasht but takes more memory
+
+void main(){
+    SortedDictionary<int,string> color = new SortedDictionary<int,string>();
+    color.Add(4,"Blue");
+    color.Add(1,"red");
+    color.Add(2,"green");
+    color.Add(8,"yellow");
+    color.Add(10,"reder");
+    color.Add(11,"cyan");
+
+    foreach (var item in color){
+        Console.WriteLine(item.Value);
+    }
+
+    colors[2]= "pink";
+
+    //it prints sorted list with value if u want u can also prnt key it sortes the list by key value
+}
 
 
-ls -7 13
+
+
+stacks generic-
+_______________________________________________________________________________________________________________________________________________________________________________________
+
+it uses LIFO (last in first out)
+
+void main(){
+    Stack<string> ram = new Stack<string>();
+
+    ram.Push("eam");
+    ram.Push("sate");
+    ram.Push("babu");
+    ram.Push("bema");
+    ram.Push("mugil");
+
+    foreach (var item in ram){
+        Console.WriteLine(item);
+    }
+
+    //top disply
+
+    Console.WriteLine(ram.Peek());
+
+}
+
+
+
+
+generic queue-
+__________________
+
+same as the queue but with datatype
+
+void main(){
+    Queue<DateTime> arrivel = new Queue<DateTime>();
+
+    arrivel.enque(new DateTime(2017,01,01));
+    arrivel.enque(new DateTime(2018,01,01));
+    arrivel.enque(new DateTime(2019,01,01));
+    arrivel.enque(new DateTime(2020,01,01));
+
+    Console.WriteLine("At the top" + arrivel.Peek()); //displays the first data
+
+    foreach (var item in arrivel){
+        Console.WriteLine(item);
+    }
+
+    arrivel.Dequeue();
+}
+
+//samea as stack but with same datatype
+
+
+
+
+key value pair - 
+__________________
+
+keyvaluepair(){
+var loc = new List<KeyValuePair<string,string>>();
+
+loc.Add(new KeyValuePair<string,string>("russia","moscow"));
+loc.Add(new KeyValuePair<string,string>("sweden","blockhome"));
+loc.Add(new KeyValuePair<string,string>("chennai","tnagar"));
+loc.Add(new KeyValuePair<string,string>("chaid","republic"));
+
+loc.RemoveAt(1); //removes russia 
+
+foreach (var item in loc){
+    Console.WriteLine(item.loc);
+}
+
+//returing as a function object
+
+public static KeyValuePair<string,string> main(){
+    string fname="tony";
+    string lname="stark";
+
+    return new KeyValuePair<string,string>(fname,lname);
+
+}
+
+//priinting from main function
+
+Console.WriteLine(main());
+Console.WriteLine(main().Key);
+Console.WriteLine(main().Value);
+
+}
+
+
+
+
+
+
+
+name value collection-
+___________________________
+
+void main(){
+    //creating
+
+    NameValueCollection sities = new NameValueCollection();
+
+    //adding
+
+    sities.Add("german","germani");
+    sities.Add("parak","prank");
+    sities.Add("bhai","india");
+    sities.Add("mc","chin");
+    sities.Add("bc","bak");
+
+    //display
+
+    foreach(string item in sities){
+        Console.WriteLine(sities[item]);
+    }
+
+    //set
+
+    sities.set("parak","prank");
+
+    //contains
+
+    Console.WriteLine(sities.HashKeys());
+
+    //remove
+
+    sities.Remove("germany");
+
+    //Remove all
+
+    sities.Clear();
+}
+
+
+ls -7 18
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
