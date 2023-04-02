@@ -5402,6 +5402,11 @@ there are many types
 
 A)ArrayList
 
+ArrayList
+✓ Stores elements of any datatype.
+✓ Resizes automatically as you add or remove elements.
+✓ Elements can be null or duplicated
+
 syntax and eg:
 
 class Main{
@@ -5487,6 +5492,13 @@ this is a key value pair organised based on the hash code
 
 value can be any data type
 
+HashTable
+✓ Stores key-value pairs of any datatype
+✓ Key must be unique and cannot be null.
+✓ Value can be null or duplicate.
+✓ Value can be of any type.
+
+
 static void main{
 
     //creating
@@ -5529,6 +5541,13 @@ static void main{
 
 C)sorted list-
 ___________________________
+
+SortedList
+✓ There is generic and non-generic SortedList.
+✓ Stores the key-value pairs in ascending order of the key.
+✓ Key must be unique and cannot be null.
+✓ Value can be null or duplicate.
+✓ Value can be of any type.
 
 this also represents a key value pair that are represented in key order
 
@@ -5581,6 +5600,10 @@ void main(){
 stacks-
 ___________
 
+Stacks
+Stack represents a last-in first-out (LIFO) collection of object.
+Push Pop
+
 void main(){
     //creating
     Stack stack = new Stack();
@@ -5598,6 +5621,11 @@ void main(){
 }
 
 queues - ________
+
+Queues
+Queue represents a first-in first-out (FIFO) collection of object.
+Enqueue Dequeue
+
 ___________________________
 
 enque means in
@@ -5638,6 +5666,9 @@ bit array-
 __________________
 
 this type of array is usually created when the vlues are ment to be stored in binary
+
+BitArray
+Represent a compact array of bit values, which are represented as Booleans
 
 void main(){
     
@@ -5704,10 +5735,40 @@ void main(){
 Generic data collections:
 ___________________________
 
+Collection is a group of related objects.
+Collections
+Arrays Collections
+✓ Collections provide a more flexible way to work with groups of objects
+✓ Collections are enhancement to the arrays. 
+
+
+Non-generic
+Each element can represent a value of a different type
+Elements can be added or removed at runtime
+The size is not fixed
+System.Collections
+Easier to write code
+
+
+Generic
+ Allows defining a class or method with type as a parameter.
+Use it if your collection contains elements of only one data type.
+Enforces type safety, which means that no other data type can be added to it.
+System.Collections.Generic
+A little bit harder to write code
+
 
 
 List<T>/IList<T>-
 ___________________________
+
+List<T>
+List<T> collection is the same as an ArrayList except that List<T> is a generic collection
+✓ Stores elements of the specified type.
+✓ It grows and shrinks automatically.
+✓ Can store multiple null and duplicate elements.
+✓ Can be accessed using indexer, for loop or foreach statement.
+✓ It is ideal for storing and retrieving large number of elements.
 
 these are special type of list generic list so any datatype at intial cannot be changed later
 
@@ -5856,6 +5917,12 @@ void main(){
 Generic sorted list-
 ___________________________
 
+Generic : SortedList
+Represents a collection of key-value pairs that are sorted in ascending order of key.
+✓ There is generic and non-generic SortedList.
+✓ The key must be unique and cannot be null
+✓ The value can be null or duplicate.
+✓ Generic SortedList stores keys and values of specified data types.
 
 void main(){
     
@@ -5910,6 +5977,12 @@ void main(){
 Generic sorted Dicttionary - 
 _____________________________________________
 
+Generic : SortedDictionary
+✓ SortedList uses less memory than SortedDictionary.
+✓ SortedDictionary has faster insertion and removal operations for unsorted data.
+✓ If the list is populated all at once from sorted data, SortedList is faster than
+SortedDictionary
+
 fasht but takes more memory
 
 void main(){
@@ -5932,9 +6005,211 @@ void main(){
 
 
 
+SortedDictionary<TKey,TValue> Class
+Reference
+Definition
+Namespace:
+System.Collections.Generic
+Assembly:
+System.Collections.dll
+Represents a collection of key/value pairs that are sorted on the key.
+
+C#
+
+Copy
+public class SortedDictionary<TKey,TValue> : System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<TKey,TValue>>, System.Collections.Generic.IDictionary<TKey,TValue>, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<TKey,TValue>>, System.Collections.Generic.IReadOnlyCollection<System.Collections.Generic.KeyValuePair<TKey,TValue>>, System.Collections.Generic.IReadOnlyDictionary<TKey,TValue>, System.Collections.IDictionary
+Type Parameters
+TKey
+The type of the keys in the dictionary.
+
+TValue
+The type of the values in the dictionary.
+
+Inheritance
+Object
+SortedDictionary<TKey,TValue>
+Implements
+ICollection<KeyValuePair<TKey,TValue>>  IDictionary<TKey,TValue>  IEnumerable<KeyValuePair<TKey,TValue>>  IEnumerable<T>  IReadOnlyCollection<KeyValuePair<TKey,TValue>>  IReadOnlyDictionary<TKey,TValue>  ICollection  IDictionary  IEnumerable
+Examples
+The following code example creates an empty SortedDictionary<TKey,TValue> of strings with string keys and uses the Add method to add some elements. The example demonstrates that the Add method throws an ArgumentException when attempting to add a duplicate key.
+
+The example uses the Item[] property (the indexer in C#) to retrieve values, demonstrating that a KeyNotFoundException is thrown when a requested key is not present, and showing that the value associated with a key can be replaced.
+
+The example shows how to use the TryGetValue method as a more efficient way to retrieve values if a program often must try key values that are not in the dictionary, and it shows how to use the ContainsKey method to test whether a key exists before calling the Add method.
+
+The example shows how to enumerate the keys and values in the dictionary and how to enumerate the keys and values alone using the Keys property and the Values property.
+
+Finally, the example demonstrates the Remove method.
+
+C#
+
+Copy
+using System;
+using System.Collections.Generic;
+
+public class Example
+{
+    public static void Main()
+    {
+        // Create a new sorted dictionary of strings, with string
+        // keys.
+        SortedDictionary<string, string> openWith =
+            new SortedDictionary<string, string>();
+
+        // Add some elements to the dictionary. There are no
+        // duplicate keys, but some of the values are duplicates.
+        openWith.Add("txt", "notepad.exe");
+        openWith.Add("bmp", "paint.exe");
+        openWith.Add("dib", "paint.exe");
+        openWith.Add("rtf", "wordpad.exe");
+
+        // The Add method throws an exception if the new key is
+        // already in the dictionary.
+        try
+        {
+            openWith.Add("txt", "winword.exe");
+        }
+        catch (ArgumentException)
+        {
+            Console.WriteLine("An element with Key = \"txt\" already exists.");
+        }
+
+        // The Item property is another name for the indexer, so you
+        // can omit its name when accessing elements.
+        Console.WriteLine("For key = \"rtf\", value = {0}.",
+            openWith["rtf"]);
+
+        // The indexer can be used to change the value associated
+        // with a key.
+        openWith["rtf"] = "winword.exe";
+        Console.WriteLine("For key = \"rtf\", value = {0}.",
+            openWith["rtf"]);
+
+        // If a key does not exist, setting the indexer for that key
+        // adds a new key/value pair.
+        openWith["doc"] = "winword.exe";
+
+        // The indexer throws an exception if the requested key is
+        // not in the dictionary.
+        try
+        {
+            Console.WriteLine("For key = \"tif\", value = {0}.",
+                openWith["tif"]);
+        }
+        catch (KeyNotFoundException)
+        {
+            Console.WriteLine("Key = \"tif\" is not found.");
+        }
+
+        // When a program often has to try keys that turn out not to
+        // be in the dictionary, TryGetValue can be a more efficient
+        // way to retrieve values.
+        string value = "";
+        if (openWith.TryGetValue("tif", out value))
+        {
+            Console.WriteLine("For key = \"tif\", value = {0}.", value);
+        }
+        else
+        {
+            Console.WriteLine("Key = \"tif\" is not found.");
+        }
+
+        // ContainsKey can be used to test keys before inserting
+        // them.
+        if (!openWith.ContainsKey("ht"))
+        {
+            openWith.Add("ht", "hypertrm.exe");
+            Console.WriteLine("Value added for key = \"ht\": {0}",
+                openWith["ht"]);
+        }
+
+        // When you use foreach to enumerate dictionary elements,
+        // the elements are retrieved as KeyValuePair objects.
+        Console.WriteLine();
+        foreach( KeyValuePair<string, string> kvp in openWith )
+        {
+            Console.WriteLine("Key = {0}, Value = {1}",
+                kvp.Key, kvp.Value);
+        }
+
+        // To get the values alone, use the Values property.
+        SortedDictionary<string, string>.ValueCollection valueColl =
+            openWith.Values;
+
+        // The elements of the ValueCollection are strongly typed
+        // with the type that was specified for dictionary values.
+        Console.WriteLine();
+        foreach( string s in valueColl )
+        {
+            Console.WriteLine("Value = {0}", s);
+        }
+
+        // To get the keys alone, use the Keys property.
+        SortedDictionary<string, string>.KeyCollection keyColl =
+            openWith.Keys;
+
+        // The elements of the KeyCollection are strongly typed
+        // with the type that was specified for dictionary keys.
+        Console.WriteLine();
+        foreach( string s in keyColl )
+        {
+            Console.WriteLine("Key = {0}", s);
+        }
+
+        // Use the Remove method to remove a key/value pair.
+        Console.WriteLine("\nRemove(\"doc\")");
+        openWith.Remove("doc");
+
+        if (!openWith.ContainsKey("doc"))
+        {
+            Console.WriteLine("Key \"doc\" is not found.");
+        }
+    }
+}
+
+/* This code example produces the following output:
+
+An element with Key = "txt" already exists.
+For key = "rtf", value = wordpad.exe.
+For key = "rtf", value = winword.exe.
+Key = "tif" is not found.
+Key = "tif" is not found.
+Value added for key = "ht": hypertrm.exe
+
+Key = bmp, Value = paint.exe
+Key = dib, Value = paint.exe
+Key = doc, Value = winword.exe
+Key = ht, Value = hypertrm.exe
+Key = rtf, Value = winword.exe
+Key = txt, Value = notepad.exe
+
+Value = paint.exe
+Value = paint.exe
+Value = winword.exe
+Value = hypertrm.exe
+Value = winword.exe
+Value = notepad.exe
+
+Key = bmp
+Key = dib
+Key = doc
+Key = ht
+Key = rtf
+Key = txt
+
+Remove("doc")
+Key "doc" is not found.
+ */
+
+
+
 
 stacks generic-
 _______________________________________________________________________________________________________________________________________________________________________________________
+
+Stacks
+Stack represents a last-in first-out (LIFO) collection of objects.
+Push Pop
 
 it uses LIFO (last in first out)
 
@@ -5963,6 +6238,10 @@ void main(){
 generic queue-
 __________________
 
+Queues
+Queue represents a first-in first-out (FIFO) collection of objects.
+Enqueue Dequeue
+
 same as the queue but with datatype
 
 void main(){
@@ -5989,6 +6268,9 @@ void main(){
 
 key value pair - 
 __________________
+
+KeyValuePair
+KeyValuePair stores two values together. It is a single generic struct
 
 keyvaluepair(){
 var loc = new List<KeyValuePair<string,string>>();
@@ -6306,6 +6588,733 @@ Advantages of Generics
 Generics increase the reusability of the code. You don't need to write code to handle different data types.
 Generics are type-safe. You get compile-time errors if you try to use a different data type than the one specified in the definition.
 Generic has a performance advantage because it removes the possibilities of boxing and unboxing.
+
+
+
+
+
+
+Tuples-
+___________
+
+tuples can be used to store many datatypes
+
+Tuples
+A tuple is a data structure that has a specific number and sequence of elements
+For example a person’s income
+person income
+2017
+income
+2016
+income
+2015
+John 50,000 60,000 70,000
+.NET Framework directly supports tuples with one to seven elements.
+But can create tuples of eight or more elements by nesting tuple objects.
+
+void main(){
+    //creation
+    var emp = new Tuple<int,string,string,DateTime,bool>(100,"spacex","aropce",new DateTime(2017,10,15),true,)
+    Console.WriteLine(emp.Item1);
+    Console.WriteLine(emp.Item2);
+    Console.WriteLine(emp.Item3);
+    Console.WriteLine(((DateTime)(emp.Item4).ToShortDateString()));
+    Console.WriteLine(emp.Item5);
+
+    //or
+
+    var studentinfo = Tuple.Create(5,"john","abrahim",new DateTime(2003,10,27));
+    Console.WriteLine(studentinfo.Item1);
+    Console.WriteLine(studentinfo.Item2);
+    Console.WriteLine(studentinfo.Item3);
+    Console.WriteLine(studentinfo.Item4);
+
+}
+
+
+
+
+nested tuple - 
+___________________________
+
+this is tuple inside the tuple
+
+void main(){
+    //creation
+
+    var emp = new Tuple<int,string,Tuple<decimal,int>>(10,"asd",Tuple.Create(2000m,500));
+    Console.WriteLine(emp.Rest.item1);//this is to acess the tuple inside the tuple
+}
+
+
+
+how to call tuples as an argument in a function
+_____________________________________________________________________________
+
+void main (){
+    var aria = Tuple.Create(12,"asd","asd");
+    var sansa = Tuple.Create(11,"bahubali","maheshmati");
+    Dipinfo(aria);
+    Dipinfo(sansa);
+    Dipinfo(retin());
+}
+
+//passing
+
+void Dipinfo(Tuple<int,string,string> perinfo){
+    Console.WriteLine(perinfo.Item1);
+    Console.WriteLine(perinfo.Item2);
+    Console.WriteLine(perinfo.Item3);
+}
+
+//returning
+
+public static Tuple<int,string,string> retin(){
+    var info = Tuple.Create(44,"baba"."naidu");
+    return info;
+}
+
+
+
+value tuples-
+__________________
+
+these are tuple where no Tuple key word is used
+
+void main(){
+    //creation and print
+    (int,string)name = (1,"ronaldo")
+    Console.WriteLine(name.Item1);
+    Console.WriteLine(name.Item2);
+    
+    //or
+
+    (int playerno,string playername) player = (1,"messi")
+    Console.WriteLine(player.playerno);
+    Console.WriteLine(player.playername);
+
+    //or
+
+    var player = (1,"baba naidu");
+    Console.WriteLine(player.Item1);
+    Console.WriteLine(player.Item2);
+
+    //or
+
+    var player = (plno:1,plname:"shejumping");
+    Console.WriteLine(player.plno);
+    Console.WriteLine(player.plname);
+
+}
+
+
+
+
+nested value tuples-
+___________________________
+
+void main(){
+    var playeropp = (plno:1,plname:"shejumping");
+    var player = (plno:2,plname:"putin",plopp:playeropp);
+    Console.WriteLine(player.plno);
+    Console.WriteLine(player.plname);
+    Console.WriteLine(player.plopp.plno);
+    Console.WriteLine(player.plopp.plname);//tuple inside the tuple
+}
+
+
+
+
+value tuple with functions aka methods-
+_____________________________________________ 
+
+void main(){
+    var ronaldo = (plno:7,plname:"ronaldo");
+    var giggs = (plno:10,plname:"giggs");
+
+    disp(ronaldo);
+    disp(giggs);
+    disp(dipfuc());
+
+    void disp((int plno,string plname) player){
+        Console.WriteLine(player.plno);
+        Console.WriteLine(player.plname);
+    }
+
+    //declaring a function with the return data type as this tuple
+    (int,str) dipfuc(){
+        var messi = (10,"messi");
+        return messi
+    }
+
+}
+
+
+
+
+
+
+egcode -
+
+_______________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssignmentNo11
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Assignment No 11
+            var playersList = new List<Tuple<int, string, int>>();
+            AddPlayer(Tuple.Create(7, "Ronaldo", 55), ref playersList);
+            AddPlayer(Tuple.Create(17, "Rooney", 55), ref playersList);
+            AddPlayer(Tuple.Create(10, "Messi", 55), ref playersList, 0);
+
+            RemovePlayer(1, ref playersList);
+
+            foreach (var player in playersList)
+            {
+                Console.WriteLine(player.Item1);
+                Console.WriteLine(player.Item2);
+                Console.WriteLine(player.Item3);
+                Console.WriteLine("---------");
+            }
+        }
+
+        public static void AddPlayer(Tuple<int, string, int> player, ref List<Tuple<int, string, int>> list)
+        {
+            list.Add(player);
+        }
+
+        public static void AddPlayer(Tuple<int, string, int> player, ref List<Tuple<int, string, int>> list, int index)
+        {
+            list.Insert(index, player);
+        }
+
+        public static void RemovePlayer(int index, ref List<Tuple<int, string, int>> list)
+        {
+            list.RemoveAt(index);
+        }
+    }
+}
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssignmentNo13
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var empInfo = new Tuple<string, string, string, string, string, string, string,
+    Tuple<decimal, decimal, decimal, decimal, decimal, decimal, decimal,
+    Tuple<int, int, int, int, int>>>("", "", "", "", "", "", "",
+    new Tuple<decimal, decimal, decimal, decimal, decimal, decimal, decimal, Tuple<int, int, int, int, int>>
+    (0m, 1m, 2m, 3m, 4m, 5m, 6m, Tuple.Create(100, 200, 300, 400, 500)));
+
+            Console.WriteLine(empInfo.Rest.Rest.Item5);
+        }
+    }
+}
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssignmentNo14
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Clubs> ronaldoClubs = new List<Clubs>();
+            ronaldoClubs.Add(Clubs.ManchesterUnited);
+            ronaldoClubs.Add(Clubs.RealMadrid);
+
+            List<Clubs> rooneyClubs = new List<Clubs>();
+            rooneyClubs.Add(Clubs.Everton);
+            rooneyClubs.Add(Clubs.ManchesterUnited);
+
+            var listofPlayers = new List<(int playerNo, string playerName, int playerGoals, List<Clubs> clubs, Countries country)>();
+
+            listofPlayers.Add((7, "Ronaldo", 55, ronaldoClubs, Countries.Portugal));
+            listofPlayers.Add((10, "Rooney", 35, rooneyClubs, Countries.UnitedKingdom));
+
+            foreach (var player in listofPlayers)
+            {
+                Console.Write($"\n" +
+                    $"Player no : {player.playerNo} \nPlayer name : {player.playerName} " +
+                    $"\nPlayer goals : {player.playerGoals} \nCountry : {player.country} \nClubs : ");
+
+                foreach (var club in player.clubs)
+                {
+                    Console.Write(club + "  ");
+                }
+                Console.WriteLine("\n___________________________");
+            }
+        }
+    }
+
+    enum Clubs
+    {
+        RealMadrid,
+        Barcelona,
+        ManchesterUnited,
+        Chelsea,
+        Arsenal,
+        NewcastleUnited,
+        Everton,
+        Schalke,
+        InterMilan,
+        ASRoma,
+        TottenhamHotspur,
+        AtleticoMadrid,
+        BorussiaDortmund,
+        ManchesterCity,
+        Juventus,
+        ParisSaintGermain,
+        ACMilan,
+        Liverpool,
+        BayernMunich
+
+    }
+
+    enum Countries
+    {
+        Afghanistan,
+        Albania,
+        Algeria,
+        Angola,
+        Argentina,
+        Australia,
+        Austria,
+        Bahamas,
+        Bahrain,
+        Bangladesh,
+        Belarus,
+        Belgium,
+        Bolivia,
+        Botswana,
+        Brazil,
+        Brunei,
+        Bulgaria,
+        BurkinaFaso,
+        Burundi,
+        Cambodia,
+        Cameroon,
+        Canada,
+        Chad,
+        Chile,
+        China,
+        Colombia,
+        Comoros,
+        CostaRica,
+        Croatia,
+        Cuba,
+        Cyprus,
+        CzechRepublic,
+        Denmark,
+        Ecuador,
+        Egypt,
+        ElSalvador,
+        Estonia,
+        Ethiopia,
+        Finland,
+        France,
+        Gabon,
+        Gambia,
+        Georgia,
+        Germany,
+        Ghana,
+        Greece,
+        Greenland,
+        Guatemala,
+        Haiti,
+        Honduras,
+        HongKong,
+        Hungary,
+        Iceland,
+        India,
+        Indonesia,
+        Iran,
+        Iraq,
+        Ireland,
+        Israel,
+        Italy,
+        Jamaica,
+        Japan,
+        Jordan,
+        Kazakhstan,
+        Kenya,
+        Kosovo,
+        Kuwait,
+        Latvia,
+        Lebanon,
+        Liberia,
+        Libya,
+        Liechtenstein,
+        Lithuania,
+        Luxembourg,
+        Macedonia,
+        Madagascar,
+        Malawi,
+        Malaysia,
+        Maldives,
+        Mali,
+        Malta,
+        Mauritius,
+        Mexico,
+        Moldova,
+        Monaco,
+        Mongolia,
+        Montenegro,
+        Morocco,
+        Mozambique,
+        Namibia,
+        Nepal,
+        Netherlands,
+        NewZealand,
+        Nicaragua,
+        Niger,
+        Nigeria,
+        NorthKorea,
+        Norway,
+        Oman,
+        Pakistan,
+        Palestine,
+        Panama,
+        Paraguay,
+        Peru,
+        Philippines,
+        Poland,
+        Portugal,
+        PuertoRico,
+        Qatar,
+        Romania,
+        Russia,
+        Rwanda,
+        SaudiArabia,
+        Senegal,
+        Serbia,
+        Seychelles,
+        SierraLeone,
+        Singapore,
+        Slovakia,
+        Slovenia,
+        Somalia,
+        SouthAfrica,
+        SouthKorea,
+        SouthSudan,
+        Spain,
+        SriLanka,
+        Sudan,
+        Swaziland,
+        Sweden,
+        Switzerland,
+        Syria,
+        Taiwan,
+        Tanzania,
+        Thailand,
+        Togo,
+        Tonga,
+        Tunisia,
+        Turkey,
+        Uganda,
+        Ukraine,
+        UnitedArabEmirates,
+        UnitedKingdom,
+        UnitedStatesofAmerica,
+        Uruguay,
+        Uzbekistan,
+        VaticanCity,
+        Venezuela,
+        Vietnam,
+        Yemen,
+        Zambia,
+        Zimbabwe
+    }
+}
+
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssignmentNo12
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*
+             * 1. (The Lord of the Rings: The Fellowship of the Ring) (19 Dec 2001) (8.8) (Peter Jackson)
+             * 2. (The Lord of the Rings: The Two Towers) (18 Dec 2002) (8.7) (Peter Jackson)
+             * 3. (The Lord of the Rings: The Return of the King) (8.9) (17 Dec 2003) 
+             * -------------------------------------------------------------------------------------
+             * 1. (Batman Begins) (15 Jun 2005) (8.3) (Christopher Nolan)
+             * 2. (The Dark Knight) (18  Jul 2008) (9.0) (Christopher Nolan)
+             * 3. (The Dark Knight Rises) (20 Jul 2012) (8.4) (Christopher Nolan)
+             */
+
+            var firstList = new List<Movies<double, DateTime>>();
+            var secondList = new List<Movies<float, int>>();
+
+            var darkKnight1 = new Movies<float, int>();
+            darkKnight1.MovieName = "Batman Begins";
+            darkKnight1.Director = "Christopher Nolan";
+            darkKnight1.Rate = 8.3f;
+            darkKnight1.ReleaseDate = 2005;
+
+            darkKnight1.Genres = new List<Genres>();
+            darkKnight1.Genres.Add(Genres.Action);
+            darkKnight1.Genres.Add(Genres.Drama);
+            darkKnight1.Genres.Add(Genres.Thriller);
+
+            var darkKnight2 = new Movies<float, int>();
+            darkKnight2.MovieName = "The Dark Knight";
+            darkKnight2.Director = "Christopher Nolan";
+            darkKnight2.Rate = 9.0f;
+            darkKnight2.ReleaseDate = 2008;
+
+
+            darkKnight2.Genres = new List<Genres>();
+            darkKnight2.Genres.Add(Genres.Action);
+            darkKnight2.Genres.Add(Genres.Drama);
+            darkKnight2.Genres.Add(Genres.Thriller);
+
+            var darkKnight3 = new Movies<float, int>();
+            darkKnight3.MovieName = "The Dark Knight Rises";
+            darkKnight3.Director = "Christopher Nolan";
+            darkKnight3.Rate = 8.4f;
+            darkKnight3.ReleaseDate = 2012;
+
+            darkKnight3.Genres = new List<Genres>();
+            darkKnight3.Genres.Add(Genres.Action);
+            darkKnight3.Genres.Add(Genres.Drama);
+            darkKnight3.Genres.Add(Genres.Thriller);
+            darkKnight3.Genres.Add(Genres.Mystery);
+
+            var lordofTheRings1 = new Movies<double, DateTime>();
+            lordofTheRings1.MovieName = "The Lord of the Rings: The Fellowship of the Ring";
+            lordofTheRings1.Director = "Peter Jackson";
+            lordofTheRings1.Rate = 8.8;
+            lordofTheRings1.ReleaseDate = new DateTime(2001, 12, 19);
+
+            var lordofTheRings2 = new Movies<double, DateTime>();
+            lordofTheRings2.MovieName = "The Lord of the Rings: The Two Towers";
+            lordofTheRings2.Director = "Peter Jackson";
+            lordofTheRings2.Rate = 8.7;
+            lordofTheRings2.ReleaseDate = new DateTime(2002, 12, 18);
+
+            var lordofTheRings3 = new Movies<double, DateTime>();
+            lordofTheRings3.MovieName = "The Lord of the Rings: The Return of the King";
+            lordofTheRings3.Director = "Peter Jackson";
+            lordofTheRings3.Rate = 8.9;
+            lordofTheRings3.ReleaseDate = new DateTime(2003, 12, 17);
+
+            firstList.Add(lordofTheRings1);
+            firstList.Add(lordofTheRings2);
+            firstList.Add(lordofTheRings3);
+
+            secondList.Add(darkKnight1);
+            secondList.Add(darkKnight2);
+            secondList.Add(darkKnight3);
+
+            Show(firstList);
+            Show(secondList);
+        }
+
+        public static void Show<T, V>(List<Movies<T, V>> list)
+        {
+            foreach (var item in list)
+            {
+                Console.WriteLine("Movies name : " + item.MovieName);
+                Console.WriteLine("Movie rate : " + item.Rate);
+                Console.WriteLine("Release date : " + item.ReleaseDate);
+                Console.WriteLine("Director : " + item.Director);
+                if (!(item.Genres is null))
+                {
+                    if (item.Genres.Count > 0)
+                    {
+                        Console.Write("Genres : ");
+                        foreach (var genre in item.Genres)
+                        {
+                            Console.Write(genre + " ");
+                        }
+                    }
+                }
+                Console.WriteLine("\n____________________________\n");
+            }
+        }
+    }
+
+    class Movies<T, U>
+    {
+        private string movieName;
+
+        public string MovieName
+        {
+            get { return movieName; }
+            set { movieName = value; }
+        }
+
+        private string director;
+
+        public string Director
+        {
+            get { return director; }
+            set { director = value; }
+        }
+
+        private U releaseDate;
+
+        public U ReleaseDate
+        {
+            get { return releaseDate; }
+            set { releaseDate = value; }
+        }
+
+        private T rate;
+
+        public T Rate
+        {
+            get { return rate; }
+            set { rate = value; }
+        }
+
+        private List<Genres> genres;
+
+        public List<Genres> Genres
+        {
+            get { return genres; }
+            set { genres = value; }
+        }
+
+
+    }
+
+    enum Genres
+    {
+        Action,
+        Adventure,
+        Animation,
+        Biography,
+        Comedy,
+        Crime,
+        Documentary,
+        Drama,
+        Family,
+        Fantasy,
+        History,
+        Horror,
+        Musical,
+        Mystery,
+        Romance,
+        SciFi,
+        Sport,
+        Thriller,
+        War,
+        Western
+    }
+}
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssignmentNo15
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Employees> listOfEmployees = new List<Employees>
+            {
+                new Employees { EmployeeID=1150, FirstName="Jack",LastName="Steven", Salary=5000m, Age=35,Appraisal = new List<int>{7,7,8,9,7} },
+                new Employees { EmployeeID=1150, FirstName="Debora",LastName="Watson", Salary=10000m, Age=45,Appraisal = new List<int>{9,9,8,9,8} },
+                new Employees { EmployeeID=1150, FirstName="Claire",LastName="Adam", Salary=7500m, Age=32,Appraisal = new List<int>{9,7,8,9,7} },
+                new Employees { EmployeeID=1150, FirstName="Michael",LastName="Rob", Salary=3500m, Age=22,Appraisal = new List<int>{6,7,8,7,7} },
+                new Employees { EmployeeID=1150, FirstName="Matthew",LastName="Forest", Salary=4500m, Age=28,Appraisal = new List<int>{7,7,6,6,7} },
+                new Employees { EmployeeID=1150, FirstName="Charles",LastName="Kris", Salary=8000m, Age=27,Appraisal = new List<int>{8,9,7,8,8} },
+                new Employees { EmployeeID=1150, FirstName="Robert",LastName="Wilson", Salary=8000m, Age=28,Appraisal = new List<int>{8,9,8,9,9} },
+                new Employees { EmployeeID=1150, FirstName="Emma",LastName="Brooks", Salary=6000m, Age=23,Appraisal = new List<int>{8,6,9,9,7} },
+                new Employees { EmployeeID=1150, FirstName="Jennifer",LastName="Blake", Salary=3000m, Age=38,Appraisal = new List<int>{6,7,7,6,6} },
+                new Employees { EmployeeID=1150, FirstName="Terry",LastName="Loyd", Salary=9000m, Age=49,Appraisal = new List<int>{9,9,9,8,7} },
+                new Employees { EmployeeID=1150, FirstName="Adam",LastName="Spencer", Salary=7000m, Age=33,Appraisal = new List<int>{8,8,8,6,7} },
+                new Employees { EmployeeID=1150, FirstName="Stacy",LastName="Shelton", Salary=4000m, Age=25,Appraisal = new List<int>{8,7,8,6,7} }
+            };
+            
+        }
+    }
+
+    class Employees
+    {
+        private int employeeID;
+        private string firstName;
+        private string lastName;
+        private decimal salary;
+        private int age;
+        private List<int> appraisal;
+
+        public int EmployeeID
+        {
+            get { return employeeID; }
+            set { employeeID = value; }
+        }
+        public string FirstName
+        {
+            get { return firstName; }
+            set { firstName = value; }
+        }
+        public string LastName
+        {
+            get { return lastName; }
+            set { lastName = value; }
+        }
+        public decimal Salary
+        {
+            get { return salary; }
+            set { salary = value; }
+        }
+        public int Age
+        {
+            get { return age; }
+            set { age = value; }
+        }
+        public List<int> Appraisal
+        {
+            get { return appraisal; }
+            set { appraisal = value; }
+        }
+
+    }
+}
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
 
 
 

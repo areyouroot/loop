@@ -701,5 +701,25 @@ contract SomeContract {
 last seen finish https://www.youtube.com/watch?v=ipwxYa-F1uY
 
 
+error-
+______________
+
+CompileError: TypeError: Data location must be "memory" or "calldata" for return parameter in function, but none was given.
+ --> project:/contracts/dfs.sol:7:40:
+  |
+7 |   function read() public view returns (string) {
+  |                                        ^^^^^^
+
+,TypeError: Data location must be "memory" or "calldata" for parameter in function, but none was given.
+  --> project:/contracts/dfs.sol:11:18:
+   |
+11 |   function write(string newValue) public {
+   |                  ^^^^^^^^^^^^^^^
+
+Compilation failed. See above.
+
+1
+
+solution - stackoverflow.com/questions/58258808/data-location-must-be-memory-for-return-parameter-in-function-but-none-was-gi
 
 
