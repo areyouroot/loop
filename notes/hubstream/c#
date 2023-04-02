@@ -5485,6 +5485,108 @@ class Main{
 
 
 
+
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+using System;
+using System.Collections;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ArrayListApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Creating            
+            ArrayList array = new ArrayList();
+            // Adding 
+            array.Add("James");
+            array.Add("David");
+            array.Add("Charles");
+            array.Add("Ahmad");
+
+
+            Console.WriteLine("At first");
+            foreach (var item in array)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("---------");
+            Console.WriteLine("After insertion");
+            Console.WriteLine("Count is " + array.Count);
+            array.Insert(2, "Tim");
+            foreach (var item in array)
+            {
+                Console.WriteLine(item);
+            }
+            // Index
+            Console.WriteLine("---------");
+            Console.WriteLine(array[2].ToString());
+            // Capacity
+            Console.WriteLine("---------");
+            Console.WriteLine("Count is " + array.Count);
+            // Sorting
+            Console.WriteLine("---------");
+            array.Sort();            
+            Console.WriteLine("After Sorting");
+            foreach (var item in array)
+            {
+                Console.WriteLine(item);
+            }
+            // Reversing
+            Console.WriteLine("---------");
+            array.Reverse();
+            Console.WriteLine("After Reversing");
+            foreach (var item in array)
+            {
+                Console.WriteLine(item);
+            }
+            // Removing
+            Console.WriteLine("---------");
+            Console.WriteLine("After Removing");
+            //array.Remove("James");
+            //array.RemoveAt(2);
+            foreach (var item in array)
+            {
+                Console.WriteLine(item);
+            }
+            // Remove all
+            Console.WriteLine("---------");
+            Console.WriteLine("After Removing some");
+            //array.RemoveRange(1, 2);          
+            foreach (var item in array)
+            {
+                Console.WriteLine(item);
+            }
+            // Contains
+            Console.WriteLine("---------");
+            Console.WriteLine("After Asking if contains");
+            Console.WriteLine(array.Contains("James"));
+            // GetRange
+            ArrayList names = new ArrayList();
+            names = array.GetRange(0, 2);
+
+            foreach (var item in names)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 B)hash table-
 __________________
 
@@ -5538,6 +5640,85 @@ static void main{
 
 
 }
+
+
+
+
+
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+
+using System;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections;
+
+namespace HashtableApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Creating
+            Hashtable hash = new Hashtable();
+
+            // Adding
+            hash.Add("Microsoft", "USA");
+            hash.Add("Sony", "Japan");
+            hash.Add("IKEA", "Sweden");
+            hash.Add("Mercedes", "Germany");
+
+            // Displaying
+
+            foreach (DictionaryEntry item in hash)
+            {
+                Console.WriteLine(item.Key + ": " + item.Value);
+            }
+            // Capacity
+
+            Console.WriteLine("Count is " + hash.Count);
+
+            // Remove
+            Console.WriteLine("------------");
+            Console.WriteLine("After Removing");
+            //hash.Remove("IKEA");
+            foreach (DictionaryEntry item in hash)
+            {
+                Console.WriteLine(item.Key + ": " + item.Value);
+            }
+            // Contains
+            Console.WriteLine("------------");
+            Console.WriteLine("Contains condition");
+            if (hash.ContainsValue("China"))
+            {
+                Console.WriteLine("Yes Japan is included");
+            }
+            else
+            {
+                Console.WriteLine("No it is not");
+            }
+            // Copy to ArrayList
+            Console.WriteLine("------------");
+            Console.WriteLine("After copying");
+            ArrayList array = new ArrayList(hash.Keys);
+            foreach (var item in array)
+            {
+                Console.WriteLine(item);
+            }
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
 
 C)sorted list-
 ___________________________
@@ -5597,6 +5778,135 @@ void main(){
 
 }
 
+
+
+
+
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections;
+
+namespace SortedListApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Creating
+            SortedList sortedList = new SortedList();
+
+            // Adding
+            sortedList.Add(1, "Jan");
+            sortedList.Add(2, "Feb");
+            sortedList.Add(3, "Mar");
+            sortedList.Add(4, "Apr");
+            sortedList.Add(5, "May");
+
+            // Displaying
+
+            //foreach
+            foreach (DictionaryEntry item in sortedList)
+            {
+                Console.WriteLine(item.Key + ": " + item.Value);
+            }
+            //for
+            for (int i = 0; i < sortedList.Count; i++)
+            {
+                Console.WriteLine(sortedList.GetKey(i) +": "+ sortedList.GetByIndex(i));
+            }
+
+            // Index
+            Console.WriteLine(sortedList[5].ToString());
+
+            // Capacity
+            Console.WriteLine(sortedList.Count);
+
+            // Remove
+
+            //sortedList.Remove(1);
+            foreach (DictionaryEntry item in sortedList)
+            {
+                Console.WriteLine(item.Key + ": " + item.Value);
+            }
+            // Contains
+            Console.WriteLine(sortedList.ContainsValue("Apr"));
+
+            // Copy to ArrayList
+            Console.WriteLine("Now we are inside the array list");
+            ArrayList array = new ArrayList(sortedList.Values);
+            foreach (var item in array)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GenericSortedList
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Creating
+            SortedList list = new SortedList(); // non generic sortedlist
+            SortedList<string, string> phoneBook = new SortedList<string, string>(); // generic sortedlist
+
+            // Adding
+            phoneBook.Add("Jack", "823456789");
+            phoneBook.Add("Willy", "944556789");
+            phoneBook.Add("Charles", "123456744");
+            phoneBook.Add("Jennifer", "623456784");
+            phoneBook.Add("James", "010101023");
+
+            // Displaying
+            foreach (var item in phoneBook)
+            {
+                Console.WriteLine(item.Key +", the mobile no is "+ item.Value);
+            }
+
+            // Index
+            phoneBook["Jack"] = "123456789";
+            Console.WriteLine(phoneBook["Jack"]);
+            // TryGetValue
+            phoneBook.TryGetValue("James", out string number);
+            Console.WriteLine(number);
+            // Remove
+            Console.WriteLine("------------");
+            Console.WriteLine("After Removing"); 
+            phoneBook.Remove("Willy");
+            phoneBook.RemoveAt(1);
+            foreach (var item in phoneBook)
+            {
+                Console.WriteLine(item.Key);
+            }
+            // Remove all
+            Console.WriteLine(phoneBook.Count);
+            //phoneBook.Clear();
+            //Console.WriteLine(phoneBook.Count);
+            // Contains 
+            Console.WriteLine(phoneBook.ContainsValue("010101024"));
+        }
+    }
+}
+
+
+
 stacks-
 ___________
 
@@ -5619,6 +5929,47 @@ void main(){
     //due to it follows the lifo last in first out the recently addded data will be removed in this case varisu will be removed
 
 }
+
+
+
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Stacks
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Creating 
+            Stack stack = new Stack();
+
+            // Adding
+            stack.Push("David");
+            stack.Push("Emmy");
+            stack.Push("Jack");
+            stack.Push("Emma");
+
+            // Removing
+
+            Console.WriteLine(stack.Pop());
+            Console.WriteLine(stack.Pop());
+            Console.WriteLine(stack.Pop());
+            Console.WriteLine(stack.Pop());
+        }
+    }
+}
+
+
+
+
+
 
 queues - ________
 
@@ -5660,6 +6011,45 @@ void main(){
 
 
 }
+
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Queues
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Creating
+            Queue queue = new Queue();
+            // Adding
+            queue.Enqueue("Cavin");
+            queue.Enqueue("Tom");
+            queue.Enqueue("Emma");
+
+            foreach (var item in queue)
+            {
+                Console.WriteLine(item);
+            }
+
+            // Removing
+            Console.WriteLine(queue.Dequeue());
+            Console.WriteLine(queue.Dequeue());
+            Console.WriteLine(queue.Dequeue());
+
+        }
+    }
+}
+
+
+
 
 
 bit array-
@@ -5729,6 +6119,79 @@ void main(){
     //not takes only one array as the input
 
 }
+
+
+
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BitArrayApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Creating
+            bool[] boolArray = new bool[4];
+            boolArray[0] = true;
+            boolArray[1] = true;
+            boolArray[2] = false;
+            boolArray[3] = false;
+
+            BitArray firstArray = new BitArray(4);
+            BitArray secondArray = new BitArray(boolArray);
+
+            // Setting value
+            firstArray.Set(0, false);
+            firstArray.Set(1, false);
+            firstArray.Set(2, false);
+            firstArray.Set(3, false);
+
+            foreach (var item in secondArray)
+            {
+                Console.WriteLine(item);
+            }
+
+            // AND - OR - NOT
+
+            BitArray result = new BitArray(4);
+            //result = firstArray.And(secondArray);
+            //Console.WriteLine("AND");
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            //result = firstArray.Or(secondArray);
+            //Console.WriteLine("OR");
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+
+            result = firstArray.Not();
+            Console.WriteLine("Not");
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
+
+
+        }
+    }
+}
+
+
+
+
+
 
 
 
@@ -5834,6 +6297,82 @@ void main(){
 }
 
 
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ListApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Creating    
+            List<string> firstList = new List<string>();
+            IList<string> secondList = new List<string>();
+            // Adding 
+            firstList.Add("England");
+            firstList.Add("Hungary");
+            firstList.Add("China");
+            firstList.Add("Germany");
+            firstList.Add("Egypt");
+            // Displaying
+            foreach (var item in firstList)
+            {
+                Console.WriteLine(item);
+            }
+            // Index
+            firstList[2] = "South Korea";
+            //Console.WriteLine(firstList[2]);
+            foreach (var item in firstList)
+            {
+                Console.WriteLine(item);
+            }
+            // Capacity
+            Console.WriteLine("Count is " + firstList.Count);
+            // Sorting
+            Console.WriteLine("After Sorting...");
+            firstList.Sort();
+            foreach (var item in firstList)
+            {
+                Console.WriteLine(item);
+            }
+            // Reversing
+            //Console.WriteLine("After Reversing...");
+            firstList.Reverse();
+            //foreach (var item in firstList)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            // Removing
+            Console.WriteLine("------------");
+            Console.WriteLine("After Removing...");
+            firstList.Remove("Germany");
+            firstList.RemoveAt(0);
+            foreach (var item in firstList)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("Count now is " + firstList.Count);
+            // Remove all
+            //firstList.Clear();
+            // Contains
+            Console.WriteLine("------------");
+            Console.WriteLine(firstList.Contains("Egypt"));
+            // GetRange
+            secondList = firstList.GetRange(0, 3);
+            Console.WriteLine("Now we are in the second list");
+            foreach (var item in secondList)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }
+}
 
 
 
@@ -5910,6 +6449,79 @@ void main(){
 
 
 }
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DictionaryApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Creating
+            Dictionary<string, string> capitals = new Dictionary<string, string>();
+
+            // Creating with initialization
+            Dictionary<int, string> names = new Dictionary<int, string>()
+            {
+                { 1,"James"},
+                { 2,"Jack"},
+                { 3,"Emma"},
+            };
+            foreach (var item in names)
+            {
+                Console.WriteLine(item.Value);
+            }
+            // Add
+            capitals.Add("Russia", "Moscow");
+            capitals.Add("Italy", "Rome");
+            capitals.Add("England", "London");
+            capitals.Add("Spain", "Madrid");
+            capitals.Add("Germany", "Berlin");
+            // Displaying
+            //foreach (var item in capitals)
+            //{
+            //    Console.WriteLine(item.Key);
+            //}
+            for (int i = 0; i < capitals.Count; i++)
+            {
+                Console.WriteLine(capitals[capitals.Keys.ElementAt(i)]);
+            }
+            // Index
+            Console.WriteLine("--------");
+            capitals["Italy"] = "Venice";
+            Console.WriteLine(capitals["Italy"]);
+
+            //Capacity
+
+            // Try get value
+            capitals.TryGetValue("Russia", out string result);
+            if(result != null)
+                Console.WriteLine("Result is " + result);
+            // Remove
+            capitals.Remove("Italy");
+            Console.WriteLine("--------");
+            Console.WriteLine("After removing");
+            for (int i = 0; i < capitals.Count; i++)
+            {
+                Console.WriteLine(capitals[capitals.Keys.ElementAt(i)]);
+            }
+            Console.WriteLine(capitals.Count);
+            // Remove all
+            //capitals.Clear();
+            Console.WriteLine(capitals.Count);
+            // Contains
+            Console.WriteLine(capitals.ContainsKey("France"));
+        }
+    }
+}
+
 
 
 
@@ -6002,6 +6614,10 @@ void main(){
 
     //it prints sorted list with value if u want u can also prnt key it sortes the list by key value
 }
+
+
+
+
 
 
 
@@ -6202,6 +6818,53 @@ Key "doc" is not found.
  */
 
 
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SortedDictionary
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            SortedDictionary<int, string> colors = new SortedDictionary<int, string>();
+            colors.Add(4, "Blue");
+            colors.Add(2, "Yellow");
+            colors.Add(1, "Orange");
+            colors.Add(5, "Black");
+            colors.Add(3, "White");
+
+            foreach (var item in colors)
+            {
+                Console.WriteLine(item.Value);
+            }
+
+            colors[2] = "Purple";
+
+            foreach (var item in colors)
+            {
+                Console.WriteLine(item.Value);
+            }
+
+            Console.WriteLine("After Removing");
+            colors.Remove(1);
+                foreach (var item in colors)
+            {
+                Console.WriteLine(item.Value);
+            }
+
+            colors.Clear();
+            
+        }
+    }
+}
+
+
 
 
 stacks generic-
@@ -6235,6 +6898,44 @@ void main(){
 
 
 
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GenericStacks
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Stack<string> Ram = new Stack<string>();
+
+            Ram.Push("Visual Studio");
+            Ram.Push("Photoshop");
+            Ram.Push("Google Chrome");
+            Ram.Push("NotePad");
+            Ram.Push("Excel");
+
+            Console.WriteLine("What is on the top is " + Ram.Peek());
+            Ram.Pop();
+            Ram.Pop();
+            Console.WriteLine("What is on the top is " + Ram.Peek());
+            foreach (var item in Ram)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }
+}
+
+
+
+
+
+
 generic queue-
 __________________
 
@@ -6262,6 +6963,51 @@ void main(){
 }
 
 //samea as stack but with same datatype
+
+
+
+
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GenericQueues
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Queue<DateTime> arrivals = new Queue<DateTime>();
+
+            arrivals.Enqueue(new DateTime(2017, 01, 01));
+            arrivals.Enqueue(new DateTime(2016, 10, 27));
+            arrivals.Enqueue(new DateTime(2018, 07, 02));
+
+            Console.WriteLine("At the top " + arrivals.Peek());
+            Console.WriteLine("--------");
+            foreach (var item in arrivals)
+            {
+                Console.WriteLine(item);
+            }
+
+            arrivals.Dequeue();
+            arrivals.Dequeue();
+
+            Console.WriteLine("At the top " + arrivals.Peek());
+            Console.WriteLine("--------");
+            foreach (var item in arrivals)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }
+}
+
+
 
 
 
@@ -6305,6 +7051,49 @@ Console.WriteLine(main().Value);
 }
 
 
+
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace KeyValuePairApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var capitals = new List<KeyValuePair<string,string>>();
+
+            capitals.Add(new KeyValuePair<string, string>("Russia", "Moscow"));
+            capitals.Add(new KeyValuePair<string, string>("Sweden", "Stockholm"));
+            capitals.Add(new KeyValuePair<string, string>("Portual", "Lisbon"));
+            capitals.Add(new KeyValuePair<string, string>("Japan", "Tokoyo"));
+
+            capitals.RemoveAt(1);
+
+            foreach (var item in capitals)
+            {
+                Console.WriteLine(item.Key);
+            }
+
+            Console.WriteLine(GetFirstAndLastName().Value);
+        }
+
+        public static KeyValuePair<string,string> GetFirstAndLastName()
+        {
+            string firstName = "Tony";
+            string lastName = "Stark";
+
+            return new KeyValuePair<string, string>(firstName,lastName);
+        }
+
+
+    }
+}
 
 
 
@@ -6351,6 +7140,58 @@ void main(){
 
 
 
+pro2______________
+
+
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NameValueCollectionApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Creating 
+            NameValueCollection cities = new NameValueCollection();
+            // Adding 
+            cities.Add("Germany", "Berlin");
+            cities.Add("Germany", "Hamburg");
+            cities.Add("Germany", "Frankfurt");
+            cities.Add("Italy", "Rome");
+            cities.Add("Italy", "Milan");
+            // Displaying
+            foreach (string item in cities)
+            {
+                Console.Write(item + ": ");
+                Console.WriteLine(cities[item]);
+            }
+            // Set
+            cities.Set("Italy", "Venice");
+            foreach (string item in cities)
+            {
+                Console.Write(item + ": ");
+                Console.WriteLine(cities[item]);
+            }
+            // Contains
+            //cities.Clear();
+            //Console.WriteLine(cities.HasKeys());
+            // Remove
+            cities.Remove("Italy");
+            foreach (string item in cities)
+            {
+                Console.Write(item + ": ");
+                Console.WriteLine(cities[item]);
+            }
+            // Remove all
+
+        }
+    }
+}
 
 
 
@@ -6446,6 +7287,213 @@ namespace GenericClassesApp
 
     }
 }
+
+
+
+pro2______________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GenericClassesApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*
+             * Empire State : 381m, 443m, 365000t, NY
+             * Burj Khalifa : 828m, 830m, 450000t, Dubai
+             * Eiffel Tower : 300m, 324,  7300t  , Paris 
+             */
+            Buildings<int> empireState = new Buildings<int>();
+            empireState.Name = "Empire State";
+            empireState.City = "New York";
+            empireState.Height = 443;
+            empireState.Weight = 365000;
+
+            Console.WriteLine("Name " + empireState.Name);
+            Console.WriteLine("City " + empireState.City);
+            Console.WriteLine("Height " + empireState.Height);
+            Console.WriteLine("Weight " + empireState.Weight);
+
+
+            Buildings<double> burjKhalifa = new Buildings<double>();
+            burjKhalifa.Name = "Burj Khalifa";
+            burjKhalifa.City = "Dubai";
+            burjKhalifa.Height = 830;
+            burjKhalifa.Weight = 450000;
+
+            Console.WriteLine("-------------");
+            Console.WriteLine("Name " + burjKhalifa.Name);
+            Console.WriteLine("City " + burjKhalifa.City);
+            Console.WriteLine("Height " + burjKhalifa.Height);
+            Console.WriteLine("Weight " + burjKhalifa.Weight);
+
+            Buildings<float> eiffelTower = new Buildings<float>();
+            eiffelTower.Name = "Eiffel Tower";
+            eiffelTower.City = "Paris";
+            eiffelTower.Height = 324;
+            eiffelTower.Weight = 7300;
+        }
+    }
+
+    class Buildings<T>
+    {
+        private string name;
+                
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        private string city;
+
+        public string City
+        {
+            get { return city; }
+            set { city = value; }
+        }
+
+        private T height;
+
+        public T Height
+        {
+            get { return height; }
+            set { height = value; }
+        }
+
+        private T weight;
+
+        public T Weight
+        {
+            get { return weight; }
+            set { weight = value; }
+        }
+
+
+
+
+    }
+}
+
+pro2______________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GenericsExercise
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*
+             * 1. (The Lord of the Rings: The Fellowship of the Ring) (19 Dec 2001) (8.8) (Peter Jackson)
+             * 2. (The Lord of the Rings: The Two Towers) (18 Dec 2002) (8.7) (Peter Jackson)
+             * 3. (The Lord of the Rings: The Return of the King) (8.9) (17 Dec 2003) 
+             * -------------------------------------------------------------------------------------
+             * 1. (Batman Begins) (15 Jun 2005) (8.3) (Christopher Nolan)
+             * 2. (The Dark Knight) (18  Jul 2008) (9.0) (Christopher Nolan)
+             * 3. (The Dark Knight Rises) (20 Jul 2012) (8.4) (Christopher Nolan)
+             */
+
+            var firstList = new List<Movies<double, DateTime>>();
+            var secondList = new List<Movies<float, int>>();
+
+            var darkKnight1 = new Movies<float, int>();
+            darkKnight1.MovieName = "Batman Begins";
+            darkKnight1.Director = "Christopher Nolan";
+            darkKnight1.Rate = 8.3f;
+            darkKnight1.ReleaseDate = 2005;
+
+            var darkKnight2 = new Movies<float, int>();
+            darkKnight2.MovieName = "The Dark Knight";
+            darkKnight2.Director = "Christopher Nolan";
+            darkKnight2.Rate = 9.0f;
+            darkKnight2.ReleaseDate = 2008;
+
+            var darkKnight3 = new Movies<float, int>();
+            darkKnight3.MovieName = "The Dark Knight Rises";
+            darkKnight3.Director = "Christopher Nolan";
+            darkKnight3.Rate = 8.4f;
+            darkKnight3.ReleaseDate = 2012;
+
+            var lordofTheRings1 = new Movies<double,DateTime>();
+            lordofTheRings1.MovieName = "The Lord of the Rings: The Fellowship of the Ring";
+            lordofTheRings1.Director = "Peter Jackson";
+            lordofTheRings1.Rate = 8.8;
+            lordofTheRings1.ReleaseDate = new DateTime(2001, 12, 19);
+
+            var lordofTheRings2 = new Movies<double, DateTime>();
+            lordofTheRings2.MovieName = "The Lord of the Rings: The Two Towers";
+            lordofTheRings2.Director = "Peter Jackson";
+            lordofTheRings2.Rate = 8.7;
+            lordofTheRings2.ReleaseDate = new DateTime(2002, 12, 18);
+
+            var lordofTheRings3 = new Movies<double, DateTime>();
+            lordofTheRings3.MovieName = "The Lord of the Rings: The Return of the King";
+            lordofTheRings3.Director = "Peter Jackson";
+            lordofTheRings3.Rate = 8.9;
+            lordofTheRings3.ReleaseDate = new DateTime(2003, 12, 17);
+
+
+            firstList.Add(lordofTheRings1);
+            firstList.Add(lordofTheRings2);
+            firstList.Add(lordofTheRings3);
+
+            secondList.Add(darkKnight1);
+            secondList.Add(darkKnight2);
+            secondList.Add(darkKnight3);
+        }
+    }
+
+    class Movies<T, U>
+    {
+        private string movieName;
+            
+        public string MovieName
+        {
+            get { return movieName; }
+            set { movieName = value; }
+        }
+
+        private string director;
+
+        public string Director
+        {
+            get { return director; }
+            set { director = value; }
+        }
+
+        private U releaseDate;
+
+        public U ReleaseDate
+        {
+            get { return releaseDate; }
+            set { releaseDate = value; }
+        }
+
+        private T rate;
+
+        public T Rate
+        {
+            get { return rate; }
+            set { rate = value; }
+        }
+
+
+
+    }
+}
+
 
 
 
@@ -6633,6 +7681,38 @@ void main(){
 
 
 
+pro2______________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TuplesApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var empInfo = new Tuple<int, string, string, DateTime, bool>(100, "Jack", "William", new DateTime(2017, 10, 15), true);
+            Console.WriteLine(empInfo.Item1);
+            Console.WriteLine(empInfo.Item2);
+            Console.WriteLine(empInfo.Item3);
+            Console.WriteLine(((DateTime)(empInfo.Item4)).ToShortDateString());
+            Console.WriteLine(empInfo.Item5);
+
+            var studentInfo = Tuple.Create(5, "John", "Cavin", new DateTime(2003, 10, 27));
+            Console.WriteLine(studentInfo.Item1);
+            Console.WriteLine(studentInfo.Item2);
+            Console.WriteLine(studentInfo.Item3);
+            Console.WriteLine(studentInfo.Item4);
+        }
+    }
+}
+
+
+
 
 nested tuple - 
 ___________________________
@@ -6645,6 +7725,48 @@ void main(){
     var emp = new Tuple<int,string,Tuple<decimal,int>>(10,"asd",Tuple.Create(2000m,500));
     Console.WriteLine(emp.Rest.item1);//this is to acess the tuple inside the tuple
 }
+
+
+
+pro2______________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NestedTuples
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*
+             * 1.int    : employee number
+             * 2.string : first name
+             * 3.string : last name
+             * 4.string : address
+             * 5.string : city
+             * 6.string : job title
+             * 7.string : nationality
+             * 8.tuple  : last 5 salaries
+             */
+
+            var employeeInfo = new Tuple<int, string, string, string, string, string, string, Tuple<decimal, decimal, decimal, decimal, decimal>>
+                (105, "James", "Watson", "", "", "", "", Tuple.Create(8000m, 3000m, 4000m, 5000m, 5000m));
+
+            Console.WriteLine("Employee name is "+ employeeInfo.Item2);
+            Console.WriteLine("Last 5 salaries");
+            Console.WriteLine(employeeInfo.Rest.Item1);
+            Console.WriteLine(employeeInfo.Rest.Item2);
+            Console.WriteLine(employeeInfo.Rest.Item3);
+            Console.WriteLine(employeeInfo.Rest.Item4);
+            Console.WriteLine(employeeInfo.Rest.Item5);
+        }
+    }
+}
+
 
 
 
@@ -6673,6 +7795,51 @@ public static Tuple<int,string,string> retin(){
     var info = Tuple.Create(44,"baba"."naidu");
     return info;
 }
+
+
+pro2______________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TuplesWithMethods
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var aria = Tuple.Create(12, "Aria", "Stark", "Winterfell");
+            DisplayInformation(aria);
+            var sansa = Tuple.Create(18, "Sansa", "Stark", "Winterfell");
+            DisplayInformation(sansa);
+            Console.WriteLine("------------------");
+            Console.WriteLine(GetInformation().Item1);
+            Console.WriteLine(GetInformation().Item2);
+            Console.WriteLine(GetInformation().Item3);
+            Console.WriteLine(GetInformation().Item4);
+
+        }
+
+        public static void DisplayInformation(Tuple<int,string,string,string> personInfo)
+        {
+            Console.WriteLine(personInfo.Item1);
+            Console.WriteLine(personInfo.Item2);
+            Console.WriteLine(personInfo.Item3);
+            Console.WriteLine(personInfo.Item4);
+        }
+
+        public static Tuple<int, string, string, string> GetInformation()
+        {
+            var info = Tuple.Create(25, "Rob", "Stark", "Winterfell");
+
+            return info;
+        }
+    }
+}
+
 
 
 
@@ -6707,6 +7874,41 @@ void main(){
 
 }
 
+pro2______________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ValueTupleApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Install-Package "System.ValueTuple"
+
+            int x = 0;
+
+            (int playerNo, string playerName, int playerGoals) ronaldo = (7, "Ronaldo", 55);
+            Console.WriteLine(ronaldo.playerNo);
+            Console.WriteLine(ronaldo.playerName);
+            Console.WriteLine(ronaldo.playerGoals);
+            Console.WriteLine();
+
+            var messi = (playerNo:10, playerName:"Messi", playerGoals:60);
+            Console.WriteLine(messi.playerNo);
+            Console.WriteLine(messi.playerName);
+            Console.WriteLine(messi.playerGoals);
+            Console.WriteLine();
+
+            
+
+        }
+    }
+}
 
 
 
@@ -6721,6 +7923,36 @@ void main(){
     Console.WriteLine(player.plopp.plno);
     Console.WriteLine(player.plopp.plname);//tuple inside the tuple
 }
+
+
+
+pro2______________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NestedValueTuple
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var ronaldoGoals = (Year2017:64,Year2016:60,Year2015:50,Year2014:55);
+            var ronaldo = (playerNo: 7, playerName: "Ronaldo", playerGoals:ronaldoGoals);
+
+            Console.WriteLine(ronaldo.playerNo);
+            Console.WriteLine(ronaldo.playerName);
+            Console.WriteLine(ronaldo.playerGoals.Year2017);
+            Console.WriteLine(ronaldo.playerGoals.Year2016);
+            Console.WriteLine(ronaldo.playerGoals.Year2015);
+            Console.WriteLine(ronaldo.playerGoals.Year2014);
+        }
+    }
+}
+
 
 
 
@@ -6748,6 +7980,47 @@ void main(){
     }
 
 }
+
+pro2-
+________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ValueTuplesWithMethods
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var ronaldo = (7, "Ronaldo", 60);
+            var giggs = (10, "Giggs", 40);
+
+            DisplayPlayerInformation(ronaldo);
+            DisplayPlayerInformation(giggs);
+
+            DisplayPlayerInformation(DisplayPlayerInformation());
+        }
+
+        public static void DisplayPlayerInformation((int playerNo, string playerName, int playerGoal) player)
+        {
+            Console.WriteLine(player.playerNo);
+            Console.WriteLine(player.playerName);
+            Console.WriteLine(player.playerGoal);
+            Console.WriteLine("-------------------");
+        }
+
+        public static (int, string, int) DisplayPlayerInformation()
+        {
+            var messi = (10, "Messi", 60);
+            return messi;
+        }
+    }
+}
+
 
 
 
@@ -6803,6 +8076,102 @@ namespace AssignmentNo11
         }
     }
 }
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TuplesExercise
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var employeesInformation = new List<Tuple<int, string, string, DateTime>>();
+            employeesInformation.Add(new Tuple<int, string, string, DateTime>(3, "Zack", "Peter", new DateTime(2017, 11, 25)));
+            employeesInformation.Add(Tuple.Create(1, "Adam", "Green", new DateTime(2015, 01, 01)));
+            employeesInformation.Add(Tuple.Create(4, "John", "Smith", new DateTime(2016, 10, 25)));
+            employeesInformation.Add(Tuple.Create(2, "Emma", "Watson", new DateTime(2017, 10, 25)));
+
+            Console.WriteLine("Before sorting");
+            foreach (var employee in employeesInformation)
+            {
+                Console.WriteLine($"{employee.Item1},{employee.Item2},{employee.Item3},{employee.Item4}");
+            }
+
+            Console.WriteLine("\nAfter sorting");
+            employeesInformation.Sort();
+            foreach (var employee in employeesInformation)
+            {
+                Console.WriteLine($"{employee.Item1},{employee.Item2},{employee.Item3},{employee.Item4}");
+            }
+
+            Console.WriteLine("\nAfter reversing");
+            employeesInformation.Reverse();
+            foreach (var employee in employeesInformation)
+            {
+                Console.WriteLine($"{employee.Item1},{employee.Item2},{employee.Item3},{employee.Item4}");
+            }
+
+
+        }
+    }
+}
+
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TuplesExercise
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var employeesInformation = new List<Tuple<int, string, string, DateTime>>();
+            employeesInformation.Add(new Tuple<int, string, string, DateTime>(3, "Zack", "Peter", new DateTime(2017, 11, 25)));
+            employeesInformation.Add(Tuple.Create(1, "Adam", "Green", new DateTime(2015, 01, 01)));
+            employeesInformation.Add(Tuple.Create(4, "John", "Smith", new DateTime(2016, 10, 25)));
+            employeesInformation.Add(Tuple.Create(2, "Emma", "Watson", new DateTime(2017, 10, 25)));
+
+            Console.WriteLine("Before sorting");
+            foreach (var employee in employeesInformation)
+            {
+                Console.WriteLine($"{employee.Item1},{employee.Item2},{employee.Item3},{employee.Item4}");
+            }
+
+            Console.WriteLine("\nAfter sorting");
+            employeesInformation.Sort();
+            foreach (var employee in employeesInformation)
+            {
+                Console.WriteLine($"{employee.Item1},{employee.Item2},{employee.Item3},{employee.Item4}");
+            }
+
+            Console.WriteLine("\nAfter reversing");
+            employeesInformation.Reverse();
+            foreach (var employee in employeesInformation)
+            {
+                Console.WriteLine($"{employee.Item1},{employee.Item2},{employee.Item3},{employee.Item4}");
+            }
+
+
+        }
+    }
+}
+
+
+
 
 ________________________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -7316,8 +8685,156 @@ namespace AssignmentNo15
 
 ________________________________________________________________________________________________________________________________________________________________________________________________________
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ListofAnimalsExercise
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Animals dog = new Animals();
+            dog.Name = "Roy";
+
+            Animals cat = new Animals();
+            cat.Name = "Koky";
+
+            Animals elephant = new Animals();
+            elephant.Name = "Fofy";
+
+            List<Animals> list = new List<Animals>();
+            list.Add(dog);
+            list.Add(cat);
+            list.Add(elephant);
+
+            foreach (var item in list)
+            {
+                item.SayHi();
+            }
+
+        }
+    }
+
+    class Animals
+    {
+        private string name;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public void SayHi()
+        {
+            Console.WriteLine("Hello my name is " + name);
+        }
+
+        public void Feed()
+        {
+            Console.WriteLine(name + " is now eating");
+        }
+
+    }
+}
 
 
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections;
+
+namespace AnimalsAndTrainersExercise
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Animals dog = new Animals();
+            dog.Name = "Max";
+
+            Animals cat = new Animals();
+            cat.Name = "Lucy";
+
+            Animals elephant = new Animals();
+            elephant.Name = "Fofy";
+
+            Trainers john = new Trainers();
+            john.TrainerName = "John Jackson";
+
+            ArrayList list = new ArrayList();
+            list.Add(dog);
+            list.Add(cat);
+            list.Add(elephant);
+            list.Add(john);
+
+            foreach (var item in list)
+            {
+                if (typeof(Animals) == item.GetType())
+                {
+                    ((Animals)item).SayHi();
+                    ((Animals)item).Feed();
+                }
+                else
+                {
+                    ((Trainers)item).SayHi();
+                }
+                
+            }
+        }
+    }
+
+
+    struct Animals
+    {
+        private string name;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public void SayHi()
+        {
+            Console.WriteLine("Hello my name is " + name);
+        }
+
+        public void Feed()
+        {
+            Console.WriteLine(name + " is now eating");
+        }
+
+    }
+
+    struct Trainers
+    {
+        private string trainerName;
+
+        public string TrainerName
+        {
+            get { return trainerName; }
+            set { trainerName = value; }
+        }
+
+        public void SayHi()
+        {
+            Console.WriteLine("Hello I am the new trainer");
+        }
+
+    }
+}
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
 
 
 
