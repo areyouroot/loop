@@ -723,3 +723,10 @@ Compilation failed. See above.
 solution - stackoverflow.com/questions/58258808/data-location-must-be-memory-for-return-parameter-in-function-but-none-was-gi
 
 
+//to get current account in the truffle devlopement console 
+
+truffle(development)> account = await web3.eth.getCoinbase()
+'0x3d402e0e172f67adff677a47795675680ad763b7'
+
+
+// to clear the terminal of the truffle press ctrl + l

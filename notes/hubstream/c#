@@ -8841,8 +8841,261 @@ ________________________________________________________________________________
 
 
 
+recursive methods-
+___________________________
 
-ls -7 18
+a function calling itself untill a conditions is satisfied
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace RecursiveMethodsApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int number = 5;
+
+            Console.WriteLine("Non recursive way");
+            Console.WriteLine(FactorialNonRecursive(number));
+
+            Console.WriteLine("Recursive way");
+            Console.WriteLine(Factorial(number));
+        }
+
+        //Non-Recursive way
+        public static int FactorialNonRecursive(int n)
+        {
+            if (n == 0)
+                return 1;
+            int value = 1;
+            for (int i = n; i > 0; i--)
+            {
+                value *= i;
+                Console.WriteLine(i);
+            }
+            return value;
+        }
+
+        // Recursive way
+        public static int Factorial(int n)
+        {
+            if (n == 0)
+                return 1;
+            return n * Factorial(n - 1);
+        }
+    }
+}
+
+
+
+
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace RecursiveMethodsExercise
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string path = string.Empty;
+            path = @"C:\Files";
+            Console.WriteLine(path);
+            DisplayFolders(path, 0);
+
+        }
+
+        public static void DisplayFolders(string path, int indent)
+        {
+            foreach (var folder in Directory.GetDirectories(path))
+            {
+                Console.WriteLine($"{new string(' ',indent)} {Path.GetFileName(folder)}");
+                DisplayFolders(folder, indent + 2);
+            }
+        }
+    }
+
+}
+
+
+
+
+
+optional parameter -
+_____________________________________________
+
+these types of parameters are optional and any default values can be defined
+
+syntax:
+
+void func(int oppvar=0)
+
+if u called the function it can use the default value of the argument value 
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OptionalArguments
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DisplayPlayerInformation(7, "Ronaldo", 60,"Portugal","Real Madrid");
+            Console.WriteLine("----------");
+            DisplayPlayerInformation(10, "Messi");
+        }
+
+        public static void DisplayPlayerInformation(int no , string name, int goals = 0 ,string country = "",string club = "")
+        {
+            Console.WriteLine("Hi from the first method");
+            Console.WriteLine(no);
+            Console.WriteLine(name);
+            Console.WriteLine(goals);
+            Console.WriteLine(country);
+            Console.WriteLine(club);
+        }
+
+        public static void DisplayPlayerInformation(int no, string name, int goals)
+        {
+            Console.WriteLine("Hi from the overloaded method");
+            Console.WriteLine(no);
+            Console.WriteLine(name);
+            Console.WriteLine(goals);
+        }
+    }
+}
+
+
+
+
+
+named argument-
+__________________
+
+these areguments are passed with the names of the argument variable
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NamedArguments
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DisplayPlayerInformation(country: "Portugal", playerName: "Ronaldo", playerGoals: 55, playerNo: 7);
+        }
+
+        public static void DisplayPlayerInformation(int playerNo, string playerName, int playerGoals,string country = "Unknown")
+        {
+            Console.WriteLine(playerNo);
+            Console.WriteLine(playerName);
+            Console.WriteLine(playerGoals);
+            Console.WriteLine(country);
+        }
+    }
+}
+
+
+
+generic arguments-
+___________________________
+
+if any argument that is undefined as T then that argument can take any data type this type of argument is called generic argument
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GenericArguments
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DisplayInfo("John");
+            DisplayInfo(2);
+            DisplayInfo(2.5);
+            DisplayInfo(DateTime.Now);
+
+            var playerInfo = (7, "Ronaldo", 55);
+            DisplayInfo(playerInfo);
+        }
+
+        public static void DisplayInfo<T>(T info)
+        {
+            Console.WriteLine(info);
+        }
+    }
+}
+
+
+
+
+
+params -
+__________________
+
+this used to passs a bunch of strings without defining as a array to a array
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ParamsExercise
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            LoopThroughArray(10, 50, 25, 3);
+
+            LoopThroughArray("Ahmad", "Ned", "Emma");
+
+            LoopThroughArray(DateTime.Now, new DateTime(2017, 10, 10));
+        }
+
+        public static void LoopThroughArray<T>(params T[] items)
+        {
+            foreach (var item in items)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("-------------");
+        }
+    }
+}
+
+
+
+
+
+ls -8 8
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
