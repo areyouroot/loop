@@ -9095,6 +9095,360 @@ namespace ParamsExercise
 
 
 
+
+
+local functions and the nested functions-
+_____________________________________________
+
+creation of function inside the function is a local function and this is also a nested function
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LocalFunctions
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            PerformMathOperations(1, 2, 3,4);
+            PerformMathOperations(5, 20);
+        }
+
+        public static void PerformMathOperations(params int[] numbers)
+        {
+            Console.WriteLine("Add = " + AddNumbers());
+            int AddNumbers()
+            {
+                int result = 0;
+                foreach (var number in numbers)
+                {
+                    result = result + number;
+                }
+                return result;
+            }
+
+            Console.WriteLine("Multi = " + MultiNumebrs());
+            int MultiNumebrs()
+            {
+                int result = 1;
+                foreach (var number in numbers)
+                {
+                    result = result * number;
+                }
+                return result;
+            }
+            Console.WriteLine("----------");
+        }
+        
+    }
+}
+
+
+
+
+
+
+
+
+extention methods-
+___________________________
+
+"this" is the key word used here and if u see this method is use to send a variuable as an argument without beign passed u can send the value with the help of "." operator.
+
+it can be also used for the operator overloading and variable overloading
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ExtensionMethods
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int x = 5;
+            Console.WriteLine(x.IsGreater(10));
+
+            string text = "100";
+            Console.WriteLine(text.IsNumber());
+        }       
+    }
+
+    static class MyCustomExtension
+    {
+        public static bool IsGreater(this int value, int number)
+        {
+            return value > number;
+        }
+
+        public static bool IsNumber(this string text)
+        {
+            return int.TryParse(text, out int result);
+        }
+    }
+
+}
+
+
+
+
+
+
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ExtensionMethodExercise
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DateTime myDate = new DateTime(2000, 11, 1);
+            Console.WriteLine(myDate.MyCustomFormat());
+        }
+    }
+
+    static class MyExtensions
+    {
+        public static string MyCustomFormat(this DateTime date)
+        {
+            return string.Format("{0:dddd dd \nMMMM yyyy}", date);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+stopwatch-
+__________________
+
+the time unit can be printed induvialy like taking off the extra milli seconds from the seconds like 
+
+2 seconds and 450 milliseconds 
+
+milli seconds print 450 but total milliseconds print 2450 so if u want to disply the total then use the oprations like 
+
+totalmesurement unit eg - totalmiliseconds,TotalSeconds
+else for ignoring the total subrated from the whole next time unit use the exact word - miliseconds,seconds etc .......
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+namespace StopWatchApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+            Loop(200_000_000);
+            watch.Stop();
+
+            Console.WriteLine("Milliseconds " + watch.Elapsed.Milliseconds);
+            Console.WriteLine("Total Milliseconds " + watch.Elapsed.TotalMilliseconds);
+            Console.WriteLine("Total Seconds " + watch.Elapsed.TotalSeconds);
+            Console.WriteLine("Seconds " + watch.Elapsed.Seconds);
+
+            Console.WriteLine(watch.Elapsed.Ticks);
+        }
+
+        public static void Loop(long number)
+        {
+            for (long i = 0; i < number; i++)
+            {
+
+            }
+            Console.WriteLine("Process done.");
+        }
+    }
+}
+
+
+DateTime.Ticks Property-
+___________________________
+
+Definition
+Namespace:
+System
+Assembly:
+System.Runtime.dll
+Gets the number of ticks that represent the date and time of this instance.
+
+C#
+
+Copy
+public long Ticks { get; }
+Property Value
+Int64
+The number of ticks that represent the date and time of this instance. The value is between DateTime.MinValue.Ticks and DateTime.MaxValue.Ticks.
+
+Examples
+The following example uses the Ticks property to display the number of ticks that have elapsed since the beginning of the twenty-first century and to instantiate a TimeSpan object. The TimeSpan object is then used to display the elapsed time using several other time intervals.
+
+C#
+
+Copy
+
+Run
+DateTime centuryBegin = new DateTime(2001, 1, 1);
+DateTime currentDate = DateTime.Now;
+
+long elapsedTicks = currentDate.Ticks - centuryBegin.Ticks;
+TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+
+Console.WriteLine("Elapsed from the beginning of the century to {0:f}:",
+                   currentDate);
+Console.WriteLine("   {0:N0} nanoseconds", elapsedTicks * 100);
+Console.WriteLine("   {0:N0} ticks", elapsedTicks);
+Console.WriteLine("   {0:N2} seconds", elapsedSpan.TotalSeconds);
+Console.WriteLine("   {0:N2} minutes", elapsedSpan.TotalMinutes);
+Console.WriteLine("   {0:N0} days, {1} hours, {2} minutes, {3} seconds",
+                  elapsedSpan.Days, elapsedSpan.Hours,
+                  elapsedSpan.Minutes, elapsedSpan.Seconds);
+
+// This example displays an output similar to the following:
+//
+// Elapsed from the beginning of the century to Thursday, 14 November 2019 18:21:
+//    595,448,498,171,000,000 nanoseconds
+//    5,954,484,981,710,000 ticks
+//    595,448,498.17 seconds
+//    9,924,141.64 minutes
+//    6,891 days, 18 hours, 21 minutes, 38 seconds
+Remarks
+A single tick represents one hundred nanoseconds or one ten-millionth of a second. There are 10,000 ticks in a millisecond (see TicksPerMillisecond) and 10 million ticks in a second.
+
+The value of this property represents the number of 100-nanosecond intervals that have elapsed since 12:00:00 midnight, January 1, 0001 in the Gregorian calendar, which represents MinValue. It does not include the number of ticks that are attributable to leap seconds. If the DateTime object has its Kind property set to Local, its ticks represent the time elapsed time since 12:00:00 midnight, January 1, 0001 in the local time as specified by the current time zone setting. If the DateTime object has its Kind property set to Utc, its ticks represent the time elapsed time since 12:00:00 midnight, January 1, 0001 in the Coordinated Universal Time. If the DateTime object has its Kind property set to Unspecified, its ticks represent the time elapsed time since 12:00:00 midnight, January 1, 0001 in the unknown time zone.
+
+In general, the ticks represent the time according to the time zone specified by the Kind property.
+
+
+
+delegates-
+__________________
+
+
+these are nothing but the reference variable for the function and this can also be overloaded 
+
+see its as simple as giving a new name for the existing function with out modifing it 
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Delegates
+{
+    // void delegate with no argument
+    public delegate void PlayerInfoDel();
+
+    // void delegate with one string argument
+    public delegate void PlayerInfoWithNameDel(string playerName);
+
+    // void delegate with one string argument and one int
+    public delegate void PlayerInfoNameWithGoalsDel(string name, int goals);
+
+    // string delegate with one int argument 
+    public delegate string PlayerBasedOnNumber(int number);
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            PlayerInfoDel ronaldinho = new PlayerInfoDel(DisplayInformation);
+            ronaldinho();
+
+            PlayerInfoWithNameDel playerName = new PlayerInfoWithNameDel(DisplayInformation);
+            playerName("Messi");
+
+            PlayerInfoNameWithGoalsDel newPlayer = new PlayerInfoNameWithGoalsDel(DisplayInformation);
+            newPlayer("Ronaldo", 60);
+            newPlayer("Rooney", 25);
+
+            PlayerBasedOnNumber number = new PlayerBasedOnNumber(DisplayInformation);
+            Console.WriteLine(number(8));
+            Console.WriteLine(number(10));
+        }
+
+        public static void DisplayInformation()
+        {
+            Console.WriteLine("Information about player : Ronaldinho from brazil");
+        }
+
+        public static void DisplayInformation(string playerName)
+        {
+            Console.WriteLine("Information about player : " + playerName);
+        }
+
+        public static void DisplayInformation(string playerName, int goals)
+        {
+            Console.WriteLine("Information about player : " + playerName + " and he score " + goals + " goals");
+        }
+
+        public static string DisplayInformation(int number)
+        {
+            string playerName = string.Empty;
+            switch (number)
+            {
+                case 7: playerName = "Ronaldo"; break;
+                case 8: playerName = "Iniesta"; break;
+                case 10: playerName = "Messi"; break;
+                default:  break;
+            }
+            return playerName;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ls -8 8
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
