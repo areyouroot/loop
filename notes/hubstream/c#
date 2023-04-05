@@ -9428,6 +9428,423 @@ namespace Delegates
 }
 
 
+// this method is smart it can identfy the function based on the no of arguments passed in
+
+
+
+
+
+
+//you can print function method and arguments by console 
+
+Console.WriteLine(functionname.Method);
+
+use item.ParameterType.Name to get the arguments  
+
+eg:
+
+foreach(var item in functionname.Method.GetParameters()){
+    Console.WriteLine($"{item.ParameterType.Name},{item.Name},{item.Position},{item.IsOptional},{item.DefautValue}");
+    //                      type of data         variable name  position        is optional         default value
+}
+
+
+eg:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MoreAboutDelegates
+{
+    // void delegate with one string argument and one int
+    public delegate void PlayerInformationWithGoals(string playerName, int playerGoals);
+
+    // string delegate with one int argument and one string
+    public delegate string PlayerInformationBasedOnNumberAndClub(int playerNo,string club, string country = "Unknown");
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {            
+            PlayerInformationWithGoals playerOne = new PlayerInformationWithGoals(DisplayInformation);            
+            PlayerInformationBasedOnNumberAndClub playerTwo = new PlayerInformationBasedOnNumberAndClub(DisplayInformation);
+
+            //playerOne("Ronaldo", 50);
+            //playerTwo(7, "Real Madrid","Portugal");
+
+            Console.WriteLine(playerTwo.Method);
+
+            foreach (var item in playerTwo.Method.GetParameters())
+            {
+                Console.WriteLine($"{item.ParameterType.Name}, {item.Name}, {item.Position}, {item.IsOptional}, {item.DefaultValue} ");
+            }
+        }
+
+
+        public static void DisplayInformation(string playerName, int goals)
+        {
+            Console.WriteLine("Information about player : " + playerName + " and he score " + goals);
+        }
+
+        public static string DisplayInformation(int number,string club,string country = "Unknown")
+        {
+            // Some logic goes in here
+            Console.WriteLine("Hi...");
+            return string.Empty;
+        }
+    } 
+}
+
+
+
+delegates vs direct calls_
+___________________________
+
+much faster  (depends on the size of the code)
+can pass many values
+
+speed test :
+
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DelegatesVsDirectCalls
+{
+    public delegate void DoSomethingDelegate();
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Stopwatch watchOne = new Stopwatch();
+            Stopwatch watchTwo = new Stopwatch();
+            DoSomethingDelegate taskOne = new DoSomethingDelegate(DoSomething);
+
+            // Using delegates 
+            Console.WriteLine("Delegate Method \n--------------");
+            watchOne.Start();
+            taskOne();
+            watchOne.Stop();
+            var elapsedOne = watchOne.Elapsed;
+            Console.WriteLine(Math.Round(elapsedOne.TotalSeconds, 2));
+
+            // Using direct calls
+            Console.WriteLine("\nDirect Method\n--------------");
+            watchTwo.Start();
+            DoSomething();
+            watchTwo.Stop();
+            var elapsedTwo = watchTwo.Elapsed;
+            Console.WriteLine(Math.Round(elapsedTwo.TotalSeconds, 2));
+
+            Console.WriteLine("\nDelegates saved you " + Math.Round((elapsedTwo.TotalMilliseconds-elapsedOne.TotalMilliseconds),4) + " milliseconds ");
+            Console.WriteLine("Delegates saved you " + Math.Round((elapsedTwo.TotalSeconds - elapsedOne.TotalSeconds),4) + " seconds ");
+        }
+
+        public static void DoSomething()
+        {
+            double number = 8.543231;
+            List<double> list = new List<double>();
+            for (double i = 0; i < 60_000_000; i++)
+            {
+               number += i+DateTime.Now.Second;
+                list.Add(number);
+            }
+            list.Reverse();
+        }
+    }
+}
+
+
+
+delecate eg code:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DelegateExercise
+{
+    public delegate void DisplayPlayer(Dictionary<int, string> players);
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Dictionary<int, string> listofPlayers = new Dictionary<int, string>();
+            listofPlayers.Add(7, "Ronaldo");
+            listofPlayers.Add(10, "Messi");
+            listofPlayers.Add(8, "Iniesta");
+
+            DisplayPlayer player = new DisplayPlayer(DisplayPlayerInfo);
+            player(listofPlayers);
+            
+        }
+
+        public static void DisplayPlayerInfo(Dictionary<int,string> players)
+        {
+            foreach (var player in players)
+            {
+                Console.WriteLine($"Player no : {player.Key}, Player name : {player.Value}");
+            }
+        }
+    }
+
+}
+
+
+
+
+
+
+Multicaste Delegate-
+___________________________
+
+the delecates can be used to call  mutiple functions at once with a help of single delecate variable
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MulticastDelegate
+{
+    public delegate void SayHiDelegate();
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            SayHiDelegate sayHi = null;
+
+            sayHi = new SayHiDelegate(SayHiEnglish);
+            sayHi += new SayHiDelegate(SayHiSpanish);
+            sayHi += new SayHiDelegate(SayHiJapanese);
+            sayHi += new SayHiDelegate(SayHiItalian);
+            sayHi += new SayHiDelegate(SayHiGerman);
+            sayHi += new SayHiDelegate(SayHiArabic);
+
+            sayHi();
+        }
+
+        // Say hi in English
+        public static void SayHiEnglish()
+        {
+            Console.WriteLine("Hi there.");
+        }
+
+        // Say hi in Spanish
+        public static void SayHiSpanish()
+        {
+            Console.WriteLine("Hola.");
+        }
+
+        // Say hi in Italian
+        public static void SayHiItalian()
+        {
+            Console.WriteLine("Ciao.");
+        }
+
+        // Say hi in German
+        public static void SayHiGerman()
+        {
+            Console.WriteLine("Hallo.");
+        }
+
+        // Say hi in Arabic (مرحباً)
+        public static void SayHiArabic()
+        {
+            Console.WriteLine("Marhabaan.");
+        }
+
+        // Say hi in Japanese (こんにちは)
+        public static void SayHiJapanese()
+        {
+            Console.WriteLine("Kon'nichiwa");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+generic delecate-
+___________________________
+
+this type of delicate dont ahve data type it will be <T>
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GenericDelegates
+{
+    public delegate T DisplayInfo<T>(T value);
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DisplayInfo<int> myNumber = new DisplayInfo<int>(DisplayValue);
+            Console.WriteLine(myNumber(100));
+
+            DisplayInfo<double> myDoubleNumber = new DisplayInfo<double>(DisplayValue);
+            Console.WriteLine(myDoubleNumber(3.5));
+
+            DisplayInfo<DateTime> myDate = new DisplayInfo<DateTime>(DisplayValue);
+            Console.WriteLine(myDate(new DateTime(2010,2,28)));
+        }
+
+        public static T DisplayValue<T>(T value)
+        {
+            Console.WriteLine("Now we are accessing variable of type " + value.GetType().Name);
+            return value;
+        }
+    }
+}
+
+
+
+
+
+
+
+Anonymous methods-0
+___________________________
+
+this is method which is only represented by a delecate variable so this doesnt has own function name
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AnonymousMethods
+{
+    delegate void DisplayInfo();
+    delegate void DisplayInfoBasedOnNumber(int number);
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DisplayInfo normalDelegate = new DisplayInfo(GetInformation);
+            normalDelegate();
+
+            DisplayInfoBasedOnNumber oneParameterDelegate = new DisplayInfoBasedOnNumber(GetInformation);
+            oneParameterDelegate(100);
+
+            Console.WriteLine("----------------------\n");
+
+            DisplayInfo normalDelegateAnonymous = delegate { Console.WriteLine("Hi from the anonymous method"); };
+            normalDelegateAnonymous();
+
+            DisplayInfoBasedOnNumber oneParameterDelegateAnonymous = 
+                delegate (int x) { Console.WriteLine("Hi from the anonymous method which takes one int parameter " + x); };
+            oneParameterDelegateAnonymous(150);
+
+            //anonymous method represented using delecate
+
+        }
+
+        public static void GetInformation()
+        {
+            // Some logic goes in here
+            Console.WriteLine("Delegate with no parameter");
+        }
+
+        public static void GetInformation(int x)
+        {
+            // Some logic goes in here
+            Console.WriteLine("Delegate with one parameter : " + x);
+        }
+    }
+}
+
+
+
+
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LambdaExpression
+{
+    delegate void DisplayMessage();
+    delegate int Multiply(int n);    
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Multiply MultiplyNumber = delegate (int n) { { return n * 3; } };
+            Console.WriteLine(MultiplyNumber(30));
+
+
+            DisplayMessage Message = delegate { Console.WriteLine("Hi from the anonymous method"); };
+            Message();
+            
+        }
+    }
+}
+
+
+
+
+lambda expression-
+___________________________
+
+=> is used to represent a function
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LambdaExpression
+{
+    delegate void DisplayMessage();
+    delegate int Multiply(int n);    
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Multiply MultiplyNumber = delegate (int n) { { return n * 3; } };
+            Multiply MultiplyNumber = n => n * 3;
+            Console.WriteLine(MultiplyNumber(30));
+
+
+            //DisplayMessage Message = delegate { Console.WriteLine("Hi from the anonymous method"); };
+            DisplayMessage Message = () => Console.WriteLine("Hi from the lambda expression");
+            Message();
+            
+        }
+    }
+}
 
 
 
@@ -9449,7 +9866,18 @@ namespace Delegates
 
 
 
-ls -8 8
+
+
+
+
+
+
+
+
+
+
+
+ls -8 14
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
