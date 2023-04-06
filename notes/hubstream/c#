@@ -8846,6 +8846,23 @@ ___________________________
 
 a function calling itself untill a conditions is satisfied
 
+Recursive methods
+Recursive methods : means a method calling itself.
+• Recursive method calls itself a number of times until a specific condition happens.
+• Recursive method has parameters and each time it calls itself it has a new parameter values.
+
+A factorial is a function that multiplies a number by every number below it.
+1! = 1
+2! = 2(1) = 2
+3! = 3(2)(1) = 6
+4! = 4(3)(2)(1) = 24
+5! = 5(4)(3)(2)(1) = 120
+
+What is .Net framework?
+It is a component of Windows that includes a virtual execution system
+called the (CLR) Common Language Runtime and a unified set of class
+libraries.
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9058,7 +9075,12 @@ namespace GenericArguments
 params -
 __________________
 
-this used to passs a bunch of strings without defining as a array to a array
+this used to passs a bunch of strings or any data without defining as a array to a array
+
+Params
+
+Create a method the takes an array (using params) of any datatype and display
+the items inside of this array
 
 
 using System;
@@ -9160,6 +9182,22 @@ ___________________________
 "this" is the key word used here and if u see this method is use to send a variuable as an argument without beign passed u can send the value with the help of "." operator.
 
 it can be also used for the operator overloading and variable overloading
+
+Extension methods
+Extension methods enable you to add methods to existing types without modifying the original type.
+int x = 0;
+CompareTo
+Equals
+GetHashCode
+GetType
+ToString
+• An extension method is defined as static method but it is called like as instance method.
+• Must be created inside a static class.
+• The first parameter specifies which type the method operates on, and it is preceded by the "this" keyword.
+• An extension method having the same name and signature like as an instance method will never be called
+since it has low priority than instance method.
+
+
 
 using System;
 using System.Collections.Generic;
@@ -9357,6 +9395,17 @@ __________________
 these are nothing but the reference variable for the function and this can also be overloaded 
 
 see its as simple as giving a new name for the existing function with out modifing it 
+
+Delegates
+A delegate is a reference type variable that holds the reference to a method. Which means
+delegates allow methods to be passed as parameters.
+
+Create a delegate that takes a dictionary (int, string) as a parameter and display the content of the
+dictionary 
+
+
+
+
 
 using System;
 using System.Collections.Generic;
@@ -9730,6 +9779,13 @@ ___________________________
 
 this is method which is only represented by a delecate variable so this doesnt has own function name
 
+Anonymous methods
+Anonymous method is a method without a name. It is defined using the delegate keyword and can be
+assigned to a delegate instance. 
+
+
+
+
 
 using System;
 using System.Collections.Generic;
@@ -9818,6 +9874,14 @@ ___________________________
 
 => is used to represent a function
 
+Lambda expressions
+Lambda Expression is a shorter way of representing anonymous method.
+Lambda expressions use this => 
+
+
+
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9852,6 +9916,556 @@ namespace LambdaExpression
 
 
 
+list.where-
+__________________
+
+this function is used to make seperate sub list with a condition with the lambda function
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LambdaWithGenericList
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<int> list = new List<int>();
+
+            list.Add(5); list.Add(8); list.Add(6); list.Add(15);
+            list.Add(7); list.Add(2); list.Add(1); list.Add(12);
+
+            var oddList = list.Where(n => n % 2 != 0).ToList();
+            var evenList = list.Where(n => n % 2 == 0).ToList();
+
+            Console.WriteLine("Odd Numebrs");
+            foreach (var item in oddList)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Even Numbers");
+            foreach (var item in evenList)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }
+}
+
+
+
+
+
+generic delecate function-
+___________________________
+
+
+Generic delegate : Func
+Func is a built-in generic delegate, it has up to 16 parameters.
+Func has one out parameter.
+The last parameter is considered as an out parameter.
+Func delegate type must return a value.
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FuncDelegate
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Func<int, int, int> funcOne = AddTwoNumbers;
+            Console.WriteLine(AddTwoNumbers(3, 10));
+
+            Func<int> funcTwo = AddTwoNumbers;
+            Console.WriteLine(funcTwo()); 
+            
+        }
+
+        public static int AddTwoNumbers(int x, int y)
+        {
+            return x + y;
+        }
+
+        public static int AddTwoNumbers()
+        {
+            int z = 0;
+            int x = 5;
+            int y = 5;
+
+            z = x + y;
+
+            return z;
+        }
+
+    }
+}
+
+
+
+
+
+
+generic delecate action-
+___________________________ 
+
+
+Generic delegate : Action
+Action delegate is the same as Func delegate except that the Action delegate doesn't return a value 
+
+they dont return a value
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ActionDelegate
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Action<int> actionOne = DisplayInformation;
+            actionOne(16);
+
+            Action actionTwo = DisplayInformation;
+            actionTwo();
+        }
+
+        public static void DisplayInformation(int number)
+        {
+            Console.WriteLine("Daniele De Rossi number is " + number);
+        }
+
+        public static void DisplayInformation()
+        {
+            Console.WriteLine("Gabriel Batistuta");
+        }
+    }
+}
+
+
+
+
+
+
+generic delecate predicate-
+_____________________________________________
+
+it takes one parameter ad returns a bool value
+
+Generic delegate : Predicate
+Predicate delegate is the same as Action delegate and Func delegate. But it must take one input
+parameter and returns a boolean value
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PredicateDelegate
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Predicate<int> checkIfAvailable = isAdmin;
+
+            Console.WriteLine(checkIfAvailable(50)); 
+        }
+
+        public static bool isAdmin(int empNo)
+        {
+            if (empNo == 10)
+                return true;
+            else
+                return false;
+        }
+    }
+}
+
+
+
+
+
+program using action for anonyomous and LambdaExpression-
+_____________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ActionWithAnonymousAndLambda
+{
+    class Program
+    {
+        public static void Main()
+        {
+            string name = "Jack";
+
+            // Action
+            Action<string> Message = ShowMessage;
+            Message(name);
+
+            // Anonymous method
+            name = "John";
+            Action<string> anonymousMethod = delegate (string myName) { Console.WriteLine($"Hi, how are you today, {myName}?"); };
+            anonymousMethod(name);
+
+            // Lambda expression
+            name = "Sandra";
+            Action<string> lambdaExpression = x => Console.WriteLine($"Hi, how are you today, {x}?");
+            lambdaExpression(name);
+
+        }
+
+        public static void ShowMessage(string name)
+        {
+            Console.WriteLine($"Hi, how are you today, {name}?");
+        }
+    }
+}
+
+
+
+
+
+
+events-
+_________
+
+
+Events
+Events are just a user action such as mouse clicks, key pressed and many other more
+The events are declared and raised in a class and associated with the event handlers using
+delegates within the same class or some other class.
+
+Publisher
+is an object that contains
+the definition of the event
+and the delegate
+
+Subscriber
+is an object that accepts the
+event and provides an event
+handler
+
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Events
+{
+    public delegate void myDelegate(string name);
+
+    class Program
+    {
+        public event myDelegate myEvent;
+
+        public Program()
+        {
+            myEvent += new myDelegate(SayHiEnglish);
+            myEvent += new myDelegate(SayHiArabic);
+            myEvent += new myDelegate(SayHiItalian);
+        }
+
+        static void Main(string[] args)
+        {
+            Program prog = new Program();
+            prog.myEvent("Jack");
+        }
+
+        public void SayHiEnglish(string name)
+        {
+            Console.WriteLine("Hi " + name);
+        }
+
+        public void SayHiArabic(string name)
+        {
+            Console.WriteLine("Marhaaban " + name);
+        }
+
+        public void SayHiItalian(string name)
+        {
+            Console.WriteLine("Caio " + name);
+        }
+    }
+}
+
+
+
+
+
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MoreEvents
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Football info = new Football();
+            info.DisplayClub("Manchester United", "England");
+            info.DisplayPlayerInformation("Ronaldo", "Real Madrid"); 
+        }
+    }
+
+    class Football
+    {
+        private DisplayInformation displayInfoInstance;
+
+        public Football()
+        {
+            displayInfoInstance = new DisplayInformation();
+            displayInfoInstance.DisplayDateAfterEvent += DisplayInfoInstance_DisplayDateAfterEvent;
+            displayInfoInstance.DisplayMessageBeforeEvent += DisplayInfoInstance_DisplayMessageBeforeEvent;
+            
+        }
+
+        private void DisplayInfoInstance_DisplayMessageBeforeEvent()
+        {
+            Console.WriteLine("Program is about to display information...");
+        }
+
+        private void DisplayInfoInstance_DisplayDateAfterEvent()
+        {
+            Console.WriteLine("Information has been displayed on " + DateTime.Now.ToShortTimeString());
+        }
+
+        public void DisplayClub(string club, string country)
+        {
+            displayInfoInstance.DisplayClub(club, country);
+        }
+
+        public void DisplayPlayerInformation(string name, string club)
+        {
+            displayInfoInstance.DisplayPlayer(name, club);
+        }
+    }
+
+    class DisplayInformation
+    {
+
+        public delegate void DisplayDateAfterDelegate();
+        public delegate void DisplayMessageBeforeDelegate();
+
+        public event DisplayDateAfterDelegate DisplayDateAfterEvent;
+        public event DisplayMessageBeforeDelegate DisplayMessageBeforeEvent;
+
+        public void DisplayClub(string clubName, string country)
+        {
+            DisplayMessageBeforeEvent();
+            Console.WriteLine($"{clubName} from {country}");
+            DisplayDateAfterEvent(); Console.WriteLine();
+        }
+
+        public void DisplayPlayer(string playerName, string clubName)
+        {
+            DisplayMessageBeforeEvent();
+            Console.WriteLine($"{playerName} plays for {clubName}");
+            DisplayDateAfterEvent();
+        }
+    }
+}
+
+
+
+
+
+
+timers-
+__________
+
+h0w to run programs repeted with time or run at a particular time
+
+here is how timers come
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Timers;
+
+namespace TimerApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Timer timer = new Timer();
+            timer.Elapsed += OnEachSecond;
+            timer.Interval = 500;
+            timer.Enabled = true;
+
+            Console.WriteLine("Press (x) to exit");
+            while (Console.Read() != 'x') ;
+        }
+
+        private static void OnEachSecond(object sender, ElapsedEventArgs e)
+        {
+            Console.WriteLine("Yes it is working " + DateTime.Now.ToLongTimeString());
+        }
+    }
+}
+
+
+
+
+
+
+exprtession bodied members-
+_____________________________________________
+
+this is used to short the function using lambda symbol
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ExpressionbodiedMembers
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine(AddTwoNumbersFaster(5, 10));
+            SayHi();
+            Animals dog = new Animals();
+            dog.Name = "Max";
+            Console.WriteLine(dog.Name);
+        }
+
+        public static void SayHi() => Console.WriteLine("Welcome back Walter");
+
+        public static int AddTwoNumbersFaster(int x, int y) => x + y;
+
+        public static int AddTwoNumbers(int x, int y)
+        {
+            return x + y;
+        }
+    }
+
+    class Animals
+    {
+        public Animals() => Console.WriteLine("A new animal has been created!");
+        
+
+        private int age;
+        public int Age
+        {
+            get { return age; }
+            set { age = value; }
+        }
+
+        private string name;
+        public string Name
+        {
+            get => name;
+            set => name = value;
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+other pros-
+_____________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssignmentNo17
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string name = "lord of the rings";
+            Console.WriteLine(name.CapitalizeFirstLetter());
+        }
+    }
+
+    public static class MyExtensions
+    {
+        public static string CapitalizeFirstLetter(this string value)
+        {
+            char[] letters = value.ToLower().ToCharArray();
+            if (letters.Length >= 1)
+            {
+                if (char.IsLower(letters[0]))
+                {
+                    letters[0] = char.ToUpper(letters[0]);
+                }
+            }
+            for (int i = 1; i < letters.Length; i++)
+            {
+                if (letters[i - 1] == ' ')
+                {
+                    if (char.IsLower(letters[i]))
+                    {
+                        letters[i] = char.ToUpper(letters[i]);
+                    }
+                }
+            }
+            return new string(letters);
+        }
+    }
+}
 
 
 
@@ -9862,10 +10476,82 @@ namespace LambdaExpression
 
 
 
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssignmentNo16
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ShowAllFoldersUnder(@"c:\files", 0);
+        }
+
+        private static void ShowAllFoldersUnder(string path, int indent)
+        {
+            foreach (string folder in Directory.GetDirectories(path))
+            {
+                files(folder, indent); // assignment
+                Console.WriteLine("{0}{1}", new string(' ', indent), Path.GetFileName(folder) +" : created on ("+ File.GetCreationTime(folder)+")");
+                ShowAllFoldersUnder(folder, indent + 2);
+            }
+        }
+
+        // Assignment
+        public static void files(string folder, int indent)
+        {
+            string[] dirs = Directory.GetFiles(folder);
+            //Console.WriteLine("The number of files starting with c is {0}.", dirs.Length);
+            foreach (string dir in dirs)
+            {
+                //Console.WriteLine(dir,indent+3);
+                Console.WriteLine("{0}{1}", new string(' ', indent), dir + " : created on (" + File.GetCreationTime(dir)+")");
+            }
+        }
+    }
+}
 
 
+________________________________________________________________________________________________________________________________________________________________________________________________________
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace AssignmentNo18
+{
+    public delegate void MathDelegate(int x,int y);
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            MathDelegate performMathOperations = null;
+            performMathOperations += Add;
+            performMathOperations += Multiply;
+            performMathOperations += Divide;
+            performMathOperations += Substract;
+            performMathOperations += Remainder;
+
+            performMathOperations(20,3);
+        }
+
+        public static void Add(int x, int y) => Console.WriteLine($"{x} + {y} = " + (x + y));
+        public static void Multiply(int x, int y) => Console.WriteLine($"{x} * {y} = " + (x * y));
+        public static void Divide(int x, int y) => Console.WriteLine($"{x} / {y} = " + ((double)x / (double)y));
+        public static void Substract(int x, int y) => Console.WriteLine($"{x} - {y} = " + (x - y));
+        public static void Remainder(int x, int y) => Console.WriteLine($"{x} % {y} = " + (x % y));
+    }
+}
 
 
 
