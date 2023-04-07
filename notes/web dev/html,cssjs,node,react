@@ -671,6 +671,20 @@ In React, this comes in handy when you do not want to mutate specific data like 
 
 
 
+react hooks-
+___________________
+
+react hooks are used to dynamically change the contents of the webpage
+
+useState-
+_____________
+
+this is used for changing the variable value dynamically on the webpage without loading each time the value is updatedBookList
+
+
+
+
+
 
 
 for more go refer https://www.youtube.com/watch?v=hQAHSlTtcmY and https://radixweb.com/blog/steps-to-build-react-project-with-create-react-app

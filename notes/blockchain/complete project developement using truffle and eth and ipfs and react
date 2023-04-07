@@ -535,6 +535,36 @@ ___________
 
 
 
+
+
+
+Hooks-
+
+u need to know the react hooks - https://www.youtube.com/watch?v=O6P86uwfdR0&list=PLZlA0Gpn_vH8EtggFGERCwMY5u5hOjf-h
+
+
+
+
+
+react router-
+______________
+
+this npm package is used to create the sub directory in react library like 
+
+home page url
+index page url 
+login page url
+etc ..............
+
+to install it using npm
+
+npm i react-router-dom
+
+
+
+
+
+
 last seen - full comp - https://www.youtube.com/watch?v=vEyxWt-pmjo&list=PLgPmWS2dQHW9F8fRXzrFBtcrwE-uS8Qa5&index=11
 
 https://www.youtube.com/watch?v=62f757RVEvU - 3
