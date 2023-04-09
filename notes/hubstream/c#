@@ -11362,6 +11362,701 @@ orderby variable_name, variable_name2
 
 
 
+making quries with methods(function) using linq-
+_____________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LINQQueriesWithMethods
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var filteredList = new List<Employees>();
+            var listOfEmployees = new List<Employees>
+            {
+                new Employees { EmployeeID=1150, FirstName="Jack",LastName="Steven", Salary=5000m, Age=35,Appraisal = new List<int>{7,7,8,9,7} },
+                new Employees { EmployeeID=1150, FirstName="Debora",LastName="Watson", Salary=10000m, Age=45,Appraisal = new List<int>{9,9,8,9,8} },
+                new Employees { EmployeeID=1150, FirstName="Claire",LastName="Adam", Salary=7500m, Age=32,Appraisal = new List<int>{9,7,8,9,7} },
+                new Employees { EmployeeID=1150, FirstName="Michael",LastName="Rob", Salary=3500m, Age=22,Appraisal = new List<int>{6,7,8,7,7} },
+                new Employees { EmployeeID=1150, FirstName="Matthew",LastName="Forest", Salary=4500m, Age=28,Appraisal = new List<int>{7,7,6,6,7} },
+                new Employees { EmployeeID=1150, FirstName="Charles",LastName="Kris", Salary=8000m, Age=27,Appraisal = new List<int>{8,9,7,8,8} },
+                new Employees { EmployeeID=1150, FirstName="Robert",LastName="Wilson", Salary=8000m, Age=28,Appraisal = new List<int>{8,9,8,9,9} },
+                new Employees { EmployeeID=1150, FirstName="Emma",LastName="Brooks", Salary=6000m, Age=23,Appraisal = new List<int>{8,6,9,9,7} },
+                new Employees { EmployeeID=1150, FirstName="Jennifer",LastName="Blake", Salary=3000m, Age=38,Appraisal = new List<int>{6,7,7,6,6} },
+                new Employees { EmployeeID=1150, FirstName="Terry",LastName="Loyd", Salary=9000m, Age=49,Appraisal = new List<int>{9,9,9,8,7} },
+                new Employees { EmployeeID=1150, FirstName="Adam",LastName="Spencer", Salary=7000m, Age=33,Appraisal = new List<int>{8,8,8,6,7} },
+                new Employees { EmployeeID=1150, FirstName="Stacy",LastName="Shelton", Salary=4000m, Age=25,Appraisal = new List<int>{8,7,8,6,7} }
+            };
+
+            Employees.DisplayWithApparisal(listOfEmployees, "Before Sorting");
+
+            Employees.DisplayWithApparisal(SortEmployees(listOfEmployees),"After Sorting");
+
+
+        }
+
+
+        public static List<Employees> SortEmployees(List<Employees> employees)
+        {
+            var list = from emp in employees
+                       orderby emp.Age descending
+                       select emp;
+            return list.ToList();
+        }
+        
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LINQQueriesWithMethods
+{
+    class Employees
+    {
+        private int employeeID;
+        private string firstName;
+        private string lastName;
+        private decimal salary;
+        private int age;
+        private List<int> appraisal;
+
+        public int EmployeeID
+        {
+            get { return employeeID; }
+            set { employeeID = value; }
+        }
+        public string FirstName
+        {
+            get { return firstName; }
+            set { firstName = value; }
+        }
+        public string LastName
+        {
+            get { return lastName; }
+            set { lastName = value; }
+        }
+        public decimal Salary
+        {
+            get { return salary; }
+            set { salary = value; }
+        }
+        public int Age
+        {
+            get { return age; }
+            set { age = value; }
+        }
+        public List<int> Appraisal
+        {
+            get { return appraisal; }
+            set { appraisal = value; }
+        }
+
+        public static void Display(List<Employees> employees)
+        {
+            foreach (var employee in employees)
+            {
+                Console.WriteLine($"{employee.FirstName} {employee.LastName}, {employee.Salary}, {employee.Age}");
+            }
+            Console.WriteLine("\n--------\n");
+        }
+
+        public static void DisplayWithApparisal(List<Employees> employees, string message)
+        {
+            if (message != string.Empty)
+            {
+                Console.WriteLine(message);
+                Console.WriteLine("----------------------------------------------------");
+            }
+            foreach (var employee in employees)
+            {
+                Console.Write($"{employee.FirstName} {employee.LastName}, {employee.Salary}, {employee.Age}, last 5 apparisals |");
+                foreach (var app in employee.Appraisal)
+                {
+                    Console.Write(app + "|");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("\n");
+        }
+
+    }
+}
+
+
+
+
+
+
+time span operations-
+___________________________
+
+see web for more operations
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TimeSpanApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            TimeSpan ts = new TimeSpan(26,10,15);
+            Console.WriteLine(ts.TotalHours);
+
+            ts = ts.Add(new TimeSpan(0, 0, 30));
+            Console.WriteLine(ts);
+
+            DateTime myDateOne = new DateTime(1990, 10, 30);
+            DateTime myDateTwo = new DateTime(2017, 10, 30);
+
+            TimeSpan sub = myDateTwo - myDateOne;
+            sub = myDateTwo.Subtract(myDateOne);
+            Console.WriteLine(sub.TotalDays/365.25);
+        }
+    }
+}
+// this just finds the no of days between two dates
+
+
+
+
+
+
+
+multithreading-
+__________________
+
+system.Threading is required
+
+syntax:
+
+Thread threadname = new Thread(new ThreadStart(method name or function name));
+threadname.start()
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+
+namespace CreatingThreads
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Thread t1 = new Thread(new ThreadStart(SayHiEnglish));
+            t1.Name = "Thread Number 1 (English)";
+            t1.Start();
+
+            Thread t2 = new Thread(new ThreadStart(SayHiSpanish));
+            t2.Name = "Thread Number 2 (Spanish)";
+            t2.Start();
+        }
+
+        public static void SayHiEnglish()
+        {
+            Console.WriteLine("Starting to execute " + Thread.CurrentThread.Name);
+            for (int i = 0; i < 50; i++)
+            {
+                Console.WriteLine(i + " Hi...");
+            }
+        }
+
+        public static void SayHiSpanish()
+        {
+            Console.WriteLine("Starting to execute " + Thread.CurrentThread.Name);
+            for (int i = 0; i < 50; i++)
+            {
+                Console.WriteLine(i + " Hola...");
+            }
+        }
+
+
+
+
+    }
+}
+
+
+
+
+
+Management of thread-
+___________________________
+
+u  can join the thread u can rename it if u join it both program will run in same thread
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+
+namespace ManagingThreads
+{
+    class Program
+    {
+        static Thread t1;
+        static Thread t2;
+        static void Main(string[] args)
+        {
+            t1 = new Thread(new ThreadStart(SayHiEnglish));
+            t1.Name = "Thread Number 1 (English)";
+            t1.Start();
+
+            t2 = new Thread(new ThreadStart(SayHiSpanish));
+            t2.Name = "Thread Number 2 (Spanish)";
+            t2.Start();
+        }
+
+        public static void SayHiEnglish()
+        {
+            Console.WriteLine("Starting to execute " + Thread.CurrentThread.Name);
+            
+            for (int i = 0; i < 50; i++)
+            {
+                //Thread.Sleep(1000);
+                //if (i == 31)
+                //{
+                //    Console.WriteLine(Thread.CurrentThread.Name + " is about to be aborted");
+                //    t1.Abort();
+                //}
+                Console.WriteLine(i + " Hi...");
+            }
+        }
+
+        public static void SayHiSpanish()
+        {
+            Console.WriteLine("Starting to execute " + Thread.CurrentThread.Name);
+            for (int i = 0; i < 50; i++)
+            {
+                t1.Join();
+                //Thread.Sleep(new TimeSpan(0, 0, 1));
+                Console.WriteLine(i + " Hola...");
+            }
+        }
+
+
+
+
+    }
+}
+
+
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+
+namespace ThreadsExercise1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Thread t1 = new Thread(new ThreadStart(() => Console.WriteLine("Hello from lambda expression")));
+            t1.Start();
+        }
+    }
+}
+
+
+
+pro2______________________with anonymous method________________________________________________________________________________________________________________________________________________________________________________
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+
+namespace ThreadsExercise2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Thread t1 = new Thread(new ThreadStart(delegate ()
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Console.WriteLine("Hello from the anonymous method assigned to the t1 thread");
+                }
+            }));
+            t1.Start();
+        }
+    }
+}
+
+
+
+
+Multithreading 
+
+In computer architecture, multithreading is the ability of a central processing unit (CPU) or a single core in a multi-core processor to execute multiple processes or threads concurrently, appropriately supported by the operating system. This approach differs from multiprocessing, as with multithreading the processes and threads share the resources of a single or multiple cores: the computing units, the CPU caches, and the translation lookaside buffer (TLB).
+
+Where multiprocessing systems include multiple complete processing units, multithreading aims to increase utilization of a single core by using thread-level as well as instruction-level parallelism. As the two techniques are complementary, they are sometimes combined in systems with multiple multithreading CPUs and in CPUs with multiple multithreading cores.
+
+
+
+Advantages
+If a thread gets a lot of cache misses, the other threads can continue taking advantage of the unused computing resources, which may lead to faster overall execution as these resources would have been idle if only a single thread were executed. Also, if a thread cannot use all the computing resources of the CPU (because instructions depend on each other's result), running another thread may prevent those resources from becoming idle.
+
+Disadvantages
+Multiple threads can interfere with each other when sharing hardware resources such as caches or translation lookaside buffers (TLBs). As a result, execution times of a single thread are not improved but can be degraded, even when only one thread is executing, due to lower frequencies or additional pipeline stages that are necessary to accommodate thread-switching hardware.
+
+Overall efficiency varies; Intel claims up to 30% improvement with its Hyper-Threading Technology, while a synthetic program just performing a loop of non-optimized dependent floating-point operations actually gains a 100% speed improvement when run in parallel. On the other hand, hand-tuned assembly language programs using MMX or AltiVec extensions and performing data prefetches (as a good video encoder might) do not suffer from cache misses or idle computing resources. Such programs therefore do not benefit from hardware multithreading and can indeed see degraded performance due to contention for shared resources.
+
+Multithreading in C#
+Threading enables your C# program to perform concurrent processing so that you can do more than one operation at a time. For example, you can use threading to monitor input from the user, perform background tasks, and handle simultaneous streams of input. Threads have the following properties: Threads enable your program to perform concurrent processing. The .NET Framework System.Threading namespace makes using threads easier. Threads share the application's resources. For more information, see Using Threads and Threading. By default, a C# program has one thread. However, auxiliary threads can be created and used to execute code in parallel with the primary thread. These threads are often called worker threads. Worker threads can be used to perform time-consuming or time-critical tasks without tying up the primary thread. For example, worker threads are often used in server applications to fulfill incoming requests without waiting for the previous request to be completed. Worker threads are also used to perform "background" tasks in desktop applications so that the main thread--which drives user interface elements--remains responsive to user actions. Threading solves problems with throughput and responsiveness, but it can also introduce resource-sharing issues such as deadlocks and race conditions. Multiple threads are best for tasks that require different resources such as file handles and network connections. Assigning multiple threads to a single resource is likely to cause synchronization issues, and having threads frequently blocked when waiting for other threads defeats the purpose of using multiple threads. A common strategy is to use worker threads to perform time-consuming or time-critical tasks that do not require many of the resources used by other threads. Naturally, some resources in your program must be accessed by multiple threads. For these cases, the System.Threading namespace provides classes for synchronizing threads. These classes include Mutex, Monitor, Interlocked, AutoResetEvent, and ManualResetEvent. You can use some or all these classes to synchronize the activities of multiple threads, but some support for threading is supported by the C# language. For example, the Lock Statement provides synchronization features through implicit use of Monitor.
+
+
+
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+
+namespace WithMultithreading
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Thread t1 = new Thread(new ThreadStart(delegate ()
+            {
+                Console.WriteLine("Process 1 started");
+                Console.WriteLine("Process 1 is running");
+                for (long i = 0; i < 2_500_000_000; i++)
+                {}
+                Console.WriteLine("Process 1 has been completed \n");
+            }));
+            t1.Start();
+
+            Thread t2 = new Thread(new ThreadStart(delegate ()
+            {
+                Console.WriteLine("Process 2 started");
+                Console.WriteLine("Process 2 is running");
+                for (long i = 0; i < 5_000_000_000; i++)
+                {}
+                Console.WriteLine("Process 2 has been completed \n");
+            }));
+            t2.Start();
+
+            Thread t3 = new Thread(new ThreadStart(delegate ()
+            {
+                Thread.Sleep(1);
+                Console.WriteLine("What is your name?");
+                string name = Console.ReadLine();
+                Console.WriteLine("Hello " + name + " welcome back");
+            }));
+            t3.Start();
+        }
+    }
+}
+
+
+
+
+
+parameterized thread-
+___________________________
+
+u are only allowed to pass the object,u cannot pass the value direcetly it converst to object so u can parse it as a required datatype
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+
+namespace ParameterizedThreadApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Helper helper = new Helper();
+            Thread t1 = new Thread(new ParameterizedThreadStart(helper.Loop));
+            t1.Start(500);
+        }
+    }
+
+    class Helper
+    {
+        public void Loop(object number)
+        {
+            for (int i = 0; i < int.Parse(number.ToString()); i++)
+            {
+                Console.WriteLine(i);
+            }
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+dead lock or lock keyword-
+___________________________
+
+lock() is a method that is used and this allows only one thread to access the critical session at a time
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+
+namespace Deadlocks
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Files file = new Files();
+            Thread[] threads = new Thread[10];
+
+            for (int i = 0; i < 10; i++)
+            {
+                threads[i] = new Thread(new ParameterizedThreadStart(file.Write));
+                threads[i].Start($"c:\\accounts{i}.txt");
+            }
+        }
+    }
+
+    class Files
+    {
+        public Object thisLock = new Object();
+        public void Write(object path)
+        {
+            lock(thisLock)
+            {
+                // some logic of writing in files goes in where
+                Console.WriteLine("Writing in " + path);
+                Thread.Sleep(2000);
+                Console.WriteLine("Writing process has been completed");
+            }
+        }
+
+        public void Read(object path)
+        {
+            lock (thisLock)
+            {
+                // some logic of writing in files goes in where
+                Console.WriteLine("Reading from " + path);
+                Thread.Sleep(1000);
+                Console.WriteLine("Reading process has been completed");
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+monitor-
+__________
+
+u could add a lock to a particular object with the monitor method
+lock is shortcut of monitor but in monitor u can control a single part of the whole function and have precise control
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+
+namespace MonitorClassApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Files file = new Files();
+            Thread[] threads = new Thread[10];
+
+            for (int i = 0; i < 10; i++)
+            {
+                threads[i] = new Thread(new ParameterizedThreadStart(file.Write));
+                threads[i].Start($"c:\\accounts{i}.txt");
+            }
+        }
+    }
+
+    class Files
+    {
+        public void Write(object path)
+        {
+            Monitor.Enter(path);
+            try
+            {
+                // some logic of writing in files goes in where
+                Console.WriteLine("Writing in " + path);
+                Thread.Sleep(2000);
+                Console.WriteLine("Writing process has been completed");
+            }
+            finally
+            {
+                Monitor.Exit(path);
+            }
+        }
+
+        public void Read(object path)
+        {
+            // some logic of reading files goes in where
+            Console.WriteLine("Reading from " + path);
+            Thread.Sleep(1000);
+            Console.WriteLine("Reading process has been completed\n");
+        }
+    }
+}
+
+
+
+
+
+
+What is the difference between Monitor and Lock in C#?
+
+CsharpServer Side ProgrammingProgramming
+
+Both Monitor and lock provides a mechanism that synchronizes access to objects. lock is the shortcut for Monitor.Enter with try and finally.
+
+Lock is a shortcut and it's the option for the basic usage. If we need more control to implement advanced multithreading solutions using TryEnter() Wait(), Pulse(), & PulseAll() methods, then the Montior class is your option.
+
+Example for Lock −
+
+Example
+class Program{
+static object _lock = new object();
+static int Total;
+public static void Main(){
+   AddOneHundredLock();
+   Console.ReadLine();
+}
+public static void AddOneHundredLock(){
+   for (int i = 1; i <= 100; i++){
+      lock (_lock){
+         Total++;
+      }
+   }
+}
+Example for Monitor −
+
+Example
+class Program{
+   static object _lock = new object();
+   static int Total;
+   public static void Main(){
+      AddOneHundredMonitor();
+      Console.ReadLine();
+   }
+   public static void AddOneHundredMonitor(){
+      for (int i = 1; i <= 100; i++){
+         Monitor.Enter(_lock);
+         try{
+            Total++;
+         }
+         finally{
+            Monitor.Exit(_lock);
+         }
+      }
+   }
+}
+
+
+
+
+
+mutex-
+___________
+
+this provides the synchronise access to the resource by achiving the mutual exclusion
+
+this can be used without try or finally
+
+ 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+
+namespace MutexApp
+{
+    class Program
+    {
+        private static Mutex mut = new Mutex();
+        static void Main(string[] args)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Thread newThread = new Thread(new ThreadStart(delegate ()
+                {
+                    for (int d = 0; d < 2; d++)
+                    {
+                        UseResource();
+                    }
+                }));
+                newThread.Name = String.Format("(Thread no. {0})", i + 1);
+                newThread.Start();
+            }
+        }
+
+        private static void UseResource()
+        {
+            Console.WriteLine("{0} is requesting the mutex",Thread.CurrentThread.Name);
+            mut.WaitOne();
+
+            Console.WriteLine("{0} has entered the critical section",Thread.CurrentThread.Name);
+            Thread.Sleep(10000);
+            Console.WriteLine("{0} is leaving the critical section",Thread.CurrentThread.Name);
+
+            mut.ReleaseMutex();
+            Console.WriteLine("{0} has released the mutex",Thread.CurrentThread.Name);
+        }
+    }
+}
 
 
 
@@ -11378,17 +12073,7 @@ orderby variable_name, variable_name2
 
 
 
-
-
-
-
-
-
-
-
-
-
-ls -9 12
+ls -9 25
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 

@@ -676,10 +676,101 @@ ___________________
 
 react hooks are used to dynamically change the contents of the webpage
 
+the hook should always run
+
 useState-
 _____________
 
 this is used for changing the variable value dynamically on the webpage without loading each time the value is updatedBookList
+
+this uses 2 keywords that u can name any but the function part or the 2nd keyword should start with set for easy access and dont forget to add a capword after Set use camel case
+
+syntax:
+
+const [variable,setVariable] = useState(default value)
+
+eg:
+
+const [name,setName] = useState("jhon nicolis")
+
+or
+
+const [name,setName] = useState("")
+
+
+to update the new value 
+
+syntax
+
+setVariable(value)
+
+eg:
+
+setName("baba durabai")
+
+in useState dont pass the function directly it will run every time u change the state of the variable
+
+eg:wrong method
+
+const [name,setName] = useState(func())
+
+the func will ran every time u change the state of the variable
+
+correct method=>
+
+const [name,setName] = useState(() => func())
+
+this is a function calling the func it will be ran only once the state is declared
+
+the useState does overwrite the whole data so if u pass it in the list and only want to change one element of that list or dictonary do use "..." so that it accesss the internal componunts 
+
+eg:
+
+
+setName({count:1,name:"kaja"})
+
+if now we wana change the state only of the count then 
+
+if u want to call the value morwe than twice in a program to change its value dont use the actuall variable 
+
+eg:name here dont use it 
+
+setName("kalim")
+setName("margarit")
+
+it will work only once to avoid it use the previous state method each state variable has a previous state variable
+to access it use the "prev" followed by variable name and the first letter of the variable should be in caps
+
+eg:
+
+wrong way:
+
+setName(count-1)
+
+crt way:
+
+setName(prevCount => prevCount-1 )
+
+
+if u are using list inside the state do use "..." to access it else whole thing will be over written
+
+more on use state --- https://www.youtube.com/watch?v=O6P86uwfdR0&list=PLZlA0Gpn_vH8EtggFGERCwMY5u5hOjf-h
+                  --- https://blog.webdevsimplified.com/2020-04/use-state/
+
+
+
+
+
+
+
+
+useEffect hook-
+__________________
+
+
+
+
+
 
 
 
