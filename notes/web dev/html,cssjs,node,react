@@ -823,6 +823,72 @@ more on use effect - https://www.youtube.com/watch?v=0ZJgIjIuY7U&list=PLZlA0Gpn_
 
 
 
+//ignore all of this below
+//</Image>
+///</br>
+//</or>
+/</put>
+/</or>
+/</or>
+/</action>
+
+
+
+
+
+
+
+useMemo-
+____________
+
+memo is used to cache the function value so that every thing is executed fast
+
+do not use it every time because it might slow down the process due to huge memory saved in cache
+
+syntax:
+
+const funcionname = useMemo((args) => {
+    return slowfunctionname(args)
+},[variable that cause this function to run so that only this function runs when this variable changes])
+
+//html return
+
+return(<>functionname args=args</>)
+
+
+eg: code
+
+import React, { useState, useMemo } from 'react'
+export default function App() {
+const [number, setNumber] = useState(0)
+const [dark, setDark] = useState(false)
+const doubleNumber = useMemo (() => {
+return slowFunction(number)
+}, [number])
+const themeStyles = {
+backgroundColor: dark? 'black' : 'white',
+color: dark? 'white': 'black'
+}
+}
+return (
+<input type="number" value={number} onChange={e => setNumber (parseInt
+(e.target.value))} />
+<button onClick={() => setDark (prevDark => !prevDark)}>Change Theme</button>
+<div style={themeStyles}>{doubleNumber}</div>
+</>
+function slowFunction (num) {
+console.log('Calling Slow Function')
+for (let i = 0; i <= 1000000000; i++) {}
+return num * 2
+
+
+
+
+
+
+
+
+
 
 
 

@@ -13,10 +13,10 @@
 7-8		family				Run 3						Run
 8-9-10	eat/family/sleep			eat/family/powernap/sleep		eat/family/powernap/sleep
 
-		outing/startup/loop								loop/startup
+		outing/startup/loop								loop/startup - https://keep.google.com/u/0/#LIST/1Bk3fZo4gZoozvPTST8U22JPyD8AuWgNrfzW5AV3rOtPJNgIfZXiK8OoCg9UNTA
 										
 
-sunday -infog / call all family mem / enjoy and stay away from phone
+sunday -infog(all days) / call all family mem / enjoy and stay away from phone
 	
 		
 		even		/	odd
