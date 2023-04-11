@@ -12374,6 +12374,59 @@ namespace CancellingTasks
 
 
 
+waiting for other taskes-(using tasks)
+___________________________
+
+the other tasks can be put on hold (wait) using ".wait()" function
+
+to make it wait for all tasks to complete use "Task.WaitAll(tasks)" the whole program will wait untill the mentioned tasks are not overloaded
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace WaitingForTasks
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Task t1 = new Task(() =>
+            {
+                Console.WriteLine("Task 1 started");
+                Console.WriteLine("Task 1 running...\n");
+                Thread.Sleep(8000);
+                Console.WriteLine("Task 1 finished!");
+            });
+            t1.Start();
+            t1.Wait();
+
+            Task t2 = new Task(() =>
+            {
+                Console.WriteLine("Task 2 started");
+                Console.WriteLine("Task 2 running...\n");
+                Thread.Sleep(6000);
+                Console.WriteLine("Task 2 finished!");
+            });
+            t2.Start();
+            t2.Wait();
+
+            Task t3 = new Task(() =>
+            {
+                Console.WriteLine("Task 3 started");
+                Console.WriteLine("Task 3 running...\n");
+                Thread.Sleep(2000);
+                Console.WriteLine("Task 3 finished!");
+            });
+            t3.Start();
+
+            Task.WaitAll(t3);
+        }
+    }
+}
 
 
 
@@ -12383,8 +12436,7 @@ namespace CancellingTasks
 
 
 
-
-ls -9 32
+ls -9 33
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
