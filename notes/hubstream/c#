@@ -12061,6 +12061,314 @@ namespace MutexApp
 
 
 
+semaphore -
+__________________
+
+this allows us to manage and have a count how many threads can enter the critical section 
+
+What is the critical section?
+The critical section refers to the segment of code where processes access shared resources, such as common variables and files, and perform write operations on them. Since processes execute concurrently, any process can be interrupted mid-execution.
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+
+namespace SemaphoreApp
+{
+    class Program
+    {
+        private static Semaphore semaphore = new Semaphore(2, 2);
+        static void Main(string[] args)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                Thread newThread = new Thread(new ThreadStart(delegate ()
+                {
+                    for (int d = 0; d < 1; d++)
+                    {
+                        UseResource();
+                    }
+                }));
+                newThread.Name = String.Format("(Thread no. {0})", i + 1);
+                newThread.Start();
+            }
+        }
+
+        private static void UseResource()
+        {
+            Console.WriteLine("{0} is requesting to enter",Thread.CurrentThread.Name);
+            semaphore.WaitOne();
+
+            Console.WriteLine("{0} has entered the critical section",Thread.CurrentThread.Name);
+            Thread.Sleep(10000);
+            Console.WriteLine("{0} is leaving the critical section",Thread.CurrentThread.Name);
+
+            semaphore.Release();
+            Console.WriteLine("{0} has left the critical section",Thread.CurrentThread.Name);
+        }
+    }
+}
+
+
+
+
+Synchronise and Asynchronise programs-
+_____________________________________________
+
+
+
+
+
+
+
+
+
+Task-
+________
+
+task represents a Asynchronise operation in c# this is type of multithreading of 2 independent tasks
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+
+namespace TasksApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Task task = new Task(new Action(SayHi));
+            task.Start();
+
+            Task task2 = new Task(delegate ()
+            {
+                Console.WriteLine("Task 2 is starting");
+                Console.WriteLine("Task 2 is running");
+                Console.WriteLine("Hi there from task 2");
+                Thread.Sleep(7000);
+                Console.WriteLine("Task 2 is complete");
+            });
+            task2.Start();
+
+            Task task3 = new Task(() =>
+            {
+                Console.WriteLine("Task 3 is starting");
+                Console.WriteLine("Task 3 is running");
+                Console.WriteLine("Hi there from task 3");
+                Thread.Sleep(7000);
+                Console.WriteLine("Task 3 is complete");
+            });
+            task3.Start();
+
+            Console.WriteLine("What is your name");
+            var name = Console.ReadLine();
+            Console.WriteLine("Welcome back " + name);
+
+            Console.ReadLine();
+        }
+
+        public static void SayHi()
+        {
+            Console.WriteLine("Task 1 is starting");
+            Console.WriteLine("Task 1 is running");
+            Console.WriteLine("Hi there from task 1");
+            Thread.Sleep(5000);
+            Console.WriteLine("Task 1 is complete");
+        }
+    }
+}
+
+
+
+passing parameters in the tasks-
+_____________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+
+namespace TasksWithParameters
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Task task1 = new Task(new Action<object>(SayHi), "Jennifer");
+            task1.Start();
+
+            Task task2 = new Task(delegate (object name)
+            {
+                Console.WriteLine("Welcome back " + name);
+            }, "Ahmad");
+            task2.Start();
+
+            Task task3 = new Task(n => { Console.WriteLine("Welcome back " + n); }, "Jack");
+            task3.Start();
+
+            Console.ReadLine();
+        }
+
+        public static void SayHi(object name)
+        {
+            Console.WriteLine("Welcome back " + name);
+        }
+    }
+}
+
+
+
+
+
+return in tasks-
+__________________
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TasksWithReturnValue
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Task<int> task = new Task<int>(()=>
+            {
+                int result = 0;
+                for (int i = 1; i <= 4; i++)
+                {
+                    result += i;
+                    Console.WriteLine(i);
+                }
+                return result;
+            });
+            task.Start();
+            Console.WriteLine(task.Result);
+            Console.ReadLine();
+        }
+    }
+}
+
+
+
+checking the status of the task-
+_____________________________________________
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Timers;
+
+namespace CheckingTasksStatus
+{
+    class Program
+    {
+        static Timer timer;
+        static Task task;
+        static void Main(string[] args)
+        {
+            task = new Task(() =>
+            {
+                for (int i = 1; i <= 500; i++)
+                {
+                    Console.WriteLine(i);
+                }
+            });
+            task.Start();
+
+            timer = new Timer();
+            timer.Elapsed += CheckTheTask; // it runs the bottom funtion until the timer is stoped
+            timer.Interval = 100; //checks at a interval
+            timer.Enabled = true; // the timer is on
+
+            Console.ReadLine();
+        }
+
+        private static void CheckTheTask(object sender, ElapsedEventArgs e)
+        {
+            if (task.Status == TaskStatus.Running) // TaskStatus is a inbuild funtion used to verify the running state
+            {
+                Console.WriteLine("Task is running.....");
+            }
+            else if (task.Status == TaskStatus.RanToCompletion)
+            {
+                Console.WriteLine("Task is complete");
+                timer.Enabled = false;   //timer is off
+            }
+        }
+    }
+}
+
+
+
+
+cancelling tasks-
+___________________________
+
+u need a token pointing the task and this can be any task or method and u can also cancell based on the time
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace CancellingTasks
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken token = cancellationTokenSource.Token;
+
+            Task task = new Task(() =>
+            {
+                for (int i = 0; i < 100000; i++)
+                {
+                    if (token.IsCancellationRequested) //token is used to point the task to be cancelled
+                    {
+                        Console.WriteLine("Task is cancelled!");
+                        return;
+                    }
+                    else
+                    {
+                        Console.WriteLine(i + 1);
+                    }
+                }
+                Console.WriteLine("Task is Complete!");
+            });
+
+            task.Start();
+
+            //Thread.Sleep(3000);
+            //cancellationTokenSource.Cancel();   // this cancel the task directly
+            cancellationTokenSource.CancelAfter(5000); // it cancels the task after 5sec
+
+            Console.ReadLine();
+        }
+    }
+}
 
 
 
@@ -12073,7 +12381,10 @@ namespace MutexApp
 
 
 
-ls -9 25
+
+
+
+ls -9 32
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
