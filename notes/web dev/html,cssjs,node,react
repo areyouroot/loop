@@ -767,6 +767,55 @@ more on use state --- https://www.youtube.com/watch?v=O6P86uwfdR0&list=PLZlA0Gpn
 useEffect hook-
 __________________
 
+the a use effect hook is used when the usestate is rendered 
+
+this is like side effect of the usestate 
+
+when ever the web page is rendered the use effect is also active
+
+u can also metion the change on the particular resource type which is given in the use state
+
+syntax:
+
+import { useState,useEffect } from 'react'
+
+app(){
+    const [anyvariable,setAnyvariable] = useState('chaud')
+    const [useeffectvar,setUseeffectvar] = useState('mc stan')
+
+    setAnyvariable("anyvalue change")
+    setUseeffectvar("change any")
+
+
+    //method 1 it runs on same state change also io. last == now value 
+
+    useEffect(() => {
+        console.log("use state is used")
+    })
+
+    //on change of the useEffectvar method 2
+
+    useEffect(() => {
+        console.log("use state is useeffect var is change")
+    },[useeffectvar]) //this will automatically generate on the render of useEffectvar
+
+    //method 3 on mount this runs when the web page is a loaded
+
+    useEffect(() => {
+        console.log("use state is useeffect var is change")
+    },[])
+
+    //this can also reder when u resize the window and u can listent to the mouse cyursor window width etc
+
+    //METHOD 4 THIS is when any one of the state is triggered
+
+    useEffect(() => {
+        console.log("use state is useeffect var is change")
+    },[useeffectvar,anyvariable])
+}
+
+
+more on use effect - https://www.youtube.com/watch?v=0ZJgIjIuY7U&list=PLZlA0Gpn_vH8EtggFGERCwMY5u5hOjf-h&index=3
 
 
 
