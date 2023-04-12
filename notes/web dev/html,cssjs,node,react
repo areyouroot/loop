@@ -883,6 +883,93 @@ return num * 2
 
 
 
+useRef-
+____________
+
+the useRef is used a variable that need to be rendered in the useEffect 
+u cannot ue the useState variable it will go into the infinite loop so avoid
+
+
+as the useState it also creactes the variable but it is a object not a variable holding value so to access the variable value use 
+
+userefvariable.current = assign the value
+
+this is how u assign and use this variable
+
+eg pro:
+
+﻿
+
+import React, { useState, useEffect, useRef } from 'react'
+export default function App() {
+const [name, setName] = useState('')
+const renderCount = useRef(0)
+useEffect(() => {
+})
+renderCount. current = renderCount.current + 1
+return (
+<>
+<input value={name} onChange={e => setName(e.target.value)}/> <div>My name is {name}</div>
+<div>I rendered {renderCount.current} times</div>
+</>
+>
+}
+
+
+
+
+
+eg pro 2 -------------------
+
+﻿
+
+import React, { useState, useEffect, useRef } from 'react'
+export default function App() {
+=
+const [name, setName] const inputRef useRef()
+function focus() {
+}
+useState('')
+inputRef.current.focus()
+return (
+<>
+<input ref={inputRef} value={name} onChange={e => setName(e.target.value)}/>
+<div>My name is {name}</div>
+<button onClick={focus}>Focus</button>
+</>
+
+
+output:
+
+<textbox:>input value</textbox>
+
+myname is input value
+
+<button> focus </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
