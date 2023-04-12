@@ -11068,6 +11068,47 @@ ___________________________
 
 this is almost same as the sql Query
 
+Introduction to LINQ
+LINQ stands for Language-Integrated Query, it is a query syntax used to bridges the
+gap between the world of objects and the world of data.
+LINQ to Objects
+LINQ to DataSet
+LINQ to XML
+LINQ to Entities
+LINQ to SQL
+Method Syntax
+Query Syntax 
+
+Introduction to LINQ
+Jack Steven, 5000, 35
+Debora Watson, 10000, 45
+Claire Adam, 7500, 32
+Michael Rob, 3500, 22
+Matthew Forest, 4500, 28
+Charles Kris, 8000, 27
+Robert Wilson, 8000, 28
+Emma Brooks, 6000, 23
+Jennifer Blake, 3000, 38
+Terry Loyd, 9000, 49
+Adam Spencer, 7000, 33
+Stacy Shelton, 4000, 25
+
+eg:
+
+foreach (var employee in employees)
+{
+if(employee.Salary>=6000 && employee.Age>=40)
+        Console.WriteLine(employee.Name);
+}
+
+
+Familiar language: you don’t have to learn a new query language for each type of data source or data format.
+Less coding: It reduces the amount of code comparing to the normal approach.
+Readable code: LINQ makes the code more readable.
+Standardization: The same LINQ syntax can be used to query multiple data sources.
+
+pro_________________________________________________________________________________
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11540,6 +11581,52 @@ namespace TimeSpanApp
 multithreading-
 __________________
 
+
+Sequential programming
+All the programs that we were developing are sequential programs each has a
+• Beginning
+• Execution sequence
+• End
+Single thread
+A thread is a single sequential flow of control within a program. 
+
+Introduction to multithreading
+Multithreading
+is a type of execution model that allows multiple threads to exist within the process and they
+execute independently but share their process resources
+Visual Studio
+Responding to
+keystrokes Checking Syntax Displaying Intellisense Offering Solutions for
+errors
+Thread 1 Thread 2 Thread 3 Thread 4
+
+Advantages of multithreading
+
+Responsiveness: multithreading allow an application to remain responsive.
+Faster execution: multithreaded applications operate faster on computers that have multiple CPUs.
+Lower resource consumption: multithreaded applications can handle multiple requests simultaneously using fewer resources.
+Better system utilization : multithreaded applications can be doing different tasks at the same time not in a sequential order.
+
+Disadvantages of multithreading
+
+Complexity: Increases the complexity of your application.
+Difficulty to write code: because you are place each task on a separate independent thread.
+Difficulty to debug code: because the application will not work in a sequential way anymore.
+Difficulty to test code: for the same previous two reasons.
+Potential deadlocks : when two or more threads are blocking each other.
+
+Critical Section
+
+is a section of code that needs to be executed without being interpreted.
+For example
+• A user trying to reserve the last ticket available on a plane.
+• One thread is opening a file and another thread is writing in the file
+Race Condition
+Occurs when two or more threads try to manipulate a shared resource concurrently and outcome of the execution depends on
+the particular order in which the access takes place.
+To avoid race conditions, the execution of critical sections must be mutually exclusive 
+
+
 system.Threading is required
 
 syntax:
@@ -11831,6 +11918,22 @@ namespace ParameterizedThreadApp
 dead lock or lock keyword-
 ___________________________
 
+Deadlocks and lock keyword
+
+Deadlock occurs when a thread enters a waiting state because a requested system resource is held by another waiting thread,
+which in turn is waiting for another resource held by another waiting threat.
+
+Resource A and resource B are used by process X and process Y
+X starts to use A
+X and Y try to start using B
+Y gets B first
+Y needs to use A
+A is locked by X, which is waiting for Y
+
+Lock keyword will ensure that one thread is executing a piece of code at one time. Which means
+that one thread does not enter a critical section of code while another thread is in that critical
+section.
+
 lock() is a method that is used and this allows only one thread to access the critical session at a time
 
 
@@ -12011,6 +12114,12 @@ class Program{
 mutex-
 ___________
 
+Mutex
+Mutex (mutual exclusion) object is used to synchronize access to a protected resource.
+
+A mutex's scope is system-wide, while the monitor's scope and lock’s scope
+is application-wide.
+
 this provides the synchronise access to the resource by achiving the mutual exclusion
 
 this can be used without try or finally
@@ -12063,6 +12172,11 @@ namespace MutexApp
 
 semaphore -
 __________________
+
+
+Semaphore
+Limits the number of threads that can access a resource or pool of resources concurrently.
+
 
 this allows us to manage and have a count how many threads can enter the critical section 
 
@@ -12120,6 +12234,61 @@ _____________________________________________
 
 
 
+Introduction to asynchronous programming
+
+Synchronous Programming
+
+Single Threaded 
+Multi-Threaded
+
+Asynchronous Programming
+
+Single Threaded 
+Multi-Threaded
+
+
+
+
+
+
+Synchronous Programming
+
+Single Threaded
+
+Multi-Threaded
+
+Thread 1 → Task 1 → Task 2 → Task 3 → Task 4
+
+Multi-Threaded : Multiple threads which are performing different tasks simultaneously .
+
+Thread 1 → Task 1
+Thread 2 → Task 2
+Thread 3 → Task 3
+
+
+
+
+
+
+Introduction to asynchronous programming
+
+
+Asynchronous Programming
+Single Threaded Multi-Threaded
+Thread 1 Task 1 Task 2 Task 3 Task 1
+Multi-Threaded : Multiple threads performing different tasks and have the ability to pause in the middle and start
+executing another tasks.
+Thread 1
+Thread 2
+Thread 3
+Task 2 Task 4
+Task 1 Task 2 Task 3 Task 1 Task 2 Task 4
+Task 5 Task 3 Task 7 Task 5 Task 8 Task 9
+Task 7 Task 6 Task 9 Task 4 Task 8 Task 6
+
+
+
+
 
 
 
@@ -12128,6 +12297,18 @@ _____________________________________________
 
 Task-
 ________
+
+
+Tasks
+
+Synchronous model means two or more tasks are running at the same time and it is possible
+that one may block another. 
+
+Asynchronous model means two or more operations are running in different contexts (thread)
+so that they can run concurrently and do not block each other.
+
+Task represents an asynchronous operation.
+
 
 task represents a Asynchronise operation in c# this is type of multithreading of 2 independent tasks
 
@@ -12323,6 +12504,13 @@ namespace CheckingTasksStatus
 cancelling tasks-
 ___________________________
 
+
+Cancelling tasks
+CancellationTokenSource object, which provides a cancellation token through its token property
+and sends a cancellation message by calling the Cancel method.
+CancellationToken which indicates whether cancellation is requested.
+
+
 u need a token pointing the task and this can be any task or method and u can also cancell based on the time
 
 
@@ -12430,13 +12618,996 @@ namespace WaitingForTasks
 
 
 
+task run -
+__________________
+
+used to run a task with out intialization or a insitance
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TaskRunApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            SayHiTask();
+
+            AddNumbersTask(10, 2, 12);
+
+            Console.ReadLine();
+        }
+
+        private static Task SayHiTask()
+        {
+            return Task.Run(() =>
+            {
+                Console.WriteLine("Hi there from the task");
+            });
+        }
+
+        public static Task AddNumbersTask(params int[] numbers) //witrh arguments
+        {
+            return Task.Run(() =>
+            {
+                Console.WriteLine("Add numbers task started...");
+                int result = 0;
+                foreach (var number in numbers)
+                {
+                    result += number;
+                }
+                Console.WriteLine("Total = " + result);
+            });
+        }
+    }
+}
+
+
+
+
+
+Async and Await-
+__________________
+
+
+
+Async and Await are the two keywords that help us to program asynchronously. An async keyword is a method that performs asynchronous tasks such as fetching data from a database, reading a file, etc, they can be marked as “async”. Whereas await keyword making  “await” to a statement means suspending the execution of the async method it is residing in until the asynchronous task completes. After suspension, the control goes back to the caller method. Once the task completes, the control comes back to the states where await is mentioned and executes the remaining statements in the enclosing method.
+
+Let us see the behavior of the code with and without async and await operators.
+
+Synchronous Programming:
+In general, the code executes sequentially i.e statements are executed one after the other.  Let us take a small example of a school that has classes 11 and 12. 
+
+The first thing school does is start the assembly which might be having morning prayer, pledge, daily updates, etc
+After the assembly, teachings begin for class 11 & class 12.
+In our synchronous code below, we will be using the Stopwatch to record the execution time taken by the code.  We have three methods in which Thread.Sleep(n) is specified to simulate that these methods take some time to run.
+
+Example 1:
+
+// C# program 
+using System;
+using System.Threading;
+public class GFG{
+  
+    static void Main(string[] args)
+        {
+  
+            Demo();
+            Console.ReadLine();
+  
+        }
+        public static void Demo() {
+            var watch = new System.Diagnostics.Stopwatch();
+            watch.Start();
+            StartSchoolAssembly();
+            TeachClass12();
+            TeachClass11();
+            watch.Stop();
+            Console.WriteLine($"Execution Time: 
+                              {watch.ElapsedMilliseconds} ms");
+              
+        }
+          
+          
+        public static void StartSchoolAssembly()
+        {
+            Thread.Sleep(8000);
+            Console.WriteLine("School Started");
+        }
+  
+  
+        public static void TeachClass12()
+        {
+            Thread.Sleep(3000);
+            Console.WriteLine("Taught class 12");
+  
+        }
+  
+        public static void TeachClass11()
+        {
+            Thread.Sleep(2000);
+            Console.WriteLine("Taught class 11");
+  
+        }
+    
+}
+
+
+
+
+
+Asynchronous Programming:
+Using asynchronous programming indicates that a method can execute without waiting for another method to complete. Using async and await, we can run the methods above parallelly.
+
+Example 2:
+
+// C# program for async and await
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+  
+public class GFG{
+  
+    static void Main(string[] args)
+        {
+  
+            Demo();
+            Console.ReadLine();
+  
+        }
+  
+        public static void Demo() {
+            var watch = new System.Diagnostics.Stopwatch();
+            watch.Start();
+  
+            var task1 = StartSchoolAssembly();
+            var task2 = TeachClass12();
+            var task3 = TeachClass11();
+  
+  
+            Task.WaitAll(task1, task2, task3);
+            watch.Stop();
+            Console.WriteLine($"Execution Time:
+                              {watch.ElapsedMilliseconds} ms");
+              
+        }
+          
+          
+        public static async Task StartSchoolAssembly()
+        {
+            await Task.Run(() =>
+            {
+                Thread.Sleep(8000);
+                Console.WriteLine("School Started");
+            });
+        }
+  
+  
+        public static async Task TeachClass12()
+        {
+            await Task.Run(() =>
+            {
+                Thread.Sleep(3000);
+                Console.WriteLine("Taught class 12");
+            });
+              
+  
+        }
+  
+        public static async Task TeachClass11()
+        {
+            await Task.Run(() =>
+            {
+                Thread.Sleep(2000);
+                Console.WriteLine("Taught class 11");
+            });
+              
+  
+        }
+    
+}
+
+
+
+Notice that these methods above have run parallelly and the execution time taken will be the same as the time taken by StartSchoolAssembly() as this is the method that is taking the longest time.
+
+Do we really want this output? How can we start teaching classes 11 and 12 without starting the school assembly? Let us wait for the school assembly to finish irrespective of how long it is taking and later the teaching for classes 11 and 12 can begin.
+
+Here task1 represents the school assembly. Therefore let us use the await keyword to wait for the school assembly task to finish.
+
+Example 3:
+
+// C# program for await keyword
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+  
+public class GFG
+{
+  
+    static void Main(string[] args)
+    {
+  
+        Demo();
+        Console.ReadLine();
+  
+    }
+  
+    public static async void Demo()
+    {
+        var watch = new System.Diagnostics.Stopwatch();
+        watch.Start();
+  
+        var task1 = StartSchoolAssembly();
+        await task1;
+        var task2 = TeachClass12();
+        var task3 = TeachClass11();
+  
+  
+        Task.WaitAll(task1, task2, task3);
+        watch.Stop();
+        Console.WriteLine($"Execution Time: 
+                          {watch.ElapsedMilliseconds} ms");
+  
+    }
+  
+  
+    public static async Task StartSchoolAssembly()
+    {
+        await Task.Run(() =>
+        {
+            Thread.Sleep(8000);
+            Console.WriteLine("School Started");
+        });
+    }
+  
+  
+    public static async Task TeachClass12()
+    {
+        await Task.Run(() =>
+        {
+            Thread.Sleep(3000);
+            Console.WriteLine("Taught class 12");
+        });
+  
+  
+    }
+  
+    public static async Task TeachClass11()
+    {
+        await Task.Run(() =>
+        {
+            Thread.Sleep(2000);
+            Console.WriteLine("Taught class 11");
+        });
+  
+  
+    }
+  
+}
+
+
+
+ 
+
+Notice that the TeachClass12() and TeachClass11() execute only after the StartSchoolAssembly() completes. The school assembly takes 8 seconds to complete. Class 11 finishes the class soon as it takes only 2 seconds. Class 12 finishes a bit late as it takes 3 seconds. Therefore the total execution time is 8s + 3s = 11s.
+
+
+
+async and await program -------------------------------------------------------------------------
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+
+namespace AsyncAwaitApp
+{
+    class Program
+    {
+        static string processConnectToDatabase = "(Connecting to database)";
+        static string processGetDataFromDatabase = "(Getting data from database)";
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("First we are inside the main method.");
+            RunProcess(1, 1_000_000);
+            
+           var dbTask = ConnectToDatabaseProcessAndGetData();
+           Console.WriteLine("Back to the main method.");
+            if (dbTask.Status == TaskStatus.RanToCompletion)
+                Console.WriteLine($"Process {processConnectToDatabase} is completed.");
+            else
+                Console.WriteLine($"Process {processConnectToDatabase} is NOT completed.");
+
+            RunProcess(2, 1_000_000);
+            RunProcess(3, 1_000_000);
+            RunProcess(4, 1_000_000);
+
+            Console.ReadLine();
+        }
+        
+        public static async Task ConnectToDatabaseProcessAndGetData()
+        {
+            Console.WriteLine($"\nControl is with process {processConnectToDatabase}.");
+            Console.WriteLine($"Process {processConnectToDatabase} has started.");
+            Console.WriteLine($"Process {processConnectToDatabase} is running...");
+            await Task.Run(() =>
+            {
+                Console.WriteLine("Start executing process in the await section.");
+                Thread.Sleep(7000);
+                RunProcess(10, 100000);
+                Console.WriteLine("\nProcess in the await section is complete!");
+            });
+            Console.WriteLine($"\nProcess {processConnectToDatabase} is complete!");
+            Console.WriteLine($"Control is with process {processGetDataFromDatabase} again");
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine("Getting data..... " + i);
+            }
+            Console.WriteLine($"Process {processGetDataFromDatabase} is complete!");
+        }
+
+
+        private static void RunProcess(int processNumber, int processLoopCondition)
+        {
+            Console.WriteLine("\nControl is with process " + processNumber);
+            Console.WriteLine($"Process ({processNumber}) has started.");
+            Console.WriteLine($"Process ({processNumber}) is running...");
+            for (int i = 1; i <= processLoopCondition; i++)
+            {
+            }
+            Console.WriteLine($"Process ({processNumber}) is complete!");
+            Console.WriteLine("\nControl is back to main method.");
+        }
+    }
+}
 
 
 
 
 
 
-ls -9 33
+concurrent collection-
+___________________________
+
+Concurrent collections
+
+
+BlockingCollection<T>
+ConcurrentBag<T>
+ConcurrentDictionary<TKey,T>
+ConcurrentStack<T>
+ConcurrentQueue<T>
+
+
+Provides several thread-safe collection classes that should be used in place of the corresponding types in the
+System.Collections and System.Collections.Generic namespaces whenever multiple threads are accessing the collection
+concurrently.
+
+
+
+
+
+
+Introduction
+
+The .NET framework offers some collection classes specifically used in multithreading. These collections are internally used synchronization hence we can call them thread safe collections. These collections can be accessed by multiple threads at a time hence they are called concurrent collections.
+
+Here is the list of concurrent collections in C# 4.0
+
+ConcurrentStack<T>
+ConcurrentQueue<T>
+BlockingCollection<T>
+ConcurrentBag<T>
+ConcurrentDictionary<TKey,T>
+Let’s discuss ConcurrentCollections in detail,
+
+ConcurrentStack<T>: This is thread-safe last-in-first-out collection.
+
+Difference between Stack and Concurrent Stack
+
+Sr. No
+
+Stack<T>
+
+ConcurrentStack<T>
+
+1
+
+Not thread-safe
+
+Thread-safe
+
+2
+
+Stack has Pop method
+
+ConcurrentStaick has TryPop method
+
+3
+
+Can add single item at a time.
+
+Can add multiple item at a time.
+
+4
+
+Can remove single item at a time
+
+Can remove multiple item at a time.
+
+5
+
+Add item using Push method
+
+Add item using or PushRange method
+
+6
+
+Remove item using Pop method
+
+Remove item using TryPop or TryPopRange method.
+
+Push: Add item at top of ConcurrentStack.
+
+PushRange: Tries to add multiple items at top of ConcurrentStack.
+
+TryPeek: Tries to return last item from ConcurrentStack.
+
+TryPop: Tries to pop and return last item from ConcurrentStack.
+
+ConcurrentQueue<T>: This is thread-safe first-in-first-out collection.
+
+Difference between Queue and ConcurrentQueue
+
+Sr. No
+
+Queue<T>
+
+ConcurrentQueue<T>
+
+1
+
+Not thread-safe
+
+Thread-safe
+
+2
+
+Queue has Enqueue and Dequeue methods
+
+ConcurrentQueue has Enqueue and TryDequeue methods
+
+3
+
+Can add single item at a time.
+
+Can add multiple item at a time.
+
+4
+
+Can remove single item at a time
+
+Can remove multiple item at a time.
+
+Enqueue: Add item to end of ConcurrentQueue.
+
+TryDequeue: Tries to remove and return first item from ConcurrentQueue.
+
+TryPeek: Return first item from ConcurrentQueue.
+
+BlockingCollection<T> 
+
+This collection is thread-safe for adding and removing data. You can set maximum upper limit to add items in this collection. Removing an item from     the collection can be blocked until item becomes available. 
+
+Add: Add item into BlockingCollection.
+
+Take: Removes item from BlockingCollection .
+
+TryAdd: Tries to add item into BlockingCollection.
+
+TryTake: Tries to remove item from BlockingCollection.
+
+ConcurrentBag<T>
+
+ConcurrentBag is thread-safe collection. This collection is like just at bag or heap of objects. It has not ordering and it allow duplicate items.
+
+ConCurrentBag has mainly three methods.
+
+Add: Add item into ConcurrentBag collection.
+
+TryTake: Tries to remove and return item from ConcurrentBag.
+
+TryPeek: Tries to return item from ConcurrentBag.
+
+ConcurrentDictionary<TKey,T>
+
+Concurrent dictionary is thread-safe collection. It is used to store key-value pair in multi-threaded environment.
+
+Add: Add item into concurrent dictionary.
+
+Remove: Remove item from concurrent dictionary.
+
+Update: Update existing item in concurrent dictionary.
+
+TryUpdate: This method check whether item is exist or not before update.
+
+AddOrUpdate: This method add item into concurrent dictionary if that object does not exist.
+
+GetOrAdd: This method return current value in dictionary if it exist otherwise add as new value.
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections.Concurrent;
+using System.Threading;
+
+namespace ConcurrentBagApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ConcurrentBag<int> bag = new ConcurrentBag<int>();
+
+            Thread t1 = new Thread(() =>
+            {
+                Console.WriteLine("Thread (1) has started");
+                for (int i = 1; i <= 10; i++)
+                {
+                    Console.WriteLine("Thread (1) added number " + i);
+                    bag.Add(i);
+                }
+                Console.WriteLine("Thread (1) is complete!");
+            });
+
+            Thread t2 = new Thread(() =>
+            {
+                t1.Join();//checks whether the task 1 is completed or not
+                Console.WriteLine("Thread (2) has started");
+                for (int i = 11; i <= 25; i++)
+                {
+                    Console.WriteLine("Thread (2) added number " + i);
+                    bag.Add(i);
+                }
+                Console.WriteLine("Thread (2) is complete!");
+            });
+
+            Thread t3 = new Thread(() =>
+            {
+                t1.Join();//checks whether the task 1 is completed or not
+                t2.Join();//checks whether the task 2 is completed or not
+                Console.WriteLine("Thread (3) has started");
+                foreach (var item in bag)
+                {
+                    Console.WriteLine(item);
+                }
+                Console.WriteLine("Thread (3) is complete!");
+            });
+
+            t1.Start();
+            t2.Start();
+            t3.Start();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+other programs--------------
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace AssignmentNo22
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ConcurrentStack<int> stack = new ConcurrentStack<int>();
+            int threadThreeAccessCounter = 0;
+            int threadFourAccessCounter = 0;
+
+            Thread t1 = new Thread(() =>
+            {
+                for (int i = 1; i <= 10; i++)
+                {
+                    stack.Push(i);
+                }
+            });
+            t1.Start();
+
+            Thread t2 = new Thread(() =>
+            {
+                for (int i = 11; i <= 20; i++)
+                {
+                    stack.Push(i);
+                }
+            });
+            t2.Start();
+
+            Thread t3 = new Thread(() =>
+            {
+                int stackValue = 0;
+                foreach (int item in stack)
+                {
+                    stack.TryPop(out stackValue);
+                    if (stackValue != 0)
+                    {
+                        Console.WriteLine("Now Thread (3) is accessing " + stackValue );
+                        threadThreeAccessCounter++;
+                    }
+
+                }
+            });
+            t3.Start();
+
+            Thread t4 = new Thread(() =>
+            {
+                int stackValue = 0;
+                foreach (int item in stack)
+                {
+                    stack.TryPop(out stackValue);
+                    if (stackValue != 0)
+                    {
+                        Console.WriteLine("Now Thread (4) is accessing " + stackValue );
+                        threadFourAccessCounter++;
+                    }
+                }
+            });
+            t4.Start();
+
+            Thread.Sleep(10);
+            Console.WriteLine("\nThread (3) accessed " + threadThreeAccessCounter);
+            Console.WriteLine("Thread (4) accessed " + threadFourAccessCounter);
+        }
+    }
+}
+
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+
+namespace AssignmentNo20
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {            
+            SayHi hi = new SayHi(); string name = "Ahmad"; int count = 2;
+            List<Thread> listofThreads = new List<Thread>();
+
+            listofThreads.Add(new Thread(new ThreadStart(() => hi.SayHiEnglish(name, count))));
+            listofThreads.Add(new Thread(new ThreadStart(() => hi.SayHiKorean(name, count))));
+            listofThreads.Add(new Thread(new ThreadStart(() => hi.SayHiFrench(name, count))));
+            listofThreads.Add(new Thread(new ThreadStart(() => hi.SayHiGreek(name, count))));
+            listofThreads.Add(new Thread(new ThreadStart(() => hi.SayHiHindi(name, count))));
+            listofThreads.Add(new Thread(new ThreadStart(() => hi.SayHiRussian(name, count))));
+            listofThreads.Add(new Thread(new ThreadStart(() => hi.SayHiSwedish(name, count))));
+
+            foreach (var thread in listofThreads)
+            {
+                thread.Start();
+            }
+        }
+    }
+
+    class SayHi
+    {
+        public void SayHiEnglish(string name, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine("Hi " + name);
+            }
+        }
+
+        public void SayHiKorean(string name,int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine("Annyeong " + name);
+            }
+        }
+        public void SayHiFrench(string name, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine("Salut " + name);
+            }
+        }
+
+        public void SayHiGreek(string name, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine("Geia " + name);
+            }            
+        }
+
+        public void SayHiHindi(string name, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine("Namaste " + name);
+            }
+        }
+
+        public void SayHiRussian(string name, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine("Zdravstvuy " + name);
+            }            
+        }
+
+        public void SayHiSwedish(string name, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine("Hej " + name);
+            }
+        }
+    }
+}
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace AssignmentNo21
+{
+    class Program
+    {
+        static Task t1;
+        static Task t2;
+        static void Main(string[] args)
+        {
+            int loopConditionCount = 10;
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken token = cancellationTokenSource.Token;
+
+            Task t1 = new Task(() =>
+            {
+                int max = 0;
+                for (int i = 1; i <= loopConditionCount; i++)
+                {
+                    if (token.IsCancellationRequested)
+                        break;
+                    else
+                    {
+                        Console.WriteLine($"Task One run number {i} ");
+                        max = i;
+                    }
+                }
+                Console.WriteLine();
+                if (max == loopConditionCount)
+                    Console.WriteLine("TASK ONE IS COMPLETE!");
+                else
+                {
+                    Console.WriteLine("Task One is cancelled");
+                    Console.WriteLine("Task One Maximum " + max);
+                }
+                cancellationTokenSource.Cancel();
+            });
+
+            t2 = new Task(() =>
+            {
+                int max = 0;
+                for (int i = 1; i <= loopConditionCount; i++)
+                {
+                    if (token.IsCancellationRequested)
+                        break;
+                    else
+                    {
+                        Console.WriteLine($"Task Two run number {i} ");
+                        max = i;
+                    }
+                }
+                Console.WriteLine();
+                if (max == loopConditionCount)
+                    Console.WriteLine("TASK TWO IS COMPLETE!");
+                else
+                {
+                    Console.WriteLine("Task Two is cancelled");
+                    Console.WriteLine("Task Two Maximum " + max);
+                }
+                cancellationTokenSource.Cancel();
+            });
+
+            t1.Start();
+            t2.Start();
+
+            Task.WaitAll(t1, t2);
+        }
+    }
+}
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+program.cs------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssignmentNo19
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var filteredList = new List<Employees>();
+            var listOfEmployees = new List<Employees>
+            {
+                new Employees { EmployeeID=1150, FirstName="Jack",LastName="Steven", Salary=5000m, Age=35,Appraisal = new List<int>{7,7,8,9,7} },
+                new Employees { EmployeeID=1150, FirstName="Debora",LastName="Watson", Salary=10000m, Age=45,Appraisal = new List<int>{9,9,8,9,8} },
+                new Employees { EmployeeID=1150, FirstName="Claire",LastName="Adam", Salary=7500m, Age=32,Appraisal = new List<int>{9,7,8,9,7} },
+                new Employees { EmployeeID=1150, FirstName="Michael",LastName="Rob", Salary=3500m, Age=22,Appraisal = new List<int>{6,7,8,7,7} },
+                new Employees { EmployeeID=1150, FirstName="Matthew",LastName="Forest", Salary=4500m, Age=28,Appraisal = new List<int>{7,7,6,6,7} },
+                new Employees { EmployeeID=1150, FirstName="Charles",LastName="Kris", Salary=8000m, Age=27,Appraisal = new List<int>{8,9,7,8,8} },
+                new Employees { EmployeeID=1150, FirstName="Robert",LastName="Wilson", Salary=8000m, Age=28,Appraisal = new List<int>{8,9,8,9,9} },
+                new Employees { EmployeeID=1150, FirstName="Emma",LastName="Brooks", Salary=6000m, Age=23,Appraisal = new List<int>{8,6,9,9,7} },
+                new Employees { EmployeeID=1150, FirstName="Jennifer",LastName="Blake", Salary=3000m, Age=38,Appraisal = new List<int>{6,7,7,6,6} },
+                new Employees { EmployeeID=1150, FirstName="Terry",LastName="Loyd", Salary=9000m, Age=49,Appraisal = new List<int>{9,9,9,8,7} },
+                new Employees { EmployeeID=1150, FirstName="Adam",LastName="Spencer", Salary=7000m, Age=33,Appraisal = new List<int>{8,8,8,6,7} },
+                new Employees { EmployeeID=1150, FirstName="Stacy",LastName="Shelton", Salary=4000m, Age=25,Appraisal = new List<int>{8,7,8,6,7} }
+            };
+
+            Employees.DisplayWithApparisal(listOfEmployees, "All Employees", true);
+
+            // New
+            //Salary is greater than or equal to 6000 and age greater than 40
+            filteredList = (from emp in listOfEmployees
+                            where emp.Salary >= 6000 && emp.Age > 40
+                            select emp).ToList();
+            Employees.DisplayWithApparisal(filteredList, "Salary is greater than or equal to 6000 and age greater than 40", true);
+
+            //Salary is greater than or equal to 6000 and age greater than 40 or salary is greater than or equal 8000
+            filteredList = (from emp in listOfEmployees
+                            where emp.Salary >= 6000 && emp.Age > 40 || emp.Salary >= 8000
+                            select emp).ToList();
+            Employees.DisplayWithApparisal(filteredList, "Salary is greater than or equal to 6000 and age greater than 40 or salary is greater than or equal 8000", true);
+
+            //Exercise
+            //Apparisal less than 8 and salary greater than  4000
+            filteredList = (from emp in listOfEmployees
+                            where emp.Salary > 4000 && emp.Appraisal[0] < 8
+                            select emp).ToList();
+            Employees.DisplayWithApparisal(filteredList, "Apparisal less than 8 and salary greater than 5000", true);
+            //
+        }
+    }
+}
+
+employees.cs------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssignmentNo19
+{
+    class Employees
+    {
+        private int employeeID;
+        private string firstName;
+        private string lastName;
+        private decimal salary;
+        private int age;
+        private List<int> appraisal;
+
+        public int EmployeeID
+        {
+            get { return employeeID; }
+            set { employeeID = value; }
+        }
+        public string FirstName
+        {
+            get { return firstName; }
+            set { firstName = value; }
+        }
+        public string LastName
+        {
+            get { return lastName; }
+            set { lastName = value; }
+        }
+        public decimal Salary
+        {
+            get { return salary; }
+            set { salary = value; }
+        }
+        public int Age
+        {
+            get { return age; }
+            set { age = value; }
+        }
+        public List<int> Appraisal
+        {
+            get { return appraisal; }
+            set { appraisal = value; }
+        }
+
+        public static void Display(List<Employees> employees)
+        {
+            foreach (var employee in employees)
+            {
+                Console.WriteLine($"{employee.FirstName} {employee.LastName}, {employee.Salary}, {employee.Age}");
+            }
+            Console.WriteLine("\n--------\n");
+        }
+
+        public static void DisplayWithApparisal(List<Employees> employees, string message, bool displayCount)
+        {
+            int index = 0;
+            if (displayCount)
+                Console.WriteLine($"Found ({employees.Count}) employees");
+            if (message != string.Empty)
+            {
+                Console.WriteLine(message);
+                Console.WriteLine("----------------------------------------------------");
+            }
+            foreach (var employee in employees)
+            {
+                index++;
+                Console.Write($"{index}) {employee.FirstName} {employee.LastName}, {employee.Salary}, {employee.Age}, last 5 apparisals |");
+                foreach (var app in employee.Appraisal)
+                {
+                    Console.Write(app + "|");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("\n");
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+ls -10 0
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
