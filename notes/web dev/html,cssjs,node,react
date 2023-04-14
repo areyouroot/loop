@@ -1225,18 +1225,45 @@ https://www.youtube.com/watch?v=kK_Wqx3RnHk&list=PLZlA0Gpn_vH8EtggFGERCwMY5u5hOj
 
 
 
+import React, { useState, useReducer } from 'react'
+function reducer (state, action) {
+}
+return { count: state.count + 1 }
+export default function App() {
+const [state, dispatch]
+=
+function increment() { dispatch()
+}
+useReducer (reducer, { count: 0 })
+function decrement() {
+}
+// setCount(prevCount => prevCount
+return (
+<>
+-
+1)
+<button onClick={decrement}>-</button>
+<span>{state.count}</span>
+<button onClick={increment}>+</button>
+
+
+
+this is little complex to use so see the vid
+
+used to reduce the code
 
 
 
 
 
+useCallback hook-
+___________________
+
+https://www.youtube.com/watch?v=_AyFP5s69N4&list=PLZlA0Gpn_vH8EtggFGERCwMY5u5hOjf-h&index=7
 
 
 
-
-
-
-
+other hooks - https://www.youtube.com/playlist?list=PLZlA0Gpn_vH8EtggFGERCwMY5u5hOjf-hu
 
 
 
