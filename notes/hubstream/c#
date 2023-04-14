@@ -12978,7 +12978,7 @@ namespace AsyncAwaitApp
 concurrent collection-
 ___________________________
 
-Concurrent collections
+
 
 
 BlockingCollection<T>
@@ -12999,9 +12999,9 @@ concurrently.
 
 Introduction
 
-The .NET framework offers some collection classes specifically used in multithreading. These collections are internally used synchronization hence we can call them thread safe collections. These collections can be accessed by multiple threads at a time hence they are called concurrent collections.
+The .NET framework offers some collection classes specifically used in multithreading. These collections are internally used synchronization hence we can call them thread safe collections. These collections can be accessed by multiple threads at a time hence they are called .
 
-Here is the list of concurrent collections in C# 4.0
+Here is the list of  in C# 4.0
 
 ConcurrentStack<T>
 ConcurrentQueue<T>
@@ -13948,10 +13948,30 @@ namespace JaggedArrays
 
 
 
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
 
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace JaggedMultidimensionalExercise
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[][,] jaggedMultiArray = new int[3][,];
 
+            jaggedMultiArray[0] = new int[2, 2] { { 1, 2 }, { 3, 4 } };
+            jaggedMultiArray[1] = new int[3, 2] { { 10, 10 }, { 20, 20 }, { 30, 30 } };
+            jaggedMultiArray[2] = new int[2, 2] { { 3, 5 }, { 1, 2 } };
+            Console.WriteLine();
+        }
+    }
+}
 
 
 
@@ -13960,56 +13980,164 @@ namespace JaggedArrays
 
 
 
+indexers-
+___________________________
 
+this is how u pass a array in a class of objects
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace IndexersApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Animals animals = new Animals();
 
+            animals[0] = "Dog";
+            animals[1] = "Tiger";
+            animals[2] = "Horse";
 
+            Console.WriteLine(animals[2]);
+        }
+    }
 
+    class Animals
+    {
+        private string[] name = new string[100];
 
+        public string this[int index]
+        {
+            get { return name[index]; }
+            set { name[index]= value; }
+        }
 
+    }
+}
 
 
 
 
 
 
+dynamic keyword-
+___________________________
 
+this used for defining the dynamic data type 
 
+like u can define any value a int ,str or a list  etc ...... u can also defiune dynamic objects with multiple datatypes and parameters
 
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace DynamicKeyword
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            dynamic value = 0;
+            Console.WriteLine("Value is " + value);
+            Console.WriteLine("Value type is " + value.GetType().Name);
+            Console.WriteLine();
 
+            value = "Game of Thrones";
+            Console.WriteLine("Value is " + value);
+            Console.WriteLine("Value type is " + value.GetType().Name);
+            Console.WriteLine();
 
+            value = new Animals();
+            value.Name = "Dog";
+            Console.WriteLine("Value is " + value.Name);
+            Console.WriteLine("Value type is " + value.GetType().Name);
+            Console.WriteLine();
 
+        }
+    }
 
+    class Animals
+    {
+        private string name;
 
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
 
+    }
+}
 
 
 
 
 
+var vs Dynamic-
+__________________
 
 
 
 
+ 
 
 
 
 
+readonly keyword-
+__________________
 
+this is a key word where u can only read the variable not write value in it
 
+if u want to write the data it can be only done using the class get function and put function
 
 
 
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace ReadonlyKeyword
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Animals dog = new Animals("Dog");
+            Console.WriteLine(dog.AnimalName);
 
+            dog = new Animals("Another Dog");
+            Console.WriteLine(dog.AnimalName);
 
+        }
+    }
 
+    class Animals
+    {
+        readonly private string animalName;
 
+        public string AnimalName
+        {
+            get => animalName;
+        }
 
+        public Animals(string name)
+        {
+            animalName = name;
+        }
+    }
+}
 
 
 
@@ -14017,18 +14145,41 @@ namespace JaggedArrays
 
 
 
+static derivatives-
+___________________________
 
+u dont need to call the full function when u use it eg:
 
+Systerm.Console.WriteLine() or Console.WriteLine();
 
+u can first define the class u are using with the "using" key word then use only the nessary function 
 
 
+eg:
 
 
 
 
 
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Math;
+using static System.Console;
 
+namespace StaticDirectives
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            WriteLine(Round(2.5465,2));
+        }
+    }
+}
 
 
 
@@ -14037,31 +14188,190 @@ namespace JaggedArrays
 
 
 
+preprocessor directives-
+_____________________________________________
 
+it is defined using the # in the code 
 
+this tells the compiler to call this first before exection of actual code
 
+there are few types eg
 
+#define
 
+this is used to dine tyhe state of whole program like u can name any liske underDEV - for under developement or Debug - for Debugging
 
+#if
 
+this can be used to check the state which is defined is true or fales based on this any desision can be taken
 
+#else
 
+it will execute the else part
 
+#endif
 
+indicator of where the if statement ends
 
+#warning
 
+this used to print the waring in the compiler section
 
+#error
 
+this is used to create a custom error so that u an see it while execution this is not like warnig it will stop the program from execution
 
+#pragma warning disable
 
+this is used to diable the warnings inside the program
 
 
 
 
 
 
+#define underDeva
+#pragma warning disable
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace PreprocessorDirectives
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int x;
+            /*
+               #define #if  #else #endif #warning #error #pragma warning disable 
+            */
 
+#if(underDev)
+            Console.WriteLine("This app is under development");
+//#error This app is not yet finished Oh my God this is so amaaazing
+#else
+            Console.WriteLine("This app is Complete");
+#warning This app is complete and ready to be published
+#endif
+
+        }
+    }
+}
+
+
+
+
+
+
+
+isNullOrEmpty message-
+___________________________
+
+this is used to find the value is null or empty or does has some value 
+
+there are  many ways to find it 
+
+u can also find does it contains only the white spaces
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace IsNullOrEmptyApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string name = " ";
+            if (name == "" || name is null) // this doesnt finds the empty space
+                Console.WriteLine("Empty");
+            else
+                Console.WriteLine("Has a value");
+
+            if(string.IsNullOrEmpty(name)) // this doesnt finds the empty space
+                Console.WriteLine("Empty");
+            else
+                Console.WriteLine("Has a value");
+
+            if(string.IsNullOrWhiteSpace(name))
+                Console.WriteLine("Empty");
+            else
+                Console.WriteLine("Has a value");
+        }
+    }
+}
+
+
+
+
+
+
+destructors-
+__________________
+
+they run when the object is going to lose the scope
+
+the destructor is defined as same as the class name but defined with "~" sign
+
+there can be only one destructor in a class
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DestructorsApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Animals dog = new Animals();
+            var name = Console.ReadLine();
+        }
+    }
+
+    class Animals
+    {
+        public Animals()
+        {
+            Console.WriteLine("A new animal is created");
+        }
+
+        ~Animals()
+        {
+            Console.WriteLine("Animal object is about to be destroyed");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+using statement-
+___________________________
 
 
 
