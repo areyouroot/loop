@@ -1405,6 +1405,9 @@ add :
 
 import { BrowserRouter } from "react-router-dom"
 
+and wrap the app with     
+
+<BrowserRouter>    </BrowserRouter>
 
 the full content will be like 
 
@@ -1418,9 +1421,234 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 console.log("index from src")
 root.render(
   <React.StrictMode>
+    <BrowserRouter>
+    
     <App />
+    
+    </BrowserRouter>
   </React.StrictMode>
 );
+
+
+
+creation and routing of pages - 
+_________________________________________________________________________
+
+first create the required pages in this format
+
+remember the file name and the page name should start with capital letters others should be in lowercase
+
+export function Files(){
+    return <h1>baba naidu @ 360 . in </h1>
+}
+
+where Files is the app name and return is where u type the web content and save that file ".js" eg File.js here
+
+its bettert the method name nad file name matches
+
+and modify the App.js as 
+
+
+import { Route,Routes } from "react-router-dom";
+import { Files } from "./Files"
+
+
+function App(){
+  return <Routes>
+    <Route path="/" element={<Files/>}/> //default page is also the files page
+    <Route path="/files" element={<Files/>}/>
+     // the /files are url eg localhost:8080/files
+  </Routes>
+}
+
+
+
+i am also creating other pages just an eg for better knowledge refer it 
+
+Application.js-
+
+import React , { useState } from 'react';
+import FileUpload from './Fileupload';
+import { EthProvider } from "./contexts/EthContext";
+import Demo from "./components/Demo";
+
+
+const Application = () => {
+
+  const [fileUrl,setFileUrl] = useState("");
+  console.log("app.js from src")
+
+  
+  return (
+    <div>
+      <FileUpload setUrl={setFileUrl} />
+      FileUrl : {""}
+      <a href={fileUrl}>{fileUrl + ""}</a>
+      <br></br>
+      <EthProvider>
+        <div id="App">
+          <div className="container">
+            <h1>
+            <Demo />
+            </h1>
+          </div>
+        </div>
+      </EthProvider>
+    </div>
+  );
+};
+
+export { Application }; //this is another type how u export the application else this error will be output
+
+
+error- 
+
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\src\Application.js: Unexpected token, expected "{" (32:8)
+
+  30 | };
+  31 |
+> 32 | export  Application ;
+     |         ^
+  33 |
+  34 |
+  35 |
+    at instantiate (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:64:32)
+    at constructor (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:364:12)
+    at FlowParserMixin.raise (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:3253:19)
+    at FlowParserMixin.unexpected (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:3283:16)
+    at FlowParserMixin.parseExport (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:13679:16)
+    at FlowParserMixin.parseExport (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:5312:24)
+    at FlowParserMixin.parseStatementContent (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:12660:27)
+    at FlowParserMixin.parseStatementLike (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:12548:17)
+    at FlowParserMixin.parseStatementLike (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:5135:24)
+    at FlowParserMixin.parseModuleItem (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:12525:17)
+    at FlowParserMixin.parseBlockOrModuleBlockBody (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:13120:36)
+    at FlowParserMixin.parseBlockBody (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:13113:10)
+    at FlowParserMixin.parseProgram (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:12439:10)
+    at FlowParserMixin.parseTopLevel (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:12429:25)
+    at FlowParserMixin.parseTopLevel (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:5954:28)
+    at FlowParserMixin.parse (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:14250:10)
+    at parse (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\parser\lib\index.js:14292:38)
+    at parser (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\core\lib\parser\index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\core\lib\transformation\normalize-file.js:64:38)
+    at normalizeFile.next (<anonymous>)
+    at run (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\core\lib\transformation\index.js:21:50)
+    at run.next (<anonymous>)
+    at transform (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\@babel\core\lib\transform.js:22:41)
+    at transform.next (<anonymous>)
+    at step (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\gensync\index.js:261:32)
+    at C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\gensync\index.js:273:13
+    at async.call.result.err.err (C:\Users\abdul\Desktop\git works\clg project\block-play\DFS-v1.2 - test - router\dfs\node_modules\gensync\index.js:223:11)
+
+
+ERROR
+
+[eslint] 
+src\Application.js
+  Line 32:8:  Parsing error: Unexpected token, expected "{" (32:8)
+
+
+
+
+(or this error the solution is given above)
+
+
+
+Compiled with problems:X
+
+ERROR in ./src/App.js 12:36-47
+
+export 'Application' (imported as 'Application') was not found in './Application' (possible exports: default)
+
+
+
+in both case remove default and add {appname} to avoid this error
+
+
+
+
+Files.js-
+
+export function Files(){
+    return <h1>baba naidu @ 360 . in </h1>
+}
+
+export default App
+
+
+
+app.js-
+
+import { Route,Routes } from "react-router-dom";
+import { Application } from "./Application"
+import { Files } from "./Files"
+
+
+function App(){
+  return <Routes>
+    <Route path='/' element={<Application />} />
+    <Route path="/files" element={<Files/>}/>
+  </Routes>
+}
+
+export default App
+
+
+
+
+i hope u did got it
+
+now we are creating the different links for different pages using <Link>
+
+this is used to navigate to different pages without using any anchor tag (<a herf></a>)
+
+import { Link, Route,Routes } from "react-router-dom";
+import { Application } from "./Application"
+import { Files } from "./Files"
+
+
+function App(){
+  return <>
+  
+  <nav>
+    <h1><Link to="/">Upload</Link></h1>
+    <h1><Link to="/files">Files</Link></h1>//these are links 
+  </nav>
+
+  <Routes>
+    <Route path='/' element={<Application />} />
+    <Route path="/files" element={<Files/>}/>
+  </Routes>
+  </>
+}
+
+export default App
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
