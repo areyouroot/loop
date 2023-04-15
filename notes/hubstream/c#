@@ -14375,13 +14375,39 @@ ___________________________
 
 
 
+for file writing u have to open and close the object like that fore the network socket to automate this we are using this key word
 
+it automatically opens and closes when the object is executed a set of instructions 
 
+eg:
 
 
 
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace UsingStatement
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            using (StreamWriter sw = new StreamWriter(@"c:\files\heroes.txt"))
+            {
+                sw.WriteLine("Superman");
+                sw.WriteLine("Batman");
+                sw.WriteLine("Wonder Woman");
+                sw.WriteLine("Aquaman");
+                sw.WriteLine("Flash");
+            }
+        }
+    }
+}
 
 
 
@@ -14394,13 +14420,34 @@ ___________________________
 
 
 
+assemblies-
+__________________
 
 
+to know more - https://www.c-sharpcorner.com/UploadFile/78607b/what-is-assembly/#:~:text=by%20the%20CLR.-,An%20Assembly%20is%20a%20basic%20building%20block%20of%20.,a%20logical%20unit%20of%20functionality.
 
 
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Reflection;
 
+namespace AssembliesApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Assembly assemObject = Assembly.GetEntryAssembly();
+            AssemblyName assemName = assemObject.GetName();
 
+            Console.WriteLine(assemName.Name);
+        }
+    }
+}
 
 
 
@@ -14409,10 +14456,16 @@ ___________________________
 
 
 
+CultureInfo-
+__________________
 
+this is used to describe the real world culture like english language and from us or uk and different languages from different reagion
 
+and also used to get type of currncy it can be useful when u make fin tech app that is used globally and if they need to change any of the settings
 
+even calander can be accessed
 
+more detail - https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?redirectedfrom=MSDN&view=net-7.0
 
 
 
@@ -14420,11 +14473,37 @@ ___________________________
 
 
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using System.Globalization;
 
+namespace CultureInfoApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Assembly assemObject = Assembly.GetEntryAssembly();
+            AssemblyName assemName = assemObject.GetName();
 
+            Console.WriteLine(assemName.FullName);
 
+            Console.WriteLine(assemName.CultureName);
+            CultureInfo cultureInfo = new CultureInfo("en-GB");
+            assemName.CultureInfo = cultureInfo;
+            Console.WriteLine(assemName.CultureInfo.DisplayName);
+            Console.WriteLine(assemName.CultureInfo.NativeName);
+            Console.WriteLine(assemName.CultureInfo.NumberFormat.CurrencySymbol);
+            Console.WriteLine(assemName.CultureInfo.Calendar);
 
 
+        }
+    }
+}
 
 
 
@@ -14433,17 +14512,49 @@ ___________________________
 
 
 
+versions-
+__________
 
+used to controle or define the version of the software
 
 
 
 
 
 
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace VersionsApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Assembly assemObject = Assembly.GetEntryAssembly();
+            AssemblyName assemName = assemObject.GetName();
 
+            Console.WriteLine(assemName.FullName);
 
+            Console.WriteLine(assemName.CultureName);
+            CultureInfo cultureInfo = new CultureInfo("en-GB");
+            assemName.CultureInfo = cultureInfo;
+            Console.WriteLine(assemName.CultureInfo.DisplayName);
+            Console.WriteLine(assemName.CultureInfo.NativeName);
+            Console.WriteLine(assemName.CultureInfo.NumberFormat.CurrencySymbol);
+            Console.WriteLine(assemName.CultureInfo.Calendar);
 
+            Console.WriteLine(assemName.Version);
+            assemName.Version = new Version(2, 0, 0, 0);
+            Console.WriteLine(assemName.Version);
+        }
+    }
+}
 
 
 
@@ -14453,20 +14564,47 @@ ___________________________
 
 
 
+region info-
+___________________________
 
+this only contain the information the region nothing else like the geolocation
 
+it can be useful if u have map functionality in ur program
 
+u can alos get info like they use metric systerm or not incase u are making a shoping website that has values like kg etc
 
+curtrency etcc............
 
 
 
 
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Globalization;
 
+namespace RegionInfoApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            RegionInfo info = new RegionInfo("AE");
 
+            Console.WriteLine(info.DisplayName);
+            Console.WriteLine(info.IsMetric);
+            Console.WriteLine(info.CurrencyEnglishName);
+            Console.WriteLine(info.ThreeLetterISORegionName);
+        }
+    }
+}
 
 
 
+more on this -- https://learn.microsoft.com/en-us/dotnet/api/system.globalization.regioninfo?redirectedfrom=MSDN&view=net-7.0
 
 
 
@@ -14475,8 +14613,194 @@ ___________________________
 
 
 
+attributes-
+__________________
 
+Obsolete - this gives a message while uing an metthod or a variable that it shows a green line with a message like this is not going to be used or use this insted and pass this and otherwise
 
+u can make it false so it doesnt display or true to display 
+
+it will not allow u to run the program it will show a error
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+namespace AttributesApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Persons.SayHi();
+            Persons.SayHello();
+            Persons.DisplayMessage("We are in the debugging mode");
+        }
+    }
+
+    class Persons
+    {
+        [Obsolete("This method is not going to be included in the upcoming versions",false)]
+        public static void SayHi()
+        {
+            
+        }
+
+        public static void SayHello()
+        {
+
+        }
+
+        [Conditional("DEBUG")]
+        public static void DisplayMessage(string message)
+        {
+            Console.WriteLine(message);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+custome attribute-
+___________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CustomAttributes
+{
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+    public class Developer : System.Attribute
+    {
+        private string developerName;
+        private bool isReviewed;
+        private string message;
+
+        public Developer(string developerName, bool isReviewed, string message)
+        {
+            this.developerName = developerName;
+            this.isReviewed = isReviewed;
+            this.message = message;
+        }
+
+        public string DeveloperName
+        {get => developerName;set => developerName = value;}
+
+        public bool IsReviewed
+        {get => isReviewed;set => isReviewed = value;}
+
+        public string Message
+        {get => message;set => message = value;}
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+        }
+    }
+
+    [Developer("Ahmad Mohey",false,"This need to be finished by next friday")]   // the attribute is defined at top
+    class Animals
+    {
+
+    }
+}
+
+
+these are used to give the custome messages or the errors and copile time messages 
+
+
+
+
+
+
+reflections-
+___________________________
+
+this how u get all the atributes linked 
+
+the content is not shown
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Reflection;
+
+
+namespace ReflectionsApp
+{
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+    public class Developer : System.Attribute
+    {
+        private string developerName;
+        private bool isReviewed;
+        private string message;
+
+        public Developer(string developerName, bool isReviewed, string message)
+        {
+            this.developerName = developerName;
+            this.isReviewed = isReviewed;
+            this.message = message;
+        }
+
+        public string DeveloperName
+        { get => developerName; set => developerName = value; }
+
+        public bool IsReviewed
+        { get => isReviewed; set => isReviewed = value; }
+
+        public string Message
+        { get => message; set => message = value; }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            MemberInfo info = typeof(Animals);
+            object[] attributes = info.GetCustomAttributes(true);
+            for (int i = 0; i < attributes.Length; i++)
+            {
+                Console.WriteLine(attributes[i]);
+            }
+        }
+    }
+
+    [Developer("Ahmad Mohey", false, "This need to be finished by next friday")]
+    [Obsolete]
+    class Animals
+    {
+
+    }
+}
+
+
+
+
+
+serialization and deserialization-
+_____________________________________________
+
+serialization its nothing to conver the data to bits and bytes to store diffrent place which can be easy to transfer opp is deserialization
 
 
 
