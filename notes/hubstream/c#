@@ -14806,7 +14806,115 @@ serialization its nothing to conver the data to bits and bytes to store diffrent
 
 
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
+
+namespace SerializationAndDeserialization
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string xmlText = string.Empty;
+            List<Employees> listOfEmployees = new List<Employees>
+            {
+                new Employees { EmployeeID=1150, FirstName="Jack",LastName="Steven", Salary=5000m, Age=35,Appraisal = new List<int>{7,7,8,9,7} },
+                new Employees { EmployeeID=1150, FirstName="Debora",LastName="Watson", Salary=10000m, Age=45,Appraisal = new List<int>{9,9,8,9,8} },
+                new Employees { EmployeeID=1150, FirstName="Claire",LastName="Adam", Salary=7500m, Age=32,Appraisal = new List<int>{9,7,8,9,7} },
+                new Employees { EmployeeID=1150, FirstName="Michael",LastName="Rob", Salary=3500m, Age=22,Appraisal = new List<int>{6,7,8,7,7} },
+                new Employees { EmployeeID=1150, FirstName="Matthew",LastName="Forest", Salary=4500m, Age=28,Appraisal = new List<int>{7,7,6,6,7} },
+                new Employees { EmployeeID=1150, FirstName="Charles",LastName="Kris", Salary=8000m, Age=27,Appraisal = new List<int>{8,9,7,8,8} },
+                new Employees { EmployeeID=1150, FirstName="Robert",LastName="Wilson", Salary=8000m, Age=28,Appraisal = new List<int>{8,9,8,9,9} },
+                new Employees { EmployeeID=1150, FirstName="Emma",LastName="Brooks", Salary=6000m, Age=23,Appraisal = new List<int>{8,6,9,9,7} },
+                new Employees { EmployeeID=1150, FirstName="Jennifer",LastName="Blake", Salary=3000m, Age=38,Appraisal = new List<int>{6,7,7,6,6} },
+                new Employees { EmployeeID=1150, FirstName="Terry",LastName="Loyd", Salary=9000m, Age=49,Appraisal = new List<int>{9,9,9,8,7} },
+                new Employees { EmployeeID=1150, FirstName="Adam",LastName="Spencer", Salary=7000m, Age=33,Appraisal = new List<int>{8,8,8,6,7} },
+                new Employees { EmployeeID=1150, FirstName="Stacy",LastName="Shelton", Salary=4000m, Age=25,Appraisal = new List<int>{8,7,8,6,7} }
+            };
+
+//serialization
+
+            XmlSerializer xmlWriter = new XmlSerializer(typeof(List<Employees>));
+            using (StringWriter sw = new StringWriter())
+            {
+                xmlWriter.Serialize(sw, listOfEmployees);
+                xmlText = sw.ToString();
+                Console.WriteLine(sw.ToString());
+            }
+
+//deserialization
+
+            XmlSerializer xmlReader = new XmlSerializer(typeof(List<Employees>));
+            using (StringReader sr = new StringReader(xmlText))
+            {
+                List<Employees> tempList = (List<Employees>)xmlReader.Deserialize(sr);
+
+                foreach (var employee in tempList)
+                {
+                    Console.WriteLine(employee.EmployeeID);
+                    Console.WriteLine(employee.FirstName);
+                    Console.WriteLine(employee.Age);
+                    Console.WriteLine(employee.Salary);
+                    Console.WriteLine("--------------");
+                }
+            }
+        }
+    }
+
+    [Serializable()]  //this will covert the output to xml
+    public class Employees
+    {
+        private int employeeID;
+        private string firstName;
+        private string lastName;
+        private decimal salary;
+        private int age;
+
+        private List<int> appraisal;
+        [XmlElement("EmployeeNumber")]  // changing the name in the output of xml file 
+        public int EmployeeID
+        {
+            get { return employeeID; }
+            set { employeeID = value; }
+        }
+        public string FirstName
+        {
+            get { return firstName; }
+            set { firstName = value; }
+        }
+        public string LastName
+        {
+            get { return lastName; }
+            set { lastName = value; }
+        }
+        public decimal Salary
+        {
+            get { return salary; }
+            set { salary = value; }
+        }
+        //[XmlIgnore]
+        public int Age
+        {
+            get { return age; }
+            set { age = value; }
+        }
+        [XmlIgnore] //this ignore the output of the this method to xml
+        public List<int> Appraisal
+        {
+            get { return appraisal; }
+            set { appraisal = value; }
+        }
+        public Employees()
+        {
 
+        }
+    }
+}
 
 
 
@@ -14814,27 +14922,84 @@ serialization its nothing to conver the data to bits and bytes to store diffrent
 
 
 
+GUID-
+________
 
+this is like a unique identification data 
 
 
 
 
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace GUIDApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // this willl create a empty guid
+            //eg: 00000000-0000-0000-0000-000000000000
+            Guid g = new Guid();
+            Console.WriteLine(g); 
 
+            // this will only generate the new guid a unique guid
 
+            Guid guid = Guid.NewGuid();
+            Console.WriteLine(guid);
 
+             nhx8tr 1Q  9
 
+            Console.WriteLine(guid);
+        }
+    }
+}
 
 
 
 
 
 
+string builder-
+___________________________
 
+this is used for string manuplation and modification this is a datatype
 
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace StringBuilderApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            StringBuilder builder = new StringBuilder(10,50);
+            builder.Append(" Jon welcome back again");
+            Console.WriteLine(builder);
+            builder.Insert(5, "Snow "); //inserting at 5th postion
+            builder.Insert(0, "Hello"); // inserting at 0th ||
+            Console.WriteLine(builder);
+            builder.Remove(0, 5); // removeing the letters from 0th to 5th position
+            Console.WriteLine(builder);
+            //builder.Replace('o', '0');  //this is used to replace all o with 0
+            builder.Replace('o', '0', 4, 8); //replacing the o to 0 in the sentance from the postion 4-8
+            //builder.Replace("Jon Snow","Ned Stark");  //replacing the whole word
+            Console.WriteLine(builder);
+            string text = builder.ToString();  //storing it as a string
+            Console.WriteLine(text);
+        }
+    }
+}
 
 
 
@@ -14844,16 +15009,116 @@ serialization its nothing to conver the data to bits and bytes to store diffrent
 
 
 
+Pattern matching-
+__________________
+
+this how we match the class object to match then we do stuff
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace PatternMatchingApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Dog max = new Dog();
+            max.DogName = "Max";
+            Lion simba = new Lion();
+            Snake solidSnake = new Snake();
+            Lizard liz = new Lizard();
+            AnimalSoundWithSwitchAndWhen(max);
+            AnimalSoundWithSwitch(simba);
+            AnimalSoundWithSwitch(solidSnake);
+            AnimalSoundWithSwitch(liz);
 
+        }
 
+        // using IS
+        public static void AnimalSound(object animal)
+        {
+            if (animal is Dog)  //if the data object type is similar then it will be executed
+                Console.WriteLine("Woof");
+            else if (animal is Cat)
+                Console.WriteLine("Meow");
+            else if (animal is Lion)
+                Console.WriteLine("Roarrrrr");
+            else if (animal is Duck)
+                Console.WriteLine("Quack");
+            else if (animal is Snake)
+                Console.WriteLine("Snakes are actually mute :D");
+            else
+                Console.WriteLine("Unknown animal");
 
+        }
+        // using SWITCH
+        public static void AnimalSoundWithSwitch(object animal)
+        {
+            switch (animal)  //if the data object type is similar then it will be executed
+            {
+                case Dog d: Console.WriteLine("Woof");break;
+                case Cat c: Console.WriteLine("Meow"); break;
+                case Lion l: Console.WriteLine("Roar"); break;
+                case Duck u: Console.WriteLine("Quack"); break;
+                case Snake s: Console.WriteLine("Snake is mute"); break;
+                default: Console.WriteLine("Unknown animal");break;
+            }
+        }
+        // using SWITCH and WHEN
+        public static void AnimalSoundWithSwitchAndWhen(object animal)
+        {
+            switch (animal)  //if the data object type is similar then it will be executed
+            {
+                case Dog d when d.DogName == null: Console.WriteLine("Name is not set");break;
+            }
+        }
+    }
 
 
+    class Dog
+    {
+        // Woof Woof
+        public string DogSound { get; set; }
+        public string DogName { get; set; }
+    }
 
+    class Cat
+    {
+        // Meow Meow
+        public string CatSound { get; set; }
+        public string CatName { get; set; }
+    }
 
+    class Lion
+    {
+        //Roar
+        public string LionSound { get; set; }
+        public string LionName { get; set; }
+    }
 
+    class Duck
+    {
+        // Quack
+        public string DuckSound { get; set; }
+        public string DuckName { get; set; }
+    }
+    class Snake
+    {
+        // Silent
+        public string SnakeSound { get; set; }
+        public string SnakeName { get; set; }
+    }
+    class Lizard
+    {
 
+    }
+}
 
 
 
@@ -14863,29 +15128,226 @@ serialization its nothing to conver the data to bits and bytes to store diffrent
 
 
 
+Switch Case When In C# Statement And Expression_ (switch when)
+_________________________________________________
 
 
+In this post we are going to take a look at a relatively new feature - when keyword in the context of switch statement and switch expression.
 
+Keyword when is used to specify a condition in a case label of switch statement or expression. This provides a fine-grained control over which switch section will be executed based on a condition (expression which evaluates to boolean).
 
+Besides the theoretical part, I tried to include many practical and easy to understand examples when this functionality can be useful. Feel free to jump straight there if you just want to look at some examples.
 
 
 
+Overview
+Introduction of when keyword into the switch statement allowed handling more complex scenarios where case labels cannot be expressed only with constant or type patterns.
 
+In particular, here is a list of topics we will discuss and also C# versions when they were introduced:
 
+Switch statement - well familiar option to perhaps any programmer, it is present in all C# versions
+When keyword - starting C# 7.0 when keyword can be used in switch statement, this post talks a lot about this feature
+Switch expression - introduced in C# 8.0 and provides switch-like semantics in an expression context
+Relational pattern - C# 9.0 feature that allows specifying conditions even without when keyword
+All topics mentioned above are supplemented with a set of examples and common use cases listed in the Examples of C# Switch Case section. This should give a good idea how to use switch-case-when in practice.
 
+Switch Statement and “when” keyword
+Let’s take a look at the switch statement and how when keyword fits in.
 
+NOTE: Starting C# 7.0 multiple case labels don’t need to be mutually exclusive, and thus the order of case labels is important.
+
+Terminology
+The code snippet below uses a very simple switch statement to introduce some terminology we’ll use throughout this post. It is quite intuitive but worth mentioning to bring everyone on the same page:
 
+Match expression
+Case label
+Default label
+Switch section
+switch (caseSwitch)     // Match Expression - can be any non-null expression
+{
+    case 1:             // Case Label 1    Switch Section START
+    case 2:             // Case Label 2
+        // ...
+        break;          //                 Switch Section END
+    case 3:             // Case Label 3    Switch Section START
+        // ...
+        break;          //                 Switch Section END
+    default:            // Default Label   Switch Section START
+        // ...
+        break;          //                 Switch Section END
+}
+Pattern Matching: Type Pattern and “when” keyword
+Type Pattern is an interesting feature since it enriches the range of possible use cases where switch case can be applied.
+
+Type Pattern is a new addition to the switch statement pattern matching capabilities in C# 7 which complements an already existing and well-known constant pattern.
+
+In most cases, it makes sense to use when keyword in conjunction with the type pattern. However, it can be use with constant pattern as well but I struggle to come up with meaningful examples.
+
+Below is the syntax illustrated with some pseudo-like code:
+
+switch (caseSwitch)
+{
+    ...
+    case TypeA myVar when myVar.Size > 0:
+        ...
+        break;
+    case <type> <variable_name> when <any_boolean_expression>:
+        ...
+        break;
+    ...
+}
+Fall Through and Variable Scope
+It is worth mentioning that similar to regular case labels, labels with when keyword also follow the fall through behavior.
+
+Fall through just means that multiple case labels result in one code block execution. Or, in other words, a case section can have multiple case labels.
+
+NOTE: A variable defined in a case label is scoped to the corresponding case section. Please refer to terminology about case label and case section meaning.
+
+So, the only small caveat here is that variables defined in multiple case labels of the same case section should have different names. Luckily, this is not a problem at all since the compiler helps us by highlighting such errors.
+
+switch (caseSwitch)
+{
+    ...
+    case TypeA myVarA when myVarA.Size > 0:
+    case TypeB myVarB when myVarB.Color == "red":
+        ...
+        break;
+    ...
+}
+Examples of C# Switch Case
+Now, given we have covered the formal part of the “switch case when” functionality, let’s take a look at some common use cases and how when keyword comes in handy there.
+
+Examples below are organized in a cheatsheet manner, the main idea is the same in all these examples, just find a match and get a solution!
+
+Greater Than, Or
+Let’s start with an extremely simple case, just having a condition that is a comprised of multiple conditions. In the example below we use GreaterThan, Or, LessThan operations.
+
+switch (caseSwitch)
+{
+    case int x when x > 5 || x < 0:    // GreaterThan, Or, LessThan
+        // ...
+        break;
+    case int x when x is > 5 or < 0:   // Newer fancier syntax
+        // ...
+        break;
+    // ...
+}
+Range or Between
+This is accomplished simply by combining multiple constraints in the condition part, quite simple. In the following example we check that integer is in range [0, 100].
+
+switch (caseSwitch)
+{
+    case int x when x >= 0 && x <= 100:    // Standard approach
+        // ...
+        break;
+    case int x when x is >= 0 and <= 100:  // Newer syntax
+        // ...
+        break;
+    // ...
+}
+Contains
+Checking if string contains some substring. The same approach can be applied to collections/arrays.
+
+switch (caseSwitch)
+{
+    case string s when s.Contains("someValue"):
+        // ...
+        break;
+    // ...
+}
+Null or Empty
+Checking whether the string IsNullOrEmpty, similarly can be done for IsNullOrWhiteSpace.
+
+switch (caseSwitch)
+{
+    case string s when string.IsNullOrEmpty(s):
+        // ...
+        break;
+}
+Case Insensitive Comparison
+Comparing strings while ignoring case.
 
+switch (caseSwitch)
+{
+    case string s when s.Equals("someValue", StringComparison.InvariantCultureIgnoreCase):
+        // ...
+        break;
+}
+StartsWith
+Checking if the provided value starts with a particular prefix.
+
+switch (caseSwitch)
+{
+    case string s when s.StartsWith("somePrefix"):
+        // ...
+        break;
+}
+Regex
+We can even test a string if it matches a regular expression! The example below checks whether it’s a string that only consists of alphanumeric characters.
+
+switch (caseSwitch)
+{
+    case string s when Regex.IsMatch(s, @"^[0-9a-zA-Z]+$"):
+        // ...
+        break;
+    // ...
+}
+Type/typeof
+We have used this functionality numerous times throughout this post, just need to combine Type Pattern with when keyword.
+
+switch (caseSwitch)
+{
+    case Rectangle x when x.Area == 0:
+        // ...
+        break;
+    // ...
+}
+Generic Type
+As an example, if the provided value is of type List<int> and this list is small (less than 10 items), then we want to apply some special handling (e.g. use a brute force algorithm).
 
+switch (caseSwitch)
+{
+    case List<int> list when list.Count < 10:
+        // ...
+        break;
+    // ...
+}
+C# 8.0 - Using “when” in Switch Expression
+Switch Expression is a new construct that provides switch-like semantics in an expression context. In other words, it allows to have similar functionality to a switch statement but it can be used as an expression.
 
+We won’t get into details of switch expression but rather see how to use it. To learn more about the switch expression itself please refer to the docs.
 
+The usage is quite similar to a regular switch case, just a few comments:
 
+<pattern> can be Type Pattern or Constant Pattern
+<case_guard> is an expression that evaluates to a boolean value
+<expression> evaluates to a value
+var result = caseSwitch switch
+{
+    <pattern> when <case_guard> => <expression>,    // Expression Arm
 
+    int x when x > 0 => 1,                          // Simple example
 
+    _ **=>** 0                                          // Default Arm
+};
+C# 9.0 - Using Relational Pattern instead of “when”
+Moreover, in some cases we don’t even need when keyword to specify some of the constrains - C# 9 has a new feature called Relational Pattern.
 
+IMPORTANT: Relational Pattern is not a substitute for when keyword but rather a nice syntax that in some cases might help write more succinct code.
 
+NOTES:
 
+< <= > >= relational operators are supported
+and or combinators can be used to combine patterns
+Input value should be compared to constant values
+For example, let’s take a look at how to specify cases if provided value is in range or between some constant values:
 
+var result = price switch
+{
+    < 10 => "low",
+    >= 10 and < 50 => "medium",
+    _ => "high"
+};
 
 
 
@@ -14895,17 +15357,47 @@ serialization its nothing to conver the data to bits and bytes to store diffrent
 
 
 
+Ref return and ref local-
+___________________________
 
 
+there are two types of reference one is just a copy another is 2 or more variables pointing at a same memory address cause changges when any one variable is modified
 
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace RefLocalRefReturn
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int X1 = 3;
+            ref int X2 = ref X1;// if x1 or x2 is change both will be changed
 
+            //X1 = 100;
+            Console.WriteLine(X1);
+            Console.WriteLine(X2);
 
+            ref var returnValue = ref ReturnByReference(); //ref using a function this will return the actual value and the memory add to the variable if this changes then whole other linked variables value also change
+            Console.WriteLine(returnValue);
+        }
 
+        public static ref string ReturnByReference()
+        {
+            string[] arrayOfNames = { "Ella", "Liz", "Eve", "Claire" };
+            return ref arrayOfNames[0];
+        }
+    }
+}
 
 
 
+//ref doesnt have any scope it can be used cross classes and methods
 
 
 
@@ -16444,1303 +16936,7 @@ serialization its nothing to conver the data to bits and bytes to store diffrent
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ls -10 26
+ls -10 31
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
