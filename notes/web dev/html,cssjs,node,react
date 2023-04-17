@@ -1198,7 +1198,6 @@ Theme</div>
 
 useContext for function files:
 
-﻿
 
 import React, { useContext } from 'react' 
 import { ThemeContext } from './App'
@@ -1628,10 +1627,20 @@ export default App
 
 
 
+how to avoid the reloading using prevent on default
+
+this is to stop refreshing on the form submission
 
 
 
 
+
+
+useState set method is not updating the values soon -
+
+use the useEffect method
+
+like this 
 
 
 

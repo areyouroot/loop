@@ -561,8 +561,32 @@ to install it using npm
 npm i react-router-dom
 
 
+md5-
+____________
+
+npm install md5
+
+ for hash generation i used md5
+
+tutorial
 
 
+for AES-
+
+npm i crypto-js
+
+tutorial - https://timetoprogram.com/encrypt-and-decrypt-text-react/
+
+
+
+
+
+
+
+
+
+
+https://www.geeksforgeeks.org/password-hashing-with-md5-module-in-node-js/
 
 
 last seen - full comp - https://www.youtube.com/watch?v=vEyxWt-pmjo&list=PLgPmWS2dQHW9F8fRXzrFBtcrwE-uS8Qa5&index=11

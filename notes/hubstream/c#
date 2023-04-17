@@ -15775,17 +15775,30 @@ namespace AssignmentNo23
 
 
 
+What is .NET Core?
 
+.NET Core is a cross platform, open source re-implementation of the .NET Framework. It is actively maintained by Microsoft and a huge community of developers over on GitHub.
 
+That’s right, Microsoft have embraced open source. Back in 2016, Microsoft bought Xamarin and began integrating it into the Microsoft developer tool set.
 
+Microsoft’s end goal is not to replace .NET Framework with .NET Core, but to add it to the .NET eco-system as an alternative for developers who need to build cross platform applications.
 
+Let's say that you are a Linux (or even MacOS) based developer and you want to try out this C# and .NET business but don’t have a Windows licence.
 
+Let’s say that you’re looking to write a micro service, but don’t want to use Node.js or any of the other JavaScript-on-the-server frameworks.
 
+Let’s say that you want to take a pre-existing MVC application written in .NET Framework and run it on a Linux box (for cheaper hosting).
 
+Let’s say that you want the “write once, build anywhere” that Java promised, but with C#. You can achieve all of those things with .NET Core.
 
+What Can I Build With .NET Core?
+.NET Core supports Console Applications, Web Applications (asp.net MVC, WebApi), Class Libraries and Unit Tests.
 
+This doesn’t sound like a lot, but it covers most of the application types that you might want to build.
 
+It doesn’t support creation of WinForms or UWP applications. There are builds of GTK and other open source Form-like libraries which support .NET Core.
 
+However, UWP can use any libraries that are built with .NET Core as long as they explicitly target version 1.6 or above of the .NET Standard.
 
 
 
@@ -15795,9 +15808,14 @@ namespace AssignmentNo23
 
 
 
+SQL with C#-
+__________________
 
+download the microsoft sql server google it to get link
 
+install the exe file
 
+select the version which is sutable for U
 
 
 
@@ -15860,7 +15878,25 @@ namespace AssignmentNo23
 
 
 
-ls -10 31
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ls -11 00
 
 last seen - https://www.youtube.com/watch?v=GhQdlIFylQ8&list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i 
 
