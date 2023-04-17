@@ -13798,6 +13798,18 @@ multidimensional array-
 ___________________________
 
 
+Multidimensional Arrays
+
+eg:
+Column 0 Column 1 Column 2
+Row 0 some value [0,0] some value [0,1] some value[0,2]
+Row 1 some value [1,0] some value [1,1] some value [1,2]
+Row 2 some value [2,0] some value [2,1] some value [2,2]
+Row 3 some value [3,0] some value [3,1] some value [3,2]
+
+
+
+
 
 
 
@@ -14084,7 +14096,25 @@ namespace DynamicKeyword
 var vs Dynamic-
 __________________
 
+Var vs dynamics
 
+Var
+
+ Need to be initialized at declaration.
+ Errors are caught at compile time.
+Intellisense is available.
+Type safe.
+ Cannot be passed as a parameter.
+
+
+
+Dynamic
+
+ Does not need to be initialized at declaration.
+ Errors are caught at runtime.
+Intellisense is not available.
+Not type safe.
+ Can be passed as a parameter.
 
 
  
@@ -14190,6 +14220,11 @@ namespace StaticDirectives
 
 preprocessor directives-
 _____________________________________________
+
+Preprocessor directives
+
+The preprocessor directives give instructions to the compiler to
+preprocess some information before actual compilation starts.
 
 it is defined using the # in the code 
 
@@ -14424,6 +14459,12 @@ assemblies-
 __________________
 
 
+Assemblies
+
+Assemblies are the building blocks of .NET Framework applications. An assembly is a collection of types
+and resources that are built to work together and form a logical unit of functionality 
+
+
 to know more - https://www.c-sharpcorner.com/UploadFile/78607b/what-is-assembly/#:~:text=by%20the%20CLR.-,An%20Assembly%20is%20a%20basic%20building%20block%20of%20.,a%20logical%20unit%20of%20functionality.
 
 
@@ -14514,6 +14555,14 @@ namespace CultureInfoApp
 
 versions-
 __________
+
+Versions
+Major 1
+Minor 2 
+Build 3 
+Revision 4
+
+eg v 1.2.3.4 or v4.0 or v85.69.44
 
 used to controle or define the version of the software
 
@@ -14615,6 +14664,11 @@ more on this -- https://learn.microsoft.com/en-us/dotnet/api/system.globalizatio
 
 attributes-
 __________________
+
+Attributes provide a powerful method of associating metadata, or declarative information,
+ with code (assemblies, types, methods, properties..etc).After an attribute is associated with a
+ program entity, the attribute can be queried at run time by using a technique called reflection.
+
 
 Obsolete - this gives a message while uing an metthod or a variable that it shows a green line with a message like this is not going to be used or use this insted and pass this and otherwise
 
@@ -14800,6 +14854,19 @@ namespace ReflectionsApp
 serialization and deserialization-
 _____________________________________________
 
+Serialization and Deserialization
+
+Serialization is the process of converting an object into a stream of bytes in order to store the object or transmit it to
+memory, a database, or a file. Its main purpose is to save the state of an object in order to be able to recreate it when
+needed. Deserialization is the reverse of this process.
+
+
+XML (Extensible Markup Language)
+
+Defines a set of rules for encoding documents in a format that is both human-readable and machine-readable 
+
+
+
 serialization its nothing to conver the data to bits and bytes to store diffrent place which can be easy to transfer opp is deserialization
 
 
@@ -14924,6 +14991,12 @@ namespace SerializationAndDeserialization
 
 GUID-
 ________
+
+A GUID (global unique identifier) is a term used by Microsoft for a number that is generated to create a unique identity
+for an entity
+ef6925bd-cac5-41ed-ae21-447e4b70ff48
+c32800ab-f252-4d0c-b2ae-512fd87c5055
+
 
 this is like a unique identification data 
 
@@ -15407,20 +15480,71 @@ namespace RefLocalRefReturn
 
 
 
+IEnumerable and IEnumerator-
+_____________________________________________
 
 
+• IEnumerable is an interface that defines one method GetEnumerator which returns an IEnumerator interface,
+which allows readonly access to a collection.
+• IEnumerable is some type (List or array) that you can loop through.
+• IEnumerable is read-only.
+• If you just need only to read, sort or filter your collection, IEnumerable is what you need. 
 
 
+this acts as a interface between a class and u to give read only access
 
 
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace IEnumerableApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            IEnumerable<int> result = from value in Enumerable.Range(1, 10)
+                                      select value;
 
+            foreach (var value in result)
+            {
+                Console.WriteLine(value);
+            }
+            Console.WriteLine();
 
+            double avg = result.Average();
+            Console.WriteLine(avg);
 
+            List<int> list = result.ToList();
+            int[] array = result.ToArray();
 
+            //list.Add(11);list.Add(12);list.Add(13);list.Add(14);list.Add(15);list.Add(100);
 
+            Console.WriteLine("What is in the list now");
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+            result = list.AsEnumerable();
+            Console.WriteLine("What is in the ienumrable now");
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("--------");
 
+            IEnumerator<int> enumrator = list.GetEnumerator();
+            while(enumrator.MoveNext())
+            {
+                Console.WriteLine(enumrator.Current);
+            }
+        }
+    }
+}
 
 
 
@@ -15428,1425 +15552,225 @@ namespace RefLocalRefReturn
 
 
 
+Yield-
+________
 
+this key word enables us to return multiple data from the function
 
 
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace YieldKeywordApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            foreach (var item in PerformMathOperations(3,2))
+            {
+                Console.WriteLine(item);
+            }
 
+        }
 
+        public static IEnumerable<double> PerformMathOperations(int numberOne, int numberTwo)
+        {
+            yield return numberOne + numberTwo;
+            yield return numberOne * numberTwo;
+            yield return numberOne - numberTwo;
+            yield return Math.Round(((double)numberOne / (double)numberTwo),2);
+        }
+    }
+}
 
 
 
 
 
 
+DLL files-
+__________________
 
+A DLL (Dynamic Link Library) is a library that contains code and data that can be used by more than one
+program at the same time. 
 
 
+procedure to create dll file 
 
+new project->clas library(.Net Framework)->name it and ok
 
 
+and u can add in the other projects from the reference tab at the rightside
 
 
 
+decompiling the DLL---------------
 
+learn from web 😎 i will not teach u 
 
+more info = https://www.telerik.com/products/decompiler.aspx
 
 
 
+protect the dll--------------------
 
+u can add a licence to a dll file 
 
+learn from web 😎 i will not teach u 
 
+info = https://www.preemptive.com/products/dotfuscator/
 
 
 
 
 
 
+assignment-
+__________________
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace AssignmentNo24
+{
+    class Program
+    {
+        //JaggedMultidimensionalExercise
+        static void Main(string[] args)
+        {
+            // Assignment 24 - create jagged array of multuidimemal arrays with any type and sizes and access its data
+            var multiJaggedArray = new object[3][,];
 
+            multiJaggedArray[0] = new object[2, 2] { { "Superman", "Clarck Kent" }, { "Batman ", "Bryce Wayne" } };
+            multiJaggedArray[1] = new object[3, 2] { { 10, 10 }, { 20, 20 }, { 30, 30 } };
+            multiJaggedArray[2] = new object[2, 2] { { 3.5, 5.75 }, { 1.25, 3.67 } };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+            foreach (var item in multiJaggedArray)
+            {
+                Console.WriteLine(item);
+                for (int i = 0; i < item.GetLength(0); i++)
+                {
+                    for (int j = 0; j < item.GetLength(1); j++)
+                    {
+                        Console.Write(item[i, j] +" ");
+                    }
+                    Console.WriteLine();
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
+
+pro2______________________________________________________________________________________________________________________________________________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AssignmentNo23
+{
+    class Program
+    {
+        // Multidimensional Arrays Assignment
+        static void Main(string[] args)
+        {
+            int RowsNumber = 25;
+            int ColumnsNumber = 7;
+            int offset = 0;
+            string[,] Array2D = new string[RowsNumber, ColumnsNumber];
+
+            #region FillArrayManually
+            //Array2D[0, 0] = "R0C0";
+            //Array2D[0, 1] = "R0C1";
+            //Array2D[0, 2] = "R0C2";
+            //Array2D[1, 0] = "R1C0";
+            //Array2D[1, 1] = "R1C1";
+            //Array2D[1, 2] = "R1C2";
+            //Array2D[2, 0] = "R2C0";
+            //Array2D[2, 1] = "R2C1";
+            //Array2D[2, 2] = "R2C2";
+            //Array2D[3, 0] = "R3C0";
+            //Array2D[3, 1] = "R3C1";
+            //Array2D[3, 2] = "R3C2";
+            //Array2D[5, 3] = "R5C3";
+            //Array2D[6, 2] = "R6C2";
+            //Array2D[10, 1] = "R10C1";
+            //Array2D[10, 2] = "R10C2";
+            //Array2D[10, 3] = "R10C3";
+            //Array2D[10, 4] = "R10C4";
+            //Array2D[10, 5] = "R10C5";
+            //Array2D[9, 5] = "R9C5";
+            //Array2D[8, 5] = "R8C5";
+            //Array2D[11, 5] = "R11C5";
+            //Array2D[10, 6] = "R10C6";
+            //Array2D[12, 6] = "R12C6";
+            //Array2D[14, 5] = "R14C5";
+            //Array2D[15, 1] = "R15C1";
+            //Array2D[15, 2] = "R15C2";
+            #endregion
+
+            #region FillArrayAutomatically
+            FillArrayAutomatically(Array2D, RowsNumber, ColumnsNumber,offset);
+            #endregion
+
+            ShowInRowsAndColumnsFormat(Array2D, RowsNumber, ColumnsNumber, offset);
+
+        }
+
+        #region Methods Sections
+        public static void FillArrayAutomatically(dynamic array2D, int row, int column, int numberOffset)
+        {
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < column; j++)
+                {
+                    if(array2D.GetType().Name == "String[,]")
+                        array2D[i, j] = "R" + (i+ numberOffset) + "C" + (j+ numberOffset);
+                }
+            }
+        }
+
+        public static void ShowInRowsAndColumnsFormat(dynamic array2D, int row, int column, int numberOffset)
+        {
+            for (int i = 0; i < column; i++)
+            {
+                Console.Write("\tColumn " + (i + numberOffset));
+            }
+            Console.WriteLine();
+            for (int i = 0; i < column; i++)
+            {
+                Console.Write("\t--------");
+            }
+            Console.WriteLine();
+
+            for (int i = 0; i < row; i++)
+            {
+                Console.Write("Row " + (i + numberOffset));
+                for (int j = 0; j < column; j++)
+                {
+                    Console.Write("\t");
+                    Console.Write(array2D[i, j]);
+                    Console.Write("\t");
+                    if (j == (column - 1))
+                        Console.WriteLine();
+                }
+            }
+        }
+        #endregion
+    }
+}
 
 
 
