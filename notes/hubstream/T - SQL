@@ -1,0 +1,116 @@
+SQL
+__________________
+
+download the microsoft sql server google it to get link
+
+install the exe file
+
+select the version which is sutable for U
+
+i choose the developer addition
+
+open the file and run it
+
+setup process=========
+
+download media => english => CAB => location (your choice) => Download
+
+after download check out the file location which u selected default is downloads directory
+
+run the sql server dev exe file 
+
+the setup will be prompted 
+
+location (your choice where to install the server) => ok => system configuration checker (it it shows all pass then u can install sql server else ur pc is little outdated sorry please use azure) => installiation => new sql server standalone installation ...... => developer edition => next => accept license => next => use microsoft updates to check ............. => next => (it will display fire wall warning its ok) next => uncheck azure exetension ........ => next => (choose required options it can be reintalled later also so just chill i choose) database engine service => next => (if u want to name ur server different then check named instance name it) Default instance => next => next => use windows authentication mode its easy (if u want to add a custom password to the sql server select mixed mode and set credentials ) => add curent users to add some few users => next => install => close
+
+if any error like this comes 
+
+TITLE: Message Details
+------------------------------
+
+The specified directory, "C:\Program Files\Microsoft SQL Server\", for the INSTALLSHAREDDIR parameter is not valid because this directory is compressed or is in a compressed directory. Specify a directory that is not compressed.
+
+------------------------------
+BUTTONS:
+
+OK
+------------------------------
+
+go to that file and click properties of the folder General => uncheck read only => advance => uncheck compress contents to save disk space
+
+next using the cab file install the management studio
+
+SQL installation Center => install SQL server management tools => this will take you to a web page
+
+click on  Free Download for SQL Server Management Studio (SSMS)
+
+run the setup => install => after installed (close)
+
+open the microsoft SQL management studio to check its installed properly
+
+once u open it it will be user friendly that i dont need to guide here
+
+
+on the left side u can spot the databases right click on it and press new database and name it then click ok
+
+
+to remove that data base right click on it and press Delete
+
+
+vid tutorial - for error = https://www.youtube.com/watch?v=LCYgo6BKdEE
+
+
+
+
+
+
+
+
+what is T-SQL ?
+
+▢›Transact-SQL (T-SQL) is Microsoft SQL Server's implementation of the standard SQL.
+▢›Transact-SQL (T-SQL) has it's own proprietary extensions in addition to the SQL standard.
+▢›Used to perform actions on a SQL Server database.
+▢›Create new databases, tables and other objects.
+▢›Add user accounts ,modify and manage access permissions.
+▢›Run maintenance tasks
+▢›Query database: retrieve data ,Insert records, update records, delete records from a database
+▢›Create stored procedures in a database
+
+
+what is SQL server
+
+the micrsoft SQL server is a relational database management system (RDBMS) developed by Microsoft.
+Used to Store and retrive data request by applications 
+runs on windows and linux
+it can be a remote or dedicated server
+sql server is an instance
+SQL is a language used to intract with the RDBMS
+
+
+hardware and software requirements ?
+
+this can change as time please GPT or google it
+
+
+types of SQL server based on implementation 
+
+->on-premises  == this is local installation on the own remote or local device 
+->SQL on Azure == this a cloud instance of the SQL server provided by the Azure
+
+
+What is SQL Server Management Studio -SSMS
+
+= SQL Server Management Studio is an integrated development environment (IDE)
+that provides a graphical interface for connecting and working with MS SQL Sever.
+
+= it is a free tool provided by Microsoft to manage SQL Servers
+
+= Used by professionals like database administrators and developers.
+
+= Used to access, configure,manage,administer and develop all components of SQL Server.
+
+
+
+
+there is always a backup file created in  c:\Program Files\Microsoft SQL Server\MSSQL15.SQLSERVERNAME\MSSQL\Backup
