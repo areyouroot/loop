@@ -1646,6 +1646,37 @@ like this
 
 
 
+FileReader()-
+_________________
+
+https://www.javascripttutorial.net/web-apis/javascript-filereader/
+
+https://www.youtube.com/watch?v=-AR-6X_98rM
+
+u need to create the instance of the reader
+
+const reader =new FileReader()
+
+u need to call the reader to read the file as text 
+
+reader.readAsText(file)
+
+the file componunt can be e.target.file[0]
+
+and the operation that need to be performed on the load can be defned as 
+
+reader.
+
+eg code :
+
+file upload :::
+
+encrypt :::::::
+
+
+
+
+
 
 
 

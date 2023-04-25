@@ -113,4 +113,56 @@ that provides a graphical interface for connecting and working with MS SQL Sever
 
 
 
+
+
+lets work with the DB so create a new data base using the object explorer
+
+1)creating a Table:
+___________________
+
+    click on the + near the database which u created then right click on tables -> new -> table
+
+    give details like column name and data type and allownulls or not
+    
+    after filling the details press x so that it asks to save as or just save 
+
+    u will see the table is created under the tables folder and if not refresh it or create again
+
+    dbo - means database owner
+
+    if u had a excel as the database then copy the contents only the values and then right click on the dbo which u created -> edit top 200 rows right click on arrow and paste
+
+    the copied data can be edited
+
+    u can print all the data using select statement
+
+
+2)new query:
+_____________
+
+    click on new query (note : the query windows is too powerful it can also access the systerm database so use it with full mind )
+
+    u can see a drop down box at top right it will show the current database click on it and u can change the db 
+    
+    if u are in the master db u can use the keyword "use"
+
+        syntax :    use [dbname]
+                    go
+
+        eg: use [testdb] 
+            go
+
+last seen - https://youtu.be/PaNpV-15_YY?list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i&t=1081
+
+
+
+
+
+
+
+
+
+
 there is always a backup file created in  c:\Program Files\Microsoft SQL Server\MSSQL15.SQLSERVERNAME\MSSQL\Backup
+
+click on new query to work with the database 
