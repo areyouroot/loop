@@ -1,6 +1,10 @@
 
 pls follow this tutorial only if u know the basics of web developement
 
+
+do watch : https://www.youtube.com/watch?v=ML5egqL3YFE
+
+
 HTML_______________
 
 any text editor can be used for us we use vscode
@@ -1653,6 +1657,20 @@ https://www.javascripttutorial.net/web-apis/javascript-filereader/
 
 https://www.youtube.com/watch?v=-AR-6X_98rM
 
+when u are choosing a file and it is stored in the array u can access it by
+
+e.files                   //this will return a array 
+
+to get the 0th index   
+
+e.files[0]
+
+// ignore this // </Link>
+
+
+to read the contents of the file u can use the reader
+
+
 u need to create the instance of the reader
 
 const reader =new FileReader()
@@ -1667,6 +1685,19 @@ and the operation that need to be performed on the load can be defned as
 
 reader.
 
+for eg u have a csv file or any file to read tyhe contents of the file u can do this :::: remember the reader.onload will only execute at last
+
+func (e){
+  cosnt reader = new FileReader()
+  reader.readAsText(e.files[0])
+  reader.onload = () =>{
+    console.log(reader.result)
+  }
+}
+
+u can also read files as data dont worry of security its always in base64 format
+
+
 eg code :
 
 file upload :::
@@ -1676,20 +1707,33 @@ encrypt :::::::
 
 
 
+npm i cors
+
+https://www.npmjs.com/package/cors
 
 
 
 
 
+npm i buffer
+https://www.npmjs.com/package/buffer
+
+
+
+npm i child_process
+
+
+npm i react-native-aes-crypto
+
+
+
+npm i fs
+this is a simle file writer and u can also delete the files 
 
 
 
 
-
-
-
-
-
+npm i sjcl
 
 
 

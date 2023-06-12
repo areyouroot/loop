@@ -20,11 +20,11 @@ sunday -infog(all days) / call all family mem / enjoy and stay away from phone
 	
 		
 		even		/	odd
-monday -	russian	/	arabic
-tues 	-	german	/	french
-wednes-	hindi		/	Portuguese
-thurs -	japnese	/	spanish
-fri 	-	chinese	/	korean
+monday 	-		russian	/	arabic
+tues 	-		german	/	french
+wednes 	-	hindi		/	Portuguese
+thurs 	-		japnese	/	spanish
+fri 	-		chinese	/	korean
 sat 	-	tamil		/	english
-sunday-	write books	/	morscode
+sunday	-	write books	/	morscode
 
