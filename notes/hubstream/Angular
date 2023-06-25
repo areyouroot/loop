@@ -1,0 +1,38 @@
+Type Script -
+
+    What is Type Script ? 
+
+        TypeScript is a free and open-source high-level programming language developed by Microsoft that adds static typing with optional type annotations to JavaScript. It is designed for the development of large applications and transpiles to JavaScript.
+
+    the Type script is also a Super set of js means js + more functions
+
+features of type script -
+
+    - static checker - this is used to debug the code while typing 
+    - every code is converted in to js then compiled
+
+Steps to install the angular -
+
+    first install the node 
+    then install and update the npm
+    then install angular cli using this command 
+        npm install -g @angular/cli
+    then create a directory for the new app
+    cmd is 
+        ng new "application name without quotes use _ or - no avoid space"
+    depending on the angular version you are using you will be asked some default questions
+    like do u like to add angular routing (y/n)
+    or the css versions 
+
+    press enter for the both questions to select the default
+
+    angular uses the type script
+    then use cd cmd to go inside the angular folder
+    then run the develpement server
+        ng serve
+    the server is running in local host 4200
+
+this is almost similar to the react but some new keywords and different internal working
+
+
+    
