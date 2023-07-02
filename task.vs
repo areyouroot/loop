@@ -28,3 +28,47 @@ fri 	-		chinese	/	korean
 sat 	-	tamil		/	english
 sunday	-	write books	/	morscode
 
+tasks loop - 
+
+if ( pre req ) - 
+
+finace calculatuion 						-	monthly
+mobile recharge 						-	monthly
+net								-	monthly
+buy food u want or go out					-	monthly
+
+looper -								no of days		pointer
+
+os developement 						-	x2			()
+hunt (after root os)						-	x2			()
+skill loop (github)						-	x2			()
+diy								-	x1			()
+youtube stuff 							-	x2 or x1		()
+malware analysis and reverseing (after root os)			-	x2			()
+hubstream sourse code 						-	x2			()
+quran								-	x1			()
+workout 							-	x1			()
+family or enjoy							-	x1			()
+soc								-	x2			()
+devops								-	x2			()
+hacking 							-	x2			()
+update encrtptyor decryptor					-	x2			()
+loop								-	x2			()
+keep notes 							-	x2 or x1		()
+books								-	x2			()	
+blockchain							-	x2			()
+if (fund game)							-	x1			()
+if (startup fund or work (see money to get variables))		-	x(number of startups)	()
+cloud research and learn and develope 				-	x2			()
+IOT								-	x2			()
+Infog 								-	x1 or x2		()
+meta ar vr and new tech 					-	x2			()
+new business and market research 				-	x2 or x1		()
+mvtv								-	x1			()
+health								-	x(X you want)		()
+things to buy 3 month planning 					-	x1			()
+out of box 							-	x2 or x1		()
+loop								-	x2			()
+keep notes 							-	x2 or x1		()
+board task `							-	x2 			()
+story 								-	x2			()
