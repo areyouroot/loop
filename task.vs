@@ -18,7 +18,7 @@
 
 sunday -infog(all days) / call all family mem / enjoy and stay away from phone
 
-pointer represents the last doen
+pointer represents the last done
 
 Language Loop - 
 

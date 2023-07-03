@@ -19,7 +19,7 @@ Steps to install the angular -
         npm install -g @angular/cli
     then create a directory for the new app
     cmd is 
-        ng new "application name without quotes use _ or - no avoid space"
+        ng new "application name without quotes use _ or - no avoid space and do avoid the word 'test' "
     depending on the angular version you are using you will be asked some default questions
     like do u like to add angular routing (y/n)
     or the css versions 
@@ -34,5 +34,280 @@ Steps to install the angular -
 
 this is almost similar to the react but some new keywords and different internal working
 
+CLI Deep Dive & Troubleshooting
+In the next lecture, we're going to build our first little app!
 
+If the CLI prompts you to answer some questions (some versions do that), you can simply hit ENTER for all questions. This will accept the default settings which are fine for this course.
+
+The CLI generates a different welcome screen than you're going to see in my video though. No worries, you'll still be able to follow along without issues! Just make sure to code along so that your code equals mine - Angular itself didn't change a bit :)
+
+-----
+
+If you want to dive deeper into the CLI and learn more about its usage, have a look at its official documentation: https://github.com/angular/angular-cli/wiki
+
+You encountered issues during the installation of the CLI or setup of a new Angular project?
+
+A lot of problems are solved by making sure you're using the latest version of NodeJS, npm and the CLI itself.
+
+Updating NodeJS:
+
+Go to nodejs.org and download the latest version - uninstall (all) installed versions on your machine first.
+
+Updating npm:
+
+Run [sudo] npm install -g npm  (sudo  is only required on Mac/ Linux)
+
+Updating the CLI
+
+[sudo] npm uninstall -g angular-cli @angular/cli 
+
+npm cache verify 
+
+[sudo] npm install -g @angular/cli 
+
+Here are some common issues & solutions:
+
+Creation of a new project takes forever (longer than 3 minutes)
+That happens on Windows from time to time => Try running the command line as administrator
+
+You get an EADDR error (Address already in use)
+You might already have another ng serve process running - make sure to quit that or use ng serve --port ANOTHERPORT  to serve your project on a new port
+
+My changes are not reflected in the browser (App is not compiling)
+Check if the window running ng serve  displays an error. If that's not the case, make sure you're using the latest CLI version and try restarting your CLI
     
+
+angular strict mode 
+
+    this is a mode used while creating the app the strict mode
+    Angular CLI creates all new workspaces and projects with strict mode enabled. Strict mode improves maintainability and helps you catch bugs ahead of time.
+
+    TO CREATE A APP IN THE STRICT MODE 
+        ng new "app name without quotes" --strict  
+
+    more on strict mode - https://angular.io/guide/strict-mode
+
+    if u dont want the strict mode then specify as --no-strict
+        ng new "app name without quotes" --no-strict  
+
+same like react the angular also displays an empty page on the error occurance
+
+to use a particular module in the angular u need to download it using npm command then import it in the app.module.ts to use it in the main script or the html then u need to edit the imports section in the app.module.ts
+
+    eg let me use a module called FormsModule
+
+        for this module it is already installed with the angular cli so we are going to import it directly
+
+    inside the app.module.ts
+
+        import { NgModule } from '@angular/core';
+        import { BrowserModule } from '@angular/platform-browser';
+        import { FormsModule } from '@angular/forms';
+
+        import { AppComponent } from './app.component';
+
+        @NgModule({
+          declarations: [
+            AppComponent
+          ],
+          imports: [
+            BrowserModule,
+            FormsModule
+          ],
+          providers: [],
+          bootstrap: [AppComponent]
+        })
+        export class AppModule { }
+
+    as u can see we have added 2 new lines 
+
+    1.
+        import { FormsModule } from '@angular/forms';
+
+    2.    
+        imports: [
+            BrowserModule,
+            FormsModule
+          ],
+
+this was a module for ngModel that is used to get the input and change the variable dynamically
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
