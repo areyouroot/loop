@@ -131,165 +131,101 @@ to use a particular module in the angular u need to download it using npm comman
           ],
 
 this was a module for ngModel that is used to get the input and change the variable dynamically
+    
+    then we also modified the html and app.component.ts
+        app.component.ts
 
+        import { Component } from '@angular/core';
 
+        @Component({
+          selector: 'app-root',
+          templateUrl: './app.component.html',
+          styleUrls: ['./app.component.css']
+        })
+        export class AppComponent {
+          name = 'new_app';
+        }
+        
+        app.component.html
 
+        <input type="text" [(ngModel)]="name">
+        <p>{{ name }}</p>
 
+the above program is noting but it makes the input value to render in the html page using NgModule
 
+this is not the full content so dont forget to google stuff and read DOMRectList
 
+so angular uses type script that is converted in to js at the end
 
+you can install the bootstrap for beatuful Ui in ur web application
 
+    npm i --save bootstrap@version
 
+    eg:
+        npm i --save bootstrap  // this installs the latest version
+        (or)
+        npm i --save bootstrap@3  //this installs the version 3
 
+then the node should know that we have another css file that is bootstrap so u need to add a line under angular.json under -> architect -> build -> test -> styles
+here we need to add the location of out bootstrap css file whic is located in C:\Users\[Your user name]\[your app location and name]\node_modules\bootstrap\dist\css\bootstrap-theme.min.css
 
+        after modification :
 
+            "styles": [
+                "node_modules/bootstrap/dist/css/bootstrap-theme.min.css",
+                "src/styles.css"
+            ],
 
+                note : change '\' -> '/' in the copied path and the copied path should started from node_modules
+                try not to use the bootstrap from the global installation else it will be confusing
+                do restart the server so that the new config is loaded
 
 
 
+use developers tools and check the sources tab and then click on style.css if it displayed message like 
 
+Do you get some strange error? Are you stuck? 
 
+Have a look at the source code of this course - by comparing it to your code you should be able to quickly find out where your code deviates and what causes the issue!
 
+You can find the source code of each section attached to the last lecture of that section!
 
+Each ZIP file holds code files which you can use to compare your code to it.
 
+One important note: All the course code will only work if you are NOT using "strict mode" see the "First App" lecture in this module. Strict mode forces you to write more verbose code in some places (especially when it comes to class properties). If you enabled it by accident, you can also disable it by setting strict: false in your tsconfig.json file.
 
+---
 
+Due to dependency version mismatches, running the attachments might fail though - in that case, you can try the following:
 
+1) Create a new project via ng new my-project --strict false (the --strict false part is important!)
 
+2) Copy the content of the ZIP attachment src/app folder into the newly created project src/app folder.
 
+3) Run your project (my-project) via ng serve
 
+If you try to directly run my ZIP attachments, you must run npm install first.
 
+If you're getting errors when running npm install, you can often solve them by running npm install --legacy-peer-deps instead of npm install.
 
+---
 
+Got any problems with the code (e.g. error messages when running it or you don't know how to use it)? Check this thread created by Jost: https://www.udemy.com/the-complete-guide-to-angular-2/learn/lecture/6709112#questions/8079942
 
+! Still it does not work its ok u can contine we will see that in future
+the root componet is the default componut in the angular it is the palce where all the componunts are tied up
 
+Components -
 
+    these are the parts of the the webpage that have different workings like google web page has a component called search it can be repeded in the multiple pages
 
+    u can create the components any where but do do ccreate it under the app folder so that its easy to rember and MediaKeySystemAccess
 
+    u need to include the files which u create in the component file then u need to create componets and do add it in the module also
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
 

@@ -1,2 +1,145 @@
-if u are going to look for the basics then you are in the wrong place please check w3 schools
+if u are going to look for the basics then you are in the wrong place please
+check w3 schools 
 
+prettier is a html and css code formating extension then go to
+setting -> search default format -> select the extention installed then we need
+to change another config in setting search format on save and enable it then
+search auto save -> on focus change u can press ! then enter to get the basic
+html structure see the basic definition for the html and css google it -> ? 
+
+the
+element inside the another element is called child element and the the element
+uwhich hold it is called parrent element eg :
+
+<h1><h2></h2></h1>
+
+here h1 is parrent and h2 is child of the h1 the tag types-
+<!DOCTYPE html>
+
+this represents the current file is a html file
+
+<html></html>
+this is where the html cotent starts and ends
+
+<head></head>
+this is the head element that represents the content of the head tab
+
+<body></body>
+this represents the actual conmtent of the web page to know about other tags go
+to w3 schools.com only important things are avalible here u can install a image
+preview extention in the vscode to see the image in the left side of the code u
+can also install the auto rename
+
+u can install the auto close tag extention and live server extention so that u get some automation and auto close tage also at the bottom right u will see (go live press it to run the server and copy the port and paste it to see the webpage)
+
+first child -
+
+    this is a pesudoClass secletor like if 
+        li:first-child{
+            style
+        }
+    this is a nice example of the first child element here all the li tag where its the first child of its parrent it will put the style to them u can also do to other childs 
+
+    li:nth-child(position of child where u want to apply this style){
+        style
+    }
+
+    it can be used to select he odd and even childs 
+
+    li:nth-child(odd/even){
+        style
+    }
+
+    eg :
+        li:nth-child(odd){
+            color : red;
+        }
+        li:nth-child(2){
+            color: blue;
+        }
+
+check out the text-decoration
+
+inline is a small block element which is stored side by side and block level elements are stored in a single big block
+
+to display that we use display conditon eg :
+        
+        display:inline
+        display:block
+        
+        or mix of both 
+        
+        display:inline-block
+
+absolute positioning - 
+
+when this style is applied to a element the element has no effect of the other element it will float
+u can define the position by top bottom left right eg:
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:10;
+
+relative posotioning - 
+
+this the position to a related to another element element
+child postion should be absolute and parrent should be absolute
+
+you can select based on the elements like 
+
+    p::first-line{
+
+    }
+    p::first-letter{
+
+    }
+
+u can have 2 selectors combined with + 
+
+u can use after to give the content or any elements or other things using content
+
+    h2::after(or)before{
+        content : "any content";
+        style for that
+        using inline block u can define the position
+    }
+
+u can debuge the code by using some online websites 
+
+u can resize the cwetain elements to the float object by creating a empty div and 
+
+    .classname{
+        clear:both; /*it works but i dont know why*/
+    }
+
+// clear doesnt allow the floating elements to exist
+
+    else u can use the after param
+
+    (selector)::after{
+        clear:both;
+    }
+
+box sizing - 
+
+this is used to define the box model by only with the width and height
+    note : the total box size will be the given width and height including padiong margin etc...\
+
+this property doesnot get inhereted
+
+Flex Box - 
+
+    do google it 
+
+    this used to align and style using container box model
+
+u can change the order also 
+
+strech things 
+
+it has cheat sheet do check it out
+
+
+same for the css grid
+
+we can also add shadow

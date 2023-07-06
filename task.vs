@@ -24,7 +24,7 @@ Language Loop -
 
 LANGUAGE 			POINTER
 
-russian				()
+russian				(*)
 hindi				()
 french				()
 korean				()
