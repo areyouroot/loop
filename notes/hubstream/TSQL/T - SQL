@@ -1,0 +1,276 @@
+SQL
+
+---
+
+download the microsoft sql server google it to get link
+
+install the exe file
+
+select the version which is sutable for U
+
+i choose the developer addition
+
+open the file and run it
+
+setup process=========
+
+download media => english => CAB => location (your choice) => Download
+
+after download check out the file location which u selected default is downloads directory
+
+run the sql server dev exe file
+
+the setup will be prompted
+
+location (your choice where to install the server) => ok => system configuration checker (it it shows all pass then u can install sql server else ur pc is little outdated sorry please use azure) => installiation => new sql server standalone installation ...... => developer edition => next => accept license => next => use microsoft updates to check ............. => next => (it will display fire wall warning its ok) next => uncheck azure exetension ........ => next => (choose required options it can be reintalled later also so just chill i choose) database engine service => next => (if u want to name ur server different then check named instance name it) Default instance => next => next => use windows authentication mode its easy (if u want to add a custom password to the sql server select mixed mode and set credentials ) => add curent users to add some few users => next => install => close
+
+if any error like this comes
+
+## TITLE: Message Details
+
+The specified directory, "C:\Program Files\Microsoft SQL Server\", for the INSTALLSHAREDDIR parameter is not valid because this directory is compressed or is in a compressed directory. Specify a directory that is not compressed.
+
+---
+
+BUTTONS:
+
+## OK
+
+go to that file and click properties of the folder General => uncheck read only => advance => uncheck compress contents to save disk space
+
+next using the cab file install the management studio
+
+SQL installation Center => install SQL server management tools => this will take you to a web page
+
+click on Free Download for SQL Server Management Studio (SSMS)
+
+run the setup => install => after installed (close)
+
+open the microsoft SQL management studio to check its installed properly
+
+once u open it it will be user friendly that i dont need to guide here
+
+on the left side u can spot the databases right click on it and press new database and name it then click ok
+
+to remove that data base right click on it and press Delete
+
+vid tutorial - for error = https://www.youtube.com/watch?v=LCYgo6BKdEE
+
+what is T-SQL ?
+
+▢›Transact-SQL (T-SQL) is Microsoft SQL Server's implementation of the standard SQL.
+▢›Transact-SQL (T-SQL) has it's own proprietary extensions in addition to the SQL standard.
+▢›Used to perform actions on a SQL Server database.
+▢›Create new databases, tables and other objects.
+▢›Add user accounts ,modify and manage access permissions.
+▢›Run maintenance tasks
+▢›Query database: retrieve data ,Insert records, update records, delete records from a database
+▢›Create stored procedures in a database
+
+what is SQL server
+
+the micrsoft SQL server is a relational database management system (RDBMS) developed by Microsoft.
+Used to Store and retrive data request by applications
+runs on windows and linux
+it can be a remote or dedicated server
+sql server is an instance
+SQL is a language used to intract with the RDBMS
+
+hardware and software requirements ?
+
+this can change as time please GPT or google it
+
+types of SQL server based on implementation
+
+->on-premises == this is local installation on the own remote or local device
+->SQL on Azure == this a cloud instance of the SQL server provided by the Azure
+
+What is SQL Server Management Studio -SSMS
+
+= SQL Server Management Studio is an integrated development environment (IDE)
+that provides a graphical interface for connecting and working with MS SQL Sever.
+
+= it is a free tool provided by Microsoft to manage SQL Servers
+
+= Used by professionals like database administrators and developers.
+
+= Used to access, configure,manage,administer and develop all components of SQL Server.
+
+lets work with the DB so create a new data base using the object explorer
+
+1)creating a Table:
+
+---
+
+    click on the + near the database which u created then right click on tables -> new -> table
+
+    give details like column name and data type and allownulls or not
+
+    after filling the details press x so that it asks to save as or just save
+
+    u will see the table is created under the tables folder and if not refresh it or create again
+
+    dbo - means database owner
+
+    if u had a excel as the database then copy the contents only the values and then right click on the dbo which u created -> edit top 200 rows right click on arrow and paste
+
+    the copied data can be edited
+
+    u can print all the data using select statement
+
+2)new query:
+
+---
+
+    click on new query (note : the query windows is too powerful it can also access the systerm database so use it with full mind )
+
+    u can see a drop down box at top right it will show the current database click on it and u can change the db
+
+    if u are in the master db u can use the keyword "use"
+
+        syntax :    use [dbname]
+                    go
+
+        eg: use [testdb]
+            go
+
+last seen - https://youtu.be/PaNpV-15_YY?list=PLnIuGyeSptxhRhnWhPw2kunS6h4MRgo1i&t=1081
+
+why we use GO
+
+    go is used to represent a batch
+    if any query is failed to execute it can be seperated by go and make other queries execute or make seperate groups
+
+there is always a backup file created in c:\Program Files\Microsoft SQL Server\MSSQL15.SQLSERVERNAME\MSSQL\Backup
+
+click on new query to work with the database
+
+u can have temporavary variables in the ms sql and also define the commands in it
+
+    DECLARE @varuiablename AS DATATYPE = VALUE
+
+    eg:
+        declare @mayvar as int = 2;
+
+    to update it
+
+    set @variable = value
+
+    eg:
+        set @myvar = 2;
+
+u can also perform the operations like add subtract multiply etc .....
+
+there are other data types also that u can check out
+
+there are some functions related to maths operations like powerc square power etc .....
+
+u can alos convert form one datatype to another
+
+u also have the string manuplation and operations
+
+TRIM
+As mentioned in the previous video, LTRIM removes space from the beginning of a string, and RTRIM removes spaces from the end.
+
+As of SQL Server 2017, there is a new function - TRIM - which does both. However, don't use this on SQL Server 2016 or earlier, as it won't work.
+
+u also have methods like try_convert that is like try parse and returns null on fail
+
+u can also concat 2 string values
+
+Want more string functions?
+We've covered a lot of string functions here. I could continue, but I don't want to drown you in functions at this stage!
+
+If you want more string functions, or more information on them, please have a look at my YouTube videos (all of these bullet points are hyperlinked):
+
+SQL Server ASCII and CHAR functions, including tabs and carriage returns
+
+Searching for text in SQL Server: CHARINDEX and PATINDEX
+
+More to come in future weeks.
+
+If you don't want to see these videos yet, no problems! These are bonus videos which you may find useful later.
+
+Thank you very much for reading this, and keep learning!
+
+Non-English locales, and Books Online
+Is your SSMS set up in English? If so, please go to the next video.
+
+If not, then...
+
+As you have seen in the previous video, Microsoft has recommended that you create dates in this format:
+
+'2025-01-01'
+
+However, this doesn't necessarily work if you are using an interface language other than English. In the next video, I'll use the statement:
+
+declare @mydate as datetime = '2015-06-24 12:34:56.124'
+
+If this doesn't work on your version of SQL Server, then please use one of the following 2 formats instead:
+
+declare @mydate as datetime = '20150624 12:34:56.124'
+
+declare @mydate as datetime = '2015-06-24T12:34:56.124'
+
+In the first statement, you remove the hyphens. In the second statement, use a letter T instead of a space between the date and time. However, this only works if you have a time part.
+
+If you have any questions, please let me know in the Q&A.
+
+Keep learning!
+
+u can save the date directly and if ur product is overseas then check out datetime offset
+
+u can also select a part of the entire string usning the functions like left etc ......
+
+u can give having as a keyword to filter the data haveing some value eg:
+    SELECT COUNT(CustomerID), Country
+    FROM Customers
+    GROUP BY Country
+    HAVING COUNT(\*) > 5
+    ORDER BY COUNT(CustomerID) DESC;
+
+
+unique constrain is a constraint that is only made for the primary key 
+
+default constraint is used for giving the default values like null or defaut date etc ......
+
+check constraint it is like giving a conditon befor the allocation like the money cannot be higher than 500 or lower than the 500 etc like that during the defenition or later
+
+union combaines all the data in the maching feilds , unionall just prints the duplicates also
+intersect selects all the data that intersect and except does opposite
+
+u have switch case statement that is represented as case
+
+eg:
+    select case when @myoption = optionm a then do this 
+                second condition
+            else condition 
+
+Stored Procedure With Multiple Parameters
+Setting up multiple parameters is very easy. Just list each parameter and the data type separated by a comma as shown below.
+
+The following SQL statement creates a stored procedure that selects Customers from a particular City with a particular PostalCode from the "Customers" table:
+
+Example
+CREATE PROCEDURE SelectAllCustomers @City nvarchar(30), @PostalCode nvarchar(10)
+AS
+SELECT * FROM Customers WHERE City = @City AND PostalCode = @PostalCode
+GO;
+Execute the stored procedure above as follows:
+
+Example
+EXEC SelectAllCustomers @City = 'London', @PostalCode = 'WA1 1DP';
+
+u can see the existance of the table or the recod using the if 
+
+u can also use the while statements for looping
+
+u also have the try an catch in the sqlu can also throw the error
+
+
+
+
+
+
+
+
