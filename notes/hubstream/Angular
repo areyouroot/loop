@@ -1,27 +1,31 @@
+what is angular ?
+
+    this is a frame wortk that is used to create single page application this is also used to create the apps 
+
 Type Script -
 
-    What is Type Script ? 
+    What is Type Script ?
 
-        TypeScript is a free and open-source high-level programming language developed by Microsoft that adds static typing with optional type annotations to JavaScript. It is designed for the development of large applications and transpiles to JavaScript.
+        TypeScript is a free and open - source high - level programming language developed by Microsoft that adds static typing with optional type annotations to JavaScript.It is designed for the development of large applications and transpiles to JavaScript.
 
     the Type script is also a Super set of js means js + more functions
 
 features of type script -
 
-    - static checker - this is used to debug the code while typing 
-    - every code is converted in to js then compiled
+    - static checker - this is used to debug the code while typing
+        - every code is converted in to js then compiled
 
 Steps to install the angular -
 
     first install the node 
     then install and update the npm
     then install angular cli using this command 
-        npm install -g @angular/cli
+        npm install - g @angular/cli
     then create a directory for the new app
     cmd is 
         ng new "application name without quotes use _ or - no avoid space and do avoid the word 'test' "
     depending on the angular version you are using you will be asked some default questions
-    like do u like to add angular routing (y/n)
+    like do u like to add angular routing(y / n)
     or the css versions 
 
     press enter for the both questions to select the default
@@ -37,58 +41,58 @@ this is almost similar to the react but some new keywords and different internal
 CLI Deep Dive & Troubleshooting
 In the next lecture, we're going to build our first little app!
 
-If the CLI prompts you to answer some questions (some versions do that), you can simply hit ENTER for all questions. This will accept the default settings which are fine for this course.
+If the CLI prompts you to answer some questions(some versions do that), you can simply hit ENTER for all questions.This will accept the default settings which are fine for this course.
 
 The CLI generates a different welcome screen than you're going to see in my video though. No worries, you'll still be able to follow along without issues! Just make sure to code along so that your code equals mine - Angular itself didn't change a bit :)
 
 -----
 
-If you want to dive deeper into the CLI and learn more about its usage, have a look at its official documentation: https://github.com/angular/angular-cli/wiki
+    If you want to dive deeper into the CLI and learn more about its usage, have a look at its official documentation: https://github.com/angular/angular-cli/wiki
 
-You encountered issues during the installation of the CLI or setup of a new Angular project?
+You encountered issues during the installation of the CLI or setup of a new Angular project ?
 
-A lot of problems are solved by making sure you're using the latest version of NodeJS, npm and the CLI itself.
+    A lot of problems are solved by making sure you're using the latest version of NodeJS, npm and the CLI itself.
 
 Updating NodeJS:
 
-Go to nodejs.org and download the latest version - uninstall (all) installed versions on your machine first.
+Go to nodejs.org and download the latest version - uninstall(all) installed versions on your machine first.
 
 Updating npm:
 
-Run [sudo] npm install -g npm  (sudo  is only required on Mac/ Linux)
+Run[sudo] npm install - g npm(sudo  is only required on Mac / Linux)
 
 Updating the CLI
 
-[sudo] npm uninstall -g angular-cli @angular/cli 
+[sudo] npm uninstall - g angular - cli @angular/cli 
 
-npm cache verify 
+npm cache verify
 
-[sudo] npm install -g @angular/cli 
+[sudo] npm install - g @angular/cli 
 
 Here are some common issues & solutions:
 
-Creation of a new project takes forever (longer than 3 minutes)
+Creation of a new project takes forever(longer than 3 minutes)
 That happens on Windows from time to time => Try running the command line as administrator
 
-You get an EADDR error (Address already in use)
-You might already have another ng serve process running - make sure to quit that or use ng serve --port ANOTHERPORT  to serve your project on a new port
+You get an EADDR error(Address already in use)
+You might already have another ng serve process running - make sure to quit that or use ng serve--port ANOTHERPORT  to serve your project on a new port
 
-My changes are not reflected in the browser (App is not compiling)
-Check if the window running ng serve  displays an error. If that's not the case, make sure you're using the latest CLI version and try restarting your CLI
+My changes are not reflected in the browser(App is not compiling)
+Check if the window running ng serve  displays an error.If that's not the case, make sure you're using the latest CLI version and try restarting your CLI
     
 
-angular strict mode 
+angular strict mode
 
-    this is a mode used while creating the app the strict mode
-    Angular CLI creates all new workspaces and projects with strict mode enabled. Strict mode improves maintainability and helps you catch bugs ahead of time.
+this is a mode used while creating the app the strict mode
+    Angular CLI creates all new workspaces and projects with strict mode enabled.Strict mode improves maintainability and helps you catch bugs ahead of time.
 
     TO CREATE A APP IN THE STRICT MODE 
         ng new "app name without quotes" --strict  
 
     more on strict mode - https://angular.io/guide/strict-mode
 
-    if u dont want the strict mode then specify as --no-strict
-        ng new "app name without quotes" --no-strict  
+if u dont want the strict mode then specify as --no - strict
+        ng new "app name without quotes" --no - strict  
 
 same like react the angular also displays an empty page on the error occurance
 
@@ -96,59 +100,59 @@ to use a particular module in the angular u need to download it using npm comman
 
     eg let me use a module called FormsModule
 
-        for this module it is already installed with the angular cli so we are going to import it directly
+for this module it is already installed with the angular cli so we are going to import it directly
 
     inside the app.module.ts
 
-        import { NgModule } from '@angular/core';
-        import { BrowserModule } from '@angular/platform-browser';
-        import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
-        import { AppComponent } from './app.component';
+import { AppComponent } from './app.component';
 
-        @NgModule({
-          declarations: [
-            AppComponent
-          ],
-          imports: [
-            BrowserModule,
-            FormsModule
-          ],
-          providers: [],
-          bootstrap: [AppComponent]
-        })
-        export class AppModule { }
+@NgModule({
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
+})
+export class AppModule { }
 
-    as u can see we have added 2 new lines 
+    as u can see we have added 2 new lines
 
-    1.
-        import { FormsModule } from '@angular/forms';
+1.
+import { FormsModule } from '@angular/forms';
 
-    2.    
-        imports: [
-            BrowserModule,
-            FormsModule
-          ],
+2.
+imports: [
+    BrowserModule,
+    FormsModule
+],
 
-this was a module for ngModel that is used to get the input and change the variable dynamically
+    this was a module for ngModel that is used to get the input and change the variable dynamically
     
     then we also modified the html and app.component.ts
-        app.component.ts
+app.component.ts
 
-        import { Component } from '@angular/core';
+import { Component } from '@angular/core';
 
-        @Component({
-          selector: 'app-root',
-          templateUrl: './app.component.html',
-          styleUrls: ['./app.component.css']
-        })
-        export class AppComponent {
-          name = 'new_app';
-        }
-        
-        app.component.html
+@Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+    name = 'new_app';
+}
 
-        <input type="text" [(ngModel)]="name">
+app.component.html
+
+    < input type = "text"[(ngModel)] = "name" >
         <p>{{ name }}</p>
 
 the above program is noting but it makes the input value to render in the html page using NgModule
@@ -159,50 +163,50 @@ so angular uses type script that is converted in to js at the end
 
 you can install the bootstrap for beatuful Ui in ur web application
 
-    npm i --save bootstrap@version
+    npm i--save bootstrap @version
 
-    eg:
-        npm i --save bootstrap  // this installs the latest version
-        (or)
-        npm i --save bootstrap@3  //this installs the version 3
+eg:
+        npm i--save bootstrap  // this installs the latest version
+    (or)
+        npm i--save bootstrap @3  //this installs the version 3
 
 then the node should know that we have another css file that is bootstrap so u need to add a line under angular.json under -> architect -> build -> test -> styles
-here we need to add the location of out bootstrap css file whic is located in C:\Users\[Your user name]\[your app location and name]\node_modules\bootstrap\dist\css\bootstrap-theme.min.css
+here we need to add the location of out bootstrap css file whic is located in C: \Users\[Your user name]\[your app location and name]\node_modules\bootstrap\dist\css\bootstrap - theme.min.css
 
-        after modification :
+        after modification:
 
-            "styles": [
-                "node_modules/bootstrap/dist/css/bootstrap-theme.min.css",
-                "src/styles.css"
-            ],
+"styles": [
+    "node_modules/bootstrap/dist/css/bootstrap-theme.min.css",
+    "src/styles.css"
+],
 
-                note : change '\' -> '/' in the copied path and the copied path should started from node_modules
-                try not to use the bootstrap from the global installation else it will be confusing
-                do restart the server so that the new config is loaded
+    note : change '\' -> ' / ' in the copied path and the copied path should started from node_modules
+try not to use the bootstrap from the global installation else it will be confusing
+do restart the server so that the new config is loaded
 
 
 
 use developers tools and check the sources tab and then click on style.css if it displayed message like 
 
-Do you get some strange error? Are you stuck? 
+Do you get some strange error ? Are you stuck ?
 
-Have a look at the source code of this course - by comparing it to your code you should be able to quickly find out where your code deviates and what causes the issue!
+    Have a look at the source code of this course - by comparing it to your code you should be able to quickly find out where your code deviates and what causes the issue!
 
 You can find the source code of each section attached to the last lecture of that section!
 
 Each ZIP file holds code files which you can use to compare your code to it.
 
-One important note: All the course code will only work if you are NOT using "strict mode" see the "First App" lecture in this module. Strict mode forces you to write more verbose code in some places (especially when it comes to class properties). If you enabled it by accident, you can also disable it by setting strict: false in your tsconfig.json file.
+One important note: All the course code will only work if you are NOT using "strict mode" see the "First App" lecture in this module.Strict mode forces you to write more verbose code in some places(especially when it comes to class properties).If you enabled it by accident, you can also disable it by setting strict: false in your tsconfig.json file.
 
 ---
 
-Due to dependency version mismatches, running the attachments might fail though - in that case, you can try the following:
+    Due to dependency version mismatches, running the attachments might fail though - in that case, you can try the following:
 
-1) Create a new project via ng new my-project --strict false (the --strict false part is important!)
+1) Create a new project via ng new my - project--strict false(the--strict false part is important!)
 
-2) Copy the content of the ZIP attachment src/app folder into the newly created project src/app folder.
+2) Copy the content of the ZIP attachment src / app folder into the newly created project src / app folder.
 
-3) Run your project (my-project) via ng serve
+3) Run your project(my - project) via ng serve
 
 If you try to directly run my ZIP attachments, you must run npm install first.
 
@@ -210,40 +214,349 @@ If you're getting errors when running npm install, you can often solve them by r
 
 ---
 
-Got any problems with the code (e.g. error messages when running it or you don't know how to use it)? Check this thread created by Jost: https://www.udemy.com/the-complete-guide-to-angular-2/learn/lecture/6709112#questions/8079942
+    Got any problems with the code(e.g.error messages when running it or you don't know how to use it)? Check this thread created by Jost: https://www.udemy.com/the-complete-guide-to-angular-2/learn/lecture/6709112#questions/8079942
 
-! Still it does not work its ok u can contine we will see that in future
+!Still it does not work its ok u can contine we will see that in future
 the root componet is the default componut in the angular it is the palce where all the componunts are tied up
 
 Components -
 
-    these are the parts of the the webpage that have different workings like google web page has a component called search it can be repeded in the multiple pages
+        these are the parts of the the webpage that have different workings like google web page has a component called search it can be repeded in the multiple pages
 
     u can create the components any where but do do ccreate it under the app folder so that its easy to rember and MediaKeySystemAccess
 
     u need to include the files which u create in the component file then u need to create componets and do add it in the module also
 
+JIT and AOT--
+
+JIT - just in time compiler:
+
+this compile the code at the run time this might cause the web page to be little slow
+this will be used mostly in the developement
+
+            What is the Just in Time(JIT) compiler ?
+
+    Just in time compiler provides compilation during the execution of the program at a run time before execution.In simple words, code get compiles when it’s needed, not at the build time.
+
+                Why and When Should you use Just In Time Compiler ?
+
+    Just in time compiler compiles each file separately and it’s mostly compiled in the browser.You don’t have to build your project again after changing your code.
+                    Most compiling is done on the browser side, so it will take less compiling time.
+                    If you have a big project or a situation where some of your components don’t come in use most of the time then you should use the Just in time compiler.
+Just in Time compiler is best when your application is in local development.
+
+    JiT : Just -in -Time
+                By default, during the execution of the application, the templates will be compiled.I.e.Angular will compile the templates on the fly.This is what we call JiT compilation which we can use via the commands:
+                
+                    ng build
+    (or)
+                    ng build--prod--no - aot
+
+AOT - ahead of time compiler:
+        
+        All technologies Ahead of Time is a process of compiling higher - level language or intermediate language into a native machine code, which is system dependent.
+
+        In simple words, when you serve / build your angular application, the Ahead of Time compiler converts your code during the build time before your browser downloads and runs that code.From Angular 9, by default compiling option is set to true for ahead of time compiler.
+
+this will compile beforerunning this is mostly used in the production
+this type of compileation is happend only once during the deployement 
+            the code is converted in the server as the machine code 
+            
+            Why should you use the Ahead of Time compiler ?
+
+    When you are using Ahead of Time Compiler, compilation only happens once, while you build your project.
+                We don’t have to ship the HTML templates and the Angular compiler whenever we enter a new component.
+                It can minimize the size of your application.
+                The browser does not need to compile the code in run time, it can directly render the application immediately, without waiting to compile the app first so, it provides quicker component rendering.
+                The Ahead of time compiler detects template error earlier.It detects and reports template binding errors during the build steps before users can see them.
+                AOT provides better security.It compiles HTML components and templates into JavaScript files long before they are served into the client display.So, there are no templates to read and no risky client - side HTML or JavaScript evaluation.This will reduce the chances of injections attacks.
+
+            The AoT compilation is based on this ascertainment, usable via the commands:
+
+                ng build--aot
+    (or)    
+                ng build--prod
+
+            by deafult the aot is used for the compileation
+
+    What Compilation should I use ?
+
+    During the development phase, it is recommended to use JiT compilation.The reduced build time will give fluid development environment.
+
+        However, when we pass to the production phase, the AoT compilation is indispensable.Better performance, better security, smaller bundles, ..
+
+        Good compilations.
+
+Difference between angular.json and package.json in angular project
+
+Package.JSON holds all of the “npm” packages installed for the project.Angular.JSON holds the configuration for the project.
+
+    The`angular.json` file is a configuration file used in Angular projects to define various settings and properties related to the project's structure, build process, and development workflow. It is generated automatically when you create a new Angular project using the Angular CLI (Command Line Interface).
+
+The `angular.json` file is written in JSON(JavaScript Object Notation) format and consists of several sections that define different aspects of the project.Here are the main sections you can find inside the `angular.json` file:
+
+1. ** "projects":** This section defines the projects within your Angular workspace.By default, you will find an entry for the main project, which is usually named as the root project.Each project can have its own configuration settings.
+
+    2. ** "architect":** This section contains the configuration for various architect builders, which are responsible for executing different tasks in your project.It includes settings for building, testing, serving, and deploying your Angular application.Under the "architect" section, you will find sub - sections corresponding to different commands such as "build", "test", "serve", etc.
+
+    3. ** "schematics":** This section is used to define schematics, which are code generators that automate common tasks in an Angular project.Schematics allow you to generate components, modules, services, and other artifacts based on predefined templates or custom blueprints.
+
+    4. ** "cli":** This section includes the configuration for the Angular CLI itself.It allows you to define default values and settings for the CLI commands.
+
+    5. ** "defaultProject":** This property specifies the default project to be used when running CLI commands without explicitly specifying a project name.It references one of the projects defined in the "projects" section.
+
+    6. ** "newProjectRoot":** This property sets the root directory where new projects will be created when using the Angular CLI to generate a new project.
+
+    7. ** "workspace":** This section includes general settings for the Angular workspace, such as the version of the CLI used to generate the workspace, CLI default values, and other miscellaneous configuration options.
+
+These are the main sections you will find in the`angular.json` file.The specific contents and properties within each section can vary depending on your project's configuration and the Angular CLI version being used. The `angular.json` file plays a crucial role in configuring your Angular project and defining how it behaves during development, building, and deployment processes.
+
+Angular selectors -
+
+    each component has the selectors so if u see inside a selector u can find that there a folder called src inside that u have app folder which represents the app componet
+    inside the app.component.ts u can see a selector keyin @component 
+
+    u can represent the selector as a html tag
+
+this selector is used to put that componet code in that position this can be done in many ways like using the selector as a html tag attribute or as a style class or a html tag
+
+    method 1 : as html tag -
+
+    selector: 'name of the selector'
+
+        in the html file eg: app.component.html
+
+            < name of the selector > </name of the selector>
+
+eg:
+
+selector: 'approot'
+
+htmlfile -
+
+    <approot></approot>
+
+    method 2 as a html attribute -
+
+    selector: '[name of the selector]'
+
+htmlfile -
+
+    <any html tag  name of the selector > </any html tag>
+
+eg:
+
+selector: '[approot]'
+
+htmlfile -
+
+    <div approot > </div>
+
+    method 3 as a css class selector-
+
+    selector: ".name of the attribute"
+
+        html file -
+
+    <AnyHtmlTag class='name of the attribute' >
+
+        eg:
+
+selector: ".approot"
+
+htmlfile -
+
+    <div class="approot" > </div>
+
+the selector name can be anything approot rick montey etc.......
+
+pipes -
+
+    this is a rough def - in bash we use pipes same we use in angular to convert data from one form to another read down for more
+
+EVERY THING RELATED TO ANGULAR CLI -
+
+    Install the Angular CLI globally:
+
+    npm install - g @angular/cli
+    Create workspace:
+
+    ng new [PROJECT NAME]
+    Run the application:
+
+cd[PROJECT NAME]
+    ng serve
+    Angular is cross - platform, fast, scalable, has incredible tooling, and is loved by millions.
+
+    to get more details - https://github.com/angular/angular-cli
 
 
-    
+after creating the new app u can delete the contents of the[app] -> src -> app.component.html
+this is to build from the scratch
 
+use ful extensions for the nagular developers -
 
+    1)angular language service - used to get the variables functuions recomendations
 
+2)json to ts - this is ued to copy the json file to ts interface
 
+3) angular v6 snippets - snippts
 
+4) angular 6 snippets ngrx, rx js etc ....
 
+5) angular switcher - this is used to switch the angular files easy and fast using shortcutsd like alt + shift + u(or) i(or) o(or) p
 
+5th one is optional because u can use ctrl + tab
 
+Components -
 
+    single part of the web page like header or the main content or the side menu etc..this can be seperated indually and called as a componets
 
+this allows us to reuse the componets like header and footer etc and many sub opart of the page like menu
 
+how to create a component manually -
 
+    first create a folder in the src -> app -> componet name 
+then create a file in that folder named like this 
+replace ComponetName with ur componet name like server, menu etc ...
 
+ComponentName.component.ts
 
+    and like this
 
+ComponentName.component.html
 
+inside ComponentName.component.ts folder - 
 
+    import { Component } from "@angular/core";
 
+@Component({
+    selector: 'app-ComponentName',
+    templateUrl: './ComponetName.componet.html'
+})
+export class ComponetNameComponent {
 
+}
 
+eg:
 
+import { Component } from "@angular/core";
+
+@Component({
+    selector: 'app-server',
+    templateUrl: './server.componet.html'
+})
+export class ServerComponent {
+
+}
+
+let the ComponentName.component.html be empty now 
+
+then modify the src -> app -> app.module.ts
+
+import ur componet eg:
+
+import { ServerComponent } from './server/server.component';
+
+    then add it in the ngmodule:
+
+@NgModule({
+    declarations: [
+        AppComponent,
+        ServerComponent
+    ],
+
+    then u can use the html selector tag in app.componet.html or may be index.html
+
+    eg:
+
+        <h1>{{ Title }}</h1>
+< input type = "text"[(ngModel)] = "Input" >
+<p>The Input is {{ Input }}</p>
+< p > The Output : {{ Output }}</p>
+< app - server > </app-server>
+
+the server will automatically take the updation
+
+u can automate this process also by using the generate param
+
+    ng generate component ComponentName
+    (or)
+    ng g c ComponentName
+
+    eg:
+    ng g c service
+
+    then follow the same steps of adding the tags etc .....
+
+    it will automatically add the componet in the app.module.ts
+
+    u just need to add this in the app.component.html file
+
+if u see the component.ts in any component u will see the 3 default key value pairs inside the componet selector @Component
+
+selector: 'what ever name u give here will be used as the identifire in the actual html template so that the html might render the content of that componet'
+
+templateUrl: 'this can contain the location of the html template or the html code its self'
+
+styleUrls: ['this contains the style sheet location or the style itself]
+
+    u hsould use`` to write the multiline content of html or the location do not use "" or ''
+
+if u have multiple templates use['file one', 'file 2']
+
+    u also have the styles: key to implement the inline style that has high priority
+
+styles: [`
+    h3 {
+        color: doggerblue;
+    }
+    `]
+
+do use the snippets in the vs code for automation and the speed improvement
+
+data binding -
+
+    the data and the instruction intract with each other and give a final html page
+
+    adding the data dynamically stuff like string interpolation { { data } } property binding etc...
+
+string interpolation - 
+
+    in the ComponetName.component.ts we will have export class ComponentName { }
+
+this where we declare the variables and write the actual code
+
+eg:
+
+export class AppComponent {
+    Title = 'Calculator';
+    Input = '';
+    Output = 0;
+}
+
+if u want to define the datatype manually u can use: method
+
+eg:
+
+export class AppComponent {
+    Title: string = 'Calculator';
+    Input: string = '';
+    Output: number = 0;
+}
+
+you can directly embed the content in the html like this
+
+<h1>{{ Title }}</h1>
+<p>The Input is {{ Input }}</p>
+<p>The Output : {{ Output }}</p>
+
+this will display the contents of the variable dynamically
+
+u can directly embed the string like this {{ 'hello' }}
+
+the method definition in the type script -
+
+    methodname(){
+        //action block
+    }
