@@ -560,3 +560,155 @@ the method definition in the type script -
     methodname(){
         //action block
     }
+
+now we need to learn ts and prerequest is html css and js which is avalible in the repo
+
+    the type script is a superset - it has more than JavaScript
+
+type script is all about type safety like u can add the '2' which is a string and 2 which is a number it shoudnt allow it corret ?
+
+for more clarity - https://youtu.be/30LWjhZzg50
+
+type script features - 
+
+    static checking - this checks the code when u type is it correct or not like accessing the undefind object etc ....
+
+    the ts is converted into js
+
+    interface
+
+intrioduction to the TypeScript:
+
+    almost everything will be similar in the type script like js if u dint learn it then do ckeckout the javascript first
+
+    u can use online ide for pratice - https://www.typescriptlang.org/play?#code/MYewdgzgLgBAhmAogDzgWwA4BsCmA1OAJwEs4AjXGAXhgCIAJHLLEGAdREKwBNaAoUJBC4AdCwDmACgQp02fEVIUcASj5A
+
+    if u want to pratice locally then u need to install it 
+
+        npm i -g typescript 
+
+    u can execute the typescipt file by tsc command
+
+        tsc filename
+
+    this will convert in to js then u can execute
+
+    try to avoid the key word any in the typescript
+
+    how to define a variable in typescript
+
+        let variableName = value;//this can be done for any datatype but avoid it
+
+        let variableName:datatype = values
+
+        eg :
+            let age:number = 10;
+
+    Data type	Keyword	Description
+    Number	number	Double precision 64-bit floating point values. It can be used to represent both, integers and fractions.
+    String	string	Represents a sequence of Unicode characters
+    Boolean	boolean	Represents logical values, true and false
+    Void	void	Used on function return types to represent non-returning functions
+    Null	null	Represents an intentional absence of an object value.
+    Undefined	undefined	Denotes value given to all uninitialized variables
+    Note − There is no integer type in TypeScript and JavaScript.
+
+    the type script doesnot allow others to put other datatype in the variables which is has a predefined datatype 
+
+    eg:
+        let age:number = 10;
+        then u cannot change the value as a string
+        age = 'bandra';
+        this will not work
+        this will give a error like - Type 'string' is not assignable to type 'number'.
+
+    if u put . near the variable the vs code will suggest some method related to that datatype
+
+    the error is highlighted using red '~~~~~~~~~~'lines 
+
+any keyword : 
+
+    any can be used as the datatype while declaring a variable if u dont know what is going to be stored in it 
+    please do avoid it because any will have safety concernt
+
+    u can define the typescript config to avoid any 
+
+    noImplicitAny
+        When you don’t specify a type, and TypeScript can’t infer it from context, the compiler will typically default to any.
+
+        You usually want to avoid this, though, because any isn’t type-checked. Use the compiler flag noImplicitAny to flag any implicit any as an error.
+
+    for more details on all the datatypes - https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
+
+functions in the typescript:
+
+    THE BASIC FUNMCTION DECLARATION 
+
+        function FunctionName(params){
+            actionblock;
+            return variable/opertion/any
+        }
+
+        eg :
+
+            //declaration 
+            function addTwo(num){
+                return num + 2
+            }
+
+            //calling
+            addTwo(90);
+
+        using lamda fuunctions
+
+        let FunctionName = () => {
+            action block;
+            return variable/opertion/any
+        }
+
+        default the functions are declared using the 'any' u cna have specific param datatype and the return type
+
+    with variables and the datatype :
+
+        function FunctionName(params:datatype):returnDataType {
+            action block ;
+            return variable/opertion/any
+        }
+
+        lamda
+
+        let FunctionName:datatype = (params:datatype) =>{
+            action block;
+            return variable/opertion/any
+        }
+
+    eg:
+        function Adder(value1:number,value2:number):number{
+            let sum:number=value1+value2;
+            return sum
+        }
+
+        lamda
+
+        const Sub:number = (value1L:number,value2:number) {
+            let subratedValue:number = value1L-value2;
+            return subratedValue
+        }
+
+the lambda function can be defiend using let or const
+
+there is a datatype called void that rteturs ether null or not-defined if u want to return nothing the n use never
+
+    eg: 
+        function printer():never{
+            console.log('this never retuns any thing');
+        }
+
+
+
+top read the type script doc from stratch - https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html
+
+
+    
+
+last seen - https://youtu.be/30LWjhZzg50?t=4606
