@@ -704,6 +704,282 @@ there is a datatype called void that rteturs ether null or not-defined if u want
             console.log('this never retuns any thing');
         }
 
+object declaration :
+
+const user ={
+    name:'asd',
+    email:'asd!@asd.asd'
+}
+
+passing a object or the geting a object as the return type
+
+    function createuser ({name:'anny',email:'anni@gulsarvice.com'}):{status:bool,password:string}{
+        actionblock;
+        return {status:true,password:'asd'}
+    }
+ 
+u can also first declare the object and then u can call the function
+
+    type userobj = {
+        name:string;
+        email:string;
+        isActive:boolean
+    }
+
+    function createUser(user:userobj){
+        //the object name can be anything
+        //action block
+    }
+
+    createUser({name:"",email:"",isActive:true})
+    or 
+    user1:userobj = {name:"",email:"",isActive:true}
+    createUser(user1)
+
+u can define the readonly variables like this
+
+    readonly _id:string = '123'
+we can use const but why read only because the const doenst allow use to intialize first time in the run time but read only does allow 
+
+u can combine 2 or more objects in the type script like this 
+
+eg: 
+    type cardnumber = {
+        cardnumber:string
+    }
+    type Carddate={
+        carddate:string
+    }
+
+    type carddetails = cardnumber & carddate & { cvv:number }
+
+arrays in the typescript 
+
+    const VariableName:datatype[]= []
+
+    eg :
+
+        cosnt hero:string[] = []
+
+        for multidiementional use [][] = {{},{}}
+
+    u can push the stuff to insert 
+
+        hero.push("venom")
+
+union- 
+
+    a variable can have 2 or more datatypes to represent it we use union
+        | is the symbole use to represent union
+        eg:
+
+            let id: number|string;
+
+        here id can be a nuber like roll no or a email address which is a string
+
+tuples-
+
+    the tuples are like list but it s immutabel means the values cannot be changed 
+
+    delcartion and the usage
+
+    eg:
+        let user:[string,number,boolean]
+
+        user = ["allen",1,true]
+
+enums-
+
+    this are the immutable list of data
+    eg:
+        enum city {
+            chennai = 1,
+            mumbai = 2,
+            newyork = 3
+        }
+
+        (or)
+
+        enum city {
+            chennai = 'chennai',
+            mumbai = 'mumbai',
+            newyork = 'us'
+        }
+
+        u can access it by the key
+
+        const city = city.chennai
+
+        some time to siply fiy the code add const befor the enum it will only generate the required value
+
+interface - 
+
+    as same as C# this is used to define a interface to a method aka function that can be called indirectly a interface can have multiple methods but u can also have variables in here only the definition can be here
+
+        interface city {
+            name:string
+            region?:string // this is optional u can define it or not 
+            cityfinder:()=>string // this is return type
+        }
+
+const city1:city = {
+    name:'chennai',
+    cityfinder:() => {
+    return 'stringvalue'
+    }
+}
+
+you can also extend one interface over another 
+
+eg:
+    interface state extends city{
+        state:(capita:string,city:string)
+    }
+
+class- 
+
+    eg:
+    //class declaration
+        class user{
+            email:string
+            //u can also defien the access here if u want to access only inside the class
+            private password = 'asd'
+            constructor(email:string){
+                this.email = email;
+                this.password = '123'//you cannot acces or change this anywhere else
+            }
+        }
+
+    //object declaration
+
+        const hitesh = new user(email:'asd@asd.com')
+
+getters and setters-
+
+    get funcName(params){
+        return
+    }
+    set funcname(params){
+        this.InternalVariableOrPrivateVariable = Value
+    }
+
+you can see the ts script - https://github.com/hiteshchoudhary/typescript-youtube-22  //code is avaliable here
+
+access modifieriers-
+
+    private - 
+
+    public - 
+
+    protected - 
+
+    all are same like other languages
+
+    for this first u need to under stand the inheretance we use extends to inheret the class
+
+    eg:
+        class SubUser extends User {
+            this.anything from parrent class
+        }
+
+abstract class-
+
+    abstract class are the classes that can be used only to override it doesnt has any actual purpose
+
+    just before the method declaration put abstract and while defineing th child class use extend
+
+    rember not all methods are abstract
+
+generics,in and other advance concepts-
+
+to learn all about the generics and generic classes u can see this this also has type narrowing - https://youtu.be/30LWjhZzg50?t=12939
+
+comming back to angular - start from 25
+
+----------string interpolation---------------
+                 and 
+----------  property binding    -------------
+                 and 
+-------------event binding-------------------
+
+string interpolation - 
+
+    U CAN directly use the ts variables in the html template
+
+    like this {{ variable }} this will be embeded as the string in the html
+
+    eg: 
+        <h1>{{ name }}</h1>
+
+    you can also embed the functions in the template as which has the return type 
+
+    eg:
+        <h1>{{ GetName() }}</h1>
+
+        and the get name definition in thwe componet.ts
+
+        import { Component } from '@angular/core';
+
+        @Component({
+          selector: 'app-root',
+          templateUrl: './app.component.html',
+          styleUrls: ['./app.component.css']
+        })
+        export class AppComponent {
+            GetName():string{
+                return 'my name is mr robot'
+            }
+          }
+        }
+
+        now the output will be like my name is robot
+
+    property binding - 
+        this the method where u can manage the property like hide or true false etc other attributes
+        eg the there is a disable attribute for the button which defaults disabling the button
+
+        this can be done like
+
+        html code:
+
+            <button
+                class='any name'
+                [disable]="variableAllow">
+                <!-- u can also do the opposite by adding ! before the variable -->
+                content
+            </button>
+
+        ts file:
+
+            export class anycomponent implements OnInit {
+                variableAllow = false;
+                constructor(){
+                    setTimeout(() => {this.variableAllow = true;}
+                    ,2000);
+                }
+                //this is a program to disable the button after 2 seconds
+            }
+
+        for adding the content to a element u can have the inner text attruibute like this 
+
+            <p [innerText]="variableAllow"></p>
+
+property binding vs string interpolation - 
+
+    when ever you want to show the content of the variable use the string interpolation and if u want to do some operation or decide the state of the current element atribute then use the property buinding
+
+    do not mix both 
+
+    
+
+
+
+
+    
+
+
+
+
 
 
 top read the type script doc from stratch - https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html
