@@ -1,0 +1,23 @@
+burp suite-
+
+    all sections are available so u can just like that google the position and google the usage and the operation
+    
+    DEFAULT SET UP OF THE BURP SUITE-
+
+        install it then get the target url and in the burp application select start the browser then do the else stuff
+        to stope the request flowing through select proxy tab and select hte inteceptor on and then forward to forward else turn it off to send all packets 
+
+    brute force using burp suite - 
+
+        so turn on the interceptor then catch the request then add the postion that need to be attacked then send it to the inteceptor then add the payloads then send start the attack 
+        check the length of the response and the reder then decided the sucess payload
+
+wafw00f
+
+    installation - apt install wafw00f
+
+    usage - 
+
+    wafw00f url with http or https
+
+    this tells the fire wall behind the application
