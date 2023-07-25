@@ -1,0 +1,41 @@
+OSRFramework
+
+this is a opensource reserch framework
+
+u need python to run this 
+
+https://github.com/i3visio/osrframework   - is the git repo u can go here and download and all of the instrections are given here
+
+u have a sub comand in osrf called domainfy.py this is used to gater the information about a specific server
+
+like this u also have milify.py to search related to the email
+
+to see all the features like this just type osrf in the shell it will show all the options 
+
+u can net cat the specific ports with custome post and get request eg 
+
+cmd #- nc google.com 80
+//this is the packet
+GET / HTTP/1.1
+HOST: google.com
+// press two times enter after this this will get the response
+
+u can also use what web to see the how the website has some dtails on the web
+
+cmd: whatweb domine-name
+
+eg: whatweb google.com
+
+this will tell the details that is used to build the particular website
+
+use buildwith or wappalyzer extnsion in chrome to see more stufflike what is used to build it ,u can also use the build with website to search the technolgy used and w3technologies website also it will also show the staics
+
+
+
+
+
+
+
+
+
+
