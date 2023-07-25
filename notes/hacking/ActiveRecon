@@ -1,0 +1,44 @@
+the recon is a process of infog
+
+u should know the route where ur packets are traveling for that u can use 
+
+    windows - tracert,pathping
+    linux - traceroute
+
+    the path ping will give extra details like rute time etc ..
+
+this will show the number of hops that is needed and it will also show the route of the package flowing
+
+it will not work with all of the decives due to lack of icmp support
+
+u can see the information about the deices that are connected to the currrent network 
+
+    windows - nslookup
+    all - dig (recomended)
+
+always google for new updates and the methods
+
+local netork config
+
+    windows - ipconfig
+    any thing with nework tools - ifconfig
+
+u can see the network reachablity for this u can use ping
+
+    all - ping
+
+u can get all the network statistics using 
+
+    all - netstat
+
+the local arp table can be printed it will consist of local devices ip and mac address
+
+    all - arp
+    eg: arp -a
+
+to see the routing table 
+
+    windows - route print
+    all - netstat -r
+
+    
