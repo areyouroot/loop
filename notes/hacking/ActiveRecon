@@ -41,4 +41,56 @@ to see the routing table
     windows - route print
     all - netstat -r
 
-    
+u can see all the dns domines like mail server etc ... use 
+
+    #:host domin name
+
+    eg#host google.com
+
+u can enumerate the DNS
+
+    dnsrecon domin name
+
+    and 
+
+    dnsenum domin name
+
+to enumerate the domine use amass
+
+    #amass
+
+nmap is used to enumerate the network
+
+    nmap
+
+    u can see all the usage in the help command 
+
+    u can run the scripts of nmap u can locate the nse scripts using the locate command
+
+the server can be scaned for the vulnerablity 
+
+    #nikto
+
+u can brutforce the requests and the domine and etc using the dirbuster or the gobuster
+
+    #gobuster
+
+    #dirbuster (gui version of dirb)
+
+    #dirb
+
+    the word list can be custome 
+
+The Server Message Block (SMB) protocol is a client-server communication protocol that is used for shared access to files, directories, printers, serial ports, and other resources on a network. It also provides an authenticated inter-process communication (IPC) mechanism. Server Message Block (SMB) file system.
+
+this can also be exploited
+
+    smbmap
+
+    smbclient can be used for the login
+
+
+
+
+
+
