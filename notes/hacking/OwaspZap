@@ -12,6 +12,8 @@ features -
   dynamic ssl certificate
   u can intergrate with any other proxy
 
+do install the java jdk
+
 if u are using windows machine go to owasp website and download the exe and install it 
 if u are using mac same procedure as the windows 
 if u are using linux u can use the app store or the packetnanager for the respected flavor of the linux or google how to install it 
@@ -20,4 +22,55 @@ if u open it for the first time it will ask to persist the the session means do 
 else u can specify the name and the location of the file where the session details are stored
 else no need to save 
 
+if u see the gui almost every thing is similar and u can easily navigate and work everything is open and straight forward
 
+dont forget to update the modules and the software itself
+
+u can press the + above and blow and explore the options and do see the documentaion if u got stuck 
+
+if u want to use this application and proxy with tls ceritificate and autntication u need to generate the certificate and add it manually and using foxy proxy or manually add the proxy of owasp and u need to add the certificate in the browser
+
+u have the automatic scan and manual explore nce u use it u will get to know and we dont need to explain as the wording has given every thing
+
+u can define the scope of the website by adding the context and scan rules 
+
+u also have the different types of modes at the top left corner 
+
+  standerd  
+  passive
+  attack 
+  etc...
+
+the u can manually edit the request and the respones 
+
+u can use O button to start the interceptor and ▶️etc for the request capture or forward
+
+if u want specific directories where u dont need to run the scan u can use the break either u can right click and select he brake point or the manually set it 
+
+u have the spidering tab where all the urls are listed by the spider and the active scan does targets and scans and the flages show the vulnerablity found by the scan
+
+and other tabs have own explanation
+
+u can right click on the tings to explore the updated and new features
+
+in report section u can display the and generate a html report and others
+
+u can click on the indudual request to edit it and resent it and analyise
+
+u can modify the rules of active or pasive scaning etc ... using the scan policy manage u can create a custome scan policy so that ucan do mixed scans
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+for more details - https://www.youtube.com/playlist?list=PLH8n_ayg-60J9i3nsLybper-DR3zJw6Z5
