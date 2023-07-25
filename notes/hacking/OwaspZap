@@ -1,0 +1,23 @@
+this is a proxy based pentesting tool
+
+this is a opensource tool used as a proxy between the server and th browser 
+
+features - 
+
+  spider
+  passive scan and active scan
+  fuzzing
+  reports
+  copare reports 
+  dynamic ssl certificate
+  u can intergrate with any other proxy
+
+if u are using windows machine go to owasp website and download the exe and install it 
+if u are using mac same procedure as the windows 
+if u are using linux u can use the app store or the packetnanager for the respected flavor of the linux or google how to install it 
+
+if u open it for the first time it will ask to persist the the session means do u want to save the session or not u can select and save by the time stamp and the dafult location is in the c/users/owaspzap
+else u can specify the name and the location of the file where the session details are stored
+else no need to save 
+
+
