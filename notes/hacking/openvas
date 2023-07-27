@@ -1,0 +1,45 @@
+this is a opensource vulnerablity assesmnet tool
+
+u can install it using the kali apt 
+
+    #sudo apt install gvm
+
+this is a web app so before running this us need to do some setup stuff u can use the automaated script 
+
+    #sudo gvm-setup
+
+note the admin username and the password after the setup
+
+after setup u need to check the setup so that everythng works correctly 
+
+    #sudo gvm-check-setup
+
+if u have any error google it and correct 
+
+u can start the server by 
+
+    #sudo gvm-start
+
+get the port and check the local host port did the service has started 
+
+to stop the server 
+
+    #sudo gvm-stop
+
+the we ui is easy so u can do many stuff and explaore many stuff also , u can change the password etc ,start scans .............
+
+what if u forget ur password
+
+    #sudo -E -u _gvm gvmd --user --new-password=admin
+
+the new password is successfully saved
+
+if u dont know how to use the partcular menu u already have ? so that u can explore the help menu in online 
+
+u cqn update the feeds of the open vas by just typing greenbone- and then press tab then select the option and press enter
+
+u can update all feed at once by this command 
+
+    #sudo gvm-feed-update
+
+u can create the ticket and assign the tick so that induaiual can work on that vulnerablity u can assign the spicfic scan report or a vulnerublity
