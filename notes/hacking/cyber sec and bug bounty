@@ -33,17 +33,46 @@ using firefox the extions are __________________________________________________
 tools used for other things
 
     wfuzz -fuzzing
+    dirb - directory brute force
+    dirbuster - directory brute force
     knock py , sublister - subdomine enumeration
     scapy
     sqlmap
     stricker
     Striker
     commix
+    Burp Suite
+    OWASP ZAP
+    Dirb
+    Dirbuster
+    Gobuster
+    Wfuzz
+    Sublist3r
+    Massdns
+    Dnsenum
+    Knockpy
+    nmap
+    Masscan
+    Sn1per
+    XSStrike
+    Sqlmap
+    Wpscan
+    Joomscan
+    CMSmap
+    Builtwith
+    Wappalyzer
+    wafw00f
+    cyberchief
+    scapy framework with python
 
 websites
 
     cyberchief
     whatcms
+
+wordlist 
+
+    seclist - https://github.com/danielmiessler/SecLists
 
     
     owasp zap ___________________________________________________________
@@ -515,5 +544,40 @@ bug bounty platforms
     check money
     open bug bounty
     
+SSI - server side includes 
+
+    full article - https://crashtest-security.com/server-side-includes/#:~:text=Server%2DSide%20Includes%20is%20a,client%2Dside%20programming%20language%20specification.
+
+    this is noting but the command that is induced using the request to execute some thing
+
+    all the commands are injected using <!--[commands]>
+
+sublist3r
+
+    this a passive recon tool u can see the domine details and sub domines also
+
+    https://www.youtube.com/watch?v=DI8-tNq7hFc&list=PLBf0hzazHTGNJXBjepzN7l9OHcuH9ZvOq&index=14
+
+Dns Enumeration and zone tranfer attacks
+
+    u can see all the dns records using the host command
+
+    also dig tool
+
+    dnsenum
+
+    dnsmap
+
+    https://www.youtube.com/watch?v=EpfHhEGz35I&list=PLBf0hzazHTGNJXBjepzN7l9OHcuH9ZvOq&index=15
+
+    https://digi.ninja/projects/zonetransferme.php
+
+flaws.cloud
+
+    https://www.youtube.com/watch?v=ITSZ8743MUk&list=PLBf0hzazHTGNJXBjepzN7l9OHcuH9ZvOq&index=17
+
+    
 
 multiple ways to bypass the authentication - https://www.youtube.com/watch?v=x6bX26f_Ibw&list=PLonlF40eS6nwCUJuAnFdLjEMWWImxJpfo&index=8
+
+full series - https://www.youtube.com/playlist?list=PLBf0hzazHTGNJXBjepzN7l9OHcuH9ZvOq
