@@ -1,0 +1,29 @@
+u have every thing in the help section so search the exploit and use it 
+
+msfconsole is the command to start the metasploit
+
+    #msfconsole
+
+u can use the search command to search the exploit eg
+
+    #search type:exploit platform:windows flash
+
+    the search has many features like u can litreally mention type is a pay load etc ... or u can give platform or many arguments
+
+auxlary is used for the recon and scans and etc ....
+they are unique that these attacks cannot be catogriesed into others..
+eg:sniffer,parser etc...
+
+exploits are used to attack or do something to the existing vulnerablity they have a functionality
+
+payloads - these are the files that are stored in the system and executed there are 3 types stages - a step of a exploitation and stagers they have a functionalty like establish reverseshell etc , stagers are huge payloads that have full control obver the target
+
+encoders they are used to encode in such a way they bypass the filters or the antivirus or any other security layers
+
+nops - they stop the functionaly to do nothing they are mostly used to stop the operations util the payload is executed or the overflow is done etc ..
+
+post is used perform the extra pice of functionaly like admin shell privilage esclation etc ..they are mostly used to do stuff after the post exploitation
+
+information gathering using the metasploit----
+
+    
