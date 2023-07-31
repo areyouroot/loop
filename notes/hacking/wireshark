@@ -2,3 +2,8 @@ this a network traffic capturer or analyser or anything this is depens on the us
 
 almost the gui is easy u can select the network then start eves droping networktraffic capture etc 
 
+at the right had side after lanching the wireshark in a network u will have the default profile so change the profile as you want 
+
+using the wireshark terminal u can capture the files and store the cap file in the background
+
+u have a search bar in that u can search the packet type like http or tcp or any other reference or the protocol
