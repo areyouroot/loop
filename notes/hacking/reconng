@@ -52,3 +52,57 @@ to run the module use
     #run 
 
 this command will run the module 
+
+to use the private service like shodan or bing or google or anyother api engines u need to manually go to the site copy the api key then add it in the recon-ng
+
+    #key add shodan_api key-value
+
+if u want to see the list of api key 
+
+    #show keys
+
+u can delete the spcific records also 
+
+    #delete <table> enter the row id 
+ 
+    eg#delete domine shodan.io
+
+after the scans are copleted all the found data will be auto matically added to the table so do check using the show command
+
+u can brute force the domines etc ....
+
+https://www.youtube.com/watch?v=68rRliy5DBw&list=PLBf0hzazHTGPx4_jgz6wOJoj4cijSv1wW&index=9
+
+u can check the geo location also
+
+u can also see the buith with using the buit with api key
+
+generating reports - 
+
+    u need to search for reporting
+
+        #search reporting
+        
+        select the format which u want to generate the report 
+
+        then using use command use it 
+
+        #use reporting/html
+
+    show info to see all the params 
+
+        #show info
+
+    u need to set the coustomer 
+
+        #set CUSTOMER company name 
+
+    u need to set the creator name 
+ 
+        #set CREATOR your name may be
+
+    then run command to run and generate the report 
+
+        #run
+
+    
