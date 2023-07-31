@@ -1,0 +1,54 @@
+https://www.youtube.com/watch?v=x80wy7XQCoU&list=PLBf0hzazHTGPx4_jgz6wOJoj4cijSv1wW&index=7
+
+https://github.com/lanmaster53/recon-ng  - is the github link for recon ng clone it and run it using the compatable python version
+then run it,it has own cli that can be used for the internal commands
+
+the show command is used to show anything this also used to see all params
+
+    #show 
+    //this will show all the info params
+
+    #show contacts 
+    //to show records of a param
+
+the dashboard by default is default so u can add the records or change the dashboard by adding the dashboard and workspace is also changed per application
+
+    #add workspace workspace-name 
+
+    note: this might throw the api errors but ignore it 
+
+you can swap the work space by this command 
+
+    #workspace select workspace-name 
+
+do create the workspace before swaping else a error will be generated
+
+eg for adding a domine
+
+    #add domains
+    it will ask the domine name
+    like this u can add the data to all the fields 
+
+then u can use the modules to automate some information gathering u can search all the modules using the search command
+
+    eg#search whois
+
+u can see all the modules by show command 
+
+    #show modules
+
+to use the module use keyword is used
+
+    #use module name 
+
+    eg#use recon/domains-contacts/whois_pocs
+
+u can also see the info by
+
+    #show info
+
+to run the module use 
+
+    #run 
+
+this command will run the module 
