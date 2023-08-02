@@ -7,3 +7,6 @@ at the right had side after lanching the wireshark in a network u will have the 
 using the wireshark terminal u can capture the files and store the cap file in the background
 
 u have a search bar in that u can search the packet type like http or tcp or any other reference or the protocol
+
+u can use "frame contains word to be searched" he case should be matched
+if u want to search in regex use "frame matches word"
