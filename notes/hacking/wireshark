@@ -10,3 +10,15 @@ u have a search bar in that u can search the packet type like http or tcp or any
 
 u can use "frame contains word to be searched" he case should be matched
 if u want to search in regex use "frame matches word"
+
+there is 2 different filtures one is capture filture and one is simple filture
+
+dont over set the capture filture cause if u send the tcp request if that failed it might reply with the icmp so be careful what you use
+
+u can also right click on the traffic and have custome filtures it will automatically generate the command for the filture
+
+u have the option called preserve so that u can append to the existing filter it will be avalible only when u right click on the traffic
+
+u can also see the loactions of the network traffic in the wireshark - https://www.youtube.com/watch?v=IlVppluWTHw&list=PLW8bTPfXNGdC5Co0VnBK1yVzAwSSphzpJ&index=10
+note u need to update the geoip database frequenly for more accuracy
+
