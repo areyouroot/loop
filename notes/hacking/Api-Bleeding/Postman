@@ -1,1 +1,20 @@
 this is a tutorial for the postman tool in worst case use the curl cli
+
+download and install postman as the extension or the msi application
+
+this is almost same as the custome request the ui is easy so you can see whats appening and u can select the method of acceptance get post etc ...
+
+u can make collections a group of api request 
+
+you can share the collections and monitor like send it periodically 
+
+
+you can have the variables also like {{variable name}} this can be defined in the left handside tab ... u can reuse the request to send the set of paylods or the url itself
+
+if u enable the postman console then u can see all the request and the response of the postman that is generated
+
+u can also program what it will send in the console u can program all it does
+
+u can create a set of envirment where all the default  variables are loaded and the scripts also 
+
+u can duplicate the environment
