@@ -20,12 +20,27 @@ sunday -infog(all days) / call all family mem / enjoy and stay away from phone
 
 pointer represents the last done
 
+top day selector - 
+
+Extra 		- ()
+Work  		- ()
+Fitness 	- ()
+
+Extra loop -
+
+mvtv 	- ()
+social 	- ()
+quran 	- ()
+event	- ()
+gaming 	- ()
+other options
+
 Language Loop - 
 
 LANGUAGE 			POINTER
 
 russian				()
-hindi				( )
+hindi				()
 french				()
 korean				()
 portugese			()
@@ -40,7 +55,7 @@ spanish				()
 
 
 
-tasks loop - 
+Work loop - 
 
 if ( pre req ) - 
 
@@ -103,3 +118,13 @@ money bugbounty freelance to buy planing etc...			-	xX			()()
 board task `							-	x2 			()()
 story writing 							-	x2			()()
 Hunt								-	x2			()()
+
+Fitness - 
+
+monday 		- ()
+tuesday 	- ()
+wedneseday 	- ()
+thursday 	- ()
+friday 		- ()
+saturday 	- ()
+sunday 		- ()
