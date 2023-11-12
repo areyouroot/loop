@@ -6,7 +6,7 @@ start firefox www.instagram.com
 start firefox https://www.google.com/search?q=latest+hacking+news
 start firefox https://www.google.com/search?q=latest+finance+news
 start firefox https://www.google.com/search?q=news
-start firefox https://www.google.com/search?q=inurl+https://hackerone.com/reports
+start firefox https://www.google.com/search?q=inurl+hackerone.com+reports
 C:\Users\abdul\AppData\Local\Discord\app-1.0.9016\Discord.exe
 start firefox https://www.infosecurity-magazine.com/
 start firefox www.github.com
