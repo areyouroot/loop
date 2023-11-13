@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: areyouroot.github.io
-Token: f842a3daa5799b24dd2ad34fb23ee804e21a4b98f14ac7499a6bbf93abcdaf4b

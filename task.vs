@@ -1,130 +1,119 @@
+MainLoop()
+
+	DevLoop:
+
+		()						.api bleeding xN								
+		()						.Complete the Ecryptor and decryptor and post it
+		()						.Infog											
+		()						.Board											
+		()						.Keep notes										
+		()						.LoopNotes										
+		()()					.youtube x2												
+		()						.manifest Research and all hubDocs study
+		()()()()()				.Bugbounty x5
+		()()					.RootInc x2
+		()						.LoopNotes
+		()						.Other Startups
+		()()					.Hardware / Youtube x2
+		()						.Keep Notes
+		()()					.Devops Research x2
+		()()					.BlockChain Research x2
+		()						.Board
+		()						.Hubstream
+		()						.book
+		()						.Infog
+		()()					.Ai R&D x2
+		()()					.UI R&D x2
+		()						.Security Clearance
+		()						.C# R&D and to host in iss and test
+		()						.ai tools research
+		()						.devsecops research
+		()()()()				.rootOS x4
+		()						.azure Research
+		()						.figma research
+		()						.ui tools
+		()						.all lables on the laptop
+		()						.base ai and gpt research and how it can be used
+		()()					.hunt x2
+		()()()					.malware analysis and the reverse engineer x3
+		()()()()				.Money x4
+		()						.Hubstream
+		()						.book
+		()						.meta verse and AR and VR
 
 
-		sunday/official				holiday					clg/working
+	OtherLoop:
 
-6-7		workout 1				workout 1					workout 1
-7-8		workout 2				meditate					clg/hygene/breakfst
-8-10		family/brfst/hyge			family/brfst/hyge				clg
-10-1		family/gaming/movie			work						clg
-1-3		pray/eat				pray/eat					pray/eat
-3-5		family					Run 2						clg
-5-6		prayer/write				workout 2					workout 2
-6-7		prayer/language				prayer/language					prayer/language
-7-8		family					Run 3						Run
-8-9-10		eat/family/sleep			eat/family/powernap/sleep			eat/family/powernap/sleep
+		()		.Spend Time with family
+		()		.Clean Home and Do other Works
+		()()	.Cook Food (if you cannot move) x2
+		()		.To buy (move if you cannot)
+		()		.Plan Finace and related stuff
+		()		.go out (if)
+		()		.plan and go to a event
+		()		.spend time with family
+		()		.learn language
+		()		.youtube 
+		()		.Clean Home and Do other Works
+		()		.out of box loop
+		()		.board
+		()		.keep notes
+		()		.loopboard
+		()		.mvtv
+		()		.quran and spritual
 
-		outing/startup/loop								loop/startup - https://keep.google.com/u/0/#LIST/1Bk3fZo4gZoozvPTST8U22JPyD8AuWgNrfzW5AV3rOtPJNgIfZXiK8OoCg9UNTA
-										
+		DevLoop Details:
 
-sunday -infog(all days) / call all family mem / enjoy and stay away from phone
+		
 
-pointer represents the last done
+		Other Loop Details:
 
-top day selector - 
+			Other Works-
+				-clean Home
+				-clean cloths
+				-.
+			
+			Cook food-
+				-current menu buget - 1000
+					bengali dish this can take more than one day to buy food related items one day and to cook one day
+			
+			to buy-
+				-be careful while you spend and make sure that is the latest thing that should be bought
 
-Extra 		- ()
-Work  		- ()
-Fitness 	- ()
+			plan finace related stuff-
+				-open a acount in the kotak bank for the spending and transfer the calculated minimum spending and transfer with limit
+				-goal 
+					10k in the kotak
+					20k in the hdfc
+					20k in the axis
+				-calculate at mo0nth end the 1/3 for 3 
+					1-personal wants and startups
+					2-investments - land and house and office 50L
+					3-charity - mamu shop 50k
 
-Extra loop -
+Daily Dynamic time table structor:
 
-mvtv 	- ()
-social 	- ()
-quran 	- ()
-event	- ()
-gaming 	- ()
-other options
+	Working day-
+		-Daily Loop
+		-Current Day Workout
+		-Other Works ?
+		-Dev order (eat)
+		-Other Loop (eat) if possible or important
 
-Language Loop - 
+	holiday
+		-Morning Workout (Sun EXposure)
+		-Daily Loop (other Works ?)
+		-Quran (eat)
+		-language(eat)
+		-others loop
+		-Dev operation
 
-LANGUAGE 			POINTER
-
-russian				()
-hindi				()
-french				()
-korean				()
-portugese			()
-japnese				()
-germen				()
-chinese				(*)
-morsecode			()
-tamil				()
-write story			()
-arabic				()
-spanish				()
-
-
-
-Work loop - 
-
-if ( pre req ) - 
-
-finace calculatuion 						-	monthly
-mobile recharge 						-	monthly
-net								-	monthly
-buy food u want or go out					-	monthly
-
-looper -								no of days		pointer
-
-os developement 						-	x2			()()
-hunt								-	x2			()()
-skill loop (github)						-	x2			()()
-Hunt								-	x2			()()
-diy								-	x1			()
-youtube stuff 							-	x2 or x1		()()
-malware analysis and reverseing					-	x2			()()
-Hunt								-	x2			()()
-update encrtptyor decryptor					-	x2			()(*)
-money bugbounty freelance to buy planing etc...			-	xX			()
-hubstream sourse code 						-	x2			()()
-Hunt								-	x2			()()
-quran								-	x1			()
-workout 							-	x1			()
-family or enjoy							-	x1			()
-Hunt								-	x2			()()
-see the board task 						-	x1			()
-mvtv and fun day						-	x1			()
-devops								-	x2			()()
-Hunt								-	x2			()()
-money bugbounty freelance to buy planing etc...			-	xX			()()
-loop								-	x2			()()
-keep notes 							-	x2 or x1		()()
-Hunt								-	x2			()()
-books								-	x2			()()	
-blockchain							-	x2			()()
-if (fund game)							-	x1			()
-Hunt								-	x2			()()
-if (startup fund or work (see money to get variables))		-	x(number of startups)	()
-money bugbounty freelance to buy planing etc...			-	xX			()()
-cloud research and learn and develope 				-	x2			()()
-Hunt								-	x2			()()
-see the board task						-	x1			()
-IOT								-	x2			()()
-Infog 								-	x1 or x2		()()
-Hunt								-	x2			()()
-meta ar vr and new tech 					-	x2			()()
-new business and market research 				-	x2 or x1		()()
-money bugbounty freelance to buy planing etc...			-	xX			()()
-Hunt								-	x2			()()
-mvtv and fun day						-	x1			()
-health								-	x(X you want)		()
-things to buy 3 month planning 					-	x1			()
-Hunt								-	x2			()()
-out of box 							-	x2 or x1		()()
-loop								-	x2			()()
-keep notes 							-	x2 or x1		()()
-Hunt								-	x2			()()
-money bugbounty freelance to buy planing etc...			-	xX			()()
-board task `							-	x2 			()()
-story writing 							-	x2			()()
-Hunt								-	x2			()()
-
-Fitness - 
-
-monday 		- ()
-tuesday 	- ()
-wedneseday 	- ()
-thursday 	- ()
-friday 		- ()
-saturday 	- ()
-sunday 		- ()
+	sunday
+		-Morning Workout
+		-Daily loop
+		-other works ?
+		-Quran
+		-Language
+		-After Noon Workout
+		-Dev 
+		-other loop
