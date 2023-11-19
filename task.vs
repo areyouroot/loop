@@ -2,6 +2,7 @@ MainLoop()
 
 	DevLoop:
 
+		()						.manifest Docs
 		()						.api bleeding xN								
 		()						.Complete the Ecryptor and decryptor and post it
 		()						.Infog											
@@ -61,6 +62,8 @@ MainLoop()
 		()		.loopboard
 		()		.mvtv
 		()		.quran and spritual
+		()		.write the story
+		()		.develope game
 
 		DevLoop Details:
 
@@ -90,6 +93,24 @@ MainLoop()
 					1-personal wants and startups
 					2-investments - land and house and office 50L
 					3-charity - mamu shop 50k
+
+			Language-
+				
+				LANGUAGE 			POINTER
+
+				russian				()
+				hindi				()
+				french				()
+				korean				()
+				portugese			()
+				japnese				()
+				germen				()
+				chinese				()
+				morsecode			()
+				tamil				()
+				write story			()
+				arabic				()
+				spanish				()
 
 Daily Dynamic time table structor:
 
