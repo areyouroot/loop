@@ -1,8 +1,11 @@
-MainLoop()
+MainLoop				(*)()()		x3
+OtherLoop				()			x1
+Hubstream Research		()()()		X3
+OtherLoop				()			x1
+
 
 	DevLoop:
 
-		()						.manifest Docs
 		()						.api bleeding xN								
 		()						.Complete the Ecryptor and decryptor and post it
 		()						.Infog											
@@ -49,7 +52,7 @@ MainLoop()
 		()		.Clean Home and Do other Works
 		()()	.Cook Food (if you cannot move) x2
 		()		.To buy (move if you cannot)
-		()		.Plan Finace and related stuff
+		(*)		.Plan Finace and related stuff
 		()		.go out (if)
 		()		.plan and go to a event
 		()		.spend time with family
