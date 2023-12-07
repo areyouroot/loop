@@ -2,7 +2,8 @@ MainLoop				(*)()()		x3
 OtherLoop				()			x1
 Hubstream Research		()()()		X3
 OtherLoop				()			x1
-
+Money					()()()		x3
+OtherLoop				()			x1
 
 	DevLoop:
 
@@ -24,7 +25,7 @@ OtherLoop				()			x1
 		()()					.BlockChain Research x2
 		()						.Board
 		()						.Hubstream
-		()						.book
+		(*)						.book
 		()						.Infog
 		()()					.Ai R&D x2
 		()()					.UI R&D x2
