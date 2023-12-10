@@ -1,9 +1,21 @@
-MainLoop				(*)(*)()		x3
-OtherLoop				()			x1
-Hubstream Research		()()()		X3
-OtherLoop				()			x1
-Money					()()()		x3
-OtherLoop				()			x1
+Hubstream Root inc research 								-		()()()	-	x3
+other Activity												-		()or()	-	x1 or x2
+Malware and reverse Black hat 								-		()()	-	x2
+other Activity												-		()or()	-	x1 or x2
+DevLoop														-		()()()	-	x3
+other Activity												-		()or()	-	x1 or x2
+Money														-		()()()()-	x4
+other Activity												-		()or()	-	x1 or x2
+
+	Hubstream Root inc research:
+
+		()	-	task update (optional) and the doc update
+		()	-	APIBleeding (Compact)
+		()	- 	ROOTOS
+		()	-	APIBleeding (Advance Proof)
+		()	-	Study and develope Developement Platform with Devops
+		()	-	Product Developement
+
 
 	DevLoop:
 
@@ -42,7 +54,6 @@ OtherLoop				()			x1
 		()()()					.malware analysis and the reverse engineer x3
 		()()()()				.Money x4
 		()						.Hubstream
-		()						.book
 		()						.meta verse and AR and VR
 
 
@@ -67,6 +78,8 @@ OtherLoop				()			x1
 		()		.quran and spritual
 		()		.write the story
 		()		.develope game
+		()		.board
+		()		.loop site
 
 		DevLoop Details:
 
