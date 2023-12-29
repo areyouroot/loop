@@ -1,8 +1,8 @@
-Hubstream Root inc research 								-		()()()	-	x3
+Root inc research			 								-		()()()	-	x3
 other Activity												-		()or()	-	x1 or x2
 Malware and reverse Black hat 								-		()()	-	x2
 other Activity												-		()or()	-	x1 or x2
-DevLoop														-		()()()	-	x3
+DevLoop														-		()()(@)	-	x3
 other Activity												-		()or()	-	x1 or x2
 Money														-		()()()()-	x4
 other Activity												-		()or()	-	x1 or x2
@@ -20,7 +20,6 @@ other Activity												-		()or()	-	x1 or x2
 	DevLoop:
 
 		()						.api bleeding xN								
-		()						.Complete the Ecryptor and decryptor and post it
 		()						.Infog											
 		()						.Board											
 		()						.Keep notes										
@@ -51,10 +50,9 @@ other Activity												-		()or()	-	x1 or x2
 		()						.all lables on the laptop
 		()						.base ai and gpt research and how it can be used
 		()()					.hunt x2
-		()()()					.malware analysis and the reverse engineer x3
 		()()()()				.Money x4
-		()						.Hubstream
 		()						.meta verse and AR and VR
+		()						.Research
 
 
 	OtherLoop:
@@ -63,10 +61,10 @@ other Activity												-		()or()	-	x1 or x2
 		()		.Clean Home and Do other Works
 		()()	.Cook Food (if you cannot move) x2
 		()		.To buy (move if you cannot)
-		(*)		.Plan Finace and related stuff
+		()		.Plan Finace and related stuff
 		()		.go out (if)
 		()		.plan and go to a event
-		()		.spend time with family
+		(*)		.spend time with family
 		()		.learn language
 		()		.youtube 
 		()		.Clean Home and Do other Works
@@ -80,6 +78,7 @@ other Activity												-		()or()	-	x1 or x2
 		()		.develope game
 		()		.board
 		()		.loop site
+		()		.play a game
 
 		DevLoop Details:
 
@@ -114,7 +113,7 @@ other Activity												-		()or()	-	x1 or x2
 				
 				LANGUAGE 			POINTER
 
-				russian				()
+				russian				(@)
 				hindi				()
 				french				()
 				korean				()
